@@ -1,5 +1,4 @@
 {
-  "rootDirectory": "src",
   "cleanUrls": true,
   "trailingSlash": true,
   "rewrites": [
