@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The only honest way to build B2B software: find the problem first | Alvento</title>
+    <meta name="description" content="Most B2B SaaS fails because it's built before the problem is understood. The services-to-SaaS playbook — use consulting to find a workflow worth productising, then build it — is slower but almost always right.">
+    <meta name="author" content="Oscar Espinoza, Alvento">
+    <meta property="og:title" content="The only honest way to build B2B software: find the problem first">
+    <meta property="og:description" content="Most B2B SaaS fails because it's built before the problem is understood. The services-to-SaaS playbook — use consulting to find a workflow worth productising, then build it — is slower but almost always right.">
+    <meta property="og:url" content="https://alvento.ltd/blog/the-only-honest-way-to-build-b2b-software/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The only honest way to build B2B software: find the problem first",
+        "description": "Most B2B SaaS fails because it's built before the problem is understood. The services-to-SaaS playbook — use consulting to find a workflow worth productising, then build it — is slower but almost always right.",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
+        "datePublished": "2026-03-18",
+        "url": "https://alvento.ltd/blog/the-only-honest-way-to-build-b2b-software/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#products">Products</a></li>
+                <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">The only honest way to build B2B software: find the problem first</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Alvento &mdash; 18 March 2026 &mdash; 6 min read</p>
+        </div>
+
+        <p>Most B2B software is built by people who haven't done the job. A founder spots a market, talks to a handful of potential customers, builds a product that solves the version of the problem they understood from those conversations, and ships it. Then they discover that the real problem is slightly different, the workflow they assumed doesn't match how people actually work, and the thing they built fits nobody precisely.</p>
+
+        <p>This is not a new observation. It's the oldest failure mode in software. And yet it keeps happening, because the alternative — actually doing the work before building the tool — requires patience that most founders and investors don't have.</p>
+
+        <p>There's a better approach. It's not new either, but it's underused: use consulting engagements to understand a problem deeply enough to build something worth productising, then build it. The services-to-SaaS playbook. It's slower. It's also almost always right.</p>
+
+        <h2 class="fade-up">Why most B2B tools are built by people who haven't done the job</h2>
+
+        <p>The standard founding story goes: person works in an industry, notices a problem, leaves to build a solution. That story works when the problem is obvious and the solution is well-scoped — when you've spent years doing the manual process yourself and know exactly what would make it better.</p>
+
+        <p>It breaks down when the problem is complex, when the workflows vary significantly between organisations, or when the domain has enough regulatory and operational nuance that an outsider can't fully understand it from conversations alone. This describes most regulated industries. Medtech, NHS supply chain, field services, financial compliance — these are sectors where the surface-level problem is visible but the operational reality is deeply specific to each organisation.</p>
+
+        <p>Building a tool for these sectors without having worked inside them produces software that handles the easy case well and the real case poorly. It works in the demo. It struggles in production. The sales cycle gets long because prospective customers sense, correctly, that the tool wasn't built with their specific constraints in mind.</p>
+
+        <h2 class="fade-up">What a consulting engagement should actually produce</h2>
+
+        <p>Most consulting engagements produce a report. Sometimes a deck. Occasionally a set of recommendations that gets filed and referenced at the next strategy day. This is consulting as performance — it looks like insight but it doesn't produce anything that runs.</p>
+
+        <p>A consulting engagement designed as a precursor to a product build should produce something different: a brief specific enough to build from.</p>
+
+        <p>That means:</p>
+
+        <ul>
+            <li><strong>A named workflow.</strong> Not "improve reporting efficiency" but "the process by which a field engineer submits a job completion report, from job close to system entry." Specific enough that you could describe every step.</li>
+            <li><strong>The actual failure modes.</strong> Where does it break? What happens when it goes wrong? What does the workaround look like? The workarounds are where the real problem lives.</li>
+            <li><strong>The people involved.</strong> Who does this task, how often, with what level of technical comfort, under what time pressure? A tool for a data analyst is different from a tool for a field engineer on a tablet in bad weather.</li>
+            <li><strong>The constraints.</strong> What systems does it have to integrate with? What can't change because of regulatory requirements? What would make procurement impossible?</li>
+            <li><strong>The success condition.</strong> What does "better" look like, concretely? Not "saves time" but "engineer submits report in under 5 minutes, data is in the central system by end of shift, compliance record is complete."</li>
+        </ul>
+
+        <p>A brief that answers those questions is worth more than any number of strategy documents. It's the thing you hand to a developer and get something useful back.</p>
+
+        <h2 class="fade-up">When to stop consulting and start building</h2>
+
+        <p>The risk of the services-to-SaaS playbook is getting comfortable. Consulting income is predictable. Clients pay for your time. The retainer renews. There's no forcing function to make the product bet — and making a product bet is uncomfortable, because it requires building something before you know if it will work.</p>
+
+        <p>The signal that it's time to stop consulting and start building is when you find yourself solving the same problem for the second time. The first time, you're learning. The second time, you're repeating work that could be a product. If a third client comes along with the same problem, you're leaving money on the table and doing yourself a disservice — you could be selling them a tool, not your time.</p>
+
+        <p>The other signal is specificity. When your brief is specific enough that you could hand it to a developer and get something back in four weeks, the brief is done. The consulting work is done. The build should start.</p>
+
+        <h2 class="fade-up">What productising actually means operationally</h2>
+
+        <p>Productising is not the same as generalising. The trap is thinking that turning a consulting solution into a product means making it work for everyone. It doesn't. It means making it work reliably for the people it's designed for, without you being involved in every instance of it running.</p>
+
+        <p>Concretely, productising means:</p>
+
+        <ul>
+            <li>The tool runs without a developer watching it</li>
+            <li>Errors are handled gracefully and surfaced to the right person</li>
+            <li>A new client can be onboarded without custom work</li>
+            <li>The thing that made it valuable in the consulting context is preserved, not averaged out</li>
+        </ul>
+
+        <p>The last point matters most. The specificity that made the tool valuable — the fact that it handles the exact workflow of a specific type of organisation — is a feature, not a bug. A tool that is very good for field service engineers in regulated industrial businesses is more valuable than a tool that is mediocre for everyone. Niche is not a weakness. In B2B software, niche is defensibility.</p>
+
+        <h2 class="fade-up">The highest-value path, honestly stated</h2>
+
+        <p>If you have domain expertise in a regulated industry and build capability — the ability to actually ship software that runs in production — the highest-value path is almost always the same: use the domain expertise to find a problem worth solving, use the build capability to solve it, and use the resulting product to create something that compounds rather than just bills hours.</p>
+
+        <p>That path requires being honest about which phase you're in. Consulting is research. Building is the bet. Selling the product is the business. Conflating them — treating consulting income as the goal, or building before the research is done — is how good build capability gets wasted on the wrong problems.</p>
+
+        <p>The organisations that get this right use every client engagement as an opportunity to find the next thing worth building. They treat the consulting relationship not as the end state but as the reconnaissance that makes the product bet informed rather than speculative.</p>
+
+        <p>That's the only honest version of the services-to-SaaS playbook. Not "we'll consult until we figure it out." But "we're consulting because it's the fastest way to find a problem specific enough to build something that actually works."</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> — first conversation is free.</p>
+        </div>
+
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>alvento.ltd</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+            document.querySelectorAll('.nav-links a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    document.querySelector('.nav-links').classList.remove('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

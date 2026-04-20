@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alvento Tools — Production-grade AI agent infrastructure</title>
+<meta name="description" content="AI agent plugins and blueprints built in production. RegalMail: full email channel for AI agents. Agent blueprints: ready-to-deploy configurations that actually work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-raised: #1c1c1c;
+  --border: #2a2a2a;
+  --text: #e8e8e8;
+  --muted: #888888;
+  --dim: #555555;
+  --accent: #c4f042;
+  --accent-dim: #8aaa2e;
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- NAV ---- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(10,10,10,0.7);
+  border-bottom: 1px solid var(--border);
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* ---- SECTION LABEL ---- */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+  margin-bottom: 48px;
+}
+
+/* ---- BUTTONS ---- */
+.btn-primary {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-primary:hover {
+  background: #d4ff4a;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-block;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 14px 32px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.3s, transform 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--muted);
+  transform: translateY(-1px);
+}
+
+/* ---- FADE ANIMATIONS ---- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- HERO ---- */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(196,240,66,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content { max-width: 800px; }
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 560px;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* ---- PRODUCT SHOWCASE ---- */
+.product {
+  padding: 120px 0;
+}
+
+.product-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.product-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-dim);
+  margin-bottom: 16px;
+}
+
+.product h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+
+.product h2 em { font-style: italic; color: var(--accent); }
+
+.product-desc p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.product-cta {
+  margin-top: 32px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ---- FEATURE LIST ---- */
+.features {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 40px 36px;
+}
+
+.features h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-bottom: 24px;
+}
+
+.feature-item {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.feature-item:last-child { border-bottom: none; }
+
+.feature-bullet {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.feature-item p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.feature-item strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ---- BLUEPRINTS ---- */
+.blueprints {
+  padding: 120px 0;
+}
+
+.blueprints-box {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.blueprints-box::after {
+  content: '';
+  position: absolute;
+  bottom: -40%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(196,240,66,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.blueprints-box h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.blueprints-box h2 em { font-style: italic; color: var(--accent); }
+
+.blueprints-box > p {
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 600px;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+.blueprints-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 40px;
+}
+
+.blueprint-card {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  padding: 28px 24px;
+}
+
+.blueprint-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.blueprint-card p {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.blueprint-note {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--dim);
+}
+
+/* ---- CONTACT ---- */
+.contact { padding: 120px 0; }
+
+.contact-inner {
+  border-top: 1px solid var(--border);
+  padding-top: 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.contact h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  letter-spacing: -0.02em;
+}
+
+.contact-info p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.contact-email {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent-dim);
+  padding-bottom: 2px;
+  transition: color 0.3s;
+}
+
+.contact-email:hover { color: #d4ff4a; }
+
+/* ---- FOOTER ---- */
+footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+footer p {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--dim);
+  letter-spacing: 0.04em;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(20px);
+    padding: 24px;
+    gap: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-toggle { display: block; }
+  .product-inner { grid-template-columns: 1fr; gap: 40px; }
+  .blueprints-grid { grid-template-columns: 1fr; }
+  .blueprints-box { padding: 40px 28px; }
+  .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="/" class="logo">alvento<span>.</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/#products">Products</a></li>
+      <li><a href="/seo-audit">Free Audit</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="section-label fade-up">Alvento Tools</div>
+      <h1 class="fade-up">AI agent infrastructure, <em>built in production</em></h1>
+      <p class="fade-up">We run AI agents for real businesses every day. The plugins and configurations that survive production become products. No demos, no theoretical frameworks&mdash;tools that work because they have to.</p>
+      <div class="hero-buttons fade-up">
+        <a href="#regalmail" class="btn-primary">See RegalMail</a>
+        <a href="#blueprints" class="btn-secondary">Agent blueprints</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGALMAIL -->
+<section class="product" id="regalmail">
+  <div class="container">
+    <div class="section-label fade-up">01 &mdash; Plugin</div>
+    <div class="product-inner">
+      <div class="fade-up">
+        <div class="product-tag">RegalMail</div>
+        <h2>Email as a <em>first-class channel</em> for AI agents</h2>
+        <div class="product-desc">
+          <p>RegalMail gives your AI agent a full email channel&mdash;inbound monitoring, outbound replies, multi-account routing, and conversation threading. Not a wrapper around an API. A complete email system that runs autonomously.</p>
+          <p>Built for agents that need to read, understand, and reply to real email from real people. Handles the hard parts: IMAP IDLE for real-time delivery, anti-loop protection so agents don't reply to themselves, and threaded replies that land in the right conversation.</p>
+        </div>
+        <div class="product-cta">
+          <a href="mailto:hello@alvento.ltd?subject=RegalMail%20early%20access" class="btn-primary">Get early access</a>
+        </div>
+      </div>
+      <div class="features fade-up">
+        <h3>What's included</h3>
+        <div class="feature-item">
+          <span class="feature-bullet">&rsaquo;</span>
+          <p><strong>Real-time IMAP monitoring</strong> &mdash; IDLE-based, not polling. Emails arrive in seconds, not minutes.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-bullet">&rsaquo;</span>
+          <p><strong>Threaded replies</strong> &mdash; In-Reply-To and References headers. Replies land in the right conversation thread.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-bullet">&rsaquo;</span>
+          <p><strong>Multi-account routing</strong> &mdash; Route sales@, support@, hello@ to different agents automatically.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-bullet">&rsaquo;</span>
+          <p><strong>Anti-loop protection</strong> &mdash; Detects noreply addresses, auto-reply headers, rate limits. Agents won't loop.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-bullet">&rsaquo;</span>
+          <p><strong>Connection resilience</strong> &mdash; Automatic reconnect with exponential backoff. Survives network drops.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-bullet">&rsaquo;</span>
+          <p><strong>Framework agnostic</strong> &mdash; Works with any agent framework. TypeScript, clean interfaces, no lock-in.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLUEPRINTS -->
+<section class="blueprints" id="blueprints">
+  <div class="container">
+    <div class="blueprints-box fade-up">
+      <div class="section-label">02 &mdash; Coming Soon</div>
+      <h2>Agent <em>blueprints</em></h2>
+      <p>Ready-to-deploy agent configurations extracted from our production systems. Identity files, memory protocols, tool bindings, and safety rails. Skip months of trial and error&mdash;start from what actually works.</p>
+      <div class="blueprints-grid">
+        <div class="blueprint-card">
+          <h4>Sales Agent</h4>
+          <p>Outbound prospecting, lead qualification, follow-up sequences. Complete identity and workflow config.</p>
+        </div>
+        <div class="blueprint-card">
+          <h4>AI Receptionist</h4>
+          <p>Inbound enquiry handling, routing, appointment scheduling. Multi-channel with escalation rules.</p>
+        </div>
+        <div class="blueprint-card">
+          <h4>Operations Monitor</h4>
+          <p>System health checks, alerting, daily reports. Watches your business systems and flags problems.</p>
+        </div>
+      </div>
+      <p class="blueprint-note">Blueprints are in private beta. Email hello@alvento.ltd for early access.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="fade-up">
+        <div class="section-label">03 &mdash; Contact</div>
+        <h2>Build with us</h2>
+      </div>
+      <div class="contact-info fade-up">
+        <p>If you're building AI agents and need production-grade infrastructure, or you want early access to what we're shipping next, get in touch.</p>
+        <a href="mailto:hello@alvento.ltd" class="contact-email">hello@alvento.ltd</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+    <p>alvento.ltd</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(function(el, i) {
+    el.style.transitionDelay = (i % 4) * 0.1 + 's';
+    observer.observe(el);
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.remove('open');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

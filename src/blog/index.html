@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Alvento — AI tools, automation and regulated industries</title>
+    <meta name="description" content="Insights from Alvento on AI capability, operational transformation, and building systems that make businesses run better.">
+    <meta name="author" content="Alvento">
+    <meta property="og:title" content="Blog | Alvento — AI tools, automation and regulated industries">
+    <meta property="og:description" content="Insights from Alvento on AI capability, operational transformation, and building systems that make businesses run better.">
+    <meta property="og:url" content="https://alvento.ltd/blog/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Blog container */
+        .blog-container { max-width: 900px; margin: 0 auto; padding: 120px 24px 60px; }
+        .blog-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .blog-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .blog-container p { margin-bottom: 16px; color: var(--text); line-height: 1.8; }
+
+        /* Post cards */
+        .posts-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 40px; }
+        .post-card {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 30px;
+            border-radius: 4px;
+        }
+        .post-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .post-card h3 a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .post-card h3 a:hover { color: var(--accent); }
+        .post-card .excerpt { color: var(--text); margin-bottom: 16px; }
+        .post-card .post-meta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
+        .post-card a.read-more {
+            display: inline-block;
+            margin-top: 16px;
+            font-weight: 600;
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            transition: color 0.3s;
+        }
+        .post-card a.read-more:hover { color: #d4ff4a; }
+
+        /* CTA */
+        .cta-section {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 40px;
+            margin-top: 60px;
+            text-align: center;
+            border-radius: 0 4px 4px 0;
+        }
+        .cta-section h3 {
+            color: var(--accent);
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        .cta-section p { color: var(--text); margin-bottom: 20px; }
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            background: #d4ff4a;
+            transform: translateY(-1px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Alvento Blog",
+        "description": "Insights on AI capability, operational transformation, and building systems for serious business operations.",
+        "url": "https://alvento.ltd/blog/",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Alvento",
+            "url": "https://alvento.ltd"
+        }
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#products">Products</a></li>
+                <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="blog-container">
+        <header class="fade-up">
+            <h1>Blog</h1>
+            <div class="meta">
+                <p>Insights on AI capability, operational transformation, and building systems that make businesses run better.</p>
+            </div>
+        </header>
+
+        <h2 class="fade-up">Latest Posts</h2>
+
+        <div class="posts-grid">
+            <article class="post-card fade-up">
+                <h3><a href="/blog/why-regulated-industries-are-last-to-adopt-ai/">Why regulated industries are last to adopt AI — and first to benefit</a></h3>
+                <p class="excerpt">Compliance-heavy sectors have the most structured, repeatable data — perfect for AI. So why are they last to adopt it? And what does tractable actually look like?</p>
+                <p class="post-meta">By Oscar Espinoza | Published 18 March 2026 | 7 min read</p>
+                <a href="/blog/why-regulated-industries-are-last-to-adopt-ai/" class="read-more">Read more &rarr;</a>
+            </article>
+
+            <article class="post-card fade-up">
+                <h3><a href="/blog/the-only-honest-way-to-build-b2b-software/">The only honest way to build B2B software: find the problem first</a></h3>
+                <p class="excerpt">Most B2B SaaS fails because it's built before the problem is understood. The services-to-SaaS playbook — use consulting to find a workflow worth productising, then build it — is slower but almost always right.</p>
+                <p class="post-meta">By Oscar Espinoza | Published 18 March 2026 | 6 min read</p>
+                <a href="/blog/the-only-honest-way-to-build-b2b-software/" class="read-more">Read more &rarr;</a>
+            </article>
+
+            <article class="post-card fade-up">
+                <h3><a href="/blog/what-shipping-a-consumer-ai-product-taught-us/">What shipping a consumer AI product taught us about building for businesses</a></h3>
+                <p class="excerpt">ioomm.app is a live AI product that takes real payments. Here's what building it taught us about the gap between a demo and something that actually runs in production.</p>
+                <p class="post-meta">By Oscar Espinoza | Published 18 March 2026 | 6 min read</p>
+                <a href="/blog/what-shipping-a-consumer-ai-product-taught-us/" class="read-more">Read more &rarr;</a>
+            </article>
+
+            <article class="post-card fade-up">
+                <h3><a href="/blog/how-to-rank-on-google-maps/">How to Rank on Google Maps</a></h3>
+                <p class="excerpt">Learn proven strategies to rank higher on Google Maps. Optimise your Google Business Profile and get found by local customers searching for your services.</p>
+                <p class="post-meta">By Maeve O'Brien | Published 17 March 2026 | 5 min read</p>
+                <a href="/blog/how-to-rank-on-google-maps/" class="read-more">Read more &rarr;</a>
+            </article>
+
+            <article class="post-card fade-up">
+                <h3><a href="/blog/google-business-profile-tips/">Google Business Profile Tips: Optimisation Checklist</a></h3>
+                <p class="excerpt">Master Google Business Profile optimisation. Our checklist covers profile completion, photos, reviews, and ranking factors that actually move the needle.</p>
+                <p class="post-meta">By Maeve O'Brien | Published 17 March 2026 | 6 min read</p>
+                <a href="/blog/google-business-profile-tips/" class="read-more">Read more &rarr;</a>
+            </article>
+
+            <article class="post-card fade-up">
+                <h3><a href="/blog/local-seo-for-small-business-uk/">Local SEO for Small Business UK: The Beginner's Guide</a></h3>
+                <p class="excerpt">Master local SEO for your small business. Learn the fundamentals of Google Maps ranking, local search visibility, and getting customers in your area.</p>
+                <p class="post-meta">By Maeve O'Brien | Published 17 March 2026 | 7 min read</p>
+                <a href="/blog/local-seo-for-small-business-uk/" class="read-more">Read more &rarr;</a>
+            </article>
+
+            <article class="post-card fade-up">
+                <h3><a href="/blog/how-to-get-more-google-reviews/">How to Get More Google Reviews: Proven Tactics</a></h3>
+                <p class="excerpt">Learn proven tactics to get more Google reviews and improve your local ranking. Strategies that work for any small business without buying fake reviews.</p>
+                <p class="post-meta">By Maeve O'Brien | Published 17 March 2026 | 7 min read</p>
+                <a href="/blog/how-to-get-more-google-reviews/" class="read-more">Read more &rarr;</a>
+            </article>
+
+            <article class="post-card fade-up">
+                <h3><a href="/blog/why-is-my-business-not-showing-on-google/">Why Is My Business Not Showing on Google? Troubleshooting Guide</a></h3>
+                <p class="excerpt">Your business should be on Google. If it's not, we'll help you figure out why. Step-by-step troubleshooting for visibility problems.</p>
+                <p class="post-meta">By Maeve O'Brien | Published 17 March 2026 | 7 min read</p>
+                <a href="/blog/why-is-my-business-not-showing-on-google/" class="read-more">Read more &rarr;</a>
+            </article>
+        </div>
+
+        <section class="cta-section fade-up">
+            <h3>Build AI capability for your business</h3>
+            <p>Alvento designs and deploys AI systems for operations, knowledge, service, and growth. Start with a diagnostic to identify where AI can have the most impact.</p>
+            <a href="/#contact" class="btn-primary">Book a diagnostic</a>
+        </section>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>alvento.ltd</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-up').forEach(function(el, i) {
+            el.style.transitionDelay = (i % 4) * 0.1 + 's';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Is My Business Not Showing on Google? Troubleshooting Guide | Alvento</title>
+    <meta name="description" content="Your business should be on Google. If it's not, we'll help you figure out why. Step-by-step troubleshooting for visibility problems.">
+    <meta name="author" content="Maeve O'Brien, Growth Analyst at Alvento">
+    <meta property="og:title" content="Why Is My Business Not Showing on Google? Troubleshooting Guide">
+    <meta property="og:description" content="Your business should be on Google. If it's not, we'll help you figure out why. Step-by-step troubleshooting for visibility problems.">
+    <meta property="og:url" content="https://alvento.ltd/blog/why-is-my-business-not-showing-on-google/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box, .issue-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Why Is My Business Not Showing on Google? Troubleshooting Guide",
+        "description": "Your business should be on Google. If it's not, we'll help you figure out why. Step-by-step troubleshooting for visibility problems.",
+        "author": { "@type": "Person", "name": "Maeve O'Brien", "jobTitle": "Growth Analyst", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
+        "datePublished": "2026-03-17",
+        "url": "https://alvento.ltd/blog/why-is-my-business-not-showing-on-google/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#products">Products</a></li>
+                <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">Why Is My Business Not Showing on Google? Troubleshooting Guide</h1>
+        <div class="meta">
+            <p>By Maeve O'Brien, Growth Analyst at Alvento | Published 17 March 2026</p>
+        </div>
+
+        <p>Your business should be on Google. If someone in your area searches for what you offer, they should find you. But if you're invisible on Google, you're losing customers every single day to competitors who rank.</p>
+
+        <p>The good news? Visibility problems almost always have a fix. In this guide, we'll work through the most common reasons businesses don't show up on Google, and exactly how to fix each one.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> — first conversation is free.</p>
+        </div>
+
+        <h2 class="fade-up">Problem 1: You Haven't Claimed Your Google Business Profile</h2>
+
+        <p>This is the most common issue. If you haven't claimed your Google Business Profile, Google doesn't know who to trust with your business information. You're basically invisible.</p>
+
+        <div class="issue-box fade-up">
+            <h3>How to check:</h3>
+            <p>Go to business.google.com and search for your business name. Does it appear? Is it marked as "Claimed"?</p>
+
+            <h3>The fix:</h3>
+            <ul>
+                <li>If your business doesn't appear, click "Create a business profile" and follow the steps</li>
+                <li>If it appears but isn't claimed, click "Manage this business" and verify ownership (postcard, phone, or email)</li>
+                <li>Verification takes a few days to a few weeks. Once verified, you control the information</li>
+            </ul>
+        </div>
+
+        <p>Claim your profile today. It's free, takes 20 minutes, and is the single biggest step towards visibility.</p>
+
+        <h2 class="fade-up">Problem 2: Your Profile Is Incomplete</h2>
+
+        <p>Even if you've claimed your profile, Google only shows you if you've filled it in properly. Incomplete profiles rank poorly or don't show at all.</p>
+
+        <div class="issue-box fade-up">
+            <h3>What Google needs from you:</h3>
+            <ul>
+                <li>Complete business name (exact legal name)</li>
+                <li>Full address with postcode</li>
+                <li>Phone number (correct and active)</li>
+                <li>Website URL</li>
+                <li>Business category (specific, not generic)</li>
+                <li>Business hours (including holidays)</li>
+                <li>Description (750 characters minimum)</li>
+                <li>At least 10 photos</li>
+            </ul>
+
+            <h3>The fix:</h3>
+            <p>Log into your Google Business Profile and go through the checklist above. Fill in every field. Many businesses only fill 50% of their profile and wonder why they don't rank.</p>
+        </div>
+
+        <h2 class="fade-up">Problem 3: Your Name, Address, Phone Are Inconsistent</h2>
+
+        <p>If your business details are different across your website, Facebook, Google Business Profile, and local directories, Google gets confused. It doesn't know which version is correct, so it doesn't trust any of them.</p>
+
+        <div class="issue-box fade-up">
+            <h3>Common inconsistencies:</h3>
+            <ul>
+                <li>Business name: "Smith Plumbing" on Google, "Smith's Plumbing" on Facebook</li>
+                <li>Address: "20 High Street" vs "20 High St" vs "20 High Street, Suite B"</li>
+                <li>Phone: Landline on Google, mobile on website</li>
+                <li>Old address that hasn't been updated everywhere</li>
+            </ul>
+
+            <h3>The fix:</h3>
+            <ul>
+                <li>Choose one correct version of your name, address, and phone</li>
+                <li>Update it everywhere: website, Google Business Profile, Facebook, LinkedIn, local directories</li>
+                <li>If you've moved, update all directories at once (not gradually)</li>
+                <li>Make this consistent going forward</li>
+            </ul>
+        </div>
+
+        <h2 class="fade-up">Problem 4: Your Category Is Wrong or Too Generic</h2>
+
+        <p>Google uses business categories to match searches to results. If you've chosen the wrong category or it's too vague, you won't show up for the searches you should rank for.</p>
+
+        <div class="issue-box fade-up">
+            <h3>Examples of poor categories:</h3>
+            <ul>
+                <li>"Service Provider" instead of "Plumber"</li>
+                <li>"Business" instead of "Accountant" or "Bookkeeper"</li>
+                <li>"Professional" instead of "Hairdresser" or "Hair Salon"</li>
+            </ul>
+
+            <h3>The fix:</h3>
+            <p>Choose the most specific category that matches your business. Google will suggest categories as you type. Pick the most specific one, then add secondary categories that also apply.</p>
+        </div>
+
+        <h2 class="fade-up">Problem 5: You Don't Have a Website (or It's Invisible to Google)</h2>
+
+        <p>A website isn't required to rank on Google Maps, but it helps. If you do have a website, Google needs to be able to index it (crawl and understand it).</p>
+
+        <div class="issue-box fade-up">
+            <h3>Check if your site is indexable:</h3>
+            <p>Go to Google Search Console and check: Is your site indexed? Are there crawl errors? Does Google see your content?</p>
+
+            <h3>Common issues:</h3>
+            <ul>
+                <li>Robots.txt is blocking Googlebot (accidentally disabling crawling)</li>
+                <li>Site requires login to see content</li>
+                <li>Site is too slow (Google can't crawl it all)</li>
+                <li>Site is broken or has 404 errors everywhere</li>
+            </ul>
+
+            <h3>The fix:</h3>
+            <ul>
+                <li>If you don't have a website, build a simple one (Wix, Squarespace, or WordPress)</li>
+                <li>Make sure it's mobile-friendly and fast-loading</li>
+                <li>Make sure your location and services are clearly mentioned</li>
+                <li>Use Google Search Console to check indexation and fix any issues</li>
+            </ul>
+        </div>
+
+        <h2 class="fade-up">Problem 6: You're in a Highly Competitive Area</h2>
+
+        <p>If you're a dentist in London, you're competing with hundreds of other dentists. Google's "local pack" (the three businesses shown at the top of local results) is limited to three spots. Ranking there is harder than ranking in a small town where there are fewer competitors.</p>
+
+        <div class="issue-box fade-up">
+            <h3>Signs you're facing heavy competition:</h3>
+            <ul>
+                <li>Even big competitors have hundreds of reviews</li>
+                <li>The top three results are well-established businesses</li>
+                <li>You're new and don't have any reviews yet</li>
+            </ul>
+
+            <h3>The fix:</h3>
+            <ul>
+                <li>It takes longer. Build momentum: reviews, listings, backlinks, local mentions</li>
+                <li>Find a niche: "Emergency dentist in East London" is less competitive than just "Dentist"</li>
+                <li>Get every single review you can. Volume matters in competitive areas</li>
+                <li>Get listed in every local directory you can find</li>
+            </ul>
+        </div>
+
+        <h2 class="fade-up">Problem 7: You've Been Penalised or Suspended</h2>
+
+        <p>Google sometimes suspends or penalises profiles for policy violations. Common reasons:</p>
+
+        <ul>
+            <li>Buying fake reviews or incentivising specific ratings</li>
+            <li>Multiple profiles for the same business</li>
+            <li>Inaccurate information or misleading content</li>
+            <li>Spam or inappropriate content</li>
+        </ul>
+
+        <div class="issue-box fade-up">
+            <h3>How to check:</h3>
+            <p>Log into your Google Business Profile. If there's a suspension notice, it will be displayed prominently.</p>
+
+            <h3>The fix:</h3>
+            <ul>
+                <li>Read the suspension notice carefully—it tells you exactly what you did wrong</li>
+                <li>Fix the problem (delete fake reviews, remove inaccurate info, etc.)</li>
+                <li>Request reinstatement through the appeal process in Google Business Profile</li>
+                <li>Don't repeat the violation once you're back</li>
+            </ul>
+        </div>
+
+        <h2 class="fade-up">Problem 8: Google Maps Isn't Your Only Problem</h2>
+
+        <p>Sometimes businesses aren't showing on Google Maps because they're so new that Google hasn't indexed their area yet, or they're in a rural location where Google has less data.</p>
+
+        <div class="issue-box fade-up">
+            <h3>For new businesses:</h3>
+            <p>Give it time. Claim your profile, optimise it, and start collecting reviews. It typically takes 2-4 weeks to show up in Maps searches.</p>
+
+            <h3>For rural areas:</h3>
+            <p>Be extra thorough with your profile. Add lots of photos, detailed description, and reviews. You're competing with less visibility, so you need to be extra complete.</p>
+        </div>
+
+        <h2 class="fade-up">The Diagnostic Checklist</h2>
+
+        <p>Work through these in order:</p>
+
+        <ul>
+            <li>✓ Is your profile claimed and verified? (If no, claim it)</li>
+            <li>✓ Is your profile complete? (Fill every field)</li>
+            <li>✓ Is your NAP consistent everywhere? (Fix inconsistencies)</li>
+            <li>✓ Is your category specific? (Choose the most specific option)</li>
+            <li>✓ Do you have a website? (Build one if not)</li>
+            <li>✓ Are you being penalised? (Check for suspension notices)</li>
+            <li>✓ Do you have reviews? (Start asking for them)</li>
+            <li>✓ Are you listed in local directories? (Add yourself to Yell.com, etc.)</li>
+        </ul>
+
+        <h2 class="fade-up">Next Steps</h2>
+
+        <p>Start with the checklist above. Most visibility problems are quick fixes. Claim your profile, complete it, fix your NAP, and start asking for reviews. In 30 days, you should see improvement.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> — first conversation is free.</p>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>alvento.ltd</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-up').forEach(function(el, i) {
+            el.style.transitionDelay = (i % 4) * 0.1 + 's';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Rank on Google Maps: A Guide for UK Small Businesses | Alvento</title>
+    <meta name="description" content="Learn proven strategies to rank higher on Google Maps. Optimise your Google Business Profile and get found by local customers searching for your services.">
+    <meta name="author" content="Maeve O'Brien, Growth Analyst at Alvento">
+    <meta property="og:title" content="How to Rank on Google Maps: A Guide for UK Small Businesses">
+    <meta property="og:description" content="Learn proven strategies to rank higher on Google Maps. Optimise your Google Business Profile and get found by local customers searching for your services.">
+    <meta property="og:url" content="https://alvento.ltd/blog/how-to-rank-on-google-maps/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Rank on Google Maps: A Guide for UK Small Businesses",
+        "description": "Learn proven strategies to rank higher on Google Maps. Optimise your Google Business Profile and get found by local customers searching for your services.",
+        "author": { "@type": "Person", "name": "Maeve O'Brien", "jobTitle": "Growth Analyst", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
+        "datePublished": "2026-03-17",
+        "url": "https://alvento.ltd/blog/how-to-rank-on-google-maps/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#products">Products</a></li>
+                <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">How to Rank on Google Maps: A Guide for UK Small Businesses</h1>
+        <div class="meta">
+            <p>By Maeve O'Brien, Growth Analyst at Alvento | Published 17 March 2026</p>
+        </div>
+
+        <p>If you're running a local business in the UK, Google Maps isn't just a bonus—it's where customers find you. When someone searches "plumber near me" or "coffee shop in Manchester," they're looking at Google Maps. If you're not showing up there, you're losing customers to your competitors.</p>
+
+        <p>The good news? Ranking on Google Maps isn't magic. It's a combination of getting the basics right: claiming your Google Business Profile, filling it out completely, and building legitimate local signals that tell Google your business is trustworthy and relevant.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> — first conversation is free.</p>
+        </div>
+
+        <h2 class="fade-up">Claim and Complete Your Google Business Profile</h2>
+
+        <p>This is the foundation. If you haven't claimed your Google Business Profile yet, do it today. It takes 20 minutes and makes a massive difference.</p>
+
+        <h3>Why this matters</h3>
+        <p>Google needs to verify that you actually own the business you're claiming. Once you do, you control what appears when someone searches for you. Without it, Google might show outdated information, wrong phone numbers, or—worse—nothing at all.</p>
+
+        <h3>How to do it</h3>
+        <ul>
+            <li>Go to Google Business Profile (business.google.com) and search for your business</li>
+            <li>Click "Claim this business" if it's unverified</li>
+            <li>Choose your verification method (postcard, phone, or email—postcard is most reliable)</li>
+            <li>Complete your profile fully: business hours, phone number, website, categories, and photos</li>
+        </ul>
+
+        <p>Don't skip the details. Every field you fill increases your chances of showing up in Maps searches and local results. Think of it as telling Google everything about your business so it can match you to customers looking for exactly what you offer.</p>
+
+        <h2 class="fade-up">Optimise Your Business Information</h2>
+
+        <p>Once you've claimed your profile, the next step is to make it work for you. This means being specific, consistent, and strategic about how you present your business.</p>
+
+        <h3>Business category</h3>
+        <p>Choose your primary category carefully. If you're a plumber, "Plumber" is better than "Home Services." Google uses categories to match businesses to search queries, so be as specific as possible.</p>
+
+        <h3>Description and photos</h3>
+        <p>Write a 750-character description that includes words customers search for. Add at least 10 photos: your storefront, interior, team, and services in action. Google shows these prominently, and businesses with more photos get more visibility.</p>
+
+        <h3>Service areas and business hours</h3>
+        <p>If you travel to customers, define your service area clearly. Keep your hours accurate—Google flags old information. Update them for holidays too.</p>
+
+        <h2 class="fade-up">Build Reviews and Social Proof</h2>
+
+        <p>Google Maps ranks businesses partly on review quality and quantity. More reviews signal that customers trust you, and Google rewards this with higher visibility.</p>
+
+        <ul>
+            <li><strong>Ask satisfied customers to review you.</strong> After a job well done, send a follow-up email with a direct link to leave a review.</li>
+            <li><strong>Respond to every review.</strong> Thank customers for positive reviews, and address negative ones professionally. This shows you care.</li>
+            <li><strong>Encourage detailed reviews.</strong> "Loved it" is nice, but "Professional, punctual, and excellent quality" is better for ranking.</li>
+        </ul>
+
+        <p>Building reviews takes time, but it's one of the most powerful ranking factors for Google Maps. Aim for steady, consistent growth.</p>
+
+        <h2 class="fade-up">Get Your NAP Consistent Across the Web</h2>
+
+        <p>NAP stands for Name, Address, Phone. Inconsistent information across the web confuses Google and hurts your ranking. Check your details on your website, Google Business Profile, Facebook, LinkedIn, and local directories. Make sure they match exactly—no variations like "Ltd" vs "Limited."</p>
+
+        <ul>
+            <li>Audit your current listings</li>
+            <li>Update any old or incorrect information</li>
+            <li>Keep everything consistent going forward</li>
+        </ul>
+
+        <h2 class="fade-up">Get Listed in Local Directories</h2>
+
+        <p>Local directories aren't just places to list—they're signals of legitimacy to Google. When multiple trusted directories list your business with consistent information, Google trusts you more.</p>
+
+        <ul>
+            <li>Yell.com (UK's largest business directory)</li>
+            <li>TrustedTraders and local association directories</li>
+            <li>Industry-specific directories (Bark, RatedTradespeople, etc.)</li>
+        </ul>
+
+        <h2 class="fade-up">Get Backlinks from Local Sources</h2>
+
+        <p>Backlinks from local sources tell Google your business is known and respected in your area. This boosts your Maps ranking. Look for opportunities to be featured in local news, sponsor community events, partner with complementary businesses, or join local business associations.</p>
+
+        <h2 class="fade-up">Monitor Your Progress</h2>
+
+        <p>Ranking on Google Maps is an ongoing effort, not a one-time task. Once you've implemented these strategies, keep an eye on your progress.</p>
+
+        <ul>
+            <li><strong>Monitor your ranking position:</strong> Search for your target keywords ("plumber near me" in your area, for example) and note where you appear. Are you in the local pack (top 3)? First page? Not yet?</li>
+            <li><strong>Track review growth:</strong> Aim for steady growth each month. 5-10 new reviews per month shows momentum.</li>
+            <li><strong>Watch your impressions and clicks:</strong> Google Business Profile gives you data on how many people see your listing and click it. Increasing these numbers shows your optimisation is working.</li>
+            <li><strong>Update regularly:</strong> Add new photos monthly, respond to reviews promptly, and keep your hours current. Google rewards active, maintained profiles with higher visibility.</li>
+        </ul>
+
+        <p>Use Google Search Console and your Google Business Profile analytics to track performance. These free tools show you exactly how customers find you and where you can improve.</p>
+
+        <h2 class="fade-up">The Bottom Line</h2>
+
+        <p>Ranking on Google Maps doesn't happen overnight, but these steps work. Start with the basics: claim your profile, fill it completely, encourage reviews, and get your NAP consistent. Then layer on local directories and backlinks. Over time, you'll climb the rankings and get more customers finding you.</p>
+
+        <p>The businesses that dominate their local markets are the ones that treat Google Maps seriously. They understand that it's not just a listing—it's their primary storefront for local customers. If you invest the time in optimisation and reviews, you'll outrank competitors who treat it as an afterthought.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> — first conversation is free.</p>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>alvento.ltd</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-up').forEach(function(el, i) {
+            el.style.transitionDelay = (i % 4) * 0.1 + 's';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    });
+    </script>
+</body>
+</html>

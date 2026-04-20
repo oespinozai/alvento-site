@@ -1,0 +1,18 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "rewrites": [
+    { "source": "/report/:token/", "destination": "/reports/:token" },
+    { "source": "/report/:token", "destination": "/reports/:token" },
+    { "source": "/tools", "destination": "/tools.html" },
+    { "source": "/seo-audit", "destination": "/seo-audit.html" },
+    { "source": "/RegalMail", "destination": "/email-plugin.html" },
+    { "source": "/score-api", "destination": "/score-api.html" },
+    { "source": "/aeo", "destination": "/aeo.html" }
+  ],
+  "functions": {
+    "api/audit.js": {
+      "maxDuration": 15
+    }
+  }
+}

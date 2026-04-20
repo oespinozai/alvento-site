@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Local Business Score — Alvento</title>
+<meta name="description" content="Get your free Local Business Score. We audit your Google Business Profile, on-page SEO, citations, reviews and competitors — personalised report sent to your email.">
+<meta property="og:title" content="Free Local Business Score — Alvento">
+<meta property="og:description" content="Get your free Local Business Score. Personalised SEO audit report sent to your email.">
+<meta property="og:url" content="https://alvento.ltd/seo-audit">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--surface:#141414;--surface-2:#1c1c1c;--border:#2a2a2a;
+  --text:#e8e8e8;--text-muted:#888;--text-dim:#555;
+  --lime:#c4f042;--lime-dim:#8aaa2e;
+  --font-display:'Instrument Serif',serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* --- NAV --- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(10,10,10,0.7);border-bottom:1px solid var(--border)}
+nav .container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 24px}
+.logo{font-family:var(--font-display);font-size:1.5rem;color:var(--text);letter-spacing:-0.02em;text-decoration:none}
+.logo span{color:var(--lime)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-family:var(--font-mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);transition:color 0.3s;text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+
+/* --- HERO --- */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2rem 4rem;max-width:900px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:15%;left:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(196,240,66,0.06) 0%,transparent 70%);pointer-events:none}
+.tag{display:inline-block;font-family:var(--font-mono);font-size:0.75rem;color:var(--lime);border:1px solid var(--lime-dim);padding:0.35rem 0.8rem;border-radius:2px;margin-bottom:2rem;letter-spacing:0.06em;text-transform:uppercase}
+.hero h1{font-family:var(--font-display);font-size:clamp(3rem,7vw,5.5rem);line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.5rem;font-weight:400}
+.hero h1 em{font-style:italic;color:var(--lime)}
+.hero p{font-size:1.15rem;color:var(--text-muted);max-width:560px;margin-bottom:2.5rem;line-height:1.7}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:0.5rem;background:var(--lime);color:#0a0a0a;font-family:var(--font-body);font-weight:600;font-size:0.95rem;padding:0.9rem 2rem;border:none;border-radius:3px;cursor:pointer;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;letter-spacing:0.01em}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(196,240,66,0.25)}
+.btn-secondary{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:var(--text);font-family:var(--font-body);font-weight:500;font-size:0.95rem;padding:0.9rem 2rem;border:1px solid var(--border);border-radius:3px;cursor:pointer;text-decoration:none;transition:border-color 0.2s}
+.btn-secondary:hover{border-color:var(--text-muted)}
+
+/* --- SECTION --- */
+section{padding:5rem 2rem;max-width:900px;margin:0 auto}
+.section-label{font-family:var(--font-mono);font-size:0.7rem;color:var(--lime-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+section h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.02em;margin-bottom:1rem;font-weight:400}
+section h2 em{font-style:italic;color:var(--lime)}
+
+/* --- FORM --- */
+.audit-form-wrap{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:2.5rem;margin-top:2.5rem}
+.audit-form{display:grid;gap:1.25rem}
+.form-group{display:flex;flex-direction:column;gap:0.4rem}
+.form-group label{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase}
+.form-group input{background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:0.85rem 1rem;color:var(--text);font-family:var(--font-body);font-size:0.95rem;transition:border-color 0.2s;outline:none}
+.form-group input:focus{border-color:var(--lime-dim)}
+.form-group input::placeholder{color:var(--text-dim)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.form-submit{margin-top:0.5rem}
+.form-submit .btn-primary{width:100%;justify-content:center;padding:1rem 2rem;font-size:1rem}
+.form-note{font-size:0.8rem;color:var(--text-dim);margin-top:0.75rem;text-align:center}
+.form-success{display:none;text-align:center;padding:3rem 1rem}
+.form-success h3{font-family:var(--font-display);font-size:1.8rem;margin-bottom:1rem;color:var(--lime)}
+.form-success p{color:var(--text-muted);font-size:0.95rem;line-height:1.7;max-width:440px;margin:0 auto}
+.form-error{display:none;color:#ef4444;font-size:0.85rem;margin-top:0.5rem;text-align:center}
+
+/* --- WHAT'S INSIDE --- */
+.checklist-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;margin-top:2.5rem;overflow:hidden}
+.checklist-item{background:var(--surface);padding:1.75rem}
+.checklist-item .num{font-family:var(--font-mono);font-size:0.7rem;color:var(--lime-dim);margin-bottom:0.75rem;letter-spacing:0.06em}
+.checklist-item h3{font-size:1rem;font-weight:600;margin-bottom:0.4rem}
+.checklist-item p{font-size:0.85rem;color:var(--text-muted);line-height:1.6}
+
+/* --- SCORING --- */
+.score-demo{margin-top:2.5rem;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:2rem}
+.score-row{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 0;border-bottom:1px solid var(--border)}
+.score-row:last-child{border-bottom:none}
+.score-row .label{font-size:0.9rem}
+.score-bar{width:120px;height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.score-bar .fill{height:100%;border-radius:3px}
+.fill-red{background:#ef4444;width:30%}
+.fill-yellow{background:#f59e0b;width:55%}
+.fill-green{background:var(--lime);width:85%}
+.fill-mid{background:#f59e0b;width:45%}
+
+/* --- UPSELL --- */
+.upsell{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:2.5rem;margin-top:2.5rem;position:relative}
+.upsell::before{content:'RECOMMENDED';position:absolute;top:1rem;right:1rem;font-family:var(--font-mono);font-size:0.6rem;color:var(--lime);letter-spacing:0.1em;border:1px solid var(--lime-dim);padding:0.2rem 0.5rem;border-radius:2px}
+.upsell h3{font-family:var(--font-display);font-size:1.5rem;margin-bottom:0.5rem}
+.upsell .price{font-family:var(--font-display);font-size:2.5rem;letter-spacing:-0.03em;margin-bottom:0.75rem}
+.upsell p{color:var(--text-muted);font-size:0.9rem;margin-bottom:1.5rem;line-height:1.7;max-width:560px}
+.upsell ul{list-style:none;margin-bottom:2rem}
+.upsell li{font-size:0.85rem;color:var(--text-muted);padding:0.35rem 0;padding-left:1.25rem;position:relative}
+.upsell li::before{content:'';position:absolute;left:0;top:0.7rem;width:6px;height:6px;border-radius:50%;background:var(--lime-dim)}
+
+/* --- FAQ --- */
+.faq-item{border-bottom:1px solid var(--border);padding:1.5rem 0}
+.faq-item summary{font-weight:600;font-size:0.95rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-item summary::after{content:'+';font-family:var(--font-mono);color:var(--text-dim);font-size:1.2rem;transition:transform 0.2s}
+.faq-item[open] summary::after{transform:rotate(45deg);color:var(--lime)}
+.faq-item p{color:var(--text-muted);font-size:0.9rem;margin-top:1rem;line-height:1.7;max-width:640px}
+
+/* --- FOOTER --- */
+footer{padding:40px 0;border-top:1px solid var(--border);margin-top:3rem}
+footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;max-width:1200px;margin:0 auto;padding:0 24px}
+footer p{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);letter-spacing:0.04em}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero h1,.hero p,.hero .tag,.hero-ctas{animation:fadeUp 0.6s ease-out both}
+.hero .tag{animation-delay:0.1s}
+.hero h1{animation-delay:0.2s}
+.hero p{animation-delay:0.35s}
+.hero-ctas{animation-delay:0.5s}
+
+/* --- RESPONSIVE --- */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);padding:24px;gap:20px;border-bottom:1px solid var(--border)}
+  .nav-toggle{display:block}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">alvento<span>.</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="/#capabilities">Capabilities</a></li>
+      <li><a href="/#products">Products</a></li>
+      <li><a href="/blog/">Insights</a></li>
+      <li><a href="/#contact" style="background:var(--lime);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="tag">Free Local SEO Audit</span>
+  <h1>Can customers <em>find</em> your business?</h1>
+  <p>Most local businesses lose 60% of potential customers because of invisible SEO problems. Enter your details below and we'll score your visibility across 5 key areas&mdash;personalised report sent to your email.</p>
+  <div class="hero-ctas">
+    <a href="#audit-form" class="btn-primary">Get Your Free Score &darr;</a>
+    <a href="#how" class="btn-secondary">How It Works</a>
+  </div>
+</div>
+
+<section id="audit-form">
+  <span class="section-label">01 &mdash; Your Details</span>
+  <h2>Get your free <em>Local Business Score</em></h2>
+  <p style="color:var(--text-muted);max-width:520px;line-height:1.7">Takes 30 seconds. No card required. Personalised report sent to your email.</p>
+
+  <div class="audit-form-wrap">
+    <form class="audit-form" id="scoreForm" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="business">Business Name *</label>
+          <input type="text" id="business" name="business" placeholder="e.g. Smith Plumbing" required>
+        </div>
+        <div class="form-group">
+          <label for="location">Location *</label>
+          <input type="text" id="location" name="location" placeholder="e.g. Manchester, M1 2AB" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="website">Website (optional)</label>
+          <input type="url" id="website" name="website" placeholder="e.g. https://smithplumbing.co.uk">
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-primary" id="submitBtn">Get My Free Score</button>
+      </div>
+      <div class="form-note">We'll email your personalised scorecard within a few hours. No spam, ever.</div>
+      <div class="form-error" id="formError"></div>
+    </form>
+
+    <div class="form-success" id="formSuccess">
+      <h3>You're in!</h3>
+      <p>We're running your audit now. You'll receive your personalised Local Business Score at the email you provided&mdash;usually within a few hours.</p>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <span class="section-label">02 &mdash; What We Check</span>
+  <h2>A 30-point <em>visibility</em> scorecard</h2>
+  <p style="color:var(--text-muted);max-width:520px;line-height:1.7">We cover every angle that affects whether a nearby customer finds you or your competitor.</p>
+
+  <div class="checklist-grid">
+    <div class="checklist-item">
+      <div class="num">01</div>
+      <h3>Google Business Profile</h3>
+      <p>NAP consistency, categories, photos, posts, Q&A and review velocity.</p>
+    </div>
+    <div class="checklist-item">
+      <div class="num">02</div>
+      <h3>On-Page SEO</h3>
+      <p>Title tags, meta descriptions, headings, schema markup, mobile speed.</p>
+    </div>
+    <div class="checklist-item">
+      <div class="num">03</div>
+      <h3>Citations &amp; Directories</h3>
+      <p>Yell, Yelp, Thomson Local, industry-specific listings, duplicate cleanup.</p>
+    </div>
+    <div class="checklist-item">
+      <div class="num">04</div>
+      <h3>Reviews &amp; Reputation</h3>
+      <p>Review count, average rating, response rate, sentiment, and recency.</p>
+    </div>
+    <div class="checklist-item">
+      <div class="num">05</div>
+      <h3>Competitor Benchmarks</h3>
+      <p>Where you rank vs. your top 3 local competitors for key search terms.</p>
+    </div>
+    <div class="checklist-item">
+      <div class="num">06</div>
+      <h3>Action Plan</h3>
+      <p>Priority fixes ranked by impact. Know exactly what to do first.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="section-label">03 &mdash; Sample Score</span>
+  <h2>See where you <em>stand</em></h2>
+
+  <div class="score-demo">
+    <div class="score-row">
+      <span class="label">Google Business Profile</span>
+      <div class="score-bar"><div class="fill fill-yellow"></div></div>
+    </div>
+    <div class="score-row">
+      <span class="label">On-Page SEO</span>
+      <div class="score-bar"><div class="fill fill-red"></div></div>
+    </div>
+    <div class="score-row">
+      <span class="label">Citations</span>
+      <div class="score-bar"><div class="fill fill-mid"></div></div>
+    </div>
+    <div class="score-row">
+      <span class="label">Reviews</span>
+      <div class="score-bar"><div class="fill fill-green"></div></div>
+    </div>
+    <div class="score-row">
+      <span class="label">Competitor Gap</span>
+      <div class="score-bar"><div class="fill fill-red"></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="section-label">04 &mdash; Want More?</span>
+  <h2>Go deeper with an <em>expert</em> audit</h2>
+
+  <div class="upsell">
+    <h3>Expert Audit</h3>
+    <div class="price">&pound;49</div>
+    <p>We audit your business in depth, score every category, benchmark your top 3 competitors, and deliver a custom action plan you can follow step by step.</p>
+    <ul>
+      <li>Everything in the free score</li>
+      <li>We research &amp; score for you in depth</li>
+      <li>3 competitor benchmarks with analysis</li>
+      <li>Custom priority action plan</li>
+      <li>15-minute walkthrough call included</li>
+      <li>Delivered within 48 hours</li>
+    </ul>
+    <a href="https://buy.stripe.com/9B600k4xj3f32rpboP2oE06" class="btn-primary">Order Expert Audit &rarr;</a>
+  </div>
+</section>
+
+<section>
+  <span class="section-label">05 &mdash; Questions</span>
+  <h2>FAQ</h2>
+
+  <details class="faq-item">
+    <summary>What happens after I submit the form?</summary>
+    <p>We run an automated audit of your Google Business Profile, website SEO, local citations, reviews, and competitors. You'll receive a personalised scorecard by email&mdash;usually within a few hours.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Is the free score really free?</summary>
+    <p>Yes, completely free. No card required, no hidden charges. We send you a genuine audit of your local visibility.</p>
+  </details>
+  <details class="faq-item">
+    <summary>How is the expert audit different?</summary>
+    <p>The free score is automated. The &pound;49 expert audit is done by a human SEO specialist who digs deeper, benchmarks your competitors in detail, and delivers a step-by-step action plan with a walkthrough call.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Do I need technical skills?</summary>
+    <p>No. Both the free report and expert audit use plain English with step-by-step instructions anyone can follow.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Can you fix the issues you find?</summary>
+    <p>Yes. After your audit, we can manage your local SEO on an ongoing basis. We'll include pricing in your report if you're interested.</p>
+  </details>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+    <p>alvento.ltd</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('scoreForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  var btn = document.getElementById('submitBtn');
+  var errorEl = document.getElementById('formError');
+  errorEl.style.display = 'none';
+
+  var business = document.getElementById('business').value.trim();
+  var location = document.getElementById('location').value.trim();
+  var website = document.getElementById('website').value.trim();
+  var email = document.getElementById('email').value.trim();
+
+  if (!business || !location || !email) {
+    errorEl.textContent = 'Please fill in all required fields.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+
+  try {
+    var res = await fetch('/api/audit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ business: business, location: location, website: website, email: email })
+    });
+    var data = await res.json();
+    if (res.ok && data.ok) {
+      document.getElementById('scoreForm').style.display = 'none';
+      document.querySelector('.form-note').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } else {
+      errorEl.textContent = data.error || 'Something went wrong. Please try again.';
+      errorEl.style.display = 'block';
+      btn.textContent = 'Get My Free Score';
+      btn.disabled = false;
+    }
+  } catch (err) {
+    errorEl.textContent = 'Network error. Please try again.';
+    errorEl.style.display = 'block';
+    btn.textContent = 'Get My Free Score';
+    btn.disabled = false;
+  }
+});
+
+document.querySelectorAll('.nav-links a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.querySelector('.nav-links').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>

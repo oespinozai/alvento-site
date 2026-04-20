@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegalMail — Email channel plugin for AI agents</title>
+<meta name="description" content="Give your AI agents a real email inbox. IMAP inbound, SMTP outbound, thread-aware replies. Free tier available.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--surface:#141414;--surface-2:#1c1c1c;--border:#2a2a2a;
+  --text:#e8e8e8;--muted:#888;--dim:#555;
+  --lime:#c4f042;--lime-dim:#8aaa2e;
+  --font-serif:'Instrument Serif',Georgia,serif;
+  --font-sans:'DM Sans',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(10,10,10,.8);border-bottom:1px solid var(--border);padding:20px 0}
+nav .container{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;padding:0 2rem}
+.logo{font-family:var(--font-serif);font-size:1.1rem;color:var(--text);letter-spacing:-.02em;text-decoration:none}
+.logo span{color:var(--lime)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);letter-spacing:.03em;transition:color .2s;text-decoration:none}
+.nav-links a:hover{color:var(--lime)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);padding:24px;gap:20px;border-bottom:1px solid var(--border)}
+  .nav-toggle{display:block}
+}
+
+.container{max-width:1100px;margin:0 auto;padding:0 2rem}
+.section-label{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:2rem}
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:60px}
+.hero::after{content:'';position:absolute;top:15%;left:55%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(196,240,66,.05) 0%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:750px}
+.hero h1{font-family:var(--font-serif);font-size:clamp(2.8rem,6vw,4.5rem);font-weight:400;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--lime)}
+.hero-sub{font-size:1.15rem;color:var(--muted);max-width:540px;margin-bottom:2.5rem;line-height:1.7}
+.hero-install{font-family:var(--font-mono);font-size:.82rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:.85rem 1.5rem;border-radius:3px;display:inline-flex;align-items:center;gap:1rem;margin-bottom:2rem;cursor:pointer;transition:border-color .2s}
+.hero-install:hover{border-color:var(--lime-dim)}
+.hero-install .copy{font-size:.65rem;color:var(--dim);border:1px solid var(--border);padding:.2rem .5rem;border-radius:2px}
+.hero-btns{display:flex;gap:1rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.btn-primary{display:inline-block;font-family:var(--font-mono);font-size:.8rem;padding:.85rem 2rem;background:var(--lime);color:#0a0a0a;border:none;border-radius:2px;cursor:pointer;font-weight:500;letter-spacing:.02em;transition:background .2s}
+.btn-primary:hover{background:#d4ff52}
+.btn-secondary{display:inline-block;font-family:var(--font-mono);font-size:.8rem;padding:.85rem 2rem;border:1px solid var(--border);color:var(--muted);border-radius:2px;transition:all .2s}
+.btn-secondary:hover{border-color:var(--lime);color:var(--lime)}
+.hero-badges{display:flex;gap:1.5rem;font-family:var(--font-mono);font-size:.7rem;color:var(--dim)}
+.hero-badges span{color:var(--lime)}
+
+/* How it works */
+.how{padding:8rem 0}
+.how-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:3rem}
+.how-step{text-align:center;padding:2rem 1rem;border:1px solid var(--border)}
+.how-num{font-family:var(--font-mono);font-size:.65rem;color:var(--lime);margin-bottom:.75rem;letter-spacing:.1em}
+.how-title{font-family:var(--font-serif);font-size:1.1rem;margin-bottom:.5rem}
+.how-desc{font-size:.8rem;color:var(--muted);line-height:1.5}
+@media(max-width:768px){.how-flow{grid-template-columns:1fr}}
+
+/* Features */
+.features{padding:6rem 0 8rem}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:3rem}
+.feature-card{border:1px solid var(--border);padding:2.5rem 2rem;transition:background .3s}
+.feature-card:hover{background:var(--surface)}
+.feature-icon{font-family:var(--font-mono);font-size:.65rem;color:var(--lime);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.2rem}
+.feature-card h3{font-family:var(--font-serif);font-size:1.3rem;font-weight:400;margin-bottom:.75rem}
+.feature-card p{font-size:.88rem;color:var(--muted);line-height:1.6}
+@media(max-width:768px){.features-grid{grid-template-columns:1fr}}
+
+/* Pricing */
+.pricing{padding:8rem 0;position:relative}
+.pricing::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(196,240,66,.03) 0%,transparent 70%);pointer-events:none}
+.pricing-header{text-align:center;margin-bottom:4rem;position:relative;z-index:1}
+.pricing-header h2{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;margin-bottom:.75rem}
+.pricing-header h2 em{font-style:italic;color:var(--lime)}
+.pricing-header p{color:var(--muted);font-size:1rem}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;z-index:1}
+.pricing-card{border:1px solid var(--border);padding:3rem 2.5rem;display:flex;flex-direction:column}
+.pricing-card.featured{background:var(--surface);border-color:var(--lime-dim)}
+.pricing-card.featured .pricing-badge{display:inline-block}
+.pricing-badge{display:none;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);background:rgba(196,240,66,.1);padding:.3rem .8rem;border-radius:2px;margin-bottom:1.5rem;width:fit-content}
+.pricing-name{font-family:var(--font-serif);font-size:1.4rem;font-weight:400;margin-bottom:.5rem}
+.pricing-price{font-family:var(--font-mono);font-size:2.5rem;font-weight:500;margin-bottom:.25rem;line-height:1}
+.pricing-price span{font-size:.9rem;color:var(--muted);font-weight:400}
+.pricing-note{font-family:var(--font-mono);font-size:.72rem;color:var(--dim);margin-bottom:2rem}
+.pricing-features{list-style:none;margin-bottom:auto;padding-bottom:2rem}
+.pricing-features li{font-size:.88rem;color:var(--muted);padding:.5rem 0;padding-left:1.5rem;position:relative;line-height:1.5}
+.pricing-features li::before{content:'';position:absolute;left:0;top:.75rem;width:6px;height:6px;border-radius:50%;background:var(--dim)}
+.pricing-card.featured .pricing-features li::before{background:var(--lime)}
+.pricing-btn{display:block;text-align:center;font-family:var(--font-mono);font-size:.8rem;padding:.85rem;border:1px solid var(--border);color:var(--muted);border-radius:2px;transition:all .2s;margin-top:1rem}
+.pricing-btn:hover{border-color:var(--lime);color:var(--lime)}
+.pricing-card.featured .pricing-btn{background:var(--lime);color:#0a0a0a;border-color:var(--lime)}
+.pricing-card.featured .pricing-btn:hover{background:#d4ff52}
+@media(max-width:768px){.pricing-grid{grid-template-columns:1fr}}
+
+/* Code */
+.code-section{padding:6rem 0 8rem}
+.code-block{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2rem 2.5rem;margin-top:2rem;overflow-x:auto;position:relative}
+.code-block::before{content:'openclaw.json';position:absolute;top:.75rem;right:1rem;font-family:var(--font-mono);font-size:.6rem;color:var(--dim);letter-spacing:.05em}
+.code-block pre{font-family:var(--font-mono);font-size:.82rem;line-height:1.8;color:var(--muted)}
+.code-block .ck{color:var(--dim)}
+.code-block .cs{color:#c4f042}
+.code-block .cv{color:#e8e8e8}
+.code-block .cn{color:#888}
+
+/* CTA */
+.cta{padding:8rem 0;text-align:center;position:relative}
+.cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(196,240,66,.04) 0%,transparent 70%);pointer-events:none}
+.cta-inner{position:relative;z-index:1}
+.cta h2{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;margin-bottom:1rem}
+.cta h2 em{font-style:italic;color:var(--lime)}
+.cta p{color:var(--muted);margin-bottom:2.5rem;font-size:1.05rem;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-links{font-family:var(--font-mono);font-size:.75rem;color:var(--dim);margin-top:2rem}
+.cta-links a{color:var(--muted);border-bottom:1px solid var(--border);transition:all .2s}
+.cta-links a:hover{color:var(--lime);border-color:var(--lime)}
+
+.footer{border-top:1px solid var(--border);padding:3rem 2rem;display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto}
+.footer-left{font-family:var(--font-mono);font-size:.7rem;color:var(--dim);letter-spacing:.04em}
+.footer-right{display:flex;gap:1.5rem}
+.footer-right a{font-family:var(--font-mono);font-size:.7rem;color:var(--dim);letter-spacing:.04em;transition:color .2s}
+.footer-right a:hover{color:var(--lime)}
+@media(max-width:600px){.footer{flex-direction:column;gap:1rem;text-align:center}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">alvento<span>.</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="/#capabilities">Capabilities</a></li>
+      <li><a href="/#products">Products</a></li>
+      <li><a href="/blog/">Insights</a></li>
+      <li><a href="/#contact" style="background:var(--lime);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content fade-up">
+      <div class="section-label">Email Channel Plugin</div>
+      <h1>Your AI agents<br>now have an <em>inbox</em></h1>
+      <p class="hero-sub">RegalMail gives your AI agents real email &mdash; receive, understand, and reply automatically. IMAP inbound, SMTP outbound, thread-aware, anti-loop protected.</p>
+      <div class="hero-install" onclick="navigator.clipboard.writeText('npm install regalmail');this.querySelector('.copy').textContent='copied'">
+        <span>$ npm install regalmail</span>
+        <span class="copy">copy</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#pricing" class="btn-primary">Start Free</a>
+        <a href="#install" class="btn-secondary">Documentation</a>
+      </div>
+      <div class="hero-badges">
+        <span>&#10003;</span> Free tier &nbsp;&nbsp;
+        <span>&#10003;</span> Any IMAP/SMTP provider &nbsp;&nbsp;
+        <span>&#10003;</span> OpenClaw compatible
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="container">
+    <div class="section-label fade-up">01 — How It Works</div>
+    <div class="how-flow">
+      <div class="how-step fade-up">
+        <div class="how-num">01</div>
+        <div class="how-title">Email arrives</div>
+        <div class="how-desc">Someone sends an email to your agent's address</div>
+      </div>
+      <div class="how-step fade-up">
+        <div class="how-num">02</div>
+        <div class="how-title">IMAP IDLE detects</div>
+        <div class="how-desc">Persistent connection picks it up in seconds</div>
+      </div>
+      <div class="how-step fade-up">
+        <div class="how-num">03</div>
+        <div class="how-title">Route to agent</div>
+        <div class="how-desc">Recipient address maps to the right agent</div>
+      </div>
+      <div class="how-step fade-up">
+        <div class="how-num">04</div>
+        <div class="how-title">Agent responds</div>
+        <div class="how-desc">Full thread context for a coherent reply</div>
+      </div>
+      <div class="how-step fade-up">
+        <div class="how-num">05</div>
+        <div class="how-title">SMTP sends</div>
+        <div class="how-desc">Proper threading headers preserved</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-label fade-up">02 — Features</div>
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">Real-Time</div>
+        <h3>IMAP IDLE</h3>
+        <p>Persistent connection to the mailbox. No polling, no cron jobs. Your agent reacts within seconds of an email landing.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">Routing</div>
+        <h3>Multi-account routing</h3>
+        <p>sales@ goes to your sales agent, support@ to your receptionist. One plugin, many addresses, each bound to the right agent.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">Context</div>
+        <h3>Thread awareness</h3>
+        <p>Tracks Message-ID, In-Reply-To, and References headers. Your agent maintains full conversation context across threads.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">Safety</div>
+        <h3>Anti-loop protection</h3>
+        <p>Blocks replies to noreply@, mailer-daemon, auto-replies, and rate-limits per sender. No infinite reply storms.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">Universal</div>
+        <h3>Any provider</h3>
+        <p>Gmail, Outlook, OCI, Fastmail, self-hosted. If it speaks IMAP and SMTP, RegalMail works with it.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">Open</div>
+        <h3>Self-host or managed</h3>
+        <p>Run it on your own server with npm, or use our managed service. Your data, your infrastructure, your choice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-header fade-up">
+      <div class="section-label">03 — Pricing</div>
+      <h2>Simple, <em>honest</em> pricing</h2>
+      <p>Start free. Scale when you need to.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card fade-up">
+        <div class="pricing-badge">—</div>
+        <div class="pricing-name">Free</div>
+        <div class="pricing-price">$0<span>/mo</span></div>
+        <div class="pricing-note">No credit card required</div>
+        <ul class="pricing-features">
+          <li>1 mailbox</li>
+          <li>200 emails per month</li>
+          <li>IMAP + SMTP</li>
+          <li>Thread awareness</li>
+          <li>Anti-loop protection</li>
+          <li>Community support</li>
+        </ul>
+        <a href="mailto:hello@alvento.ltd?subject=RegalMail%20Free&body=I'd%20like%20to%20get%20started%20with%20RegalMail%20Free." class="pricing-btn">Get Started</a>
+      </div>
+      <div class="pricing-card featured fade-up">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-name">Pro</div>
+        <div class="pricing-price">$15<span>/mo</span></div>
+        <div class="pricing-note">Per workspace</div>
+        <ul class="pricing-features">
+          <li>5 mailboxes</li>
+          <li>10,000 emails per month</li>
+          <li>Everything in Free</li>
+          <li>Multi-account routing</li>
+          <li>Shared inbox support</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="mailto:hello@alvento.ltd?subject=RegalMail%20Pro&body=I'd%20like%20to%20sign%20up%20for%20RegalMail%20Pro." class="pricing-btn">Start Pro</a>
+      </div>
+      <div class="pricing-card fade-up">
+        <div class="pricing-badge">—</div>
+        <div class="pricing-name">Business</div>
+        <div class="pricing-price">$49<span>/mo</span></div>
+        <div class="pricing-note">Per workspace</div>
+        <ul class="pricing-features">
+          <li>25 mailboxes</li>
+          <li>50,000 emails per month</li>
+          <li>Everything in Pro</li>
+          <li>Custom domain support</li>
+          <li>Webhook integrations</li>
+          <li>Dedicated support</li>
+        </ul>
+        <a href="mailto:hello@alvento.ltd?subject=RegalMail%20Business&body=I'd%20like%20to%20sign%20up%20for%20RegalMail%20Business." class="pricing-btn">Start Business</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="code-section" id="install">
+  <div class="container">
+    <div class="section-label fade-up">04 — Quick Start</div>
+    <p class="fade-up" style="color:var(--muted);max-width:560px;margin-bottom:.5rem">Install the package, add your accounts to <span style="font-family:var(--font-mono);font-size:.85em">openclaw.json</span>, and bind each address to an agent.</p>
+    <div class="code-block fade-up">
+<pre><span class="cn">// 1. Install</span>
+<span class="cv">$ npm install regalmail</span>
+
+<span class="cn">// 2. Add to openclaw.json</span>
+<span class="ck">{</span>
+  <span class="cs">"channels"</span><span class="ck">: {</span>
+    <span class="cs">"email"</span><span class="ck">: {</span>
+      <span class="cs">"accounts"</span><span class="ck">: {</span>
+        <span class="cs">"sales"</span><span class="ck">: {</span>
+          <span class="cs">"email"</span><span class="ck">:</span> <span class="cv">"sales@yourcompany.com"</span><span class="ck">,</span>
+          <span class="cs">"imapHost"</span><span class="ck">:</span> <span class="cv">"imap.gmail.com"</span><span class="ck">,</span>
+          <span class="cs">"smtpHost"</span><span class="ck">:</span> <span class="cv">"smtp.gmail.com"</span><span class="ck">,</span>
+          <span class="cs">"agentBinding"</span><span class="ck">:</span> <span class="cv">"sales-agent"</span>
+        <span class="ck">},</span>
+        <span class="cs">"support"</span><span class="ck">: {</span>
+          <span class="cs">"email"</span><span class="ck">:</span> <span class="cv">"support@yourcompany.com"</span><span class="ck">,</span>
+          <span class="cs">"agentBinding"</span><span class="ck">:</span> <span class="cv">"ai-receptionist"</span>
+        <span class="ck">}</span>
+      <span class="ck">}</span>
+    <span class="ck">}</span>
+  <span class="ck">}</span>
+<span class="ck">}</span>
+
+<span class="cn">// 3. That's it. Your agents now have email.</span></pre>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <div class="cta-inner fade-up">
+      <div class="section-label">05 — Get Started</div>
+      <h2>Give your agents <em>email</em></h2>
+      <p>Free tier. No credit card. Install in under a minute.</p>
+      <a href="#pricing" class="btn-primary">Start Free</a>
+      <div class="cta-links">
+        <a href="https://github.com/alvento/regalmail">GitHub</a> &nbsp;&middot;&nbsp;
+        <a href="https://npmjs.com/package/regalmail">npm</a> &nbsp;&middot;&nbsp;
+        <a href="mailto:hello@alvento.ltd">Contact</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-left">RegalMail by <a href="/" style="color:var(--muted)">Alvento Ltd</a> &middot; 2026</div>
+  <div class="footer-right">
+    <a href="/">alvento.ltd</a>
+    <a href="/tools">Developer Tools</a>
+    <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const siblings = entry.target.parentElement.querySelectorAll('.fade-up');
+      const idx = Array.from(siblings).indexOf(entry.target);
+      setTimeout(() => entry.target.classList.add('visible'), idx * 100);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Business Profile Tips: Optimisation Checklist for 2026 | Alvento</title>
+    <meta name="description" content="Master Google Business Profile optimisation. Our checklist covers profile completion, photos, reviews, and ranking factors that actually move the needle.">
+    <meta name="author" content="Maeve O'Brien, Growth Analyst at Alvento">
+    <meta property="og:title" content="Google Business Profile Tips: Optimisation Checklist for 2026">
+    <meta property="og:description" content="Master Google Business Profile optimisation. Our checklist covers profile completion, photos, reviews, and ranking factors that actually move the needle.">
+    <meta property="og:url" content="https://alvento.ltd/blog/google-business-profile-tips/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box, .checklist {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Google Business Profile Tips: Optimisation Checklist for 2026",
+        "description": "Master Google Business Profile optimisation. Our checklist covers profile completion, photos, reviews, and ranking factors that actually move the needle.",
+        "author": { "@type": "Person", "name": "Maeve O'Brien", "jobTitle": "Growth Analyst", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
+        "datePublished": "2026-03-17",
+        "url": "https://alvento.ltd/blog/google-business-profile-tips/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#products">Products</a></li>
+                <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">Google Business Profile Tips: Optimisation Checklist for 2026</h1>
+        <div class="meta">
+            <p>By Maeve O'Brien, Growth Analyst at Alvento | Published 17 March 2026</p>
+        </div>
+
+        <p>Your Google Business Profile is one of the most powerful tools you have for reaching local customers. But most businesses get it only half right. They claim it, fill in the basics, and then forget about it. That's leaving money on the table.</p>
+
+        <p>A fully optimised Google Business Profile does the heavy lifting for you: it ranks in Google Maps, shows up in local search results, and gives customers the information they need to choose you over competitors. The difference between a neglected profile and an optimised one is often the difference between getting business and getting bypassed.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> — first conversation is free.</p>
+        </div>
+
+        <h2 class="fade-up">The Profile Completion Checklist</h2>
+
+        <p>Google's algorithm rewards complete, accurate profiles. The more information you provide, the more opportunities there are for customers to find you. Here's what to check:</p>
+
+        <div class="checklist fade-up">
+            <ul>
+                <li>✓ Business name (exact match to legal registration)</li>
+                <li>✓ Complete address with postcode</li>
+                <li>✓ Primary and secondary phone numbers</li>
+                <li>✓ Website URL</li>
+                <li>✓ Business categories (primary + secondaries)</li>
+                <li>✓ Business hours (including holidays and changes)</li>
+                <li>✓ Description (750 characters, keyword-rich)</li>
+                <li>✓ Service area (if applicable)</li>
+                <li>✓ At least 10 high-quality photos</li>
+                <li>✓ Business video or virtual tour</li>
+                <li>✓ Attributes (e.g., wheelchair accessible, outdoor seating)</li>
+                <li>✓ Products and services with descriptions</li>
+            </ul>
+        </div>
+
+        <p>Go through this checklist systematically. Each empty field is a missed opportunity for Google to match you to customer searches.</p>
+
+        <h2 class="fade-up">Photo Strategy: More Than Just Pretty Pictures</h2>
+
+        <p>Photos are one of the most important ranking factors for Google Business Profile—and one of the easiest to get right.</p>
+
+        <h3>What types of photos work best</h3>
+        <ul>
+            <li><strong>Storefront/exterior:</strong> Shows customers where to find you</li>
+            <li><strong>Interior:</strong> High-quality, well-lit images of your workspace</li>
+            <li><strong>Team photos:</strong> People trust people—show your team in action</li>
+            <li><strong>Products/services:</strong> Show what you do—before/after photos are powerful</li>
+            <li><strong>Customer experience:</strong> Happy customers, clean space, professional environment</li>
+        </ul>
+
+        <h3>The numbers matter</h3>
+        <p>Businesses with 10+ photos rank higher than those with fewer. Update photos seasonally or monthly to signal that your business is active. Google favours recent photos.</p>
+
+        <h3>Quality over quantity</h3>
+        <p>Blurry phone photos won't help you. Invest in decent photos—even with a smartphone, good lighting and composition make a huge difference. If you're a professional service (accountant, lawyer, dentist), high-quality images build trust.</p>
+
+        <h2 class="fade-up">The Review Strategy</h2>
+
+        <p>Reviews are trust signals and ranking factors combined. They're proof that real customers trust you, and Google ranks profiles with more positive reviews higher in Maps and local search.</p>
+
+        <h3>Generate reviews systematically</h3>
+        <ul>
+            <li>After every job, send a follow-up asking for a review. Include a direct link to make it one-click easy.</li>
+            <li>Email is best—it's less intrusive than SMS or phone calls.</li>
+            <li>Time it right: ask within a day or two of service completion, when the experience is fresh.</li>
+            <li>Make it obvious: "Would you mind leaving a quick review?" with a clear link works.</li>
+        </ul>
+
+        <h3>Respond to all reviews</h3>
+        <p>This is critical. When you respond to reviews—especially negative ones—Google sees that you're engaged. Respond professionally and constructively to complaints. Thank positive reviewers. This boosts your ranking and shows potential customers you care.</p>
+
+        <h3>Don't buy fake reviews</h3>
+        <p>It's tempting, but Google catches it. Fake reviews can get your profile suspended or penalised. Focus on getting real reviews from real customers.</p>
+
+        <h2 class="fade-up">Category Selection and Business Attributes</h2>
+
+        <p>Google uses categories to match searches to businesses. Choose carefully.</p>
+
+        <h3>Primary category</h3>
+        <p>Pick the most specific category that matches your main service. "Plumber" is better than "Home Services." Google uses this to determine when to show you in search results.</p>
+
+        <h3>Secondary categories</h3>
+        <p>Add relevant secondary categories to expand your visibility without diluting your ranking. If you're a plumber who also does heating installations, add both.</p>
+
+        <h3>Attributes</h3>
+        <p>Select all relevant attributes: "Wheelchair accessible," "Women-owned," "LGBTQ-owned," "Online booking available," etc. These help customers find you and signal additional information to Google.</p>
+
+        <h2 class="fade-up">The Description: Your Elevator Pitch</h2>
+
+        <p>You get 750 characters to tell customers what you do and why they should choose you. Make it count.</p>
+
+        <h3>Formula that works</h3>
+        <p>"[Service type] in [location]. We specialise in [specific services]. [Unique benefit or approach]. [Call to action]."</p>
+
+        <p>Example: "Professional dog grooming in Leeds. We specialise in breed-specific cuts, puppy grooming, and hand-stripping. All dogs treated with patience and care. Book online or call for a free consultation."</p>
+
+        <h3>Include searchable keywords</h3>
+        <p>Use words customers actually search for—your location, service type, and any specialisations. Don't keyword-stuff; just be natural.</p>
+
+        <h2 class="fade-up">Stay Active and Up-to-Date</h2>
+
+        <p>Google favours profiles that are actively maintained. If your information is outdated, Google assumes your business might be too.</p>
+
+        <ul>
+            <li>Update hours for holidays and special closures</li>
+            <li>Add new photos regularly (monthly is ideal)</li>
+            <li>Post updates or announcements (Google gives you a Posts feature for this)</li>
+            <li>Respond to messages and reviews promptly</li>
+        </ul>
+
+        <h2 class="fade-up">The Real Impact</h2>
+
+        <p>A fully optimised Google Business Profile isn't just nice to have—it's your most important local marketing tool. It costs nothing to optimise, and the return is customers finding you when they're actively looking for what you offer. That's hard to beat.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> — first conversation is free.</p>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>alvento.ltd</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-up').forEach(function(el, i) {
+            el.style.transitionDelay = (i % 4) * 0.1 + 's';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    });
+    </script>
+</body>
+</html>

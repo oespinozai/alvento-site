@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What shipping a consumer AI product taught us about building for businesses | Alvento</title>
+    <meta name="description" content="ioomm.app is a live AI product that takes real payments. Here's what building it taught us about the gap between a demo and something that actually runs in production.">
+    <meta name="author" content="Oscar Espinoza, Alvento">
+    <meta property="og:title" content="What shipping a consumer AI product taught us about building for businesses">
+    <meta property="og:description" content="ioomm.app is a live AI product that takes real payments. Here's what building it taught us about the gap between a demo and something that actually runs in production.">
+    <meta property="og:url" content="https://alvento.ltd/blog/what-shipping-a-consumer-ai-product-taught-us/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "What shipping a consumer AI product taught us about building for businesses",
+        "description": "ioomm.app is a live AI product that takes real payments. Here's what building it taught us about the gap between a demo and something that actually runs in production.",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
+        "datePublished": "2026-03-18",
+        "url": "https://alvento.ltd/blog/what-shipping-a-consumer-ai-product-taught-us/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#products">Products</a></li>
+                <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">What shipping a consumer AI product taught us about building for businesses</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Alvento &mdash; 18 March 2026 &mdash; 6 min read</p>
+        </div>
+
+        <p>There's a version of AI consultancy that involves a lot of decks, some workshops, a proof of concept that runs in a notebook, and a handoff document. Nobody is paying for that anymore — or they shouldn't be. The question clients are now rightly asking is: can you actually build something that works?</p>
+
+        <p><a href="https://ioomm.app" target="_blank">ioomm.app</a> is our answer to that question. It's an AI product that generates professional corporate portraits from a selfie. It's live, it takes real payments from real users, and it runs without us watching it. We built it, shipped it, and it works. That experience — far more than any consulting engagement — taught us what it actually takes to build AI tools that hold up in production.</p>
+
+        <h2 class="fade-up">The gap between a demo and production</h2>
+
+        <p>AI demos are easy. You call an API, get a result, show it to someone. It works in the right conditions, with the right input, on the right day. The demo looks impressive. Everyone nods.</p>
+
+        <p>Production is different. In production, users upload the wrong file format. They have slow connections. They submit the same job twice. They expect a result in 30 seconds and get frustrated at 45. The AI model returns something unexpected. The payment succeeds but the generation fails. The generation succeeds but the download link breaks.</p>
+
+        <p>Every one of those failure modes has to be handled — not because they happen often, but because when they do happen, they happen to a real person who paid real money and has a real expectation. Handling them is not glamorous engineering. It's the difference between a demo and a product.</p>
+
+        <p>Building ioomm forced us to handle all of it. Async job queues. Retry logic. Graceful error states. Stripe webhooks that have to be idempotent. Image processing that has to work across every phone camera. We didn't build these because they were interesting — we built them because the product broke without them.</p>
+
+        <h2 class="fade-up">What this means for B2B tool builds</h2>
+
+        <p>The instinct in B2B is to treat internal tools more loosely than consumer products. Nobody is paying directly, the user is a staff member not a customer, and the stakes feel lower. That instinct is usually wrong.</p>
+
+        <p>A field engineer whose job reporting tool crashes mid-job doesn't just get annoyed — they fall back to paper, the data never gets captured, and the compliance record has a gap. A hospital administrator whose data interpretation tool returns a wrong answer doesn't just shrug — they escalate, trust is lost, and the tool gets switched off.</p>
+
+        <p>The production requirements for B2B tools in regulated industries are often higher than for consumer products, not lower. The tolerance for errors is smaller. The consequences of failure are more visible. And the users are less forgiving, because they didn't choose the tool — it was chosen for them.</p>
+
+        <p>Having built something that real consumers use and pay for means we don't romanticise the build. We know what production looks like. We design for it from the start.</p>
+
+        <h2 class="fade-up">Why product instincts matter in B2B</h2>
+
+        <p>Consultants think about deliverables. Product builders think about outcomes. The difference sounds subtle but it changes almost every decision.</p>
+
+        <p>A consultant delivering an AI tool asks: does it meet the specification? A product builder asks: does it actually get used? Does it make the person's job easier in practice, not just in theory? Does it survive contact with real workflows, real data, real edge cases?</p>
+
+        <p>Building ioomm gave us product instincts that consulting alone doesn't develop. When we scope a B2B AI tool now, we think about the failure modes before we think about the features. We ask what happens when the input is wrong, when the model is slow, when the user does something unexpected. We design the unhappy path before we polish the happy one.</p>
+
+        <p>That's not a methodology we adopted. It's a reflex we developed by shipping something and watching it break.</p>
+
+        <h2 class="fade-up">The honest difference between consulting and shipping</h2>
+
+        <p>Consulting produces knowledge. Shipping produces capability. Both are valuable, but they're not the same thing, and confusing them is expensive.</p>
+
+        <p>A consulting engagement at its best produces a clear understanding of a problem, a well-scoped brief, and enough trust to commission a build. That's genuinely useful. But the consulting engagement is not the build. The document is not the tool. The recommendation is not the solution.</p>
+
+        <p>The organisations that get the most out of AI right now are the ones that can move from understanding a problem to having something running in production — without a 12-month gap in between. That requires build capability, not just analytical capability. It requires people who have done it before, not just people who understand how it works in theory.</p>
+
+        <p>ioomm exists partly because we wanted to be those people. We wanted to know what it felt like to ship an AI product, take a payment, watch a real user complete a real job, and deal with the things that broke. We know now. And it informs everything we build for clients.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> — first conversation is free.</p>
+        </div>
+
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>alvento.ltd</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+            document.querySelectorAll('.nav-links a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    document.querySelector('.nav-links').classList.remove('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

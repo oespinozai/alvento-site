@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local SEO for Small Business UK: The Beginner's Guide | Alvento</title>
+    <meta name="description" content="Master local SEO for your UK small business. Learn the fundamentals of Google Maps ranking, local search visibility, and getting customers in your area.">
+    <meta name="author" content="Maeve O'Brien, Growth Analyst at Alvento">
+    <meta property="og:title" content="Local SEO for Small Business UK: The Beginner's Guide">
+    <meta property="og:description" content="Master local SEO for your UK small business. Learn the fundamentals of Google Maps ranking, local search visibility, and getting customers in your area.">
+    <meta property="og:url" content="https://alvento.ltd/blog/local-seo-for-small-business-uk/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Local SEO for Small Business UK: The Beginner's Guide",
+        "description": "Master local SEO for your UK small business. Learn the fundamentals of Google Maps ranking, local search visibility, and getting customers in your area.",
+        "author": { "@type": "Person", "name": "Maeve O'Brien", "jobTitle": "Growth Analyst", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
+        "datePublished": "2026-03-17",
+        "url": "https://alvento.ltd/blog/local-seo-for-small-business-uk/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#products">Products</a></li>
+                <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">Local SEO for Small Business UK: The Beginner's Guide</h1>
+        <div class="meta">
+            <p>By Maeve O'Brien, Growth Analyst at Alvento | Published 17 March 2026</p>
+        </div>
+
+        <p>If you're running a small business in the UK, you don't need to rank on Google globally. You need local customers in your town or region to find you. That's where local SEO comes in.</p>
+
+        <p>Local SEO is about optimising your online presence so that when people near you search for what you offer, you show up first. It's simpler than traditional SEO, more affordable, and the return on investment is immediate: customers who are actually ready to buy, right in your area.</p>
+
+        <p>If you're just starting out, this guide will walk you through the fundamentals. You don't need to be a marketer or developer—these are practical steps any business owner can take.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> — first conversation is free.</p>
+        </div>
+
+        <h2 class="fade-up">What Is Local SEO?</h2>
+
+        <p>Local SEO is the practice of optimising your online presence to show up in local search results. When someone searches "plumber near me" or "best coffee shop in Manchester," Google shows a map with local businesses ranked by relevance and proximity.</p>
+
+        <p>That's local SEO in action. The businesses at the top of that list get the clicks, the calls, and the customers. Everyone else gets nothing.</p>
+
+        <h3>How is it different from regular SEO?</h3>
+        <p>Regular SEO tries to rank your website globally for competitive keywords. Local SEO focuses on your geographic area—your postcode, town, or region. It's much faster to see results, and it costs less because you're competing in a smaller pond.</p>
+
+        <p>For most small businesses, local SEO is the right strategy. You don't need thousands of website visitors from across the UK; you need customers in your area who will actually come to your shop or hire your services.</p>
+
+        <h2 class="fade-up">The Three Pillars of Local SEO</h2>
+
+        <h3>1. Google Business Profile</h3>
+        <p>This is non-negotiable. Your Google Business Profile is a free, direct line to customers searching near you. It shows on Google Maps and in local search results. If you haven't claimed yours, that's step one.</p>
+
+        <p>Claim it, verify it, and fill it completely. Add your address, phone, hours, categories, photos, and description. This alone won't guarantee ranking, but without it, you're invisible.</p>
+
+        <h3>2. Website and Local Content</h3>
+        <p>Your website is your storefront. Google looks at what it says, whether it's well-built, and whether it mentions your location. Add local keywords to your website: mention your town, postcodes you serve, and neighbourhoods you operate in. Write content that answers questions your local customers are asking.</p>
+
+        <p>You don't need a massive website. A simple site with a home page, about page, services page, and contact page is enough. Just make sure it's mobile-friendly, fast-loading, and clearly states your location and what you do.</p>
+
+        <h3>3. Local Signals and Citations</h3>
+        <p>This is your reputation across the internet. It includes reviews, mentions in local directories, and local backlinks. When Google sees your business mentioned accurately across multiple trusted sources, it gains confidence that you're real, trustworthy, and worth ranking.</p>
+
+        <ul>
+            <li>Get reviews on Google, Trustpilot, and industry-specific platforms</li>
+            <li>List your business in local directories (Yell.com, TrustedTraders, etc.)</li>
+            <li>Get featured in local news or community blogs</li>
+            <li>Make sure your name, address, and phone (NAP) are consistent everywhere</li>
+        </ul>
+
+        <h2 class="fade-up">Step-by-Step: Get Started with Local SEO</h2>
+
+        <h3>Month 1: Claim and Optimise</h3>
+        <ul>
+            <li>Claim your Google Business Profile (business.google.com)</li>
+            <li>Verify your business (postcard method is most reliable)</li>
+            <li>Fill every field: address, phone, hours, categories, description, photos</li>
+            <li>Check that your name, address, and phone match everywhere online</li>
+        </ul>
+
+        <h3>Month 2: Build Your Foundation</h3>
+        <ul>
+            <li>Get a simple website up if you don't have one (Wix, Squarespace, or WordPress)</li>
+            <li>Add your location to every page (footer, contact page, about page)</li>
+            <li>Write an about page that mentions your location and how long you've been serving the area</li>
+            <li>List yourself in 3-5 key local directories</li>
+        </ul>
+
+        <h3>Month 3: Build Momentum</h3>
+        <ul>
+            <li>Ask 5-10 satisfied customers to leave Google reviews</li>
+            <li>Add photos to your Google Business Profile (at least 10)</li>
+            <li>Create a simple blog post about a local topic (e.g., "How to find a good plumber in [your town]")</li>
+            <li>Respond to any reviews you receive</li>
+        </ul>
+
+        <h2 class="fade-up">The Quick Wins</h2>
+
+        <p>Some things have an immediate impact on your local ranking:</p>
+
+        <h3>Get reviews</h3>
+        <p>This is the single most impactful thing you can do. Businesses with more positive reviews rank higher. Start asking happy customers to leave reviews on Google. Offer a small incentive if needed (discount, free item)—just don't require it or incentivise fake reviews.</p>
+
+        <h3>Add photos</h3>
+        <p>More photos = more visibility. Add at least 10 photos to your Google Business Profile showing your business, team, and work. Update them monthly.</p>
+
+        <h3>Get your NAP consistent</h3>
+        <p>NAP = Name, Address, Phone. If it's different across your website, Google Business Profile, Facebook, and local directories, Google gets confused. Make it consistent everywhere. This is a quick fix that pays off.</p>
+
+        <h3>Claim your listings</h3>
+        <p>If your business already appears on sites like Yell.com or Trustpilot but you haven't claimed it, claim it now. This lets you control what information appears and add more details.</p>
+
+        <h2 class="fade-up">The Timeline to Results</h2>
+
+        <p>Local SEO works faster than regular SEO, but it's not instant. Expect realistic timelines:</p>
+
+        <ul>
+            <li><strong>Week 1:</strong> Claim and optimise your Google Business Profile</li>
+            <li><strong>Week 2-4:</strong> Start appearing in local searches and Maps (if you're in a less competitive area)</li>
+            <li><strong>Month 2-3:</strong> Get the first reviews, start climbing rankings</li>
+            <li><strong>Month 3-6:</strong> Build momentum with consistent reviews, photos, and local mentions</li>
+            <li><strong>Month 6+:</strong> See significant ranking improvements and increased local visibility</li>
+        </ul>
+
+        <p>In competitive areas (cities), it takes longer. In quieter areas, you might see results faster. The key is consistency: keep optimising, keep getting reviews, keep updating.</p>
+
+        <h2 class="fade-up">Start Today</h2>
+
+        <p>Local SEO is one of the highest-return marketing efforts for small businesses. You're not paying for ads; you're earning organic visibility through legitimacy and relevance. The investment is time, not money.</p>
+
+        <p>Start with the first step: claim your Google Business Profile. Then work through the checklist. In a few months, you'll see customers finding you through local search.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> — first conversation is free.</p>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>alvento.ltd</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-up').forEach(function(el, i) {
+            el.style.transitionDelay = (i % 4) * 0.1 + 's';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    });
+    </script>
+</body>
+</html>

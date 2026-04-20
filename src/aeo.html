@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Visibility &amp; AEO — Growth Capability | Alvento</title>
+<meta name="description" content="Alvento builds AI visibility infrastructure for businesses. Get cited by ChatGPT, Perplexity, Google AI Overviews and Bing Copilot. Part of our Growth capability offering.">
+<meta property="og:title" content="Answer Engine Optimisation (AEO) — Alvento">
+<meta property="og:description" content="AI can't find your business. We fix that. Get cited by every major AI answer engine.">
+<meta property="og:image" content="https://alvento.ltd/og-image-aeo.png">
+<meta property="og:url" content="https://alvento.ltd/aeo">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alvento.ltd/og-image-aeo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--surface:#141414;--surface-2:#1c1c1c;--border:#2a2a2a;
+  --text:#e8e8e8;--text-muted:#888;--text-dim:#555;
+  --lime:#c4f042;--lime-dim:#8aaa2e;
+  --font-display:'Instrument Serif',serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* --- NAV --- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(10,10,10,0.8);border-bottom:1px solid var(--border)}
+nav .container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 24px}
+.logo{font-family:var(--font-display);font-size:1.5rem;color:var(--text);letter-spacing:-0.02em;text-decoration:none}
+.logo span{color:var(--lime)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-family:var(--font-mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);transition:color 0.3s;text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);padding:24px;gap:20px;border-bottom:1px solid var(--border)}
+  .nav-toggle{display:block}
+}
+
+/* --- HERO --- */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2rem 4rem;max-width:900px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:15%;left:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(196,240,66,0.06) 0%,transparent 70%);pointer-events:none}
+.tag{display:inline-block;font-family:var(--font-mono);font-size:0.75rem;color:var(--lime);border:1px solid var(--lime-dim);padding:0.35rem 0.8rem;border-radius:2px;margin-bottom:2rem;letter-spacing:0.06em;text-transform:uppercase}
+.hero h1{font-family:var(--font-display);font-size:clamp(3rem,7vw,5.5rem);line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.5rem;font-weight:400}
+.hero h1 em{font-style:italic;color:var(--lime)}
+.hero p{font-size:1.15rem;color:var(--text-muted);max-width:560px;margin-bottom:2.5rem;line-height:1.7}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:0.5rem;background:var(--lime);color:#0a0a0a;font-family:var(--font-body);font-weight:600;font-size:0.95rem;padding:0.9rem 2rem;border:none;border-radius:3px;cursor:pointer;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;letter-spacing:0.01em}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(196,240,66,0.25)}
+.btn-secondary{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:var(--text);font-family:var(--font-body);font-weight:500;font-size:0.95rem;padding:0.9rem 2rem;border:1px solid var(--border);border-radius:3px;cursor:pointer;text-decoration:none;transition:border-color 0.2s}
+.btn-secondary:hover{border-color:var(--text-muted)}
+
+/* --- SECTION --- */
+section{padding:5rem 2rem;max-width:900px;margin:0 auto}
+.section-label{font-family:var(--font-mono);font-size:0.7rem;color:var(--lime-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+section h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.02em;margin-bottom:1rem;font-weight:400}
+section h2 em{font-style:italic;color:var(--lime)}
+section>p.subtitle{color:var(--text-muted);max-width:560px;line-height:1.7;margin-bottom:2.5rem}
+
+/* --- STAT BAR --- */
+.stat-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin:3rem 0}
+.stat{background:var(--surface);padding:2rem;text-align:center}
+.stat .number{font-family:var(--font-display);font-size:2.5rem;color:var(--lime);letter-spacing:-0.03em;line-height:1}
+.stat .label{font-size:0.8rem;color:var(--text-muted);margin-top:0.5rem;line-height:1.4}
+@media(max-width:640px){.stat-bar{grid-template-columns:1fr}}
+
+/* --- PROBLEM --- */
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.problem-card{background:var(--surface);padding:1.75rem}
+.problem-card h3{font-size:1rem;font-weight:600;margin-bottom:0.4rem}
+.problem-card p{font-size:0.85rem;color:var(--text-muted);line-height:1.6}
+
+/* --- AI ENGINES --- */
+.engines{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin-top:2.5rem}
+.engine{background:var(--surface);padding:1.25rem;text-align:center}
+.engine .name{font-family:var(--font-mono);font-size:0.8rem;color:var(--text);letter-spacing:0.04em}
+.engine .desc{font-size:0.72rem;color:var(--text-dim);margin-top:0.15rem}
+
+/* --- WHAT WE DO --- */
+.services-list{margin-top:2.5rem;border-top:1px solid var(--border)}
+.service-item{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:start}
+.service-item .num{font-family:var(--font-mono);font-size:0.7rem;color:var(--lime-dim);letter-spacing:0.06em;padding-top:0.2rem}
+.service-item h3{font-size:1rem;font-weight:600;margin-bottom:0.3rem}
+.service-item p{font-size:0.85rem;color:var(--text-muted);line-height:1.6}
+
+/* --- SEO vs AEO --- */
+.comparison{margin-top:2.5rem;border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.comp-header{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--surface-2);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-dim)}
+.comp-header>div{padding:1rem 1.25rem}
+.comp-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--border)}
+.comp-row>div{padding:0.85rem 1.25rem;font-size:0.85rem;color:var(--text-muted)}
+.comp-row>div:first-child{color:var(--text)}
+.check{color:var(--lime)}
+.cross{color:var(--text-dim)}
+
+/* --- PRICING --- */
+.pricing-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;margin-top:2.5rem;overflow:hidden}
+@media(max-width:640px){.pricing-cards{grid-template-columns:1fr}}
+.price-card{background:var(--surface);padding:2.5rem;display:flex;flex-direction:column}
+.price-card.featured{background:var(--surface-2);position:relative}
+.price-card.featured::before{content:'RECOMMENDED';position:absolute;top:1rem;right:1rem;font-family:var(--font-mono);font-size:0.6rem;color:var(--lime);letter-spacing:0.1em;border:1px solid var(--lime-dim);padding:0.2rem 0.5rem;border-radius:2px}
+.price-label{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase}
+.price-amount{font-family:var(--font-display);font-size:2.5rem;letter-spacing:-0.03em;margin:0.5rem 0}
+.price-amount span{font-size:0.9rem;color:var(--text-muted);font-family:var(--font-body)}
+.price-card>p{color:var(--text-muted);font-size:0.85rem;margin-bottom:1.5rem;line-height:1.6}
+.price-card ul{list-style:none;margin-bottom:2rem;flex:1}
+.price-card li{font-size:0.85rem;color:var(--text-muted);padding:0.35rem 0;padding-left:1.25rem;position:relative}
+.price-card li::before{content:'';position:absolute;left:0;top:0.7rem;width:6px;height:6px;border-radius:50%;background:var(--lime-dim)}
+
+/* --- SOCIAL PROOF --- */
+.proof-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin-top:2.5rem}
+.proof-card{background:var(--surface);padding:1.75rem}
+.proof-card .quote{font-style:italic;font-size:0.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:0.75rem}
+.proof-card .attribution{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);letter-spacing:0.04em}
+
+/* --- FAQ --- */
+.faq-item{border-bottom:1px solid var(--border);padding:1.5rem 0}
+.faq-item summary{font-weight:600;font-size:0.95rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-item summary::after{content:'+';font-family:var(--font-mono);color:var(--text-dim);font-size:1.2rem;transition:transform 0.2s}
+.faq-item[open] summary::after{transform:rotate(45deg);color:var(--lime)}
+.faq-item p{color:var(--text-muted);font-size:0.9rem;margin-top:1rem;line-height:1.7;max-width:640px}
+
+/* --- BOTTOM CTA --- */
+.bottom-cta{border:1px solid var(--border);background:var(--surface);padding:4rem 3rem;border-radius:3px;text-align:center;max-width:900px;margin:0 auto;position:relative;overflow:hidden}
+.bottom-cta::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(196,240,66,0.04) 0%,transparent 70%);pointer-events:none}
+.bottom-cta h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.02em;margin-bottom:1rem;font-weight:400;position:relative;z-index:1}
+.bottom-cta h2 em{font-style:italic;color:var(--lime)}
+.bottom-cta p{color:var(--text-muted);margin-bottom:2rem;line-height:1.7;max-width:500px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+.bottom-cta .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+
+/* --- FOOTER --- */
+footer{padding:4rem 2rem;text-align:center;border-top:1px solid var(--border);margin-top:5rem}
+footer p{font-size:0.8rem;color:var(--text-dim)}
+footer a{color:var(--text-dim);text-decoration:none;transition:color 0.2s}
+footer a:hover{color:var(--lime)}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero h1,.hero p,.hero .tag,.hero-ctas{animation:fadeUp 0.6s ease-out both}
+.hero .tag{animation-delay:0.1s}
+.hero h1{animation-delay:0.2s}
+.hero p{animation-delay:0.35s}
+.hero-ctas{animation-delay:0.5s}
+
+/* --- RESPONSIVE --- */
+@media(max-width:768px){
+  .comp-header,.comp-row{grid-template-columns:2fr 1fr 1fr}
+  .comp-header>div,.comp-row>div{padding:0.65rem 0.75rem;font-size:0.78rem}
+  .bottom-cta{padding:3rem 2rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">alvento<span>.</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="/#capabilities">Capabilities</a></li>
+      <li><a href="/#products">Products</a></li>
+      <li><a href="/blog/">Insights</a></li>
+      <li><a href="/#contact" style="background:var(--lime);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.5rem;"><a href="/" style="color:var(--text-dim);text-decoration:none;">Alvento</a> &nbsp;/&nbsp; <a href="/#capabilities" style="color:var(--text-dim);text-decoration:none;">Capabilities</a> &nbsp;/&nbsp; Growth</div>
+  <span class="tag">Growth Capability &mdash; AI Visibility</span>
+  <h1>Your business should be <em>the answer</em> when AI is asked.</h1>
+  <p>As search migrates from links to AI-generated answers, commercial visibility requires a different kind of infrastructure. We build it. Structured entity presence, authoritative content signals, and ongoing citation monitoring across every major answer engine.</p>
+  <div class="hero-ctas">
+    <a href="#audit" class="btn-primary">Get Your AEO Audit &mdash; &pound;49 &darr;</a>
+    <a href="#problem" class="btn-secondary">Why This Matters</a>
+  </div>
+</div>
+
+<!-- CONTEXT BRIDGE -->
+<div style="max-width:700px;margin:0 auto;padding:2rem 2rem 0;text-align:center">
+  <p style="font-size:1rem;color:var(--muted);line-height:1.7;">AEO is one of the ways Alvento deploys Growth capability. It can be procured as a standalone service or scoped as part of a wider AI capability engagement that includes Systems, Knowledge, or Service capability. If your brief is broader, <a href="/#contact" style="color:var(--accent);">tell us the full picture</a>.</p>
+</div>
+
+<!-- STATS -->
+<div style="max-width:900px;margin:0 auto;padding:0 2rem">
+  <div class="stat-bar">
+    <div class="stat">
+      <div class="number">40%</div>
+      <div class="label">of Google searches now show AI Overviews instead of traditional results</div>
+    </div>
+    <div class="stat">
+      <div class="number">10x</div>
+      <div class="label">higher conversion rate from AI search traffic vs organic (Ahrefs data)</div>
+    </div>
+    <div class="stat">
+      <div class="number">&lt;1%</div>
+      <div class="label">of local businesses are actively optimising for AI answer engines</div>
+    </div>
+  </div>
+</div>
+
+<!-- THE SHIFT -->
+<section id="problem">
+  <span class="section-label">01 &mdash; The Shift</span>
+  <h2>Search has <em>changed</em></h2>
+  <p class="subtitle">People don&rsquo;t scroll 10 blue links anymore. They ask AI and get one answer. If you&rsquo;re not structured for that answer, your competitor is.</p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <h3>AI answers replace clicks</h3>
+      <p>Google AI Overviews appear on 40%+ of searches. Users get their answer without visiting a website. Your SEO traffic is already declining because of this.</p>
+    </div>
+    <div class="problem-card">
+      <h3>Chat is the new search</h3>
+      <p>Millions use ChatGPT and Perplexity as their primary search tool. Traditional SEO doesn&rsquo;t reach them. You need a different kind of visibility.</p>
+    </div>
+    <div class="problem-card">
+      <h3>No citation = no traffic</h3>
+      <p>AI models cite sources they trust. Without structured, authoritative content, you don&rsquo;t get cited&mdash;you get skipped entirely.</p>
+    </div>
+    <div class="problem-card">
+      <h3>First movers win</h3>
+      <p>AEO is where SEO was in 2010. Nearly zero local businesses are doing this. The ones who start now will own AI recommendations for years.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section>
+  <span class="section-label">02 &mdash; Platforms</span>
+  <h2>Where we get you <em>cited</em></h2>
+  <p class="subtitle">We optimise your business to appear as a trusted source across every major AI answer engine.</p>
+
+  <div class="engines">
+    <div class="engine"><div class="name">ChatGPT</div><div class="desc">OpenAI</div></div>
+    <div class="engine"><div class="name">Perplexity</div><div class="desc">AI research</div></div>
+    <div class="engine"><div class="name">Google AI</div><div class="desc">Overviews</div></div>
+    <div class="engine"><div class="name">Bing Copilot</div><div class="desc">Microsoft</div></div>
+    <div class="engine"><div class="name">Claude</div><div class="desc">Anthropic</div></div>
+    <div class="engine"><div class="name">Gemini</div><div class="desc">Google</div></div>
+  </div>
+</section>
+
+<!-- SEO vs AEO -->
+<section>
+  <span class="section-label">03 &mdash; SEO vs AEO</span>
+  <h2>Traditional SEO <em>isn&rsquo;t enough</em></h2>
+  <p class="subtitle">SEO gets you ranked in search results. AEO gets you cited in AI answers. You need both.</p>
+
+  <div class="comparison">
+    <div class="comp-header">
+      <div></div>
+      <div>SEO</div>
+      <div>AEO</div>
+    </div>
+    <div class="comp-row">
+      <div>Rank in Google search</div>
+      <div><span class="check">&check;</span></div>
+      <div><span class="check">&check;</span></div>
+    </div>
+    <div class="comp-row">
+      <div>Cited in AI answers</div>
+      <div><span class="cross">&times;</span></div>
+      <div><span class="check">&check;</span></div>
+    </div>
+    <div class="comp-row">
+      <div>ChatGPT / Perplexity visibility</div>
+      <div><span class="cross">&times;</span></div>
+      <div><span class="check">&check;</span></div>
+    </div>
+    <div class="comp-row">
+      <div>Google AI Overview inclusion</div>
+      <div><span class="cross">&times;</span></div>
+      <div><span class="check">&check;</span></div>
+    </div>
+    <div class="comp-row">
+      <div>Entity &amp; authority signals</div>
+      <div><span class="cross">&times;</span></div>
+      <div><span class="check">&check;</span></div>
+    </div>
+    <div class="comp-row">
+      <div>Structured answer content</div>
+      <div><span class="cross">&times;</span></div>
+      <div><span class="check">&check;</span></div>
+    </div>
+    <div class="comp-row">
+      <div>AI citation monitoring</div>
+      <div><span class="cross">&times;</span></div>
+      <div><span class="check">&check;</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section>
+  <span class="section-label">04 &mdash; The Service</span>
+  <h2>What we <em>actually</em> do</h2>
+  <p class="subtitle">We don&rsquo;t just show you a score. We restructure your online presence so AI engines trust and cite your business.</p>
+
+  <div class="services-list">
+    <div class="service-item">
+      <div class="num">01</div>
+      <div>
+        <h3>AI Visibility Audit</h3>
+        <p>We query every major AI engine with your target questions and document exactly how your business appears. You see your baseline before we change anything.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="num">02</div>
+      <div>
+        <h3>Entity &amp; Authority Mapping</h3>
+        <p>We structure your business as a clear entity across the web&mdash;consistent name, description, attributes and relationships that AI models can reference with confidence.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="num">03</div>
+      <div>
+        <h3>Content Restructuring</h3>
+        <p>We rewrite key pages with direct answers, FAQ schema, how-to markup and authority statements that AI models prefer to cite.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="num">04</div>
+      <div>
+        <h3>Citation Building</h3>
+        <p>We get your business mentioned on sources AI models trust&mdash;directories, authoritative publications, structured data aggregators and knowledge bases.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="num">05</div>
+      <div>
+        <h3>Ongoing Monitoring</h3>
+        <p>AI answers change constantly. We track your citations weekly across all platforms and adjust as models update their data sources.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="audit">
+  <span class="section-label">05 &mdash; Engage</span>
+  <h2>Standalone service or <em>part of something bigger</em></h2>
+  <p class="subtitle">AEO can be procured on its own&mdash;start with a &pound;49 audit. Or raise it as a component when booking an Alvento diagnostic. Either way, no lock-in contracts.</p>
+
+  <div class="pricing-cards">
+    <div class="price-card">
+      <span class="price-label">Expert Audit</span>
+      <div class="price-amount">&pound;49</div>
+      <p>We audit your business across all 6 AI engines, benchmark 3 competitors, and deliver a prioritised action plan you can follow yourself.</p>
+      <ul>
+        <li>6 AI engine visibility check</li>
+        <li>3 competitor benchmarks</li>
+        <li>Entity &amp; authority gaps identified</li>
+        <li>Priority action plan</li>
+        <li>30-minute walkthrough call</li>
+        <li>Delivered in 48 hours</li>
+      </ul>
+      <a href="https://buy.stripe.com/eVq00kd3PbLz5DB3Wn2oE05" class="btn-primary" style="width:100%;justify-content:center">Order AEO Audit &rarr;</a>
+    </div>
+    <div class="price-card featured">
+      <span class="price-label">Monthly Retainer</span>
+      <div class="price-amount">&pound;750<span>/month</span></div>
+      <p>Ongoing AEO management. We build and maintain your AI visibility so you show up as the answer, month after month.</p>
+      <ul>
+        <li>Everything in the audit</li>
+        <li>Entity &amp; authority mapping</li>
+        <li>Content restructuring (5 pages/mo)</li>
+        <li>Schema &amp; structured data</li>
+        <li>Citation building campaign</li>
+        <li>Weekly AI citation monitoring</li>
+        <li>Monthly performance report</li>
+        <li>Cancel anytime</li>
+      </ul>
+      <a href="mailto:hello@alvento.ltd?subject=AEO%20Retainer%20%E2%80%93%20%C2%A3750%2Fmo&body=Hi%2C%20I%27m%20interested%20in%20the%20%C2%A3750%2Fmo%20AEO%20retainer.%0A%0ABusiness%20name%3A%0AWebsite%3A%0ALocation%3A" class="btn-secondary" style="width:100%;justify-content:center">Talk to Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <span class="section-label">06 &mdash; Questions</span>
+  <h2>FAQ</h2>
+
+  <details class="faq-item">
+    <summary>What is Answer Engine Optimisation?</summary>
+    <p>AEO makes your business the answer when people ask AI tools like ChatGPT, Perplexity or Google AI a question. Instead of ranking on a page of links, you get cited directly in the AI&rsquo;s response.</p>
+  </details>
+  <details class="faq-item">
+    <summary>How is this different from SEO?</summary>
+    <p>SEO gets you ranked in search results. AEO gets you cited in AI answers. Different signals matter&mdash;entity clarity, structured answers, and source authority rather than just keywords and backlinks. Both work together.</p>
+  </details>
+  <details class="faq-item">
+    <summary>How long until I see results?</summary>
+    <p>Google AI Overviews can pick up changes within weeks. ChatGPT and Perplexity depend on their data refresh cycles. Most clients see measurable improvement within 60&ndash;90 days.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Do I still need traditional SEO?</summary>
+    <p>Yes. Strong SEO makes your content more authoritative, which helps AI models trust and cite you. We recommend both. If you need SEO as well, we offer that separately.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Can you guarantee AI citations?</summary>
+    <p>No&mdash;same as no one can guarantee a #1 Google ranking. What we guarantee is that your content will be structured and optimised for the signals AI models use to choose sources. The rest is maths: better signals, more citations.</p>
+  </details>
+  <details class="faq-item">
+    <summary>What industries does this work for?</summary>
+    <p>Any business people search for&mdash;service firms, professional practices, SaaS, e-commerce, regulated businesses. If customers ask AI &ldquo;who&rsquo;s the best X&rdquo; or &ldquo;what&rsquo;s the best solution for Y,&rdquo;&nbsp;AEO works for you. Clients often add it alongside Alvento&rsquo;s Systems or Service capability work.</p>
+  </details>
+  <details class="faq-item">
+    <summary>What do I get for &pound;49?</summary>
+    <p>A branded PDF report covering all 6 AI engines, 3 competitor benchmarks, a gap analysis showing exactly why you&rsquo;re not being cited, and a prioritised action plan. Plus a 30-minute call to walk through it. Delivered within 48 hours.</p>
+  </details>
+</section>
+
+<!-- BOTTOM CTA -->
+<div style="padding:5rem 2rem">
+  <div class="bottom-cta">
+    <h2>AI visibility is part of <em>growth capability</em></h2>
+    <p>AEO is one component of how Alvento builds growth capability for businesses. If AI visibility is part of a broader operational or growth brief, we can scope it as part of a wider engagement.</p>
+    <div class="cta-buttons">
+      <a href="#audit" class="btn-primary">Get Your AEO Audit &mdash; &pound;49</a>
+      <a href="/#capabilities" class="btn-secondary">See all capabilities &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Alvento Ltd &middot; Company No. 15808196 &middot; <a href="https://alvento.ltd">alvento.ltd</a></p>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Answer Engine Optimisation (AEO)",
+  "provider": {
+    "@type": "Organization",
+    "name": "Alvento Ltd",
+    "url": "https://alvento.ltd"
+  },
+  "description": "Get your business cited by ChatGPT, Perplexity, Google AI Overviews, Bing Copilot, Claude and Gemini. We audit, optimise and monitor your AI answer engine visibility.",
+  "areaServed": "GB",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "AEO Expert Audit",
+      "price": "49",
+      "priceCurrency": "GBP",
+      "description": "One-time AI visibility audit across 6 answer engines with competitor benchmarks and action plan."
+    },
+    {
+      "@type": "Offer",
+      "name": "AEO Monthly Retainer",
+      "price": "750",
+      "priceCurrency": "GBP",
+      "description": "Ongoing AEO management including entity mapping, content restructuring, citation building and weekly monitoring."
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Answer Engine Optimisation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AEO makes your business the answer when people ask AI tools like ChatGPT, Perplexity or Google AI a question. Instead of ranking on a page of links, you get cited directly in the AI's response."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is AEO different from SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SEO gets you ranked in search results. AEO gets you cited in AI answers. Different signals matter — entity clarity, structured answers, and source authority rather than just keywords and backlinks. Both work together."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until I see results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google AI Overviews can pick up changes within weeks. ChatGPT and Perplexity depend on their data refresh cycles. Most clients see measurable improvement within 60-90 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you guarantee AI citations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — same as no one can guarantee a #1 Google ranking. What we guarantee is that your content will be structured and optimised for the signals AI models use to choose sources."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do I get for £49?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A branded PDF report covering all 6 AI engines, 3 competitor benchmarks, a gap analysis showing exactly why you're not being cited, and a prioritised action plan. Plus a 30-minute call to walk through it. Delivered within 48 hours."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>

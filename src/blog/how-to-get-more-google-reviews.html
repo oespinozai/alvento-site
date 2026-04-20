@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Get More Google Reviews: Proven Tactics for Small Business | Alvento</title>
+    <meta name="description" content="Learn proven tactics to get more Google reviews and improve your local ranking. Strategies that work for any UK small business without buying fake reviews.">
+    <meta name="author" content="Maeve O'Brien, Growth Analyst at Alvento">
+    <meta property="og:title" content="How to Get More Google Reviews: Proven Tactics for Small Business">
+    <meta property="og:description" content="Learn proven tactics to get more Google reviews and improve your local ranking. Strategies that work for any UK small business without buying fake reviews.">
+    <meta property="og:url" content="https://alvento.ltd/blog/how-to-get-more-google-reviews/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box, .example-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Get More Google Reviews: Proven Tactics for Small Business",
+        "description": "Learn proven tactics to get more Google reviews and improve your local ranking. Strategies that work for any UK small business without buying fake reviews.",
+        "author": { "@type": "Person", "name": "Maeve O'Brien", "jobTitle": "Growth Analyst", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
+        "datePublished": "2026-03-17",
+        "url": "https://alvento.ltd/blog/how-to-get-more-google-reviews/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#products">Products</a></li>
+                <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">How to Get More Google Reviews: Proven Tactics for Small Business</h1>
+        <div class="meta">
+            <p>By Maeve O'Brien, Growth Analyst at Alvento | Published 17 March 2026</p>
+        </div>
+
+        <p>Google reviews are the currency of local business. They influence rankings, build trust, and directly drive customer decisions. A business with 50 positive reviews will outrank a business with five, all else being equal.</p>
+
+        <p>But getting reviews isn't random. There's a system to it. Most businesses leave review generation to chance and wonder why they're stuck at three reviews. The businesses that win systematically ask for reviews, make it easy, and follow up.</p>
+
+        <p>In this guide, you'll learn the proven tactics that work. These aren't hacks or shortcuts—they're legitimate strategies that respect your customers and deliver results.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> — first conversation is free.</p>
+        </div>
+
+        <h2 class="fade-up">Why Reviews Matter (Beyond Rankings)</h2>
+
+        <p>Yes, reviews improve your Google Maps ranking. But they do more than that:</p>
+
+        <ul>
+            <li><strong>Trust signal:</strong> 9 in 10 consumers trust reviews as much as personal recommendations</li>
+            <li><strong>Conversion driver:</strong> Customers with positive reviews are more likely to choose you</li>
+            <li><strong>Social proof:</strong> Each new review signals that real customers love your business</li>
+            <li><strong>Engagement:</strong> Responding to reviews shows potential customers you care</li>
+        </ul>
+
+        <p>The more recent and numerous your positive reviews, the stronger your credibility. That translates to more calls and bookings.</p>
+
+        <h2 class="fade-up">The Right Way to Ask for Reviews</h2>
+
+        <h3>Timing is everything</h3>
+        <p>Ask when the experience is fresh and positive. The best time is right after you've delivered great service:</p>
+
+        <ul>
+            <li>For service businesses: within 24 hours of job completion</li>
+            <li>For retail: as the customer is leaving or in a follow-up email</li>
+            <li>For restaurants: at the end of the meal (in person or on the bill)</li>
+            <li>For online businesses: in a follow-up email after delivery or purchase</li>
+        </ul>
+
+        <p>Don't wait a week. The goodwill fades. Strike while the iron is hot.</p>
+
+        <h3>Email is your best channel</h3>
+        <p>Email outperforms SMS, phone calls, and in-person requests. Why? It's not intrusive, it gives a clear link, and customers can act when they have time.</p>
+
+        <p>Here's a template that works:</p>
+
+        <div class="example-box fade-up">
+            <p><strong>Subject:</strong> "Would you mind leaving a quick review?"</p>
+            <p><strong>Body:</strong> "Hi [Name],</p>
+            <p>Thanks so much for choosing us! We loved working with you and we hope you're thrilled with [specific thing they loved].</p>
+            <p>If you had a good experience, we'd be grateful if you could leave a quick review on Google. It helps other customers like you find us, and it means the world to us.</p>
+            <p>[Direct link to Google review page]</p>
+            <p>Cheers,<br>[Your name]"</p>
+        </div>
+
+        <h3>Make it stupidly easy</h3>
+        <p>Give a direct link to your Google Business Profile review page. Don't ask customers to "find us on Google and leave a review"—that friction loses 80% of people. One click should take them straight to the review form.</p>
+
+        <p>You can create a direct link with a Google review link generator tool, or copy your profile's direct review URL from your Google Business Profile settings.</p>
+
+        <h3>The ask matters</h3>
+        <p>Don't demand or guilt customers. A simple, friendly ask works best:</p>
+
+        <ul>
+            <li>✓ "We'd love to hear about your experience"</li>
+            <li>✓ "If you were happy with the service, please consider leaving a review"</li>
+            <li>✗ "You MUST leave a review"</li>
+            <li>✗ "If you didn't love it, don't review; if you did, please review"</li>
+        </ul>
+
+        <p>The second-to-last example is actually against Google's terms—don't incentivise reviews based on rating. A small discount or thank-you gift for leaving any review is fine; incentivising five-star reviews specifically is not.</p>
+
+        <h2 class="fade-up">Make Review-Asking a System</h2>
+
+        <p>The businesses with lots of reviews don't do it randomly. They have a system:</p>
+
+        <h3>1. Automated email sequence</h3>
+        <p>If you use a booking system (Calendly, Acuity, Square), set up an automated email to go out 24 hours after the job is done. No extra work, consistent results.</p>
+
+        <h3>2. QR code at checkout</h3>
+        <p>Print a simple QR code pointing to your review page and display it at checkout or on your invoice. Customers can scan and review immediately while they're thinking about your business.</p>
+
+        <h3>3. Follow-up phone call</h3>
+        <p>For high-value services, a personal touch works. Call or message a few days after delivery: "How did everything go? Would you mind sharing your feedback on Google?"</p>
+
+        <h3>4. Post-purchase text</h3>
+        <p>A simple SMS: "Cheers for the business! If you're happy, we'd love a review [direct link]. Takes 30 seconds!"</p>
+
+        <h2 class="fade-up">Respond to Every Review</h2>
+
+        <p>This is crucial. When you respond to reviews, Google sees active engagement. It also shows other potential customers that you care. Responding to negative reviews especially shows you're professional and customer-focused.</p>
+
+        <h3>How to respond to positive reviews</h3>
+        <p>Keep it short and genuine:</p>
+
+        <div class="example-box fade-up">
+            <p>"Thanks so much for the kind words! We love working with customers who appreciate quality. Hope to see you again soon!"</p>
+        </div>
+
+        <h3>How to respond to negative reviews</h3>
+        <p>This is where you show professionalism. Never get defensive.</p>
+
+        <div class="example-box fade-up">
+            <p>"Thanks for the feedback. We're sorry the service didn't meet your expectations. We'd like to make it right—please get in touch on [contact details] so we can discuss this properly."</p>
+        </div>
+
+        <p>Keep it professional, acknowledging, and solution-focused. Show potential customers you care about making things right.</p>
+
+        <h2 class="fade-up">What About Negative Reviews?</h2>
+
+        <p>You will get negative reviews. Every business does. Here's how to handle them:</p>
+
+        <ul>
+            <li><strong>Don't delete them.</strong> Google can tell when reviews disappear, and deletion looks suspicious</li>
+            <li><strong>Respond professionally.</strong> A thoughtful response to a negative review can actually boost your credibility with other customers</li>
+            <li><strong>Offer to resolve.</strong> Respond within a week, take it offline, and try to fix the problem</li>
+            <li><strong>Learn from them.</strong> Negative reviews highlight real problems. Fix them and you'll get fewer negative reviews going forward</li>
+        </ul>
+
+        <p>A business with some 4-star reviews and good responses to negatives is more credible than a business with only 5-star reviews. Real customers trust nuance.</p>
+
+        <h2 class="fade-up">The Numbers You Should Track</h2>
+
+        <ul>
+            <li><strong>Total reviews:</strong> Aim for steady growth each month. 5-10 new reviews per month is healthy for a small business</li>
+            <li><strong>Average rating:</strong> Anything above 4.5 stars is strong. 4.8+ is excellent</li>
+            <li><strong>Recent reviews:</strong> Recent reviews carry more weight. Consistency matters more than a big batch months ago</li>
+            <li><strong>Response rate:</strong> Aim to respond to all reviews within a week</li>
+        </ul>
+
+        <h2 class="fade-up">The Compounding Effect</h2>
+
+        <p>Reviews compound. The more you have, the easier it is to get more (social proof drives more people to review). The more actively you build reviews, the faster your ranking improves.</p>
+
+        <p>A business that systematically asks for reviews every month will, in 12 months, have 60+ reviews and a much higher ranking than it started with. That's real competitive advantage.</p>
+
+        <h2 class="fade-up">Start Today</h2>
+
+        <p>You don't need fancy tools or a big marketing budget. Just a simple system: ask happy customers for reviews via email, make it easy with a direct link, respond to all reviews, and repeat monthly. In three months, you'll see results. In six months, it'll transform your ranking.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> — first conversation is free.</p>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>alvento.ltd</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-up').forEach(function(el, i) {
+            el.style.transitionDelay = (i % 4) * 0.1 + 's';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    });
+    </script>
+</body>
+</html>
