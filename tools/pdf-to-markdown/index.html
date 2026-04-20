@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Markdown Converter — Reduce LLM Token Usage by 30x</title>
+    <meta name="description" content="Convert PDFs to Markdown before uploading to ChatGPT, Claude, or any LLM. Cut token usage by up to 30x. Free, no upload, runs in your browser.">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        a {
+            color: #00d4aa;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        header {
+            background-color: #141414;
+            border-bottom: 1px solid #222;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-title {
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .alvento-badge {
+            font-size: 11px;
+            color: #888;
+            border: 1px solid #333;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+
+        .alvento-badge:hover {
+            border-color: #00d4aa;
+            color: #00d4aa;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            min-height: calc(100vh - 180px);
+        }
+
+        @media (max-width: 1024px) {
+            main {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        section {
+            background-color: #141414;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .section-title {
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #888;
+        }
+
+        .dropzone {
+            border: 2px dashed #333;
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background-color: rgba(0, 212, 170, 0.02);
+        }
+
+        .dropzone:hover,
+        .dropzone.dragover {
+            border-color: #00d4aa;
+            background-color: rgba(0, 212, 170, 0.05);
+        }
+
+        .dropzone-text {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .dropzone-hint {
+            font-size: 12px;
+            color: #555;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .file-queue {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .file-item {
+            background-color: #0a0a0a;
+            border: 1px solid #222;
+            border-left: 3px solid #555;
+            border-radius: 6px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .file-item.queued {
+            border-left-color: #fbbf24;
+        }
+
+        .file-item.processing {
+            border-left-color: #3b82f6;
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        .file-item.done {
+            border-left-color: #10b981;
+        }
+
+        .file-item.error {
+            border-left-color: #ef4444;
+            background-color: rgba(239, 68, 68, 0.05);
+        }
+
+        .file-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .file-name {
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 12px;
+            word-break: break-word;
+        }
+
+        .file-meta {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background-color: #222;
+            color: #888;
+        }
+
+        .status-badge.queued {
+            background-color: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+        }
+
+        .status-badge.processing {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+        }
+
+        .status-badge.done {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+
+        .status-badge.error {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        .button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .button-primary {
+            background-color: #00d4aa;
+            color: #0a0a0a;
+        }
+
+        .button-primary:hover {
+            background-color: #00e0b4;
+        }
+
+        .button-primary:disabled {
+            background-color: #555;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .button-secondary {
+            background-color: #222;
+            color: #00d4aa;
+            border: 1px solid #333;
+        }
+
+        .button-secondary:hover {
+            border-color: #00d4aa;
+            background-color: rgba(0, 212, 170, 0.1);
+        }
+
+        .button-secondary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .button-small {
+            padding: 6px 10px;
+            font-size: 11px;
+        }
+
+        .output-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 8px 12px;
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            color: #00d4aa;
+            border-bottom-color: #00d4aa;
+        }
+
+        .tab:hover {
+            color: #888;
+        }
+
+        .output-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .markdown-textarea {
+            flex: 1;
+            background-color: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 6px;
+            padding: 12px;
+            color: #e0e0e0;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            resize: none;
+            word-wrap: break-word;
+        }
+
+        .markdown-textarea:focus {
+            outline: none;
+            border-color: #00d4aa;
+        }
+
+        .markdown-preview {
+            flex: 1;
+            background-color: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 6px;
+            padding: 16px;
+            overflow-y: auto;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .markdown-preview h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 20px 0 12px 0;
+            color: #00d4aa;
+        }
+
+        .markdown-preview h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 16px 0 10px 0;
+            color: #00d4aa;
+        }
+
+        .markdown-preview h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 12px 0 8px 0;
+            color: #00d4aa;
+        }
+
+        .markdown-preview h4,
+        .markdown-preview h5,
+        .markdown-preview h6 {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 10px 0 6px 0;
+            color: #888;
+        }
+
+        .markdown-preview p {
+            margin: 8px 0;
+        }
+
+        .markdown-preview ul,
+        .markdown-preview ol {
+            margin: 12px 0 12px 20px;
+        }
+
+        .markdown-preview li {
+            margin: 4px 0;
+        }
+
+        .markdown-preview code {
+            background-color: #222;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 12px;
+            color: #00d4aa;
+        }
+
+        .markdown-preview pre {
+            background-color: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 4px;
+            padding: 12px;
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+
+        .markdown-preview pre code {
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            color: #e0e0e0;
+        }
+
+        .markdown-preview blockquote {
+            border-left: 3px solid #00d4aa;
+            margin: 12px 0;
+            padding-left: 12px;
+            color: #888;
+        }
+
+        .markdown-preview table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+
+        .markdown-preview th,
+        .markdown-preview td {
+            border: 1px solid #222;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .markdown-preview th {
+            background-color: rgba(0, 212, 170, 0.1);
+            color: #00d4aa;
+            font-weight: 600;
+        }
+
+        .markdown-preview hr {
+            border: none;
+            border-top: 1px solid #222;
+            margin: 20px 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .stats-card {
+            background-color: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            font-family: "IBM Plex Mono", monospace;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00d4aa;
+            font-family: "IBM Plex Mono", monospace;
+        }
+
+        .cost-estimate {
+            grid-column: 1 / -1;
+            background-color: rgba(0, 212, 170, 0.05);
+            border: 1px solid #222;
+            border-radius: 6px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .cost-text {
+            font-size: 13px;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .cost-saved {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .model-selector {
+            background-color: #141414;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 11px;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .model-selector:hover {
+            border-color: #00d4aa;
+        }
+
+        .model-selector:focus {
+            outline: none;
+            border-color: #00d4aa;
+        }
+
+        .cta-card {
+            background-color: rgba(0, 212, 170, 0.1);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-text {
+            font-size: 14px;
+            line-height: 1.6;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            background-color: #141414;
+            border-top: 1px solid #222;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .file-selector-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .file-selector {
+            flex: 1;
+            background-color: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 11px;
+            color: #e0e0e0;
+            cursor: pointer;
+        }
+
+        .file-selector:focus {
+            outline: none;
+            border-color: #00d4aa;
+        }
+
+        .scroll-area {
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #555;
+            border-top-color: #00d4aa;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align: -2px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            color: #ff6b6b;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <div class="header-title">PDF → Markdown</div>
+            <a href="https://alvento.ltd" target="_blank" class="alvento-badge">by Alvento</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Input Section -->
+        <section>
+            <div class="section-title">Upload PDFs</div>
+
+            <div class="dropzone" id="dropzone">
+                <div class="dropzone-text">Drop your PDFs here or click to select</div>
+                <div class="dropzone-hint">Supports multiple files • Processes sequentially</div>
+            </div>
+
+            <input type="file" id="fileInput" multiple accept=".pdf">
+
+            <div id="fileQueue" class="file-queue"></div>
+
+            <button class="button button-primary" id="processingBtn" disabled style="justify-content: center;">
+                <span class="spinner"></span> Processing...
+            </button>
+
+            <button class="button button-primary" id="downloadAllBtn" class="hidden" style="justify-content: center;">
+                Download All as ZIP
+            </button>
+
+            <div id="errorMessage" class="error-message hidden"></div>
+        </section>
+
+        <!-- Output Section -->
+        <section class="output-panel">
+            <div class="section-title">Converted Output</div>
+
+            <div id="fileSelector" class="file-selector-group hidden">
+                <label style="font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;">File:</label>
+                <select id="fileSelectorSelect" class="file-selector"></select>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="raw">Raw Markdown</button>
+                <button class="tab" data-tab="preview">Preview</button>
+            </div>
+
+            <div class="output-area">
+                <textarea id="markdownOutput" class="markdown-textarea" placeholder="Converted markdown will appear here..." readonly></textarea>
+                <div id="previewOutput" class="markdown-preview hidden"></div>
+            </div>
+
+            <div class="button-group">
+                <button class="button button-secondary button-small" id="copyClaudeBtn" disabled>
+                    Copy for Claude
+                </button>
+                <button class="button button-secondary button-small" id="copyChatGPTBtn" disabled>
+                    Copy for ChatGPT
+                </button>
+                <button class="button button-secondary button-small" id="copyRawBtn" disabled>
+                    Copy Raw
+                </button>
+            </div>
+
+            <div id="statsCard" class="stats-card hidden">
+                <div class="stat">
+                    <div class="stat-label">PDF Tokens</div>
+                    <div class="stat-value" id="pdfTokens">0</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">Markdown Tokens</div>
+                    <div class="stat-value" id="markdownTokens">0</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">Compression</div>
+                    <div class="stat-value" id="compressionRatio">0x</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">Files Converted</div>
+                    <div class="stat-value" id="filesConverted">0</div>
+                </div>
+
+                <div class="cost-estimate">
+                    <div class="cost-text">
+                        This run saved you approximately <span class="cost-saved" id="costSaved">$0.00</span> at <select id="modelSelect" class="model-selector">
+                            <option value="gpt4o">GPT-4o ($5/1M tokens)</option>
+                            <option value="sonnet">Claude Sonnet ($3/1M)</option>
+                            <option value="haiku" selected>Claude Haiku ($0.25/1M)</option>
+                        </select> prices
+                    </div>
+                </div>
+            </div>
+
+            <div id="ctaCard" class="cta-card hidden">
+                <div class="cta-text">
+                    Processing documents at scale? Alvento builds document intelligence pipelines that do this automatically.
+                </div>
+                <a href="https://alvento.ltd" target="_blank" class="button button-primary">Talk to us →</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Built by Alvento · AI systems for businesses that run on data · <a href="https://alvento.ltd" target="_blank">alvento.ltd</a>
+    </footer>
+
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <!-- JSZip -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <script>
+        // Set PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        // State management
+        const state = {
+            files: [],
+            isProcessing: false,
+            currentFileIndex: null,
+        };
+
+        // Element references
+        const elements = {
+            dropzone: document.getElementById('dropzone'),
+            fileInput: document.getElementById('fileInput'),
+            fileQueue: document.getElementById('fileQueue'),
+            processingBtn: document.getElementById('processingBtn'),
+            downloadAllBtn: document.getElementById('downloadAllBtn'),
+            markdownOutput: document.getElementById('markdownOutput'),
+            previewOutput: document.getElementById('previewOutput'),
+            copyClaudeBtn: document.getElementById('copyClaudeBtn'),
+            copyChatGPTBtn: document.getElementById('copyChatGPTBtn'),
+            copyRawBtn: document.getElementById('copyRawBtn'),
+            statsCard: document.getElementById('statsCard'),
+            ctaCard: document.getElementById('ctaCard'),
+            pdfTokens: document.getElementById('pdfTokens'),
+            markdownTokens: document.getElementById('markdownTokens'),
+            compressionRatio: document.getElementById('compressionRatio'),
+            filesConverted: document.getElementById('filesConverted'),
+            costSaved: document.getElementById('costSaved'),
+            modelSelect: document.getElementById('modelSelect'),
+            fileSelector: document.getElementById('fileSelector'),
+            fileSelectorSelect: document.getElementById('fileSelectorSelect'),
+            errorMessage: document.getElementById('errorMessage'),
+        };
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                if (tab.dataset.tab === 'preview') {
+                    elements.markdownOutput.classList.add('hidden');
+                    elements.previewOutput.classList.remove('hidden');
+                } else {
+                    elements.markdownOutput.classList.remove('hidden');
+                    elements.previewOutput.classList.add('hidden');
+                }
+            });
+        });
+
+        // Dropzone handlers
+        elements.dropzone.addEventListener('click', () => elements.fileInput.click());
+        elements.dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            elements.dropzone.classList.add('dragover');
+        });
+        elements.dropzone.addEventListener('dragleave', () => {
+            elements.dropzone.classList.remove('dragover');
+        });
+        elements.dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            elements.dropzone.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        elements.fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            hideError();
+            const newFiles = Array.from(files).filter(f => f.type === 'application/pdf');
+
+            if (newFiles.length === 0) {
+                showError('Please select valid PDF files');
+                return;
+            }
+
+            state.files = newFiles.map((file, idx) => ({
+                id: `file-${Date.now()}-${idx}`,
+                file,
+                name: file.name,
+                status: 'queued',
+                pageCount: null,
+                markdown: '',
+            }));
+
+            renderFileQueue();
+            elements.processingBtn.disabled = false;
+        }
+
+        function renderFileQueue() {
+            elements.fileQueue.innerHTML = state.files.map(file => `
+                <div class="file-item ${file.status}">
+                    <div class="file-info">
+                        <div class="file-name">${escapeHtml(file.name)}</div>
+                        ${file.pageCount ? `<div class="file-meta">${file.pageCount} page${file.pageCount !== 1 ? 's' : ''}</div>` : ''}
+                    </div>
+                    <span class="status-badge ${file.status}">
+                        ${file.status === 'processing' ? '<span class="spinner"></span>' : ''}
+                        ${file.status}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        async function processFiles() {
+            if (state.isProcessing) return;
+            state.isProcessing = true;
+            elements.processingBtn.disabled = true;
+
+            for (let i = 0; i < state.files.length; i++) {
+                const file = state.files[i];
+                file.status = 'processing';
+                renderFileQueue();
+
+                try {
+                    const arrayBuffer = await file.file.arrayBuffer();
+                    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                    file.pageCount = pdf.numPages;
+                    file.markdown = await convertPdfToMarkdown(pdf);
+                    file.status = 'done';
+                } catch (error) {
+                    console.error(`Error processing ${file.name}:`, error);
+                    file.status = 'error';
+                    showError(`Failed to process ${file.name}: ${error.message}`);
+                }
+
+                renderFileQueue();
+            }
+
+            state.isProcessing = false;
+            renderFileQueue();
+
+            if (state.files.some(f => f.status === 'done')) {
+                displayResults();
+                elements.downloadAllBtn.classList.remove('hidden');
+                elements.ctaCard.classList.remove('hidden');
+            }
+
+            elements.processingBtn.disabled = false;
+        }
+
+        async function convertPdfToMarkdown(pdf) {
+            let markdown = '';
+
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                const page = await pdf.getPage(pageNum);
+                const textContent = await page.getTextContent();
+                const pageMarkdown = pageToMarkdown(textContent);
+
+                if (pageNum > 1) {
+                    markdown += '\n---\n\n';
+                }
+                markdown += pageMarkdown;
+            }
+
+            return markdown;
+        }
+
+        function pageToMarkdown(textContent) {
+            const items = textContent.items.filter(item => item.str && item.str.trim());
+            if (!items.length) return '';
+
+            // Collect font sizes to detect headings
+            const fontSizes = items.map(item => Math.abs(item.transform[0]));
+            const avgFontSize = fontSizes.reduce((a, b) => a + b, 0) / fontSizes.length;
+            const maxFontSize = Math.max(...fontSizes);
+
+            // Group items by Y position (lines)
+            const lineMap = new Map();
+            items.forEach(item => {
+                const y = Math.round(item.transform[5]);
+                if (!lineMap.has(y)) lineMap.set(y, []);
+                lineMap.get(y).push(item);
+            });
+
+            // Sort lines top-to-bottom (descending Y in PDF coordinates)
+            const sortedLines = Array.from(lineMap.entries()).sort((a, b) => b[0] - a[0]);
+
+            let markdown = '';
+            let prevY = null;
+            let prevLineHeight = avgFontSize;
+
+            for (const [y, lineItems] of sortedLines) {
+                // Sort items in line left-to-right
+                const line = lineItems.sort((a, b) => a.transform[4] - b.transform[4]);
+
+                // Detect paragraph breaks (large Y-gap)
+                if (prevY !== null && (prevY - y) > (prevLineHeight * 1.5)) {
+                    markdown += '\n';
+                }
+
+                // Get line text and analyze for headings
+                const avgLineSize = line.reduce((sum, item) => sum + Math.abs(item.transform[0]), 0) / line.length;
+                const isBold = line.some(item => item.fontName && item.fontName.toLowerCase().includes('bold'));
+                const lineText = line.map(item => item.str).join('').trim();
+
+                if (!lineText) continue;
+
+                // Format based on font size and content
+                if (avgLineSize >= maxFontSize * 0.95 && lineText.length < 120) {
+                    // H1 - largest heading
+                    markdown += '# ' + lineText + '\n';
+                } else if (avgLineSize >= avgFontSize * 1.4 || (isBold && lineText.length < 120)) {
+                    // H2 - secondary heading
+                    markdown += '## ' + lineText + '\n';
+                } else if (avgLineSize >= avgFontSize * 1.15 && lineText.length < 100) {
+                    // H3 - tertiary heading
+                    markdown += '### ' + lineText + '\n';
+                } else {
+                    // Regular paragraph
+                    markdown += lineText + '\n';
+                }
+
+                prevY = y;
+                prevLineHeight = avgLineSize;
+            }
+
+            // Clean up multiple newlines
+            return markdown.replace(/\n{3,}/g, '\n\n').trim();
+        }
+
+        function displayResults() {
+            const doneFiles = state.files.filter(f => f.status === 'done');
+
+            if (doneFiles.length === 0) return;
+
+            if (doneFiles.length > 1) {
+                elements.fileSelector.classList.remove('hidden');
+                elements.fileSelectorSelect.innerHTML = doneFiles.map(f =>
+                    `<option value="${f.id}">${escapeHtml(f.name)}</option>`
+                ).join('');
+
+                elements.fileSelectorSelect.addEventListener('change', (e) => {
+                    const fileId = e.target.value;
+                    const file = state.files.find(f => f.id === fileId);
+                    if (file) {
+                        state.currentFileIndex = state.files.indexOf(file);
+                        updateOutputDisplay();
+                    }
+                });
+
+                state.currentFileIndex = 0;
+            } else {
+                elements.fileSelector.classList.add('hidden');
+                state.currentFileIndex = 0;
+            }
+
+            updateOutputDisplay();
+            updateStats();
+
+            elements.copyClaudeBtn.disabled = false;
+            elements.copyChatGPTBtn.disabled = false;
+            elements.copyRawBtn.disabled = false;
+        }
+
+        function updateOutputDisplay() {
+            const file = state.files[state.currentFileIndex];
+            if (!file) return;
+
+            elements.markdownOutput.value = file.markdown;
+            elements.previewOutput.innerHTML = markdownToHtml(file.markdown);
+        }
+
+        function updateStats() {
+            const doneFiles = state.files.filter(f => f.status === 'done');
+
+            let totalPdfSize = 0;
+            let totalMarkdownTokens = 0;
+
+            doneFiles.forEach(f => {
+                totalPdfSize += f.file.size;
+                totalMarkdownTokens += Math.ceil(f.markdown.length / 4);
+            });
+
+            const pdfTokens = Math.ceil(totalPdfSize / 4);
+            const compression = pdfTokens > 0 ? (pdfTokens / totalMarkdownTokens).toFixed(1) : 0;
+
+            elements.pdfTokens.textContent = pdfTokens.toLocaleString();
+            elements.markdownTokens.textContent = totalMarkdownTokens.toLocaleString();
+            elements.compressionRatio.textContent = compression + 'x';
+            elements.filesConverted.textContent = doneFiles.length;
+
+            updateCostSavings(pdfTokens, totalMarkdownTokens);
+            elements.statsCard.classList.remove('hidden');
+        }
+
+        function updateCostSavings(pdfTokens, markdownTokens) {
+            const models = {
+                gpt4o: 5,
+                sonnet: 3,
+                haiku: 0.25,
+            };
+
+            const selectedModel = elements.modelSelect.value;
+            const cost = models[selectedModel];
+            const saved = ((pdfTokens - markdownTokens) / 1000000) * cost;
+
+            elements.costSaved.textContent = '$' + Math.max(0, saved).toFixed(2);
+        }
+
+        elements.modelSelect.addEventListener('change', () => {
+            const pdfTokens = parseInt(elements.pdfTokens.textContent.replace(/,/g, ''));
+            const markdownTokens = parseInt(elements.markdownTokens.textContent.replace(/,/g, ''));
+            updateCostSavings(pdfTokens, markdownTokens);
+        });
+
+        elements.processingBtn.addEventListener('click', processFiles);
+
+        // Copy buttons
+        elements.copyClaudeBtn.addEventListener('click', () => {
+            const file = state.files[state.currentFileIndex];
+            if (file) {
+                const text = 'The following is a converted PDF document:\n\n' + file.markdown;
+                navigator.clipboard.writeText(text).then(() => {
+                    showCopyFeedback(elements.copyClaudeBtn);
+                });
+            }
+        });
+
+        elements.copyChatGPTBtn.addEventListener('click', () => {
+            const file = state.files[state.currentFileIndex];
+            if (file) {
+                const text = 'Below is a document converted from PDF to Markdown:\n\n' + file.markdown;
+                navigator.clipboard.writeText(text).then(() => {
+                    showCopyFeedback(elements.copyChatGPTBtn);
+                });
+            }
+        });
+
+        elements.copyRawBtn.addEventListener('click', () => {
+            const file = state.files[state.currentFileIndex];
+            if (file) {
+                navigator.clipboard.writeText(file.markdown).then(() => {
+                    showCopyFeedback(elements.copyRawBtn);
+                });
+            }
+        });
+
+        function showCopyFeedback(btn) {
+            const original = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(() => {
+                btn.textContent = original;
+            }, 2000);
+        }
+
+        elements.downloadAllBtn.addEventListener('click', downloadAllAsZip);
+
+        async function downloadAllAsZip() {
+            const doneFiles = state.files.filter(f => f.status === 'done');
+            if (doneFiles.length === 0) return;
+
+            const zip = new JSZip();
+
+            doneFiles.forEach(file => {
+                const filename = file.name.replace(/\.pdf$/i, '.md');
+                zip.file(filename, file.markdown);
+            });
+
+            const blob = await zip.generateAsync({ type: 'blob' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `markdown-export-${Date.now()}.zip`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Markdown to HTML rendering
+        function markdownToHtml(markdown) {
+            let html = escapeHtml(markdown);
+
+            // Headers (in order: h3, h2, h1 to avoid double-processing)
+            html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
+            html = html.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
+            html = html.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
+
+            // Code blocks
+            html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+
+            // Inline code
+            html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+            // Bold (** and __)
+            html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+
+            // Italic (* and _)
+            html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+            html = html.replace(/_([^_]+)_/g, '<em>$1</em>');
+
+            // Blockquotes
+            html = html.replace(/^&gt; (.*?)$/gm, '<blockquote>$1</blockquote>');
+
+            // Horizontal rules
+            html = html.replace(/^---$/gm, '<hr>');
+
+            // Unordered lists
+            html = html.replace(/^\* (.*?)$/gm, '<li>$1</li>');
+            html = html.replace(/^- (.*?)$/gm, '<li>$1</li>');
+            html = html.replace(/^(<li>.*<\/li>)$/gm, (match) => {
+                const wrapper = '<ul>' + match + '</ul>';
+                return wrapper;
+            });
+
+            // Ordered lists
+            html = html.replace(/^\d+\. (.*?)$/gm, '<li>$1</li>');
+
+            // Tables (simple row detection)
+            html = html.replace(/^\|(.+)\|$/gm, '<tr><td>$1</td></tr>');
+
+            // Paragraphs - wrap remaining text that isn't already in a block element
+            const lines = html.split('\n');
+            html = lines.map(line => {
+                const trimmed = line.trim();
+                if (!trimmed) return '';
+                // Skip if already in a block element
+                if (/^<(h[1-6]|ul|ol|li|blockquote|pre|code|hr|table|tr|td|div)/.test(trimmed)) {
+                    return line;
+                }
+                // Skip empty lines in lists
+                if (trimmed === '<li></li>') return '';
+                return '<p>' + trimmed + '</p>';
+            }).join('\n');
+
+            return html;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function showError(message) {
+            elements.errorMessage.textContent = message;
+            elements.errorMessage.classList.remove('hidden');
+        }
+
+        function hideError() {
+            elements.errorMessage.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
