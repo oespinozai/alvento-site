@@ -5,10 +5,15 @@
     { "source": "/report/:token/", "destination": "/reports/:token" },
     { "source": "/report/:token", "destination": "/reports/:token" },
     { "source": "/tools", "destination": "/tools.html" },
-    { "source": "/seo-audit", "destination": "/seo-audit.html" },
+    { "source": "/tools/pdf-to-markdown", "destination": "/tools/pdf-to-markdown/index.html" },
+    { "source": "/tools/sop-to-checklist", "destination": "/tools/sop-to-checklist/index.html" },
+    { "source": "/website-audit", "destination": "/website-audit.html" },
     { "source": "/RegalMail", "destination": "/email-plugin.html" },
     { "source": "/score-api", "destination": "/score-api.html" },
     { "source": "/aeo", "destination": "/aeo.html" }
+  ],
+  "redirects": [
+    { "source": "/seo-audit", "destination": "/website-audit", "permanent": true }
   ],
   "functions": {
     "api/audit.js": { "maxDuration": 15 }
