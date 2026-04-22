@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opus 4.7 regressed. The story is what it says about compute. | Alvento</title>
+    <meta name="description" content="Opus 4.7 regressed on long-context benchmarks and costs roughly 35% more per request. Anthropic signed a $25B deal with Amazon four days later, citing infrastructure strain. What that means if you run Claude in production.">
+    <meta name="author" content="Oscar Espinoza, Alvento">
+    <meta property="og:title" content="Opus 4.7 regressed. The story is what it says about compute.">
+    <meta property="og:description" content="Opus 4.7 regressed on long-context benchmarks and costs roughly 35% more per request. Anthropic signed a $25B deal with Amazon four days later, citing infrastructure strain. What that means if you run Claude in production.">
+    <meta property="og:url" content="https://alvento.ltd/blog/opus-4-7-and-the-compute-squeeze/">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: #b8b8b8;
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: #b8b8b8; line-height: 1.7; }
+
+        .sources {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        .sources h3 {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin-bottom: 16px;
+            margin-top: 0;
+            color: var(--muted) !important;
+        }
+        .sources ul { margin-left: 20px; }
+        .sources li {
+            font-size: 0.9rem;
+            color: #b8b8b8;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .sources a { word-break: break-word; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Opus 4.7 regressed. The story is what it says about compute.",
+        "description": "Opus 4.7 regressed on long-context benchmarks and costs roughly 35% more per request. Anthropic signed a $25B deal with Amazon four days later, citing infrastructure strain. What that means if you run Claude in production.",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
+        "datePublished": "2026-04-22",
+        "url": "https://alvento.ltd/blog/opus-4-7-and-the-compute-squeeze/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#products">Products</a></li>
+                <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">Opus 4.7 regressed. The story is what it says about compute.</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Alvento &mdash; 22 April 2026 &mdash; 5 min read</p>
+        </div>
+
+        <p>Anthropic shipped <a href="https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-7">Claude Opus 4.7</a> on 16 April. Within a day, side-by-side regressions were circulating. On the MRCR long-context benchmark, 4.6 scored 78.3%. <a href="https://finance.biggo.com/news/rezXm50B-x-dxYpbNgbU">4.7 scored 32.2%</a>. The new tokenizer produces <a href="https://the-decoder.com/first-token-counts-reveal-opus-4-7-costs-significantly-more-than-4-6-despite-anthropics-flat-pricing/">roughly 35% more tokens on the same input</a>, so bills go up even though the sticker price didn't. Reliability complaints started the same day.</p>
+
+        <p>The bigger story is what happened four days later. Anthropic announced up to <a href="https://www.cnbc.com/2026/04/20/amazon-invest-up-to-25-billion-in-anthropic-part-of-ai-infrastructure.html">$25 billion in new investment from Amazon</a>, a <a href="https://techcrunch.com/2026/04/20/anthropic-takes-5b-from-amazon-and-pledges-100b-in-cloud-spending-in-return/">$100 billion cloud commitment to AWS</a>, and access to <a href="https://www.anthropic.com/news/anthropic-amazon-compute">5 gigawatts of Trainium capacity</a>. Their own announcement uses the phrase "inevitable strain" about the infrastructure pressure from enterprise and consumer demand.</p>
+
+        <p>At the same time, Anthropic is running a withheld frontier model called <a href="https://www.anthropic.com/glasswing">Mythos</a>. Mythos scored <a href="https://fortune.com/2026/04/07/anthropic-claude-mythos-model-project-glasswing-cybersecurity/">93.9% on SWE-bench and 97.6% on USAMO</a>. It's available to around <a href="https://techcrunch.com/2026/04/07/anthropic-mythos-ai-model-preview-security/">40 organisations through Project Glasswing</a>, Anthropic's cybersecurity initiative. Every public signal points to that being where the best compute is going, and to Opus 4.7 shipping on what was left.</p>
+
+        <h2 class="fade-up">Three things to take from this if you run Claude in production</h2>
+
+        <h3>Version numbers aren't a clean proxy for progress any more</h3>
+        <p>A higher version used to mean better across the board. It doesn't. Model releases now get shaped by infrastructure, research priorities and commercial deals you can't see from the outside. The same lab can ship a frontier system to 40 security partners and a degraded public version to everyone else in the same month.</p>
+
+        <h3>You're a procurement function whether you want to be or not</h3>
+        <p>Run 4.6 and 4.7 on your actual prompts before you switch anything. Pin your model version in production so you're not auto-upgraded into a regression. Build an evaluation harness now. If you haven't got automated regression testing for model behaviour, this is the quarter to sort it.</p>
+
+        <h3>Frontier lab dynamics belong in your risk model</h3>
+        <p>Compute allocation, partnership deals, and research priorities at Anthropic, OpenAI and Google flow straight into the tools your business runs on. Those dynamics are not going to become more stable. Treat them the way you'd treat any other critical vendor dependency: with contracts, fallbacks, and a clear view of the blast radius if the supplier changes direction.</p>
+
+        <h2 class="fade-up">The bigger point</h2>
+
+        <p>AI compute isn't abundant any more. It's contested, expensive, and allocated strategically. Businesses that assume new releases are free upgrades will get burned. Businesses that treat AI the way they treat any other critical vendor won't.</p>
+
+        <p>If you're running Claude in production, it's worth a couple of hours of your time this week.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Deploying AI in a regulated environment?</strong> Alvento helps businesses deploy and govern AI systems in production &mdash; evaluation harnesses, version discipline, and vendor risk modelling. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> &mdash; first conversation is free.</p>
+        </div>
+
+        <section class="sources">
+            <h3>Sources</h3>
+            <ul>
+                <li><a href="https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-7">What's new in Claude Opus 4.7 &mdash; Anthropic</a></li>
+                <li><a href="https://finance.biggo.com/news/rezXm50B-x-dxYpbNgbU">Opus 4.7 long-context regression detail &mdash; BigGo Finance</a></li>
+                <li><a href="https://the-decoder.com/first-token-counts-reveal-opus-4-7-costs-significantly-more-than-4-6-despite-anthropics-flat-pricing/">Opus 4.7 tokenizer cost impact &mdash; The Decoder</a></li>
+                <li><a href="https://startupfortune.com/anthropics-claude-opus-47-launch-has-triggered-a-wave-of-community-backlash-that-may-be-entirely-justified/">Community backlash to Opus 4.7 &mdash; Startup Fortune</a></li>
+                <li><a href="https://www.anthropic.com/news/anthropic-amazon-compute">Anthropic &amp; Amazon compute partnership announcement</a></li>
+                <li><a href="https://www.cnbc.com/2026/04/20/amazon-invest-up-to-25-billion-in-anthropic-part-of-ai-infrastructure.html">Amazon's $25 billion investment &mdash; CNBC</a></li>
+                <li><a href="https://techcrunch.com/2026/04/20/anthropic-takes-5b-from-amazon-and-pledges-100b-in-cloud-spending-in-return/">$100B cloud commitment &mdash; TechCrunch</a></li>
+                <li><a href="https://www.axios.com/2026/04/21/anthropic-amazon-compute-wars">Compute wars context &mdash; Axios</a></li>
+                <li><a href="https://www.anthropic.com/glasswing">Project Glasswing &mdash; Anthropic</a></li>
+                <li><a href="https://techcrunch.com/2026/04/07/anthropic-mythos-ai-model-preview-security/">Mythos preview &mdash; TechCrunch</a></li>
+                <li><a href="https://fortune.com/2026/04/07/anthropic-claude-mythos-model-project-glasswing-cybersecurity/">Mythos benchmarks and partner list &mdash; Fortune</a></li>
+            </ul>
+        </section>
+
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>alvento.ltd</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+            document.querySelectorAll('.nav-links a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    document.querySelector('.nav-links').classList.remove('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
