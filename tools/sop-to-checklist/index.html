@@ -333,6 +333,26 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
 .checklist-preview .meta.owner { color: var(--accent-dim); border-color: rgba(196, 240, 66, 0.2); }
 .checklist-preview .meta.freq { color: var(--warn); border-color: rgba(240, 198, 116, 0.2); }
 
+.checklist-preview .sop-metadata {
+  margin: 0 0 28px;
+  padding: 14px 18px;
+  border-left: 2px solid var(--accent-dim);
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.9;
+}
+.checklist-preview .sop-metadata .metadata-row { display: block; }
+.checklist-preview .sop-metadata .metadata-key {
+  display: inline-block;
+  min-width: 110px;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.66rem;
+}
+.checklist-preview .sop-metadata .metadata-value { color: var(--text); }
+
 .checklist-preview p { margin: 10px 0; color: var(--muted); font-style: italic; }
 
 .button-group { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -771,13 +791,15 @@ const FREQUENCY_KEYWORDS = [
 ];
 
 const OWNER_PATTERNS = [
-  /\[([A-Z][a-zA-Z\s\/&-]+?)\]/,           // [Role]
-  /\(([A-Z][a-zA-Z\s\/&-]+?)\)\s*$/,       // (Role) at end of line
-  /\bowner\s*[:=]\s*([A-Z][a-zA-Z\s\/&-]+?)(?:\.|$)/i,
-  /\bresponsible\s*[:=]\s*([A-Z][a-zA-Z\s\/&-]+?)(?:\.|$)/i,
-  /\bby\s*[:=]\s*([A-Z][a-zA-Z\s\/&-]+?)(?:\.|$)/i,
-  /\bassigned to\s*[:=]?\s*([A-Z][a-zA-Z\s\/&-]+?)(?:\.|$)/i,
+  /\[([A-Z][a-zA-Z\s\/&+,-]+?)\]/,           // [Role] or [Role + Role]
+  /\(([A-Z][a-zA-Z\s\/&+,-]+?)\)\s*$/,       // (Role) at end of line
+  /\bowner\s*[:=]\s*([A-Z][a-zA-Z\s\/&+,-]+?)(?:\.|$)/i,
+  /\bresponsible\s*[:=]\s*([A-Z][a-zA-Z\s\/&+,-]+?)(?:\.|$)/i,
+  /\bby\s*[:=]\s*([A-Z][a-zA-Z\s\/&+,-]+?)(?:\.|$)/i,
+  /\bassigned to\s*[:=]?\s*([A-Z][a-zA-Z\s\/&+,-]+?)(?:\.|$)/i,
 ];
+
+const METADATA_KEY_PATTERN = /^(SOP|SOP Number|Document|Doc|Document Number|Doc Number|Title|Version|Revision|Rev|Effective|Effective Date|Approved|Approved By|Approver|Author|Scope|Regulatory|Regulatory Scope|Reference|Ref|Date|Status|Classification|Supersedes)\s*[:\-=]\s*(.+?)\s*$/i;
 
 const ROLE_KEYWORDS = /\b(manager|coordinator|admin|administrator|receptionist|lead|director|officer|analyst|engineer|developer|designer|supervisor|team lead|head of [a-z]+|vp [a-z]+|shift lead|on-call|sre|commander|partner|specialist|associate)\b/gi;
 
@@ -786,6 +808,27 @@ function parseSOP(input) {
   const sections = [];
   let currentSection = null;
   let sectionCounter = 0;
+
+  // Pre-pass: pull header metadata (SOP number, version, scope, etc.)
+  // from the top of the document so they render as document chrome,
+  // not as tickable checklist items.
+  const metadata = [];
+  const metadataLineIndices = new Set();
+  const scanLimit = Math.min(lines.length, 25);
+  for (let i = 0; i < scanLimit; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
+    // Stop scanning once we clearly hit body content
+    if (/^\d+[\.\)]\s/.test(line) || /^[-*•]\s/.test(line)) break;
+    const m = METADATA_KEY_PATTERN.exec(line);
+    if (m) {
+      metadata.push({ key: m[1].trim(), value: m[2].trim() });
+      metadataLineIndices.add(i);
+    } else if (metadata.length > 0 && line.length > 60) {
+      // Already captured metadata, and this line looks like body — stop.
+      break;
+    }
+  }
 
   function startSection(title, frequency) {
     if (currentSection && currentSection.items.length === 0 && sections.length > 0) {
@@ -803,10 +846,13 @@ function parseSOP(input) {
     if (!currentSection) startSection('General', null);
   }
 
+  let contentLineCount = 0;
   for (let i = 0; i < lines.length; i++) {
+    if (metadataLineIndices.has(i)) continue;
     const raw = lines[i];
     const line = raw.trim();
     if (!line) continue;
+    contentLineCount++;
 
     // Detect section heading: short line ending with colon, OR ALL CAPS line
     const headingMatch = /^(.{3,80}?):\s*$/.exec(line);
@@ -820,7 +866,7 @@ function parseSOP(input) {
     }
 
     // Detect first-line title if no section yet and looks like a title
-    if (!currentSection && i < 3 && line.length < 80 && !/^[-*•\d]/.test(line)) {
+    if (!currentSection && contentLineCount <= 3 && line.length < 80 && !/^[-*•\d]/.test(line)) {
       sections.push({ title: line, frequency: null, items: [], isDocTitle: true });
       currentSection = sections[sections.length - 1];
       continue;
@@ -867,7 +913,7 @@ function parseSOP(input) {
     sections[0].title = 'Overview';
   }
 
-  return { docTitle, sections };
+  return { docTitle, metadata, sections };
 }
 
 function detectFrequency(text) {
@@ -882,24 +928,29 @@ function extractOwner(text) {
     const m = pat.exec(text);
     if (m && m[1]) {
       const candidate = m[1].trim();
-      if (candidate.length >= 2 && candidate.length <= 40 && !/^(the|a|an|this|that)\s/i.test(candidate)) {
-        return { owner: candidate, cleaned: text.replace(m[0], '').replace(/\s+/g, ' ').trim().replace(/[.,\s]+$/, '') };
+      if (candidate.length >= 2 && candidate.length <= 60 && !/^(the|a|an|this|that)\s/i.test(candidate)) {
+        const owners = candidate
+          .split(/\s*[+,]\s*/)
+          .map(o => o.trim())
+          .filter(o => o.length >= 2 && o.length <= 40);
+        if (owners.length === 0) continue;
+        return { owners, cleaned: text.replace(m[0], '').replace(/\s+/g, ' ').trim().replace(/[.,\s]+$/, '') };
       }
     }
   }
-  return { owner: null, cleaned: text };
+  return { owners: [], cleaned: text };
 }
 
 function buildStep(rawText, inheritedFrequency) {
   let text = rawText.trim();
-  const { owner, cleaned } = extractOwner(text);
+  const { owners, cleaned } = extractOwner(text);
   text = cleaned;
 
   const stepFreq = detectFrequency(text);
 
   return {
     text: text.replace(/\s+/g, ' ').trim(),
-    owner,
+    owners,
     frequency: stepFreq || inheritedFrequency,
   };
 }
@@ -907,9 +958,15 @@ function buildStep(rawText, inheritedFrequency) {
 // ---- RENDER ----
 
 function renderMarkdown(parsed) {
-  const { docTitle, sections } = parsed;
+  const { docTitle, metadata, sections } = parsed;
   let md = '';
   if (docTitle) md += `# ${docTitle}\n\n`;
+
+  if (metadata && metadata.length > 0) {
+    md += '---\n';
+    for (const { key, value } of metadata) md += `${key}: ${value}\n`;
+    md += '---\n\n';
+  }
 
   for (const section of sections) {
     if (section.items.length === 0) continue;
@@ -919,7 +976,9 @@ function renderMarkdown(parsed) {
     for (const item of section.items) {
       let line = `- [ ] ${item.text}`;
       const tags = [];
-      if (item.owner) tags.push(`Owner: ${item.owner}`);
+      if (item.owners && item.owners.length > 0) {
+        tags.push(`${item.owners.length > 1 ? 'Owners' : 'Owner'}: ${item.owners.join(', ')}`);
+      }
       if (item.frequency && item.frequency !== section.frequency) tags.push(`Frequency: ${item.frequency}`);
       if (tags.length > 0) line += ` _(${tags.join(' · ')})_`;
       md += line + '\n';
@@ -931,11 +990,19 @@ function renderMarkdown(parsed) {
 }
 
 function renderPreview(parsed) {
-  const { docTitle, sections } = parsed;
+  const { docTitle, metadata, sections } = parsed;
   const esc = (s) => { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
 
   let html = '';
   if (docTitle) html += `<h2>${esc(docTitle)}</h2>`;
+
+  if (metadata && metadata.length > 0) {
+    html += '<div class="sop-metadata">';
+    for (const { key, value } of metadata) {
+      html += `<div class="metadata-row"><span class="metadata-key">${esc(key)}</span><span class="metadata-value">${esc(value)}</span></div>`;
+    }
+    html += '</div>';
+  }
 
   for (const section of sections) {
     if (section.items.length === 0) continue;
@@ -944,7 +1011,9 @@ function renderPreview(parsed) {
 
     for (const item of section.items) {
       let tags = '';
-      if (item.owner) tags += `<span class="meta owner">${esc(item.owner)}</span>`;
+      if (item.owners && item.owners.length > 0) {
+        for (const owner of item.owners) tags += `<span class="meta owner">${esc(owner)}</span>`;
+      }
       if (item.frequency && item.frequency !== section.frequency) {
         tags += `<span class="meta freq">${esc(item.frequency)}</span>`;
       }
@@ -967,7 +1036,7 @@ function calcStats(parsed) {
     steps += section.items.length;
     if (section.frequency) freqs.add(section.frequency);
     for (const item of section.items) {
-      if (item.owner) owners.add(item.owner.toLowerCase());
+      if (item.owners) for (const o of item.owners) owners.add(o.toLowerCase());
       if (item.frequency) freqs.add(item.frequency);
     }
   }
