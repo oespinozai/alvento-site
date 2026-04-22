@@ -9,8 +9,10 @@
     <meta property="og:title" content="Opus 4.7 regressed. The story is what it says about compute.">
     <meta property="og:description" content="Opus 4.7 regressed on long-context benchmarks and costs roughly 35% more per request. Anthropic signed a $25B deal with Amazon four days later, citing infrastructure strain. What that means if you run Claude in production.">
     <meta property="og:url" content="https://alvento.ltd/blog/opus-4-7-and-the-compute-squeeze/">
+    <meta property="og:image" content="https://alvento.ltd/blog/images/opus-4-7-compute-squeeze.jpg">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://alvento.ltd/blog/images/opus-4-7-compute-squeeze.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,6 +157,14 @@
             letter-spacing: 0.02em;
         }
         .meta p { color: var(--muted); font-size: 0.8rem; }
+        .hero-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 40px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            display: block;
+        }
         .cta-box {
             background: var(--surface);
             border-left: 3px solid var(--accent);
@@ -250,6 +260,7 @@
         "@type": "Article",
         "headline": "Opus 4.7 regressed. The story is what it says about compute.",
         "description": "Opus 4.7 regressed on long-context benchmarks and costs roughly 35% more per request. Anthropic signed a $25B deal with Amazon four days later, citing infrastructure strain. What that means if you run Claude in production.",
+        "image": "https://alvento.ltd/blog/images/opus-4-7-compute-squeeze.jpg",
         "author": { "@type": "Person", "name": "Oscar Espinoza", "affiliation": { "@type": "Organization", "name": "Alvento" } },
         "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
         "datePublished": "2026-04-22",
@@ -280,6 +291,8 @@
         <div class="meta">
             <p>By Oscar Espinoza, Alvento &mdash; 22 April 2026 &mdash; 5 min read</p>
         </div>
+
+        <img src="/blog/images/opus-4-7-compute-squeeze.jpg" alt="An isometric editorial illustration of a silicon chip and its surrounding circuit board split down the centre by a jagged fissure glowing acid-lime green, rendered in charcoal stipple on matte black." class="hero-image fade-up">
 
         <p>Anthropic shipped <a href="https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-7">Claude Opus 4.7</a> on 16 April. Within a day, side-by-side regressions were circulating. On the MRCR long-context benchmark, 4.6 scored 78.3%. <a href="https://finance.biggo.com/news/rezXm50B-x-dxYpbNgbU">4.7 scored 32.2%</a>. The new tokenizer produces <a href="https://the-decoder.com/first-token-counts-reveal-opus-4-7-costs-significantly-more-than-4-6-despite-anthropics-flat-pricing/">roughly 35% more tokens on the same input</a>, so bills go up even though the sticker price didn't. Reliability complaints started the same day.</p>
 
