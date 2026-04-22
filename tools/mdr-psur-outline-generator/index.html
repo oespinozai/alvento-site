@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDR PSUR Outline Generator — Article 86 compliant · Alvento</title>
+    <meta name="description" content="Generate a periodic safety update report outline for your EU MDR Class IIa/IIb/III device. Article 86 structure encoded, free, no signup.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://alvento.ltd/tools/mdr-psur-outline-generator/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        a { color: inherit; text-decoration: none; }
+
+        /* NAV */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; }
+        .logo span { color: var(--accent); }
+
+        .breadcrumb {
+            margin-top: 40px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .breadcrumb a { color: var(--muted); }
+        .breadcrumb a:hover { color: var(--text); }
+
+        header { margin: 40px 0 60px; }
+        h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 16px; font-weight: 400; }
+        h1 em { font-style: italic; color: var(--accent); }
+        .intro { color: var(--muted); font-size: 1.1rem; max-width: 600px; }
+
+        /* TOOL UI */
+        .tool-grid { display: grid; gap: 40px; margin-bottom: 80px; }
+        .card { background: var(--surface); border: 1px solid var(--border); padding: 32px; border-radius: 4px; }
+        .card-title { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 24px; }
+
+        .form-group { margin-bottom: 24px; }
+        label { display: block; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+        input, select, textarea {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px 16px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+        .help-text { font-size: 0.8rem; color: var(--dim); margin-top: 6px; }
+
+        .btn-generate {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg);
+            font-weight: 600;
+            padding: 16px 32px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .btn-generate:hover { background: #d4ff4a; transform: translateY(-1px); }
+
+        /* RESULTS */
+        #results-section { display: none; margin-top: 60px; }
+        .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--muted);
+            padding: 12px 24px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+        
+        .tab-content { display: none; background: var(--surface); border: 1px solid var(--border); padding: 32px; border-radius: 4px; position: relative; }
+        .tab-content.active { display: block; }
+
+        .output-actions { display: flex; gap: 12px; margin-top: 24px; }
+        .btn-action {
+            background: var(--surface-raised);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-action:hover { background: var(--border); }
+
+        #preview-box { background: #1a1a1a; color: #e8e8e8; line-height: 1.6; font-family: var(--font-body); padding: 40px; border-radius: 4px; border: 1px solid var(--border); }
+        #preview-box h2 { font-family: var(--font-display); font-size: 1.8rem; margin-top: 1.5em; margin-bottom: 0.5em; color: var(--accent); }
+        #preview-box p { margin-bottom: 1em; color: var(--muted); }
+        #preview-box .prompt { color: var(--dim); font-style: italic; font-size: 0.9rem; }
+
+        code-block { display: block; white-space: pre-wrap; font-family: var(--font-mono); font-size: 0.9rem; color: #dcdcdc; }
+
+        /* CTA CARD */
+        .cta-card { background: linear-gradient(135deg, var(--surface) 0%, #1a1a1a 100%); border: 1px solid var(--border); padding: 48px; border-radius: 4px; text-align: center; margin: 80px 0; }
+        .cta-card h2 { font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 16px; font-weight: 400; }
+        .cta-card p { color: var(--muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+        footer { padding: 60px 0; border-top: 1px solid var(--border); color: var(--dim); font-family: var(--font-mono); font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="/" class="logo">alvento<span>.</span></a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="breadcrumb">
+        <a href="/">Home</a> / <a href="/tools">Tools</a> / MDR PSUR Generator
+    </div>
+
+    <header>
+        <h1>MDR PSUR <em>Outline Generator</em></h1>
+        <p class="intro">Generate a periodic safety update report outline for EU MDR Article 86 compliance. Tailored to your device class.</p>
+    </header>
+
+    <div class="tool-grid">
+        <div class="card">
+            <div class="card-title">Device Information</div>
+            <div class="form-group">
+                <label for="deviceName">Device Name</label>
+                <input type="text" id="deviceName" placeholder="e.g. Alvento Stent System">
+            </div>
+            <div class="form-group">
+                <label for="manufacturer">Manufacturer</label>
+                <input type="text" id="manufacturer" placeholder="e.g. Alvento MedTech Ltd">
+            </div>
+            <div class="form-group">
+                <label for="udi">UDI-DI</label>
+                <input type="text" id="udi" placeholder="Enter UDI-DI">
+            </div>
+            <div class="form-group">
+                <label for="deviceClass">Device Class</label>
+                <select id="deviceClass">
+                    <option value="IIa">Class IIa</option>
+                    <option value="IIb" selected>Class IIb</option>
+                    <option value="III">Class III</option>
+                    <option value="implantable">Class IIb Implantable / III</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Reporting Period</div>
+            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="form-group">
+                    <label for="periodStart">Start Date</label>
+                    <input type="date" id="periodStart">
+                </div>
+                <div class="form-group">
+                    <label for="periodEnd">End Date</label>
+                    <input type="date" id="periodEnd">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="checkbox-item">
+                    <input type="checkbox" id="isFirst" style="width: auto;">
+                    <span>This is the first PSUR for this device</span>
+                </label>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="btn-generate" onclick="generatePSUR()">Generate PSUR Outline</button>
+        </div>
+    </div>
+
+    <section id="results-section">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('preview')">Preview</button>
+            <button class="tab-btn" onclick="switchTab('markdown')">Markdown</button>
+        </div>
+
+        <div id="tab-preview" class="tab-content active">
+            <div id="preview-box"></div>
+        </div>
+
+        <div id="tab-markdown" class="tab-content">
+            <code-block id="markdown-box"></code-block>
+        </div>
+
+        <div class="output-actions">
+            <button class="btn-action" onclick="copyResult('Claude')">Copy for Claude</button>
+            <button class="btn-action" onclick="copyResult('ChatGPT')">Copy for ChatGPT</button>
+            <button class="btn-action" onclick="downloadResult()">Download Markdown</button>
+        </div>
+    </section>
+
+    <div class="cta-card">
+        <h2>Need help with <em>MDR compliance</em>?</h2>
+        <p>Our regulatory experts help MedTech companies navigate EU MDR and UKCA certifications, from Technical Files to Post-Market Surveillance.</p>
+        <a href="https://alvento.ltd/#contact" class="btn-generate">Talk to an expert</a>
+    </div>
+
+    <footer>
+        <div class="container" style="display: flex; justify-content: space-between;">
+            <div>&copy; 2026 Alvento Ltd.</div>
+            <div>alvento.ltd</div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    let currentTab = 'preview';
+    let generatedMarkdown = '';
+
+    function switchTab(tab) {
+        currentTab = tab;
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.tab-btn[onclick="switchTab('${tab}')"]`).classList.add('active');
+        
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.getElementById(`tab-${tab}`).classList.add('active');
+    }
+
+    function generatePSUR() {
+        const deviceName = document.getElementById('deviceName').value || '[Device Name]';
+        const manufacturer = document.getElementById('manufacturer').value || '[Manufacturer]';
+        const udi = document.getElementById('udi').value || '[UDI-DI]';
+        const deviceClass = document.getElementById('deviceClass').value;
+        const periodStart = document.getElementById('periodStart').value || '[Start Date]';
+        const periodEnd = document.getElementById('periodEnd').value || '[End Date]';
+        const isFirst = document.getElementById('isFirst').checked;
+
+        let frequency = '';
+        if (deviceClass === 'IIa') frequency = 'The PSUR for Class IIa devices shall be updated at least every two years.';
+        else frequency = 'The PSUR for Class IIb and Class III devices shall be updated at least annually.';
+
+        const sections = [
+            { h: "1. Executive Summary", p: "Provide a concise summary of the safety and clinical performance of the device, including the benefit-risk conclusion." },
+            { h: "2. Device Description and Intended Purpose", p: `Description for ${deviceName}. Classification: ${deviceClass}. UDI-DI: ${udi}.` },
+            { h: "3. Worldwide Sales Volume and Population", p: "Include data on sales volume, an estimate of the size and other characteristics of the population using the device." },
+            { h: "4. Summary of Post-Market Surveillance (PMS) Data", p: "Summary of data from complaints, incidents, trend reports, and field safety corrective actions (FSCAs)." },
+            { h: "5. Main Findings of PMCF", p: "Summary of the results and conclusions of the Post-Market Clinical Follow-up activities." },
+            { h: "6. Serious Incidents and FSCAs", p: "Detailed analysis of serious incidents and field safety corrective actions occurred during the reporting period." },
+            { h: "7. Non-serious Incidents and Side-effects", p: "Summary of non-serious incidents and data on undesirable side-effects." },
+            { h: "8. Trend Analysis", p: "Analysis of any statistically significant increase in the frequency or severity of incidents." },
+            { h: "9. Updates to Labelling and IFU", p: "Summary of any changes made to instructions for use or labelling during the period." },
+            { h: "10. Corrective and Preventive Actions (CAPAs)", p: "Description of any CAPAs taken and the rationale behind them." },
+            { h: "11. Updated Benefit-Risk Determination", p: "Re-evaluation of the benefit-risk ratio based on the new data gathered." },
+            { h: "12. Conclusions", p: "Final conclusion on the safety and performance of the device." }
+        ];
+
+        let md = `# Periodic Safety Update Report (PSUR)\n\n`;
+        md += `**Device:** ${deviceName}\n`;
+        md += `**Manufacturer:** ${manufacturer}\n`;
+        md += `**UDI-DI:** ${udi}\n`;
+        md += `**Reporting Period:** ${periodStart} to ${periodEnd}\n`;
+        md += `**Report Type:** ${isFirst ? 'Initial PSUR' : 'Subsequent PSUR'}\n\n`;
+
+        let html = `<h1>Periodic Safety Update Report (PSUR)</h1>`;
+        html += `<p><strong>Device:</strong> ${deviceName}<br>`;
+        html += `<strong>Manufacturer:</strong> ${manufacturer}<br>`;
+        html += `<strong>UDI-DI:</strong> ${udi}<br>`;
+        html += `<strong>Reporting Period:</strong> ${periodStart} to ${periodEnd}<br>`;
+        html += `<strong>Report Type:</strong> ${isFirst ? 'Initial PSUR' : 'Subsequent PSUR'}</p>`;
+
+        sections.forEach(s => {
+            md += `## ${s.h}\n\n`;
+            md += `*Prompt: ${s.p}*\n\n`;
+            md += `[Enter details here]\n\n`;
+
+            html += `<h2>${s.h}</h2>`;
+            html += `<p class="prompt">Prompt: ${s.p}</p>`;
+            html += `<p>[Enter details here]</p>`;
+        });
+
+        md += `---\n\n`;
+        md += `*Footnote: ${frequency}*\n`;
+        
+        html += `<hr><p style="font-size:0.8rem; color:var(--dim);">Footnote: ${frequency}</p>`;
+
+        generatedMarkdown = md;
+        document.getElementById('preview-box').innerHTML = html;
+        document.getElementById('markdown-box').textContent = md;
+
+        document.getElementById('results-section').style.display = 'block';
+        document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyResult(llm) {
+        const prompt = `I am writing an EU MDR Article 86 Periodic Safety Update Report (PSUR). Please help me expand this outline into a full draft using the PMS data I'll provide. Here is the outline:\n\n${generatedMarkdown}`;
+        navigator.clipboard.writeText(prompt).then(() => {
+            alert(`Copied prompt for ${llm}!`);
+        });
+    }
+
+    function downloadResult() {
+        const blob = new Blob([generatedMarkdown], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `psur-outline.md`;
+        a.click();
+    }
+</script>
+
+</body>
+</html>

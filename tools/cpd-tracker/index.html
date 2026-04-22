@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPD Tracker — Royal College Compliance · Alvento</title>
+    <meta name="description" content="Track CPD hours against RCS England, RCP London, RCOA and RCOphth minima. Free, browser-based, no signup. CSV import + PDF export.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://alvento.ltd/tools/cpd-tracker/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --red: #ef4444;
+            --amber: #f59e0b;
+            --green: #22c55e;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+        a { color: inherit; text-decoration: none; }
+
+        /* NAV */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; }
+        .logo span { color: var(--accent); }
+
+        .breadcrumb {
+            margin-top: 40px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .breadcrumb a { color: var(--muted); }
+
+        header { margin: 40px 0 60px; }
+        h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 16px; font-weight: 400; }
+        h1 em { font-style: italic; color: var(--accent); }
+        .intro { color: var(--muted); font-size: 1.1rem; max-width: 600px; }
+
+        /* DASHBOARD */
+        .dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; margin-bottom: 60px; }
+        @media (max-width: 800px) { .dashboard-grid { grid-template-columns: 1fr; } }
+
+        .card { background: var(--surface); border: 1px solid var(--border); padding: 32px; border-radius: 4px; }
+        .card-title { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 24px; }
+
+        .summary-card { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .total-hours { font-family: var(--font-display); font-size: 4rem; line-height: 1; color: var(--accent); }
+        .total-label { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); text-transform: uppercase; margin-top: 8px; }
+        
+        .progress-bar { width: 100%; height: 8px; background: var(--bg); border-radius: 4px; margin-top: 24px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.5s ease; }
+
+        /* FORM */
+        .form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        input, select {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            outline: none;
+        }
+        .btn-add { background: var(--accent); color: var(--bg); border: none; padding: 10px 20px; font-weight: 600; border-radius: 4px; cursor: pointer; }
+
+        /* TABLE */
+        .table-wrap { overflow-x: auto; margin-top: 40px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th { text-align: left; padding: 12px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.7rem; color: var(--dim); text-transform: uppercase; }
+        td { padding: 12px; border-bottom: 1px solid var(--border); color: var(--muted); }
+        tr:last-child td { border-bottom: none; }
+        .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
+
+        .btn-action { background: var(--surface-raised); border: 1px solid var(--border); color: var(--text); padding: 8px 16px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; margin-right: 8px; }
+        .btn-danger { color: var(--red); border-color: rgba(239, 68, 68, 0.3); }
+
+        /* CTA */
+        .cta-card { background: linear-gradient(135deg, var(--surface) 0%, #1a1a1a 100%); border: 1px solid var(--border); padding: 48px; border-radius: 4px; text-align: center; margin: 60px 0; }
+        .cta-card h2 { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 16px; font-weight: 400; }
+        .cta-card h2 em { font-style: italic; color: var(--accent); }
+        .cta-card p { color: var(--muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .btn-generate { display: inline-block; background: var(--accent); color: var(--bg); font-weight: 600; padding: 16px 32px; border-radius: 4px; border: none; font-size: 1rem; cursor: pointer; }
+        .btn-generate:hover { background: #d4ff4a; }
+
+        /* PRINT */
+        @media print {
+            nav, .breadcrumb, header, .card:not(.summary-card), .form-row, .btn-action, .cta-card, footer { display: none !important; }
+            body { background: white; color: black; }
+            .summary-card { border: none; }
+            table { border: 1px solid #eee; }
+            th { color: #555; }
+            td { color: #222; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="/" class="logo">alvento<span>.</span></a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="breadcrumb">
+        <a href="/">Home</a> / <a href="/tools">Tools</a> / CPD Tracker
+    </div>
+
+    <header>
+        <h1>CPD <em>Compliance Tracker</em></h1>
+        <p class="intro">Track your clinical and educational credits against Royal College requirements. Local storage only&mdash;your data stays on your machine.</p>
+    </header>
+
+    <div class="dashboard-grid">
+        <div class="card">
+            <div class="card-title">Add Activity</div>
+            <div class="form-row">
+                <input type="text" id="actName" placeholder="Activity Name">
+                <input type="date" id="actDate">
+                <input type="number" id="actHours" placeholder="Hours" step="0.5">
+            </div>
+            <div class="form-row">
+                <select id="actCat">
+                    <option value="clinical">Clinical</option>
+                    <option value="academic">Academic / Research</option>
+                    <option value="teaching">Teaching</option>
+                    <option value="management">Management / Leadership</option>
+                    <option value="external">External / Accredited</option>
+                </select>
+                <input type="text" id="actUrl" placeholder="Evidence URL (optional)">
+                <button class="btn-add" onclick="addActivity()">Add Entry</button>
+            </div>
+            <div style="margin-top: 24px; border-top: 1px solid var(--border); padding-top: 24px;">
+                <label style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--dim);">Target College</label>
+                <select id="collegeSelect" style="margin-top: 8px;" onchange="updateCompliance()">
+                    <option value="rcs">RCS England (50/yr, 25 ext)</option>
+                    <option value="rcp">RCP London (50/yr, 1:1)</option>
+                    <option value="rcoa">RCOA (50/yr, 25 ext)</option>
+                    <option value="rcophth">RCOphth (50/yr, categories)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="card summary-card">
+            <div class="card-title">Yearly Progress</div>
+            <div class="total-hours" id="totalHours">0</div>
+            <div class="total-label" id="totalLabel">Hours Logged</div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div id="complianceNote" style="margin-top: 20px; font-size: 0.85rem; color: var(--muted);">Select a college to see targets</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title" style="display: flex; justify-content: space-between; align-items: center;">
+            Activity Log
+            <div>
+                <button class="btn-action" onclick="exportCSV()">Export CSV</button>
+                <button class="btn-action" onclick="document.getElementById('csvImport').click()">Import CSV</button>
+                <input type="file" id="csvImport" style="display: none;" accept=".csv" onchange="importCSV(this)">
+                <button class="btn-action btn-danger" onclick="clearData()">Clear All</button>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <table id="activityTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Activity</th>
+                        <th>Category</th>
+                        <th>Hours</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="logBody">
+                    <!-- Entries here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 60px 0;">
+        <button class="btn-add" style="background: var(--surface-raised); border: 1px solid var(--border); color: var(--text);" onclick="window.print()">Download PDF Report</button>
+    </div>
+
+    <div class="cta-card">
+        <h2>Managing CPD across a <em>whole faculty</em>?</h2>
+        <p>Alvento builds internal tools that track revalidation, appraisal, and CPD compliance across consultant groups — without spreadsheets or subscription fees per user.</p>
+        <a href="https://alvento.ltd/#contact" class="btn-generate">Talk to us</a>
+    </div>
+
+    <footer>
+        <div class="container" style="display: flex; justify-content: space-between;">
+            <div>&copy; 2026 Alvento Ltd.</div>
+            <div>Data stored locally in browser.</div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    let activities = JSON.parse(localStorage.getItem('alvento.cpd.v1') || '[]');
+
+    function save() {
+        localStorage.setItem('alvento.cpd.v1', JSON.stringify(activities));
+        render();
+    }
+
+    function addActivity() {
+        const name = document.getElementById('actName').value;
+        const date = document.getElementById('actDate').value;
+        const hours = parseFloat(document.getElementById('actHours').value);
+        const cat = document.getElementById('actCat').value;
+        const url = document.getElementById('actUrl').value;
+
+        if (!name || !date || !hours) return alert('Please fill in required fields.');
+
+        activities.push({ id: Date.now(), name, date, hours, cat, url });
+        save();
+        
+        // Reset form
+        document.getElementById('actName').value = '';
+        document.getElementById('actHours').value = '';
+    }
+
+    function removeActivity(id) {
+        activities = activities.filter(a => a.id !== id);
+        save();
+    }
+
+    function render() {
+        const body = document.getElementById('logBody');
+        body.innerHTML = '';
+        
+        let total = 0;
+        activities.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(a => {
+            total += a.hours;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${a.date}</td>
+                <td>${a.name} ${a.url ? '<a href="'+a.url+'" target="_blank" style="color:var(--accent); font-size:0.7rem;">[Link]</a>' : ''}</td>
+                <td style="text-transform: capitalize;">${a.cat}</td>
+                <td>${a.hours}</td>
+                <td><button class="btn-action btn-danger" style="padding: 4px 8px;" onclick="removeActivity(${a.id})">&times;</button></td>
+            `;
+            body.appendChild(tr);
+        });
+
+        document.getElementById('totalHours').textContent = total;
+        updateCompliance();
+    }
+
+    function updateCompliance() {
+        const total = activities.reduce((sum, a) => sum + a.hours, 0);
+        const college = document.getElementById('collegeSelect').value;
+        const fill = document.getElementById('progressFill');
+        const note = document.getElementById('complianceNote');
+        
+        let target = 50;
+        let extHours = activities.filter(a => a.cat === 'external').reduce((sum, a) => sum + a.hours, 0);
+        
+        let status = '';
+        let color = 'var(--accent)';
+
+        if (college === 'rcs' || college === 'rcoa') {
+            const extTarget = 25;
+            if (total >= target && extHours >= extTarget) {
+                status = 'Requirement met: 50h total with ' + extHours + 'h external.';
+                color = 'var(--green)';
+            } else {
+                status = 'Target: 50h total, 25h external. You need ' + Math.max(0, target - total) + 'h more total.';
+                color = total > 40 ? 'var(--amber)' : 'var(--accent)';
+            }
+        } else {
+            if (total >= target) {
+                status = 'Requirement met: 50h total.';
+                color = 'var(--green)';
+            } else {
+                status = 'Target: 50h total. You need ' + (target - total) + 'h more.';
+                color = total > 40 ? 'var(--amber)' : 'var(--accent)';
+            }
+        }
+
+        const pct = Math.min(100, (total / target) * 100);
+        fill.style.width = pct + '%';
+        fill.style.background = color;
+        note.textContent = status;
+        note.style.color = color;
+    }
+
+    function exportCSV() {
+        if (activities.length === 0) return alert('No data to export.');
+        const headers = 'date,name,category,hours,url\n';
+        const rows = activities.map(a => `${a.date},"${a.name}",${a.cat},${a.hours},${a.url}`).join('\n');
+        const blob = new Blob([headers + rows], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `cpd-log-${new Date().toISOString().split('T')[0]}.csv`;
+        a.click();
+    }
+
+    function importCSV(input) {
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const lines = e.target.result.split('\n').slice(1);
+            lines.forEach(line => {
+                const [date, name, cat, hours, url] = line.split(',');
+                if (date && name && hours) {
+                    activities.push({
+                        id: Date.now() + Math.random(),
+                        date,
+                        name: name.replace(/"/g, ''),
+                        cat,
+                        hours: parseFloat(hours),
+                        url: url || ''
+                    });
+                }
+            });
+            save();
+        };
+        reader.readAsText(file);
+    }
+
+    function clearData() {
+        if (confirm('Are you sure? This will wipe all local data.')) {
+            activities = [];
+            save();
+        }
+    }
+
+    render();
+</script>
+
+</body>
+</html>

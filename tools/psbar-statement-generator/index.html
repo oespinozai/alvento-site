@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSBAR Accessibility Statement Generator — WCAG 2.2 AA · Alvento</title>
+    <meta name="description" content="Generate a PSBAR-compliant accessibility statement for your UK public-sector website. Free, browser-based, WCAG 2.2 AA aligned. No signup.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://alvento.ltd/tools/psbar-statement-generator/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        a { color: inherit; text-decoration: none; }
+
+        /* NAV */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; }
+        .logo span { color: var(--accent); }
+
+        .breadcrumb {
+            margin-top: 40px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .breadcrumb a { color: var(--muted); }
+        .breadcrumb a:hover { color: var(--text); }
+
+        header { margin: 40px 0 60px; }
+        h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 16px; font-weight: 400; }
+        h1 em { font-style: italic; color: var(--accent); }
+        .intro { color: var(--muted); font-size: 1.1rem; max-width: 600px; }
+
+        /* TOOL UI */
+        .tool-grid { display: grid; gap: 40px; margin-bottom: 80px; }
+        .card { background: var(--surface); border: 1px solid var(--border); padding: 32px; border-radius: 4px; }
+        .card-title { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 24px; }
+
+        .form-group { margin-bottom: 24px; }
+        label { display: block; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+        input, select, textarea {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px 16px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+        textarea { resize: vertical; min-height: 100px; }
+        .help-text { font-size: 0.8rem; color: var(--dim); margin-top: 6px; }
+
+        .checkbox-group { display: flex; flex-direction: column; gap: 12px; }
+        .checkbox-item { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+        .checkbox-item input { width: auto; margin-top: 4px; }
+        .checkbox-item span { font-size: 0.95rem; color: var(--muted); }
+
+        .btn-generate {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg);
+            font-weight: 600;
+            padding: 16px 32px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .btn-generate:hover { background: #d4ff4a; transform: translateY(-1px); }
+
+        /* RESULTS */
+        #results-section { display: none; margin-top: 60px; }
+        .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--muted);
+            padding: 12px 24px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+        
+        .tab-content { display: none; background: var(--surface); border: 1px solid var(--border); padding: 32px; border-radius: 4px; position: relative; }
+        .tab-content.active { display: block; }
+
+        .output-actions { display: flex; gap: 12px; margin-top: 24px; }
+        .btn-action {
+            background: var(--surface-raised);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-action:hover { background: var(--border); }
+
+        #preview-box { background: white; color: #333; line-height: 1.5; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding: 40px; }
+        #preview-box h1 { font-family: inherit; font-size: 2.5rem; font-weight: bold; margin-bottom: 1em; color: black; }
+        #preview-box h2 { font-family: inherit; font-size: 1.5rem; font-weight: bold; margin-top: 1.5em; margin-bottom: 0.75em; color: black; }
+        #preview-box p, #preview-box li { margin-bottom: 1em; font-size: 1.1rem; }
+        #preview-box ul { margin-left: 1.5em; margin-bottom: 1em; }
+
+        code-block { display: block; white-space: pre-wrap; font-family: var(--font-mono); font-size: 0.9rem; color: #dcdcdc; }
+
+        /* CTA CARD */
+        .cta-card { background: linear-gradient(135deg, var(--surface) 0%, #1a1a1a 100%); border: 1px solid var(--border); padding: 48px; border-radius: 4px; text-align: center; margin: 80px 0; }
+        .cta-card h2 { font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 16px; font-weight: 400; }
+        .cta-card p { color: var(--muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+        footer { padding: 60px 0; border-top: 1px solid var(--border); color: var(--dim); font-family: var(--font-mono); font-size: 0.75rem; }
+        .footer-flex { display: flex; justify-content: space-between; }
+
+        @media (max-width: 600px) {
+            .footer-flex { flex-direction: column; gap: 20px; }
+            .tabs { flex-wrap: wrap; }
+            .output-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="/" class="logo">alvento<span>.</span></a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="breadcrumb">
+        <a href="/">Home</a> / <a href="/tools">Tools</a> / PSBAR Statement Generator
+    </div>
+
+    <header>
+        <h1>PSBAR Accessibility <em>Statement Generator</em></h1>
+        <p class="intro">Generate a PSBAR-compliant accessibility statement aligned with WCAG 2.2 AA standards. Pure client-side, no data leaves your browser.</p>
+    </header>
+
+    <div class="tool-grid">
+        <div class="card">
+            <div class="card-title">Organisation Details</div>
+            <div class="form-group">
+                <label for="orgName">Organisation Name</label>
+                <input type="text" id="orgName" placeholder="e.g. South Yorkshire NHS Trust">
+            </div>
+            <div class="form-group">
+                <label for="websiteUrl">Website URL</label>
+                <input type="url" id="websiteUrl" placeholder="https://www.example.gov.uk">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Compliance Status</div>
+            <div class="form-group">
+                <label for="compliance">Compliance Level (WCAG 2.2 AA)</label>
+                <select id="compliance">
+                    <option value="fully">Fully compliant</option>
+                    <option value="partially" selected>Partially compliant</option>
+                    <option value="not">Not compliant</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inaccessible">Inaccessible Content</label>
+                <textarea id="inaccessible" placeholder="Enter known issues, one per line..."></textarea>
+                <div class="help-text">List specific areas of the site that do not meet standards.</div>
+            </div>
+            <div class="form-group">
+                <label>Reasons for Non-compliance</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="reasonBurden">
+                        <span>Disproportionate burden</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="reasonThirdParty">
+                        <span>Third-party content not under our control</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="reasonArchive">
+                        <span>Heritage or pre-2018 archives</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Contact & Procedures</div>
+            <div class="form-group">
+                <label for="contactEmail">Accessible-alternatives Email</label>
+                <input type="email" id="contactEmail" placeholder="accessibility@example.gov.uk">
+            </div>
+            <div class="form-group">
+                <label for="complaintsUrl">Complaints Procedure URL</label>
+                <input type="url" id="complaintsUrl" placeholder="https://www.example.gov.uk/complaints">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Dates</div>
+            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="form-group">
+                    <label for="lastTested">Last Tested Date</label>
+                    <input type="date" id="lastTested">
+                </div>
+                <div class="form-group">
+                    <label for="nextReview">Next Review Date</label>
+                    <input type="date" id="nextReview">
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="btn-generate" onclick="generateStatement()">Generate Statement</button>
+        </div>
+    </div>
+
+    <section id="results-section">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('preview')">Preview</button>
+            <button class="tab-btn" onclick="switchTab('markdown')">Markdown</button>
+            <button class="tab-btn" onclick="switchTab('html')">HTML</button>
+        </div>
+
+        <div id="tab-preview" class="tab-content active">
+            <div id="preview-box"></div>
+        </div>
+
+        <div id="tab-markdown" class="tab-content">
+            <code-block id="markdown-box"></code-block>
+        </div>
+
+        <div id="tab-html" class="tab-content">
+            <code-block id="html-box"></code-block>
+        </div>
+
+        <div class="output-actions">
+            <button class="btn-action" onclick="copyResult()">Copy to Clipboard</button>
+            <button class="btn-action" onclick="downloadResult()">Download File</button>
+        </div>
+    </section>
+
+    <div class="cta-card">
+        <h2>Need an <em>expert</em> audit?</h2>
+        <p>Our accessibility specialists provide full WCAG 2.2 AA audits and remediation roadmaps for public sector bodies.</p>
+        <a href="https://alvento.ltd/#contact" class="btn-generate">Get in touch</a>
+    </div>
+
+    <footer>
+        <div class="footer-flex">
+            <div>&copy; 2026 Alvento Ltd.</div>
+            <div>alvento.ltd</div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    let currentTab = 'preview';
+    let generatedMarkdown = '';
+    let generatedHTML = '';
+
+    function switchTab(tab) {
+        currentTab = tab;
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.tab-btn[onclick="switchTab('${tab}')"]`).classList.add('active');
+        
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.getElementById(`tab-${tab}`).classList.add('active');
+    }
+
+    function generateStatement() {
+        const orgName = document.getElementById('orgName').value || '[Organisation Name]';
+        const websiteUrl = document.getElementById('websiteUrl').value || '[Website URL]';
+        const compliance = document.getElementById('compliance').value;
+        const inaccessible = document.getElementById('inaccessible').value.split('\n').filter(line => line.trim() !== '');
+        const contactEmail = document.getElementById('contactEmail').value || '[Contact Email]';
+        const complaintsUrl = document.getElementById('complaintsUrl').value || '[Complaints URL]';
+        const lastTested = document.getElementById('lastTested').value || '[Date]';
+        const nextReview = document.getElementById('nextReview').value || '[Date]';
+
+        const reasonBurden = document.getElementById('reasonBurden').checked;
+        const reasonThirdParty = document.getElementById('reasonThirdParty').checked;
+        const reasonArchive = document.getElementById('reasonArchive').checked;
+
+        let complianceText = '';
+        if (compliance === 'fully') {
+            complianceText = 'fully compliant';
+        } else if (compliance === 'partially') {
+            complianceText = 'partially compliant';
+        } else {
+            complianceText = 'not compliant';
+        }
+
+        // Templates
+        const sections = {
+            title: `Accessibility statement for ${websiteUrl}`,
+            intro: `This accessibility statement applies to ${orgName}'s website at ${websiteUrl}.`,
+            compliance: `This website is ${complianceText} with the Web Content Accessibility Guidelines version 2.2 AA standard.`,
+            nonComplianceTitle: 'Non-accessible content',
+            nonComplianceIntro: compliance === 'fully' ? 'There are no known non-compliances.' : 'The content listed below is non-accessible for the following reasons:',
+            reasonsTitle: 'Non-compliance with the accessibility regulations',
+            requestTitle: 'Feedback and contact information',
+            enforcementTitle: 'Enforcement procedure',
+            technicalTitle: 'Technical information about this website’s accessibility',
+            preparationTitle: 'Preparation of this accessibility statement'
+        };
+
+        let markdown = `# ${sections.title}\n\n`;
+        markdown += `${sections.intro}\n\n`;
+        markdown += `## Compliance status\n\n`;
+        markdown += `${sections.compliance}\n\n`;
+        
+        if (compliance !== 'fully') {
+            markdown += `## ${sections.nonComplianceTitle}\n\n`;
+            markdown += `${sections.nonComplianceIntro}\n\n`;
+            inaccessible.forEach(item => {
+                markdown += `* ${item}\n`;
+            });
+            markdown += `\n`;
+            
+            markdown += `### ${sections.reasonsTitle}\n\n`;
+            if (reasonBurden) markdown += `* We believe that making some parts of the website accessible would be a disproportionate burden within the meaning of the accessibility regulations.\n`;
+            if (reasonThirdParty) markdown += `* Some third-party content is not under our control and may not be fully accessible.\n`;
+            if (reasonArchive) markdown += `* Some of our older PDFs and other documents do not meet accessibility standards - for example, they may not be structured so they’re accessible to a screen reader. This does not meet WCAG 2.2 success criterion 1.3.1 (info and relationships).\n`;
+            markdown += `\n`;
+        }
+
+        markdown += `## ${sections.requestTitle}\n\n`;
+        markdown += `If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille:\n\n`;
+        markdown += `* email: ${contactEmail}\n\n`;
+        markdown += `We’ll consider your request and get back to you in 5 working days.\n\n`;
+
+        markdown += `## ${sections.enforcementTitle}\n\n`;
+        markdown += `The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If you’re not happy with how we respond to your complaint, [contact the Equality Advisory and Support Service (EASS)](https://www.equalityadvisoryservice.com/).\n\n`;
+        if (complaintsUrl) markdown += `You can find our full complaints procedure here: ${complaintsUrl}\n\n`;
+
+        markdown += `## ${sections.technicalTitle}\n\n`;
+        markdown += `${orgName} is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.\n\n`;
+
+        markdown += `## ${sections.preparationTitle}\n\n`;
+        markdown += `This statement was prepared on ${lastTested}. It was last reviewed on ${new Date().toISOString().split('T')[0]}.\n\n`;
+        markdown += `This website was last tested on ${lastTested}. The test was carried out by ${orgName}.\n\n`;
+        markdown += `Next review due: ${nextReview}.\n`;
+
+        generatedMarkdown = markdown;
+
+        // Simple MD to HTML conversion for preview/HTML tab
+        function mdToHtml(md) {
+            return md
+                .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+                .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+                .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+                .replace(/^\* (.*$)/gm, '<li>$1</li>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+        }
+
+        const htmlContent = mdToHtml(markdown).replace(/<li>/g, '<ul><li>').replace(/<\/li>\n/g, '</li></ul>');
+        
+        // Wrap with proper tags
+        generatedHTML = `<div>\n${mdToHtml(markdown)}\n</div>`;
+
+        document.getElementById('preview-box').innerHTML = generatedHTML;
+        document.getElementById('markdown-box').textContent = generatedMarkdown;
+        document.getElementById('html-box').textContent = generatedHTML;
+
+        document.getElementById('results-section').style.display = 'block';
+        document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyResult() {
+        const text = currentTab === 'markdown' ? generatedMarkdown : (currentTab === 'html' ? generatedHTML : document.getElementById('preview-box').innerText);
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Copied to clipboard!');
+        });
+    }
+
+    function downloadResult() {
+        const text = currentTab === 'markdown' ? generatedMarkdown : generatedHTML;
+        const ext = currentTab === 'markdown' ? 'md' : 'html';
+        const blob = new Blob([text], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `accessibility-statement.${ext}`;
+        a.click();
+    }
+</script>
+
+</body>
+</html>
