@@ -13,7 +13,8 @@
     { "source": "/aeo", "destination": "/aeo.html" }
   ],
   "redirects": [
-    { "source": "/seo-audit", "destination": "/website-audit", "permanent": true }
+    { "source": "/seo-audit", "destination": "/website-audit", "permanent": true },
+    { "source": "/seo-audit/", "destination": "/website-audit", "permanent": true }
   ],
   "functions": {
     "api/audit.js": { "maxDuration": 15 }
