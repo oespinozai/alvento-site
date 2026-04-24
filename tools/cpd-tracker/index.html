@@ -165,7 +165,7 @@
 
     <header>
         <h1>CPD <em>Compliance Tracker</em></h1>
-        <p class="intro">Track your clinical and educational credits against Royal College requirements. Local storage only&mdash;your data stays on your machine.</p>
+        <p class="intro">Track your clinical and educational credits against Royal College requirements. Local storage only - your data stays on your machine.</p>
     </header>
 
     <div class="dashboard-grid">
@@ -296,7 +296,7 @@
                 <td>${a.name} ${a.url ? '<a href="'+a.url+'" target="_blank" style="color:var(--accent); font-size:0.7rem;">[Link]</a>' : ''}</td>
                 <td style="text-transform: capitalize;">${a.cat}</td>
                 <td>${a.hours}</td>
-                <td><button class="btn-action btn-danger" style="padding: 4px 8px;" onclick="removeActivity(${a.id})">&times;</button></td>
+                <td><button class="btn-action btn-danger" style="padding: 4px 8px;" onclick="removeActivity(${a.id})">x</button></td>
             `;
             body.appendChild(tr);
         });
