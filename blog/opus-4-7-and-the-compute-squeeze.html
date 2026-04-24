@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opus 4.7 regressed. The story is what it says about compute. | Alvento</title>
-    <meta name="description" content="Opus 4.7 regressed on long-context benchmarks and costs roughly 35% more per request. Anthropic signed a $25B deal with Amazon four days later, citing infrastructure strain. What that means if you run Claude in production.">
+    <title>Opus 4.7 came out worse than 4.6, and the reasons matter | Alvento</title>
+    <meta name="description" content="Opus 4.7 regressed on long-context benchmarks and costs roughly 35% more per request. Four days later Anthropic signed a $25B deal with Amazon, citing infrastructure strain. Here's what that means if you run Claude in production.">
     <meta name="author" content="Oscar Espinoza, Alvento">
-    <meta property="og:title" content="Opus 4.7 regressed. The story is what it says about compute.">
-    <meta property="og:description" content="Opus 4.7 regressed on long-context benchmarks and costs roughly 35% more per request. Anthropic signed a $25B deal with Amazon four days later, citing infrastructure strain. What that means if you run Claude in production.">
+    <meta property="og:title" content="Opus 4.7 came out worse than 4.6, and the reasons matter">
+    <meta property="og:description" content="Opus 4.7 regressed on long-context benchmarks and costs roughly 35% more per request. Four days later Anthropic signed a $25B deal with Amazon, citing infrastructure strain. Here's what that means if you run Claude in production.">
     <meta property="og:url" content="https://alvento.ltd/blog/opus-4-7-and-the-compute-squeeze/">
     <meta property="og:image" content="https://alvento.ltd/blog/images/opus-4-7-compute-squeeze.jpg">
     <meta property="og:type" content="article">
@@ -258,8 +258,8 @@
     {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "Opus 4.7 regressed. The story is what it says about compute.",
-        "description": "Opus 4.7 regressed on long-context benchmarks and costs roughly 35% more per request. Anthropic signed a $25B deal with Amazon four days later, citing infrastructure strain. What that means if you run Claude in production.",
+        "headline": "Opus 4.7 came out worse than 4.6, and the reasons matter",
+        "description": "Opus 4.7 regressed on long-context benchmarks and costs roughly 35% more per request. Four days later Anthropic signed a $25B deal with Amazon, citing infrastructure strain. Here's what that means if you run Claude in production.",
         "image": "https://alvento.ltd/blog/images/opus-4-7-compute-squeeze.jpg",
         "author": { "@type": "Person", "name": "Oscar Espinoza", "affiliation": { "@type": "Organization", "name": "Alvento" } },
         "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
@@ -287,35 +287,31 @@
     </div>
 
     <article class="article-container">
-        <h1 class="fade-up">Opus 4.7 regressed. The story is what it says about compute.</h1>
+        <h1 class="fade-up">Opus 4.7 came out worse than 4.6, and the reasons matter</h1>
         <div class="meta">
             <p>By Oscar Espinoza, Alvento - 22 April 2026 - 5 min read</p>
         </div>
 
         <img src="/blog/images/opus-4-7-compute-squeeze.jpg" alt="An isometric editorial illustration of a silicon chip and its surrounding circuit board split down the centre by a jagged fissure glowing acid-lime green, rendered in charcoal stipple on matte black." class="hero-image fade-up">
 
-        <p>Anthropic shipped <a href="https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-7">Claude Opus 4.7</a> on 16 April. Within a day, side-by-side regressions were circulating. On the MRCR long-context benchmark, 4.6 scored 78.3%. <a href="https://finance.biggo.com/news/rezXm50B-x-dxYpbNgbU">4.7 scored 32.2%</a>. The new tokenizer produces <a href="https://the-decoder.com/first-token-counts-reveal-opus-4-7-costs-significantly-more-than-4-6-despite-anthropics-flat-pricing/">roughly 35% more tokens on the same input</a>, so bills go up even though the sticker price didn't. Reliability complaints started the same day.</p>
+        <p>Anthropic shipped <a href="https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-7">Claude Opus 4.7</a> on 16 April. Within a day, side-by-side regressions were doing the rounds. On the MRCR long-context benchmark, 4.6 scored 78.3%. <a href="https://finance.biggo.com/news/rezXm50B-x-dxYpbNgbU">4.7 scored 32.2%</a>. The new tokenizer produces <a href="https://the-decoder.com/first-token-counts-reveal-opus-4-7-costs-significantly-more-than-4-6-despite-anthropics-flat-pricing/">roughly 35% more tokens on the same input</a>, so your bills go up even though the sticker price didn't. Reliability complaints came in from day one.</p>
 
-        <p>The bigger story is what happened four days later. Anthropic announced up to <a href="https://www.cnbc.com/2026/04/20/amazon-invest-up-to-25-billion-in-anthropic-part-of-ai-infrastructure.html">$25 billion in new investment from Amazon</a>, a <a href="https://techcrunch.com/2026/04/20/anthropic-takes-5b-from-amazon-and-pledges-100b-in-cloud-spending-in-return/">$100 billion cloud commitment to AWS</a>, and access to <a href="https://www.anthropic.com/news/anthropic-amazon-compute">5 gigawatts of Trainium capacity</a>. Their own announcement uses the phrase "inevitable strain" about the infrastructure pressure from enterprise and consumer demand.</p>
+        <p>Four days later, Anthropic announced up to <a href="https://www.cnbc.com/2026/04/20/amazon-invest-up-to-25-billion-in-anthropic-part-of-ai-infrastructure.html">$25 billion in new investment from Amazon</a>, a <a href="https://techcrunch.com/2026/04/20/anthropic-takes-5b-from-amazon-and-pledges-100b-in-cloud-spending-in-return/">$100 billion cloud commitment to AWS</a>, and access to <a href="https://www.anthropic.com/news/anthropic-amazon-compute">5 gigawatts of Trainium capacity</a>. The announcement describes the infrastructure pressure from enterprise and consumer demand as "inevitable strain."</p>
 
-        <p>At the same time, Anthropic is running a withheld frontier model called <a href="https://www.anthropic.com/glasswing">Mythos</a>. Mythos scored <a href="https://fortune.com/2026/04/07/anthropic-claude-mythos-model-project-glasswing-cybersecurity/">93.9% on SWE-bench and 97.6% on USAMO</a>. It's available to around <a href="https://techcrunch.com/2026/04/07/anthropic-mythos-ai-model-preview-security/">40 organisations through Project Glasswing</a>, Anthropic's cybersecurity initiative. Every public signal points to that being where the best compute is going, and to Opus 4.7 shipping on what was left.</p>
+        <p>In parallel, Anthropic is running a withheld frontier model called <a href="https://www.anthropic.com/glasswing">Mythos</a>. It scored <a href="https://fortune.com/2026/04/07/anthropic-claude-mythos-model-project-glasswing-cybersecurity/">93.9% on SWE-bench and 97.6% on USAMO</a>, and is available to around <a href="https://techcrunch.com/2026/04/07/anthropic-mythos-ai-model-preview-security/">40 organisations through Project Glasswing</a>, Anthropic's cybersecurity initiative. That looks like where the best compute is going. Opus 4.7 looks like what shipped on what was left.</p>
 
-        <h2 class="fade-up">Three things to take from this if you run Claude in production</h2>
+        <h2 class="fade-up">What to do if you run Claude in production</h2>
 
-        <h3>Version numbers aren't a clean proxy for progress any more</h3>
-        <p>A higher version used to mean better across the board. It doesn't. Model releases now get shaped by infrastructure, research priorities and commercial deals you can't see from the outside. The same lab can ship a frontier system to 40 security partners and a degraded public version to everyone else in the same month.</p>
+        <h3>Higher version numbers no longer reliably mean better</h3>
+        <p>Higher numbers used to mean better across the board. That's stopped being reliable. Releases are shaped by infrastructure trade-offs, research priorities, and commercial deals you can't see from outside. The same lab can ship a frontier system to 40 security partners and a degraded public version to everyone else in the same month.</p>
 
-        <h3>You're a procurement function whether you want to be or not</h3>
-        <p>Run 4.6 and 4.7 on your actual prompts before you switch anything. Pin your model version in production so you're not auto-upgraded into a regression. Build an evaluation harness now. If you haven't got automated regression testing for model behaviour, this is the quarter to sort it.</p>
+        <h3>Treat model selection as procurement</h3>
+        <p>Run 4.6 and 4.7 on your own prompts before you switch anything. Pin your model version in production so you're not auto-upgraded into a regression. If you haven't got automated regression testing for model behaviour yet, this is the quarter to build one.</p>
 
-        <h3>Frontier lab dynamics belong in your risk model</h3>
-        <p>Compute allocation, partnership deals, and research priorities at Anthropic, OpenAI and Google flow straight into the tools your business runs on. Those dynamics are not going to become more stable. Treat them the way you'd treat any other critical vendor dependency: with contracts, fallbacks, and a clear view of the blast radius if the supplier changes direction.</p>
+        <h3>Lab decisions are vendor risk now</h3>
+        <p>Compute allocation, partnership deals, and research priorities at Anthropic, OpenAI and Google feed directly into the tools your business relies on. They're not going to get more stable. Treat the labs the way you'd treat any other critical vendor: with contracts, fallbacks, and a view of what breaks if the supplier changes direction.</p>
 
-        <h2 class="fade-up">The bigger point</h2>
-
-        <p>AI compute isn't abundant any more. It's contested, expensive, and allocated strategically. Businesses that assume new releases are free upgrades will get burned. Businesses that treat AI the way they treat any other critical vendor won't.</p>
-
-        <p>If you're running Claude in production, it's worth a couple of hours of your time this week.</p>
+        <p>AI compute isn't abundant. It's contested, expensive, and allocated in ways that aren't public. If you treat each new release as a free upgrade, you will get caught out at some point. A couple of hours of checking this week is cheap insurance against that.</p>
 
         <div class="cta-box fade-up">
             <p><strong>Deploying AI in a regulated environment?</strong> Alvento helps businesses deploy and govern AI systems in production - evaluation harnesses, version discipline, and vendor risk modelling. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> - first conversation is free.</p>
