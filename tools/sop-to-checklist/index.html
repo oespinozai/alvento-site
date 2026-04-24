@@ -5,12 +5,12 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOP to Checklist — Turn Procedures Into Actionable Lists · Alvento</title>
+<title>SOP to Checklist - Turn Procedures Into Actionable Lists - Alvento</title>
 <meta name="description" content="Paste any SOP or process document. Get a structured checklist with steps, owners, and frequency. Free, browser-based, built for ops teams. By Alvento.">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="canonical" href="https://alvento.ltd/tools/sop-to-checklist/">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="SOP to Checklist — Turn procedures into actionable lists">
+<meta property="og:title" content="SOP to Checklist - Turn procedures into actionable lists">
 <meta property="og:description" content="Paste an SOP. Get a structured checklist with steps, owners, frequency. Runs in your browser.">
 <meta property="og:url" content="https://alvento.ltd/tools/sop-to-checklist/">
 <meta property="og:type" content="website">
@@ -493,7 +493,7 @@ footer a:hover { color: var(--accent); }
       <span class="current">SOP to Checklist</span>
     </div>
     <h1>Turn SOPs into <em>actionable checklists</em></h1>
-    <p>Paste any procedure document. Get a structured checklist with steps, owners, and frequency — ready to drop into Notion, Asana, or an LLM for refinement. Everything runs in your browser.</p>
+    <p>Paste any procedure document. Get a structured checklist with steps, owners, and frequency - ready to drop into Notion, Asana, or an LLM for refinement. Everything runs in your browser.</p>
   </div>
 </section>
 
@@ -554,7 +554,7 @@ Weekly:
 
         <div class="output-area">
           <div id="previewOutput" class="checklist-preview">
-            <p>Paste an SOP on the left and hit <strong>Convert to checklist</strong> — the structured output appears here.</p>
+            <p>Paste an SOP on the left and hit <strong>Convert to checklist</strong> - the structured output appears here.</p>
           </div>
           <textarea id="markdownOutput" class="output-textarea hidden" placeholder="Markdown output will appear here..." readonly></textarea>
           <textarea id="promptOutput" class="output-textarea hidden" placeholder="A ready-to-use LLM prompt for refinement will appear here..." readonly></textarea>
@@ -604,7 +604,7 @@ Weekly:
         <div class="cta-content">
           <div class="cta-label">For ops teams at scale</div>
           <h3>Running procedures <em>across multiple teams</em>?</h3>
-          <p>Alvento builds process intelligence layers that turn SOPs into live, trackable workflows — not static documents.</p>
+          <p>Alvento builds process intelligence layers that turn SOPs into live, trackable workflows - not static documents.</p>
         </div>
         <a href="https://alvento.ltd/#contact" class="btn btn-primary">
           Talk to us
@@ -622,8 +622,8 @@ Weekly:
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <p>Built by <a href="https://alvento.ltd">Alvento</a> · AI systems for businesses that run on data</p>
-    <p>© 2026 Alvento Ltd · Company No. 16394298</p>
+    <p>Built by <a href="https://alvento.ltd">Alvento</a> - AI systems for businesses that run on data</p>
+    <p>(c) 2026 Alvento Ltd - Company No. 16394298</p>
   </div>
 </footer>
 
@@ -687,7 +687,7 @@ Post-Incident (within 48 hours):
 - Log action items in Linear with owners and due dates.
 - If P0: present summary to leadership on next Monday review.`,
 
-  "daily-ops": `Daily Operations Checklist — Fulfilment Center
+  "daily-ops": `Daily Operations Checklist - Fulfilment Center
 
 Start of shift (6am):
 1. Check overnight alert log in warehouse management system. [Shift Lead]
@@ -770,7 +770,7 @@ elements.clearBtn.addEventListener('click', () => {
 
 function resetOutput() {
   state = { markdown: '', stats: { steps: 0, sections: 0, owners: 0, frequencies: 0 } };
-  elements.previewOutput.innerHTML = '<p>Paste an SOP on the left and hit <strong>Convert to checklist</strong> — the structured output appears here.</p>';
+  elements.previewOutput.innerHTML = '<p>Paste an SOP on the left and hit <strong>Convert to checklist</strong> - the structured output appears here.</p>';
   elements.markdownOutput.value = '';
   elements.promptOutput.value = '';
   elements.copyMarkdownBtn.disabled = true;
@@ -836,13 +836,13 @@ function parseSOP(input) {
     const line = lines[i].trim();
     if (!line) continue;
     // Stop scanning once we clearly hit body content
-    if (/^\d+[\.\)]\s/.test(line) || /^[-*•]\s/.test(line)) break;
+    if (/^\d+[\.\)]\s/.test(line) || /^[-*\u2022]\s/.test(line)) break;
     const m = METADATA_KEY_PATTERN.exec(line);
     if (m) {
       metadata.push({ key: m[1].trim(), value: m[2].trim() });
       metadataLineIndices.add(i);
     } else if (metadata.length > 0 && line.length > 60) {
-      // Already captured metadata, and this line looks like body — stop.
+      // Already captured metadata, and this line looks like body - stop.
       break;
     }
   }
@@ -883,7 +883,7 @@ function parseSOP(input) {
     }
 
     // Detect first-line title if no section yet and looks like a title
-    if (!currentSection && contentLineCount <= 3 && line.length < 80 && !/^[-*•\d]/.test(line)) {
+    if (!currentSection && contentLineCount <= 3 && line.length < 80 && !/^[-*\u2022\d]/.test(line)) {
       sections.push({ title: line, frequency: null, items: [], isDocTitle: true });
       currentSection = sections[sections.length - 1];
       continue;
@@ -891,7 +891,7 @@ function parseSOP(input) {
 
     // Detect step (numbered, bulleted, or imperative sentence)
     const numberedMatch = /^\s*(?:\d+[\.\)]|step\s+\d+[:\.]?)\s+(.+)$/i.exec(line);
-    const bulletMatch = /^\s*[-*•]\s+(.+)$/.exec(line);
+    const bulletMatch = /^\s*[-*\u2022]\s+(.+)$/.exec(line);
 
     let stepText = null;
     if (numberedMatch) stepText = numberedMatch[1];
@@ -920,7 +920,7 @@ function parseSOP(input) {
     }
   }
 
-  // Strip doc-title section if it was just a heading with no items — keep title separately
+  // Strip doc-title section if it was just a heading with no items - keep title separately
   let docTitle = null;
   if (sections.length && sections[0].isDocTitle && sections[0].items.length === 0) {
     docTitle = sections[0].title;
@@ -997,7 +997,7 @@ function renderMarkdown(parsed) {
         tags.push(`${item.owners.length > 1 ? 'Owners' : 'Owner'}: ${item.owners.join(', ')}`);
       }
       if (item.frequency && item.frequency !== section.frequency) tags.push(`Frequency: ${item.frequency}`);
-      if (tags.length > 0) line += ` _(${tags.join(' · ')})_`;
+      if (tags.length > 0) line += ` _(${tags.join(' - ')})_`;
       md += line + '\n';
     }
     md += '\n';
@@ -1122,7 +1122,7 @@ elements.copyMarkdownBtn.addEventListener('click', () => {
 });
 
 elements.copyClaudeBtn.addEventListener('click', () => {
-  const text = `I'm processing a standard operating procedure. Here's the draft checklist I extracted — please refine it, normalise owners, and flag any gaps.\n\n${state.markdown}`;
+  const text = `I'm processing a standard operating procedure. Here's the draft checklist I extracted - please refine it, normalise owners, and flag any gaps.\n\n${state.markdown}`;
   navigator.clipboard.writeText(text).then(() => flashBtn(elements.copyClaudeBtn, 'Copy for Claude'));
 });
 

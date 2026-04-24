@@ -5,11 +5,11 @@
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDR Technical File Index Generator — Annex II/III · Alvento</title>
+    <title>MDR Technical File Index Generator - Annex II/III - Alvento</title>
     <meta name="description" content="Generate a complete Annex II/III technical documentation index for EU MDR submission. Flags missing sections, exports Markdown + DOCX. Free.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://alvento.ltd/tools/mdr-technical-file-index/">
-    <meta property="og:title" content="MDR Technical File Index Generator — Annex II/III · Alvento">
+    <meta property="og:title" content="MDR Technical File Index Generator - Annex II/III - Alvento">
     <meta property="og:description" content="Generate a complete Annex II/III technical documentation index for EU MDR submission. Flags missing sections. Markdown + DOCX export.">
     <meta property="og:url" content="https://alvento.ltd/tools/mdr-technical-file-index/">
     <meta property="og:type" content="website">
@@ -306,7 +306,7 @@
         items.forEach((item, index) => {
             const isSelected = selectedIds.includes(item.id);
             const statusTag = isSelected ? '<span class="status-tag" style="background:var(--accent); color:var(--bg)">Ready</span>' : '<span class="status-tag">Missing</span>';
-            const warning = !isSelected ? '<span class="warning">⚠️ This section is mandatory for Annex ' + item.annex + '. Add this before submission.</span>' : '';
+            const warning = !isSelected ? '<span class="warning">! This section is mandatory for Annex ' + item.annex + '. Add this before submission.</span>' : '';
             
             previewHtml += `
                 <div class="toc-item ${!isSelected ? 'missing' : ''}">
