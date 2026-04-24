@@ -29,6 +29,47 @@
       "publisher": { "@type": "Organization", "name": "Alvento Ltd", "url": "https://alvento.ltd" }
     }
     </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a UDI and why does it matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Unique Device Identifier \u2014 a barcode that identifies a specific medical device in the supply chain. It is mandated by Article 27 of EU MDR and by the FDA UDI Rule. Two issuing agencies dominate medtech: GS1 and HIBCC. Implant registries (NJR, NLR, international equivalents) rely on UDI for accurate linkage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which UDI formats does the decoder handle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GS1 Application Identifiers (DI + PI components: GTIN, lot, serial, expiry, manufacturing date) and HIBCC LIC/PIC formats. Paste a raw barcode string and it returns the structured fields ready for registry submission or EHR integration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use the output directly for NJR or NLR submissions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The field layout maps to what NJR (National Joint Registry), NLR (National Ligament Registry) and similar implant registries expect. Validate against your registry's current data dictionary before automating ingestion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it decode ICCBBA / ISBT 128 barcodes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not currently. ISBT 128 (blood, cells, tissues, organs) is on the roadmap \u2014 contact us if you need it prioritised."
+      }
+    }
+  ]
+}
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -241,6 +282,28 @@
         <p>Alvento builds agents that read theatre records, decode UDIs, and pre-populate implant registry forms — reducing hand-keying error and audit rework.</p>
         <a href="https://alvento.ltd/#contact" class="btn-generate">Speak to us</a>
     </div>
+
+        <section class="faq-section" aria-labelledby="faq-heading" style="max-width:820px;margin:80px auto 40px;padding:0 24px;">
+      <h2 id="faq-heading" style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,2.25rem);margin-bottom:28px;font-weight:400;color:var(--text);">Frequently asked questions</h2>
+      <details style="border-top:1px solid var(--border);padding:20px 0;">
+        <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">What is a UDI and why does it matter?</summary>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">A Unique Device Identifier — a barcode that identifies a specific medical device in the supply chain. It is mandated by Article 27 of EU MDR and by the FDA UDI Rule. Two issuing agencies dominate medtech: GS1 and HIBCC. Implant registries (NJR, NLR, international equivalents) rely on UDI for accurate linkage.</div>
+      </details>
+      <details style="border-top:1px solid var(--border);padding:20px 0;">
+        <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Which UDI formats does the decoder handle?</summary>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">GS1 Application Identifiers (DI + PI components: GTIN, lot, serial, expiry, manufacturing date) and HIBCC LIC/PIC formats. Paste a raw barcode string and it returns the structured fields ready for registry submission or EHR integration.</div>
+      </details>
+      <details style="border-top:1px solid var(--border);padding:20px 0;">
+        <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Can I use the output directly for NJR or NLR submissions?</summary>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">The field layout maps to what NJR (National Joint Registry), NLR (National Ligament Registry) and similar implant registries expect. Validate against your registry's current data dictionary before automating ingestion.</div>
+      </details>
+      <details style="border-top:1px solid var(--border);padding:20px 0;">
+        <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Does it decode ICCBBA / ISBT 128 barcodes?</summary>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Not currently. ISBT 128 (blood, cells, tissues, organs) is on the roadmap — contact us if you need it prioritised.</div>
+      </details>
+
+      <p style="margin-top:40px;color:var(--muted);font-size:0.9rem;line-height:1.6;">Still have a question, or need a variant for your specific regulatory context? <a href="/#contact" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);">Ask us directly</a>, or read our <a href="/blog/" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);">Insights</a> for longer writeups.</p>
+    </section>
 
     <footer>
         <div class="container" style="display: flex; justify-content: space-between;">

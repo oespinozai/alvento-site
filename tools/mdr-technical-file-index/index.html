@@ -29,6 +29,47 @@
       "publisher": { "@type": "Organization", "name": "Alvento Ltd", "url": "https://alvento.ltd" }
     }
     </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What's covered by Annex II and Annex III of EU MDR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Annex II defines the technical documentation: device description, design and manufacturing information, general safety and performance requirements, risk-benefit analysis, V&V evidence and the PMS plan. Annex III covers post-market surveillance documentation. The generator maps every required section so nothing is missed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it flag missing sections?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Incomplete or absent sections are flagged in the generated index, so you know exactly what is still owed before submission to your notified body."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What export formats are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Markdown and DOCX. The Markdown output pastes cleanly into Confluence, Notion or any git-backed documentation system; the DOCX output integrates with Greenlight Guru, SharePoint and traditional QMS platforms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this cover IVDR as well?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet. The index follows EU MDR (Regulation 2017/745) only. An IVDR-specific (Regulation 2017/746) version is in development \u2014 contact us if you need early access."
+      }
+    }
+  ]
+}
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -261,6 +302,28 @@
         <p>Alvento's agents can pre-audit your Technical File against Annex II/III requirements to ensure zero-deficiency submissions.</p>
         <a href="https://alvento.ltd/#contact" class="btn-generate">Get a pre-audit</a>
     </div>
+
+        <section class="faq-section" aria-labelledby="faq-heading" style="max-width:820px;margin:80px auto 40px;padding:0 24px;">
+      <h2 id="faq-heading" style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,2.25rem);margin-bottom:28px;font-weight:400;color:var(--text);">Frequently asked questions</h2>
+      <details style="border-top:1px solid var(--border);padding:20px 0;">
+        <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">What's covered by Annex II and Annex III of EU MDR?</summary>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Annex II defines the technical documentation: device description, design and manufacturing information, general safety and performance requirements, risk-benefit analysis, V&amp;V evidence and the PMS plan. Annex III covers post-market surveillance documentation. The generator maps every required section so nothing is missed.</div>
+      </details>
+      <details style="border-top:1px solid var(--border);padding:20px 0;">
+        <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Does it flag missing sections?</summary>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Yes. Incomplete or absent sections are flagged in the generated index, so you know exactly what is still owed before submission to your notified body.</div>
+      </details>
+      <details style="border-top:1px solid var(--border);padding:20px 0;">
+        <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">What export formats are supported?</summary>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Markdown and DOCX. The Markdown output pastes cleanly into Confluence, Notion or any git-backed documentation system; the DOCX output integrates with Greenlight Guru, SharePoint and traditional QMS platforms.</div>
+      </details>
+      <details style="border-top:1px solid var(--border);padding:20px 0;">
+        <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Does this cover IVDR as well?</summary>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Not yet. The index follows EU MDR (Regulation 2017/745) only. An IVDR-specific (Regulation 2017/746) version is in development — contact us if you need early access.</div>
+      </details>
+
+      <p style="margin-top:40px;color:var(--muted);font-size:0.9rem;line-height:1.6;">Still have a question, or need a variant for your specific regulatory context? <a href="/#contact" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);">Ask us directly</a>, or read our <a href="/blog/" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);">Insights</a> for longer writeups.</p>
+    </section>
 
     <footer>
         <div class="container" style="display: flex; justify-content: space-between;">
