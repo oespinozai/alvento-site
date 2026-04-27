@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What the PMCPA Theramex ruling means for AI in pharma comms | Alvento</title>
+    <meta name="description" content="The PMCPA censured Theramex for an unqualified safety claim on its LinkedIn page. The agency has now clarified that corporate copy carries the same compliance obligations as promotional material. Here is what that means for any pharma team using LLM tools.">
+    <meta name="author" content="Oscar Espinoza, Alvento">
+    <meta property="og:title" content="What the PMCPA Theramex ruling means for AI in pharma comms">
+    <meta property="og:description" content="The PMCPA has clarified that corporate LinkedIn copy carries the same compliance obligations as promotional material. Here is what that means for any pharma team using LLM tools.">
+    <meta property="og:url" content="https://alvento.ltd/blog/pmcpa-theramex-ai-pharma-comms/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: #b8b8b8;
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: #b8b8b8; line-height: 1.7; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "What the PMCPA Theramex ruling means for AI in pharma comms",
+        "description": "The PMCPA censured Theramex for an unqualified safety claim on its LinkedIn page. The agency has now clarified that corporate copy carries the same compliance obligations as promotional material. Here is what that means for any pharma team using LLM tools.",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
+        "datePublished": "2026-04-28",
+        "url": "https://alvento.ltd/blog/pmcpa-theramex-ai-pharma-comms/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#products">Products</a></li>
+                <li><a href="/case-studies/immunaris">Case studies</a></li>
+                <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">What the PMCPA Theramex ruling means for AI in pharma comms</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Alvento, 28 April 2026, 5 min read</p>
+        </div>
+
+        <p>The PMCPA published its April 2026 rulings on 17 April (Cases AUTH/3911/5/24 and Case/0303/09/24). Theramex featured in both. The agency also took the unusual step of noting that Theramex had left self-regulation on 28 January 2026 and that the MHRA now holds full oversight. The practical consequences of that departure are now visible.</p>
+
+        <p>For this post I am focusing on the communications compliance angle. Case AUTH/3911/5/24 is the more instructive case for teams using LLM tooling.</p>
+
+        <h2 class="fade-up">The LinkedIn case: an unqualified safety claim</h2>
+
+        <p>Case AUTH/3911/5/24 concerned the About Us section of Theramex's LinkedIn company page. The copy included the phrase: "provides innovative, effective and safe solutions that care for and support women at every stage of their life."</p>
+
+        <p>The PMCPA ruled this in breach of Clauses 6.1 and 6.4 of the ABPI Code. Clause 6.4 requires that the word "safe" must not be used without qualification. Clause 6.1 covers misleading statements. The panel noted that the requirement was not limited to promotional material and applied to the LinkedIn page at issue.</p>
+
+        <p>The source line: <a href="https://www.pmcpa.org.uk/cases/completed-cases/auth3911524-complainant-v-theramex/">PMCPA case AUTH/3911/5/24</a>, with the April 2026 ruling published at <a href="https://www.pmcpa.org.uk/about-us/media/news/pmcpa-press-release-17-april-2026-cases-ruled-in-breach-of-clause-2/">pmcpa.org.uk</a>.</p>
+
+        <h2 class="fade-up">Why this matters for LLM-generated content</h2>
+
+        <p>The case does not involve an LLM directly. But the failure mode is identical to the core risk in using LLM tools to draft corporate communications.</p>
+
+        <p>LLMs trained on broad web copy will readily generate language implying safety or efficacy. When asked to write a company description, they produce statements that sound authoritative and warm. That is the job. The ABPI Code does not care that the copy was written by a model rather than a human copywriter. The compliance obligation is the same.</p>
+
+        <p>The predictable failure modes for LLM-generated pharma copy are:</p>
+
+        <ul>
+            <li>Using "safe" or "effective" without the required qualification attached to every mention</li>
+            <li>Implying therapeutic benefit in a general company description where no specific product claim is made</li>
+            <li>Suggesting a product is appropriate for a condition it is not licensed for</li>
+            <li>Omitting material information such as relevant contraindications or side-effect profiles</li>
+        </ul>
+
+        <p>None of these are exotic edge cases. They are exactly what a capable LLM produces when asked to write compelling copy about a pharmaceutical company.</p>
+
+        <h2 class="fade-up">The review checkpoint is the solution</h2>
+
+        <p>The answer is not to stop using LLM tools for pharma communications. That ship has gone. The answer is a simple human review step before anything goes into a public-facing channel. That step needs to cover at minimum:</p>
+
+        <ul>
+            <li>Every therapeutic or safety claim is consistent with the approved summary of product characteristics</li>
+            <li>"Safe", "effective", and similar words of substance are qualified in every instance</li>
+            <li>Indication statements are accurate and current</li>
+            <li>No representation implies a product is suitable for a use outside its licence</li>
+            <li>Nothing that requires fair-balance disclosure has been omitted</li>
+        </ul>
+
+        <p>This is not an AI governance framework. It is an editorial compliance review. The AI generates the first draft. A person with ABPI Clause 6 knowledge approves it. That is the process change required.</p>
+
+        <h2 class="fade-up">What Theramex leaving PMCPA means in practice</h2>
+
+        <p>The second notable element of the April ruling is the public reprimand in Case/0303/09/24. Theramex had failed to maintain up-to-date prescribing information for the Evorel (estradiol) range and Intrarosa (prasterone) for several years. The appeal board also required an audit of Theramex's procedures relating to the ABPI Code, to be carried out by the PMCPA if Theramex seeks to rejoin self-regulation.</p>
+
+        <p>That Theramex left PMCPA self-regulation on 28 January 2026 means the MHRA now holds the oversight role that the PMCPA previously held. The regulatory accountability has not disappeared. It has become more direct. This is relevant context for any pharma company considering where compliance resource should sit.</p>
+
+        <div class="related-tools" style="margin:48px 0 24px;padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--surface);">
+            <p style="font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:16px;">Related free tools</p>
+            <ul style="list-style:none;margin:0;padding:0;">
+                <li style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);"><a href="/tools/sop-to-checklist/" style="color:var(--accent);font-weight:500;border-bottom:0;">SOP to Checklist</a><div style="color:#b8b8b8;font-size:0.92rem;margin-top:4px;">Turn a standard operating procedure into a structured compliance checklist with owners and frequency.</div></li>
+                <li style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);"><a href="/tools/mdr-technical-file-index/" style="color:var(--accent);font-weight:500;border-bottom:0;">MDR Technical File Index</a><div style="color:#b8b8b8;font-size:0.92rem;margin-top:4px;">Generate a complete Annex II/III index for notified-body submission.</div></li>
+                <li><a href="/case-studies/immunaris/" style="color:var(--accent);font-weight:500;border-bottom:0;">Immunaris case study</a><div style="color:#b8b8b8;font-size:0.92rem;margin-top:4px;">How Alvento built a live clinical registry with compliance-grade data workflows.</div></li>
+            </ul>
+        </div>
+
+        <div class="cta-box fade-up">
+            <p><strong>Working on compliance-grade AI tooling for a regulated organisation?</strong> We help businesses design and deploy AI systems that hold up under regulatory scrutiny. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a>, first conversation is free.</p>
+        </div>
+
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>Founder</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+            document.querySelectorAll('.nav-links a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    document.querySelector('.nav-links').classList.remove('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
