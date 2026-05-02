@@ -13,6 +13,8 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://alvento.ltd/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -38,12 +40,24 @@
             --text: #e8e8e8;
             --muted: #a8a8a8;
             --dim: #7a7a7a;
+            --watermark: #1c1c1c;
             --accent: #c4f042;
             --accent-hover: #d4ff4a;
             --accent-dim: #a6c53a;
-            --font-display: 'Playfair Display', Georgia, serif;
-            --font-body: 'Inter', -apple-system, sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+            --fw-regular: 400;
+            --fw-medium: 500;
+            --fw-semibold: 600;
+            --fw-bold: 700;
+            --track-tight: -0.03em;
+            --track-snug: -0.02em;
+            --radius-2: 4px;
+            --hairline: 1px;
+            --t-fast: 0.2s ease;
+            --t-med: 0.3s ease;
+            --glow-accent: radial-gradient(circle, rgba(196,240,66,0.06) 0%, transparent 70%);
         }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -54,15 +68,16 @@
             font-size: 16px;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
-        a { color: var(--accent); text-decoration: none; }
+        a { color: inherit; text-decoration: none; }
         .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
         nav {
             position: fixed; inset: 0 0 auto 0; z-index: 100;
             padding: 20px 0;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            background: rgba(10,10,10,0.8);
+            background: rgba(10,10,10,0.7);
             border-bottom: 1px solid var(--border);
         }
         nav .container { display: flex; justify-content: space-between; align-items: center; }
@@ -77,7 +92,7 @@
         .wizard-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 4px;
             padding: 40px;
             margin-bottom: 24px;
         }
@@ -99,7 +114,7 @@
             padding: 16px 20px;
             background: var(--surface-raised);
             border: 1px solid var(--border);
-            border-radius: 6px;
+            border-radius: 4px;
             color: var(--text);
             font-family: var(--font-body); font-size: 0.95rem;
             cursor: pointer;
@@ -130,7 +145,7 @@
         .disclaimer {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 4px;
             padding: 24px 28px;
             margin-top: 48px;
         }
@@ -142,7 +157,7 @@
         .result-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 4px;
             padding: 48px 40px;
             text-align: center;
             margin-bottom: 24px;
@@ -157,7 +172,7 @@
             color: var(--accent);
             border: 1px solid var(--accent-dim);
             padding: 6px 16px;
-            border-radius: 20px;
+            border-radius: 4px;
             margin-bottom: 20px;
         }
         .result-class { font-family: var(--font-display); font-size: clamp(3rem, 10vw, 5rem); font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 8px; }
@@ -167,7 +182,7 @@
         .result-detail {
             background: var(--surface-raised);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 4px;
             padding: 28px 32px;
             margin-top: 24px;
             text-align: left;
@@ -197,7 +212,7 @@
         .psur-teaser {
             background: rgba(196,240,66,0.06);
             border: 1px solid var(--accent-dim);
-            border-radius: 8px;
+            border-radius: 4px;
             padding: 24px 28px;
             margin-top: 24px;
         }
@@ -205,7 +220,25 @@
         .psur-teaser p { font-size: 0.88rem; color: var(--muted); margin-bottom: 16px; }
         .psur-teaser a { display: inline-block; background: var(--accent); color: var(--bg); padding: 8px 18px; border-radius: 4px; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
         .psur-teaser a:hover { background: var(--accent-hover); }
-        @media (max-width: 600px) {
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+        @media (max-width: 768px) {
             .wizard-card { padding: 28px 20px; }
             .result-card { padding: 36px 24px; }
             .result-actions { flex-direction: column; }
@@ -254,6 +287,12 @@
             <p>This tool gives an indicative classification based on the information you provide. It does not constitute regulatory advice. Device classification can be complex — devices that interact with the body, emit ionising radiation, or have a mode of action that is not well-established may require formal consultation with a Notified Body or the MHRA to confirm their class. Always verify with your RA team or regulatory consultant before making compliance decisions.</p>
         </div>
     </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd</p>
+            <p>Built for compliance-heavy environments</p>
+        </div>
+    </footer>
     <script>
     const questions = [
         {
