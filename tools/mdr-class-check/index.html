@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free MDR & UKCA Device Class Checker · Alvento</title>
+    <meta name="description" content="Answer 5 questions. Get your medical device class under EU MDR 2017/745 and UKCA. Free, instant, no signup.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://alvento.ltd/tools/mdr-class-check/">
+    <meta property="og:title" content="Free MDR & UKCA Device Class Checker · Alvento">
+    <meta property="og:description" content="5 questions. Your device class under EU MDR and UKCA. Instant, free, no signup.">
+    <meta property="og:url" content="https://alvento.ltd/tools/mdr-class-check/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://alvento.ltd/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "MDR & UKCA Device Class Checker",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any (browser)",
+      "url": "https://alvento.ltd/tools/mdr-class-check/",
+      "description": "Determine your medical device class under EU MDR 2017/745 and UKCA MDR 2002 in 5 questions.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+      "publisher": { "@type": "Organization", "name": "Alvento Ltd", "url": "https://alvento.ltd" }
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #a8a8a8;
+            --dim: #7a7a7a;
+            --accent: #c4f042;
+            --accent-hover: #d4ff4a;
+            --accent-dim: #a6c53a;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+        nav {
+            position: fixed; inset: 0 0 auto 0; z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.8);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.02em; }
+        .logo span { color: var(--accent); }
+        nav a.back-link { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+        nav a.back-link:hover { color: var(--text); }
+        main { padding: 140px 0 100px; }
+        .page-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px; }
+        h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.2; margin-bottom: 16px; }
+        .subtitle { color: var(--muted); font-size: 1.05rem; margin-bottom: 48px; }
+        .wizard-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 24px;
+        }
+        .step-indicator {
+            display: flex; gap: 8px; margin-bottom: 36px;
+        }
+        .step-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--border); transition: background 0.3s;
+        }
+        .step-dot.active { background: var(--accent); }
+        .step-dot.done { background: var(--accent-dim); }
+        .step-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 24px; }
+        .step-title { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 8px; }
+        .step-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 28px; }
+        .option-list { display: flex; flex-direction: column; gap: 10px; }
+        .option-btn {
+            display: block; width: 100%; text-align: left;
+            padding: 16px 20px;
+            background: var(--surface-raised);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-family: var(--font-body); font-size: 0.95rem;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .option-btn:hover { border-color: var(--accent); background: rgba(196,240,66,0.04); }
+        .option-btn .opt-label { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 4px; }
+        .option-btn .opt-text { color: var(--text); }
+        .option-btn .opt-hint { font-size: 0.8rem; color: var(--dim); margin-top: 2px; }
+        .nav-row { display: flex; justify-content: space-between; align-items: center; margin-top: 36px; }
+        .btn-back {
+            background: none; border: 1px solid var(--border);
+            color: var(--muted); padding: 10px 20px;
+            border-radius: 4px; font-family: var(--font-mono);
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em;
+            cursor: pointer; transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-back:hover { border-color: var(--muted); color: var(--text); }
+        .btn-next {
+            background: var(--accent); color: var(--bg);
+            border: none; padding: 12px 28px;
+            border-radius: 4px; font-family: var(--font-mono); font-weight: 600;
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em;
+            cursor: pointer; transition: background 0.2s, transform 0.1s;
+        }
+        .btn-next:hover { background: var(--accent-hover); transform: translateY(-1px); }
+        .btn-next:disabled { background: var(--border); color: var(--dim); cursor: not-allowed; transform: none; }
+        .disclaimer {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px 28px;
+            margin-top: 48px;
+        }
+        .disclaimer-title { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 10px; }
+        .disclaimer p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+        /* Results */
+        #results { display: none; }
+        #results.show { display: block; }
+        .result-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 48px 40px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .result-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            background: rgba(196,240,66,0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent-dim);
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        .result-class { font-family: var(--font-display); font-size: clamp(3rem, 10vw, 5rem); font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+        .result-class-label { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 24px; }
+        .result-device { font-family: var(--font-display); font-size: 1.3rem; color: var(--text); margin-bottom: 8px; }
+        .result-regime { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim); }
+        .result-detail {
+            background: var(--surface-raised);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 28px 32px;
+            margin-top: 24px;
+            text-align: left;
+        }
+        .result-detail h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 12px; }
+        .result-detail ul { list-style: none; }
+        .result-detail li { padding: 6px 0; font-size: 0.9rem; color: var(--muted); border-bottom: 1px solid var(--border); display: flex; gap: 10px; }
+        .result-detail li:last-child { border-bottom: none; }
+        .result-detail li::before { content: '—'; color: var(--accent); flex-shrink: 0; }
+        .result-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+        .btn-cta {
+            background: var(--accent); color: var(--bg);
+            border: none; padding: 12px 24px;
+            border-radius: 4px; font-family: var(--font-mono); font-weight: 600;
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em;
+            cursor: pointer; transition: background 0.2s, transform 0.1s;
+        }
+        .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+        .btn-secondary {
+            background: none; border: 1px solid var(--border);
+            color: var(--muted); padding: 12px 24px;
+            border-radius: 4px; font-family: var(--font-mono);
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em;
+            cursor: pointer; transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+        .psur-teaser {
+            background: rgba(196,240,66,0.06);
+            border: 1px solid var(--accent-dim);
+            border-radius: 8px;
+            padding: 24px 28px;
+            margin-top: 24px;
+        }
+        .psur-teaser-title { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 8px; }
+        .psur-teaser p { font-size: 0.88rem; color: var(--muted); margin-bottom: 16px; }
+        .psur-teaser a { display: inline-block; background: var(--accent); color: var(--bg); padding: 8px 18px; border-radius: 4px; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+        .psur-teaser a:hover { background: var(--accent-hover); }
+        @media (max-width: 600px) {
+            .wizard-card { padding: 28px 20px; }
+            .result-card { padding: 36px 24px; }
+            .result-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <a href="/tools" class="back-link">← All tools</a>
+        </div>
+    </nav>
+    <main class="container">
+        <div class="page-label">Free tool</div>
+        <h1>What's your device class?</h1>
+        <p class="subtitle">5 questions to classify your device under EU MDR 2017/745 and UKCA. Instant result — no signup.</p>
+
+        <div class="wizard-card" id="wizard">
+            <div class="step-indicator" id="stepIndicator"></div>
+            <div id="stepContent"></div>
+            <div class="nav-row">
+                <button class="btn-back" id="btnBack" onclick="prevStep()" style="visibility:hidden">← Back</button>
+                <button class="btn-next" id="btnNext" onclick="nextStep()" disabled>Continue →</button>
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="result-card">
+                <div class="result-badge" id="resultBadge"></div>
+                <div class="result-class" id="resultClass"></div>
+                <div class="result-class-label" id="resultClassLabel"></div>
+                <div class="result-device" id="resultDevice"></div>
+                <div class="result-regime" id="resultRegime"></div>
+                <div class="result-detail" id="resultDetail"></div>
+                <div class="result-actions">
+                    <button class="btn-cta" onclick="restart()">Check another device</button>
+                    <button class="btn-secondary" onclick="copyResult()">Copy result</button>
+                </div>
+            </div>
+            <div class="psur-teaser" id="psurTeaser"></div>
+        </div>
+
+        <div class="disclaimer">
+            <div class="disclaimer-title">Not a legal determination</div>
+            <p>This tool gives an indicative classification based on the information you provide. It does not constitute regulatory advice. Device classification can be complex — devices that interact with the body, emit ionising radiation, or have a mode of action that is not well-established may require formal consultation with a Notified Body or the MHRA to confirm their class. Always verify with your RA team or regulatory consultant before making compliance decisions.</p>
+        </div>
+    </main>
+    <script>
+    const questions = [
+        {
+            id: 'duration',
+            label: 'Question 1 of 5',
+            title: 'How long is your device intended to stay in contact with the body?',
+            desc: 'This is one of the most fundamental classification rules under MDR Annex VIII.',
+            options: [
+                { label: 'Transient', hint: '≤ 60 minutes', value: 'transient', score: 'I' },
+                { label: 'Short-term', hint: '60 min – 30 days', value: 'short', score: 'IIa' },
+                { label: 'Long-term', hint: '> 30 days, or permanently', value: 'long', score: 'long' },
+                { label: 'Not applicable', hint: 'Device does not contact the body directly', value: 'na', score: 'na' }
+            ]
+        },
+        {
+            id: 'invasiveness',
+            label: 'Question 2 of 5',
+            title: 'Is your device invasive, and if so, how does it enter the body?',
+            desc: 'Invasiveness is defined in MDR Article 2 — a device that penetrates the body surface or a body orifice.',
+            options: [
+                { label: 'Non-invasive', hint: 'Does not penetrate the body', value: 'noninvasive', score: 'noninv' },
+                { label: 'Invasive — surgical, up to 60 min', hint: 'Introduced via surgical incision, removed within 1 hour', value: 'inv_short', score: 'inv_short' },
+                { label: 'Invasive — surgical, > 60 min or implantable', hint: 'Remains in the body > 1 hour, or is implantable', value: 'inv_long', score: 'inv_long' },
+                { label: 'Active implantable or implant', hint: 'Powered implant or device that emits ionising radiation inside the body', value: 'active_impl', score: 'III' }
+            ]
+        },
+        {
+            id: 'energy',
+            label: 'Question 3 of 5',
+            title: 'Does your device deliver or exchange energy with the patient?',
+            desc: 'MDR Annex VIII Rule 9–10 cover active devices that emit or absorb energy.',
+            options: [
+                { label: 'No energy exchange', hint: 'Passive device — no energy delivery or exchange', value: 'passive', score: null },
+                { label: 'Therapeutic — ionizing radiation', hint: 'Emits ionising radiation for therapeutic purposes', value: 'rad_ther', score: 'IIb' },
+                { label: 'Therapeutic — non-ionizing', hint: 'Delivers energy (electrical, thermal, acoustic) for therapeutic use', value: 'therapeutic', score: 'IIa' },
+                { label: 'Diagnostic or monitoring', hint: 'Actively captures or displays physiological data', value: 'diagnostic', score: 'IIa' },
+                { label: 'Active device — lifecycle or organ support', hint: 'Sustains, restores, or replaces life-sustaining organ function', value: 'life', score: 'IIb' }
+            ]
+        },
+        {
+            id: 'biological',
+            label: 'Question 4 of 5',
+            title: 'Does your device have a biological effect, or is it absorbed by the body?',
+            desc: 'Annex VIII Rule 17 covers devices with biological origin, absorption, or chemical change in the body.',
+            options: [
+                { label: 'No biological effect or absorption', hint: 'Does not act by biological mechanism; not absorbed', value: 'no_bio', score: null },
+                { label: 'Fully absorbed', hint: 'Device is absorbed by the body', value: 'absorbed', score: 'IIa' },
+                { label: 'Partial absorption or biological effect', hint: 'Undergoes chemical change in the body, or has a biological effect', value: 'bio_effect', score: 'IIb' },
+                { label: 'Contains medicinal products or blood derivatives', hint: 'Device incorporates a substance that would be a medicinal product if used separately', value: 'medicinal', score: 'III' }
+            ]
+        },
+        {
+            id: 'risk',
+            label: 'Question 5 of 5',
+            title: 'What is the potential consequence if your device fails?',
+            desc: 'Risk is a tiebreaker when other rules leave classification ambiguous. Consider the worst-case failure scenario.',
+            options: [
+                { label: 'Reversible health impact', hint: 'Any harm is temporary and fully recoverable', value: 'low', score: null },
+                { label: 'Serious injury — but not life-threatening', hint: 'Could cause lasting harm or require medical intervention', value: 'medium', score: null },
+                { label: 'Life-threatening or fatal', hint: 'Failure could result in death or irreversible injury', value: 'high', score: null }
+            ]
+        }
+    ];
+
+    let currentStep = 0;
+    let answers = {};
+
+    function renderStep() {
+        const q = questions[currentStep];
+        document.getElementById('stepIndicator').innerHTML = questions.map((_, i) => {
+            let cls = 'step-dot';
+            if (i < currentStep) cls += ' done';
+            else if (i === currentStep) cls += ' active';
+            return `<div class="${cls}"></div>`;
+        }).join('');
+
+        document.getElementById('stepContent').innerHTML = `
+            <div class="step-label">${q.label}</div>
+            <div class="step-title">${q.title}</div>
+            <div class="step-desc">${q.desc}</div>
+            <div class="option-list">
+                ${q.options.map(opt => `
+                    <button class="option-btn" onclick="selectOption('${q.id}', '${opt.value}', this${opt.score !== null ? `, '${opt.score}'` : ''})">
+                        <div class="opt-label">${opt.label}</div>
+                        <div class="opt-hint">${opt.hint}</div>
+                    </button>
+                `).join('')}
+            </div>
+        `;
+        document.getElementById('btnBack').style.visibility = currentStep === 0 ? 'hidden' : 'visible';
+        document.getElementById('btnNext').disabled = !answers[q.id];
+        document.getElementById('btnNext').textContent = currentStep === questions.length - 1 ? 'Show result →' : 'Continue →';
+    }
+
+    function selectOption(qId, value, el, score) {
+        document.querySelectorAll('.option-btn').forEach(b => b.style.borderColor = '');
+        el.style.borderColor = 'var(--accent)';
+        answers[qId] = { value, score };
+        document.getElementById('btnNext').disabled = false;
+    }
+
+    function nextStep() {
+        if (currentStep < questions.length - 1) {
+            currentStep++;
+            renderStep();
+        } else {
+            showResult();
+        }
+    }
+
+    function prevStep() {
+        if (currentStep > 0) { currentStep--; renderStep(); }
+    }
+
+    function computeResult() {
+        let cls = 'I'; // default
+        let basis = [];
+
+        // Rule application
+        const dur = answers.duration?.value;
+        const inv = answers.invasiveness?.value;
+        const energy = answers.energy?.value;
+        const bio = answers.biological?.value;
+        const risk = answers.risk?.value;
+
+        if (inv === 'active_impl') {
+            cls = 'III'; basis.push('Rule 12: Active implantable device');
+        } else if (inv === 'inv_long') {
+            if (bio === 'medicinal') { cls = 'III'; basis.push('Rule 13: Contains medicinal substance'); }
+            else if (bio === 'absorbed') { cls = 'IIa'; basis.push('Rule 17: Absorbable invasive device'); }
+            else { cls = 'IIb'; basis.push('Rule 8: Surgically invasive device > 60 min / implantable'); }
+        } else if (inv === 'inv_short') {
+            cls = 'IIa'; basis.push('Rule 7: Surgically invasive device ≤ 60 min');
+        } else if (inv === 'noninvasive' || !inv) {
+            if (bio === 'medicinal') { cls = 'III'; basis.push('Rule 14: Non-invasive device with medicinal substance'); }
+            else if (bio === 'bio_effect') { cls = 'IIb'; basis.push('Rule 17: Non-invasive with biological effect'); }
+            else if (bio === 'absorbed') { cls = 'IIa'; basis.push('Rule 17: Non-invasive, absorbed'); }
+            else {
+                cls = 'I'; basis.push('Rule 1: Non-invasive device, no hazardous energy, Class I');
+            }
+        }
+
+        // Energy overrides / adjustments
+        if (energy === 'rad_ther' && cls !== 'III') {
+            cls = 'IIb'; basis.push('Rule 9: Therapeutic ionising radiation source');
+        } else if (energy === 'life' && cls !== 'III') {
+            cls = 'IIb'; basis.push('Rule 11: Life-sustaining active device');
+        } else if (energy === 'therapeutic' && cls === 'I') {
+            cls = 'IIa'; basis.push('Rule 9: Therapeutic active device');
+        } else if (energy === 'diagnostic' && cls === 'I') {
+            cls = 'IIa'; basis.push('Rule 10: Active device for diagnosis / monitoring');
+        }
+
+        // Risk tiebreaker
+        if (risk === 'high') {
+            cls = 'IIb'; basis.push('Risk uplift: Failure could be life-threatening');
+        }
+
+        // Long-term invasive + substance
+        if (dur === 'long' && inv !== 'noninvasive') {
+            cls = 'IIb'; basis.push('Rule 8: Long-term implantable device');
+        }
+
+        // Medicinal product — highest rule
+        if (bio === 'medicinal') {
+            cls = 'III'; basis.push('Rule 13/14: Contains / combines with medicinal product');
+        }
+
+        // Remove duplicates
+        basis = [...new Set(basis)];
+        return { cls, basis };
+    }
+
+    function showResult() {
+        const { cls, basis } = computeResult();
+        const deviceName = document.querySelector('[id^=wizard]') ? 'Your medical device' : 'Medical device';
+
+        document.getElementById('wizard').style.display = 'none';
+        const results = document.getElementById('results');
+        results.style.display = 'block';
+        results.classList.add('show');
+
+        document.getElementById('resultBadge').textContent = 'MDR & UKCA Classification';
+        document.getElementById('resultClass').textContent = `Class ${cls}`;
+        document.getElementById('resultClassLabel').textContent = cls === 'I' ? 'Low risk — no Notified Body required' : cls === 'IIa' ? 'Medium risk — Notified Body involvement required' : 'Higher risk — Notified Body + technical documentation required';
+        document.getElementById('resultDevice').textContent = 'Medical Device';
+        document.getElementById('resultRegime').textContent = 'EU MDR 2017/745 · UKCA MDR 2002';
+
+        document.getElementById('resultDetail').innerHTML = `
+            <h3>Classification basis</h3>
+            <ul>${basis.map(b => `<li>${b}</li>`).join('')}</ul>
+        `;
+
+        document.getElementById('psurTeaser').innerHTML = `
+            <div class="psur-teaser-title">Ready for your PSUR?</div>
+            <p>Class ${cls} devices require ${cls === 'IIa' ? 'biennial' : 'annual'} Periodic Safety Update Reports. Alvento's PSUR Generator drafts yours in under 30 minutes.</p>
+            <a href="/tools/mdr-psur-outline-generator/">Try PSUR Generator →</a>
+        `;
+    }
+
+    function restart() {
+        currentStep = 0;
+        answers = {};
+        document.getElementById('results').style.display = 'none';
+        document.getElementById('wizard').style.display = 'block';
+        renderStep();
+    }
+
+    function copyResult() {
+        const { cls, basis } = computeResult();
+        const text = `Device Classification Result\nClass: ${cls}\nRegime: EU MDR 2017/745 · UKCA MDR 2002\n\nBasis:\n${basis.map(b => '— ' + b).join('\n')}\n\nGenerated at alvento.ltd/tools/mdr-class-check`;
+        navigator.clipboard.writeText(text);
+    }
+
+    renderStep();
+    </script>
+</body>
+</html>
