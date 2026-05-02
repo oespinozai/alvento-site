@@ -12,6 +12,7 @@
     { "source": "/tools/mdr-technical-file-index", "destination": "/tools/mdr-technical-file-index/index.html" },
     { "source": "/tools/cpd-tracker", "destination": "/tools/cpd-tracker/index.html" },
     { "source": "/tools/udi-decoder", "destination": "/tools/udi-decoder/index.html" },
+    { "source": "/tools/mdr-class-check", "destination": "/tools/mdr-class-check/index.html" },
     { "source": "/website-audit", "destination": "/website-audit.html" },
     { "source": "/RegalMail", "destination": "/email-plugin.html" },
     { "source": "/score-api", "destination": "/score-api.html" },
