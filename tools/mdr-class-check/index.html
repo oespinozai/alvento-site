@@ -71,9 +71,9 @@
             overflow-x: hidden;
         }
         a { color: inherit; text-decoration: none; }
-        .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
         nav {
-            position: fixed; inset: 0 0 auto 0; z-index: 100;
+            position: sticky; top: 0; z-index: 100;
             padding: 20px 0;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -85,15 +85,25 @@
         .logo span { color: var(--accent); }
         nav a.back-link { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
         nav a.back-link:hover { color: var(--text); }
-        main.container { padding: 250px 24px 120px; }
-        .page-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px; }
-        h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.2; margin-bottom: 16px; }
-        .subtitle { color: var(--muted); font-size: 1.05rem; margin-bottom: 48px; }
+        main { margin: 40px 0 80px; }
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 40px;
+        }
+        .breadcrumb a { color: var(--muted); }
+        .breadcrumb a:hover { color: var(--text); }
+        header { margin-bottom: 48px; }
+        h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 400; line-height: 1.1; margin-bottom: 16px; }
+        .subtitle { color: var(--muted); font-size: 1.1rem; max-width: 600px; }
         .wizard-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 4px;
-            padding: 40px;
+            padding: 32px;
             margin-bottom: 24px;
         }
         .step-indicator {
@@ -241,7 +251,7 @@
             letter-spacing: 0.04em;
         }
         @media (max-width: 768px) {
-            .wizard-card { padding: 28px 20px; }
+            .wizard-card { padding: 24px 20px; }
             .result-card { padding: 36px 24px; }
             .result-actions { flex-direction: column; }
         }
@@ -255,9 +265,11 @@
         </div>
     </nav>
     <main class="container">
-        <div class="page-label">Free tool</div>
-        <h1>What's your device class?</h1>
-        <p class="subtitle">5 questions to classify your device under EU MDR 2017/745 and UKCA. Instant result — no signup.</p>
+        <div class="breadcrumb"><a href="/tools">Tools</a> / MDR class check</div>
+        <header>
+            <h1>What's your device class?</h1>
+            <p class="subtitle">5 questions to classify your device under EU MDR 2017/745 and UKCA. Instant result — no signup.</p>
+        </header>
 
         <div class="wizard-card" id="wizard">
             <div class="step-indicator" id="stepIndicator"></div>
