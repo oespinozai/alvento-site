@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pipeline That Failed Apple Could Fail You Too | Alvento</title>
+    <meta name="description" content="Apple shipped internal CLAUDE.md configuration files in its Support app v5.13. If that can happen at Apple, your AI governance framework needs an update.">
+    <meta name="author" content="Oscar Espinoza, Alvento">
+    <meta property="og:title" content="The Pipeline That Failed Apple Could Fail You Too">
+    <meta property="og:description" content="Apple shipped internal CLAUDE.md configuration files in its Support app v5.13. If that can happen at Apple, your AI governance framework needs an update.">
+    <meta property="og:url" content="https://alvento.ltd/blog/apple-claude-md-leak-governance/">
+    <meta property="og:image" content="https://alvento.ltd/blog/images/apple-claude-leak-hero.jpg">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Pipeline That Failed Apple Could Fail You Too">
+    <meta name="twitter:description" content="Apple shipped internal CLAUDE.md configuration files in its Support app v5.13. If that can happen at Apple, your AI governance framework needs an update.">
+    <meta name="twitter:image" content="https://alvento.ltd/blog/images/apple-claude-leak-hero.jpg">
+    <link rel="canonical" href="https://alvento.ltd/blog/apple-claude-md-leak-governance/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100; padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display); font-size: 1.5rem;
+            letter-spacing: -0.02em; text-decoration: none; color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--muted); transition: color 0.3s; text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+        .breadcrumb {
+            max-width: 800px; margin: 0 auto; padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--muted); text-transform: uppercase;
+            letter-spacing: 0.08em; text-decoration: none; transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15; letter-spacing: -0.02em;
+            margin-bottom: 24px; color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px; margin-bottom: 20px; color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem; margin-top: 32px; margin-bottom: 16px; color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px; color: #b8b8b8; line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent); text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim); transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--muted); margin-bottom: 40px;
+            padding-bottom: 20px; border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .hero-image {
+            width: 100%; height: auto; margin-bottom: 40px;
+            border-radius: 4px; border: 1px solid var(--border); display: block;
+        }
+        .cta-box {
+            background: var(--surface); border-left: 3px solid var(--accent);
+            padding: 24px; margin: 32px 0; border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: #b8b8b8; line-height: 1.7; }
+
+        .sources {
+            margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);
+        }
+        .sources h3 {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--muted); margin-bottom: 16px; margin-top: 0;
+        }
+        .sources ul { margin-left: 20px; }
+        .sources li {
+            font-size: 0.9rem; color: #b8b8b8;
+            margin-bottom: 8px; line-height: 1.5;
+        }
+        .sources a { word-break: break-word; }
+
+        footer {
+            padding: 40px 0; border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex; justify-content: space-between;
+            align-items: center; flex-wrap: wrap; gap: 16px;
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono); font-size: 0.7rem;
+            color: var(--dim); letter-spacing: 0.04em;
+        }
+
+        .fade-up { opacity: 0; transition: opacity 0.7s ease; }
+        .fade-up.visible { opacity: 1; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column; position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);
+                padding: 24px; gap: 20px; border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Pipeline That Failed Apple Could Fail You Too",
+        "description": "Apple shipped internal CLAUDE.md configuration files in its Support app v5.13. If that can happen at Apple, your AI governance framework needs an update.",
+        "image": "https://alvento.ltd/blog/images/apple-claude-leak-hero.jpg",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
+        "datePublished": "2026-05-05",
+        "url": "https://alvento.ltd/blog/apple-claude-md-leak-governance/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#products">Products</a></li>
+                <li><a href="/case-studies/immunaris">Case studies</a></li>
+                <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">The Pipeline That Failed Apple Could Fail You Too</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Founder, Alvento, 5 May 2026</p>
+        </div>
+
+        <img src="/blog/images/apple-claude-leak-hero.jpg" alt="An isometric editorial illustration of a smartphone with its screen cracked open, internal configuration files spilling out as glowing acid-lime green code fragments against a matte black background, rendered in charcoal stipple." class="hero-image fade-up">
+
+        <p>On 30 April 2026, Apple shipped version 5.13 of its Support app. Developer Aaron Perris unpacked the bundle and found two files that weren't meant to be there. <code>CLAUDE.md</code> instruction files &mdash; the configuration documents that tell Anthropic's Claude Code how a project works.</p>
+
+        <p>The files described a dual AI-human support architecture internally called "Juno AI." They referenced conditional compilation flags (<code>JUNO_ENABLED</code>, <code>DEV_BUILD</code>), internal bug-tracker tickets, and routing logic for conversations between AI agents and live support staff. Apple pushed a silent hotfix (v5.13.1) within 24 hours. No statement. No acknowledgment.</p>
+
+        <p>The news isn't that Apple uses Claude. Bloomberg's Mark Gurman reported months ago that "Apple runs on Anthropic at this point." The news is that Apple &mdash; a company famous for obsessive security controls &mdash; shipped internal AI configuration files in a consumer app bundle. The pipeline didn't catch it. Nobody did.</p>
+
+        <p>If that can happen at Apple, it can happen at your organisation. The question is what gets leaked when it does.</p>
+
+        <h2 class="fade-up">The policy isn't working</h2>
+
+        <p>Most regulated organisations have a line somewhere: "Employees may not use unapproved AI tools with company data." It lives in a policy document. Nobody reads it. Your engineers are using Claude Code, your comms team is running copy through ChatGPT, and your clinicians are drafting letters with Copilot.</p>
+
+        <p>The policy is technically correct. It is practically useless.</p>
+
+        <p>The Apple leak shows why. Those <code>CLAUDE.md</code> files weren't a rogue employee bypassing the rules. They were the approved development workflow. The gap wasn't individual. It was process-level.</p>
+
+        <h2 class="fade-up">Three layers of governance that actually work</h2>
+
+        <p><strong>Layer one</strong> &mdash; admit it's already happening. Stop writing policies that pretend you can ban AI tools. Your team uses them. Your competitors' teams use them. Run an honest audit. Ask what tools are being used and with what data. You cannot govern what you refuse to see.</p>
+
+        <p><strong>Layer two</strong> &mdash; classify data, not tools. A clinician pasting anonymised test data into ChatGPT is a different risk from one pasting patient-identifiable information. Define sensitivity levels and what's allowed at each. This survives tool changes. It works for ChatGPT, Claude, Copilot, Gemini, and whatever launches next week.</p>
+
+        <p><strong>Layer three</strong> &mdash; check the pipeline, not just the person. Apple's mistake was a CI/CD pipeline that didn't know to exclude <code>.md</code> files. For a regulated organisation the question is: does your deployment process catch AI-generated code? Does your procurement process require vendors to disclose model usage? Does your incident plan cover an AI configuration leak?</p>
+
+        <h2 class="fade-up">The regulatory angle</h2>
+
+        <p>If Apple's leak is a PR problem, for a regulated organisation it would be a regulatory one. Caldicott Principle 7 says the duty to share information is as important as the duty to protect confidentiality. That duty assumes you know where data is going. Most organisations don't.</p>
+
+        <p>The <code>CLAUDE.md</code> files didn't contain user data. They contained system architecture. But the same pipeline failure that shipped internal config files could ship internal data. The next organisation to make this error may not get a silent hotfix.</p>
+
+        <h2 class="fade-up">This week</h2>
+
+        <p>Run the audit. Replace the ban policy with a data classification policy. Review your pipelines. Write it down &mdash; one page, not forty. Your compliance officer and your engineering lead should both be able to read it in ten minutes.</p>
+
+        <div class="related-tools" style="margin:48px 0 24px;padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--surface);">
+            <p style="font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:16px;">Related free tools</p>
+            <ul style="list-style:none;margin:0;padding:0;">
+                <li style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);"><a href="https://alvento.app/tools/sop-to-checklist" style="color:var(--accent);font-weight:500;border-bottom:0;">SOP to Checklist Generator</a><div style="color:#b8b8b8;font-size:0.92rem;margin-top:4px;">Paste an SOP, get a structured checklist with owners and frequency. Turn your governance framework into an actionable workflow.</div></li>
+                <li><a href="https://alvento.app/tools/hash-generator" style="color:var(--accent);font-weight:500;border-bottom:0;">Hash Generator</a><div style="color:#b8b8b8;font-size:0.92rem;margin-top:4px;">Generate SHA-256 checksums to verify file integrity in your deployment pipeline. Catch config drift before it ships.</div></li>
+            </ul>
+        </div>
+
+        <div class="cta-box fade-up">
+            <p><strong>Deploying AI in a regulated environment?</strong> Alvento helps businesses deploy and govern AI systems in production &mdash; evaluation harnesses, version discipline, and vendor risk modelling. Book a diagnostic at <a href="/#contact">alvento.ltd</a> or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a> &mdash; first conversation is free.</p>
+        </div>
+
+        <section class="sources">
+            <h3>Verification links</h3>
+            <ul>
+                <li><a href="https://x.com/aaronp613/status/1903642176624259401">Aaron Perris's original discovery on X</a></li>
+                <li><a href="https://www.news9live.com/technology/artificial-intelligence/apple-support-app-claude-md-files-leak-claude-code-ai-tools-2966945">News9live coverage of the leak</a></li>
+                <li><a href="https://singularity.kiwi/apple-claude-config-leak-support-app/">Singularity.Kiwi analysis</a></li>
+                <li><a href="https://fintechgrid.io/post/apple-claude-ai-workflow-leak-raises-new-questions">The FinTech Grid</a></li>
+                <li><a href="https://github.com/Aaron0502/claude-code">Claude Code source map leak (March 2026)</a></li>
+                <li>92.6% developer AI adoption figure referenced from developer surveys cited across multiple coverage sources</li>
+            </ul>
+        </section>
+
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+            document.querySelectorAll('.nav-links a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    document.querySelector('.nav-links').classList.remove('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
