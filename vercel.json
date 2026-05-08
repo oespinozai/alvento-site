@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": true,
   "rewrites": [
+
     { "source": "/report/:token/", "destination": "/reports/:token" },
     { "source": "/report/:token", "destination": "/reports/:token" },
     { "source": "/tools", "destination": "/tools.html" },
@@ -16,11 +17,14 @@
     { "source": "/website-audit", "destination": "/website-audit.html" },
     { "source": "/RegalMail", "destination": "/email-plugin.html" },
     { "source": "/score-api", "destination": "/score-api.html" },
-    { "source": "/aeo", "destination": "/aeo.html" }
+    { "source": "/aeo", "destination": "/aeo.html" },
+    { "source": "/projects/psur-draft-generator", "destination": "/projects/psur-draft-generator/index.html" }
   ],
   "redirects": [
     { "source": "/seo-audit", "destination": "/website-audit", "permanent": true },
-    { "source": "/seo-audit/", "destination": "/website-audit", "permanent": true }
+    { "source": "/seo-audit/", "destination": "/website-audit", "permanent": true },
+    { "source": "/case-studies/:path*", "destination": "/projects/:path*", "permanent": true },
+    { "source": "/case-studies/:path*/", "destination": "/projects/:path*", "permanent": true }
   ],
   "functions": {
     "api/audit.js": { "maxDuration": 15 }
