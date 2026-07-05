@@ -5,10 +5,10 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alvento: AI capability for regulated medtech, registries, and professional bodies</title>
-<meta name="description" content="Alvento designs and deploys websites, knowledge systems, and operational AI for regulated medtech, registries, and professional bodies. Built for compliance-heavy environments.">
-<meta property="og:title" content="Alvento: AI capability for regulated medtech, registries, and professional bodies">
-<meta property="og:description" content="Websites, knowledge systems, and operational AI, built for compliance-heavy environments.">
+<title>Alvento: An AI operations studio</title>
+<meta name="description" content="Alvento is an AI operations studio. We design, build, and operate autonomous systems that do real business work. Regulated sectors are our flagship.">
+<meta property="og:title" content="Alvento: An AI operations studio">
+<meta property="og:description" content="Alvento is an AI operations studio. We design, build, and operate autonomous systems that do real business work.">
 <meta property="og:image" content="https://alvento.ltd/og-image.png">
 <meta property="og:url" content="https://alvento.ltd">
 <meta property="og:type" content="website">
@@ -432,19 +432,19 @@ nav .container {
   line-height: 1.7;
 }
 
-/* ---- PROOF / PRODUCTS ---- */
-.products { padding: 120px 0; }
+/* ---- LAB ---- */
+.lab { padding: 120px 0; }
 
-.products h2 {
+.lab h2 {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: 64px;
   letter-spacing: -0.02em;
 }
 
-.products h2 em { font-style: italic; color: var(--accent); }
+.lab h2 em { font-style: italic; color: var(--accent); }
 
-.products-grid {
+.lab-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0;
@@ -653,6 +653,19 @@ nav .container {
   margin-top: 1px;
 }
 
+/* ---- WORK WITH US ---- */
+.work-with-us { padding: 120px 0; }
+
+.work-with-us h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+  max-width: 760px;
+}
+
+.work-with-us h2 em { font-style: italic; color: var(--accent); }
+
 /* ---- CONTACT ---- */
 .contact { padding: 120px 0; }
 
@@ -729,7 +742,7 @@ footer p {
   .problem-grid { grid-template-columns: 1fr; }
   .capabilities-grid { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
-  .products-grid { grid-template-columns: 1fr; }
+  .lab-grid { grid-template-columns: 1fr; }
   #tools [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
   .credibility-grid { grid-template-columns: 1fr; }
   .engagement-grid { grid-template-columns: 1fr; }
@@ -752,7 +765,8 @@ footer p {
     <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
     <ul class="nav-links">
       <li><a href="#capabilities">Capabilities</a></li>
-      <li><a href="#products">Products</a></li>
+      <li><a href="#lab">Lab</a></li>
+      <li><a href="#work-with-us">Work with us</a></li>
       <li><a href="/tools">Tools</a></li>
       <li><a href="/case-studies/immunaris">Case studies</a></li>
       <li><a href="/blog/">Insights</a></li>
@@ -766,14 +780,15 @@ footer p {
   <div id="particles-js" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="section-label fade-up">Alvento Ltd, AI capability partner for regulated sectors</div>
-      <h1 class="fade-up">AI capability for <em>regulated medtech, registries, and professional bodies</em></h1>
-      <p class="fade-up">Websites, knowledge systems, and operational AI, built for compliance-heavy environments.</p>
+      <div class="section-label fade-up">Alvento, an AI operations studio</div>
+      <p class="fade-up" style="font-size: 1.15rem; color: var(--muted); max-width: 560px; margin-bottom: 24px; line-height: 1.7;">Most AI never makes it out of the pilot. We exist to close that gap.</p>
+      <h1 class="fade-up">We build and run <em>autonomous systems</em> that do real business work.</h1>
+      <p class="fade-up">Regulated medtech, registries, and professional bodies are our flagship work. The same operating discipline applies anywhere the work is operational, consequential, and on the critical path.</p>
       <div class="hero-buttons fade-up">
         <a href="#contact" class="btn-primary">Book a diagnostic</a>
-        <a href="#capabilities" class="btn-secondary">See what we build &rarr;</a>
+        <a href="#capabilities" class="btn-secondary">See what we build</a>
       </div>
-      <p class="hero-trust fade-up">Built for real business use, not demos, decks, or experimental pilots.</p>
+      <p class="hero-trust fade-up">Production systems, not pilot decks.</p>
     </div>
   </div>
 </section>
@@ -883,41 +898,38 @@ footer p {
   </div>
 </section>
 
-<!-- PROOF / SHIPPED SYSTEMS -->
-<section class="products" id="products">
+<!-- LAB / SHIPPED SYSTEMS -->
+<section class="lab" id="lab">
   <div class="container">
-    <div class="section-label fade-up">04. The work</div>
-    <h2 class="fade-up">Infrastructure running in <em>real operations</em></h2>
-    <div class="products-grid">
+    <div class="section-label fade-up">04. The lab</div>
+    <h2 class="fade-up">What we've <em>built</em></h2>
+    <div class="lab-grid">
       <div class="product-card fade-up">
-        <div class="product-type">Case study, Clinical registry</div>
-        <h3>Immunaris</h3>
-        <p>A clinical vaccination registry, built to show what a regulated-medtech record system looks like when compliance, retention and auditability are load-bearing from the first commit. Reference artefact for how we build in clinical environments.</p>
-        <a href="/case-studies/immunaris" class="product-link">Read the case study &rarr;</a>
+        <div class="product-type">Live, Consumer AI</div>
+        <h3>Portraix</h3>
+        <p>AI headshots generated per occupation, with public pages built for buyer-intent search.</p>
+        <a href="https://portraix.com" class="product-link" target="_blank" rel="noopener">Visit Portraix</a>
       </div>
       <div class="product-card fade-up">
-        <div class="product-type">AI Infrastructure</div>
-        <h3>RegalMail</h3>
-        <p>Email channel plugin for AI agents. IMAP inbound, SMTP outbound, thread-aware replies. Gives an AI agent a real email inbox, with the context awareness needed to handle ongoing conversations correctly. Available on npm.</p>
-        <a href="/email-plugin" class="product-link">Learn more &rarr;</a>
+        <div class="product-type">Live, Loyalty SaaS</div>
+        <h3>Stammp</h3>
+        <p>Loyalty and rewards infrastructure for hospitality venues, deployed in production behind cloudflared.</p>
+        <a href="https://staamp.co.uk" class="product-link" target="_blank" rel="noopener">Visit Stammp</a>
       </div>
       <div class="product-card fade-up">
-        <div class="product-type">Data Infrastructure</div>
-        <h3>Score API</h3>
-        <p>Business intelligence infrastructure in a single API call. Digital presence, reviews, citations, competitive gap, all scored 0&ndash;100 with clean structured output. Built for AI agents, SaaS platforms, and data pipelines that need reliable business data at scale.</p>
-        <a href="/score-api" class="product-link">Learn more &rarr;</a>
+        <div class="product-type">TBD</div>
+        <h3>Wren</h3>
+        <p>TBD</p>
       </div>
       <div class="product-card fade-up">
-        <div class="product-type">Shipping Proof</div>
-        <h3>ioomm</h3>
-        <p>A live consumer AI product, AI-generated studio portraits from a selfie, with real users and real payments worldwide. We built it, shipped it, and it runs without us. That's the proof: we don't just design systems, we deploy them.</p>
-        <a href="https://ioomm.app" class="product-link" target="_blank" rel="noopener">Try ioomm &rarr;</a>
+        <div class="product-type">TBD</div>
+        <h3>Kestrel</h3>
+        <p>TBD</p>
       </div>
       <div class="product-card fade-up">
-        <div class="product-type">Growth Capability / Regulated</div>
-        <h3>AEO for regulated organisations</h3>
-        <p>Answer-engine visibility scoped for MHRA, GMC and ICO-sensitive copy. Structured entity presence and citation infrastructure for medical societies, registries and clinical-adjacent businesses whose public content has to survive regulatory review, not just rank.</p>
-        <a href="/aeo" class="product-link">How we scope it</a>
+        <div class="product-type">TBD</div>
+        <h3>Licit</h3>
+        <p>TBD</p>
       </div>
     </div>
   </div>
@@ -1031,6 +1043,33 @@ footer p {
           <li>Strategic AI roadmapping</li>
         </ul>
         <a href="#contact" class="btn-secondary" style="font-size:0.88rem;padding:12px 24px;">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK WITH US -->
+<section class="work-with-us" id="work-with-us">
+  <div class="container">
+    <div class="section-label fade-up">Working with us</div>
+    <h2 class="fade-up">Install and operate <em>agent systems</em> that do real business work</h2>
+    <p class="engagement-intro fade-up">We work as a fractional AI operations team. We install the agent inside your environment, run it alongside your team, measure it against a real business outcome, and hand it over once it works.</p>
+    <div class="credibility-grid">
+      <div class="credibility-point fade-up">
+        <h4>Installed, not handed over</h4>
+        <p>The system runs inside your environment, on your accounts, under your controls. You do not need to hire engineers to keep it alive after we leave.</p>
+      </div>
+      <div class="credibility-point fade-up">
+        <h4>Measured against outcomes</h4>
+        <p>Every agent system is wired to a specific business outcome. We report against it. If it does not do the work, we change it.</p>
+      </div>
+      <div class="credibility-point fade-up">
+        <h4>Fractional operations</h4>
+        <p>We operate the system for as long as it takes to prove it works in production. Then we hand the keys to your team, with documentation and handover.</p>
+      </div>
+      <div class="credibility-point fade-up">
+        <h4>Built for production, not pilots</h4>
+        <p>The work starts from a real operational constraint, not from a demo brief. The output runs in your business, not in a sandbox.</p>
       </div>
     </div>
   </div>
@@ -1190,7 +1229,7 @@ document.addEventListener('DOMContentLoaded', function() {
   "name": "Alvento Ltd",
   "url": "https://alvento.ltd",
   "email": "hello@alvento.ltd",
-  "description": "Alvento designs and deploys websites, knowledge systems, and operational AI for regulated medtech, registries, and professional bodies. Built for compliance-heavy environments.",
+  "description": "Alvento is an AI operations studio. We design, build, and operate autonomous systems that do real business work. Regulated sectors are our flagship.",
   "areaServed": "GB",
   "sameAs": []
 }
