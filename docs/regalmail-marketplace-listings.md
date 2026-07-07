@@ -6,7 +6,7 @@
 **Tagline**: Email for your AI agents — IMAP in, SMTP out
 **Description**: Give your AI agents a real email inbox. RegalMail connects any IMAP/SMTP provider to your AI agents with real-time detection, thread-aware replies, anti-loop protection, and multi-account routing. Free tier included.
 **Topics**: AI, Developer Tools, Email, Open Source
-**Links**: https://alvento.ltd/email-plugin | https://npmjs.com/package/regalmail | https://github.com/oespinozai/regalmail
+**Links**: https://alvento.uk/email-plugin | https://npmjs.com/package/regalmail | https://github.com/oespinozai/regalmail
 **Maker comment**: We built this because every AI agent framework supports chat, Slack, Discord — but not email. Email is still how most businesses communicate. RegalMail adds it as a first-class channel with one npm install. Free tier: 1 mailbox, 200 emails/month. No credit card.
 
 ---
@@ -26,7 +26,7 @@ npm install regalmail
 
 Free tier: 1 mailbox, 200 emails/mo. Pro ($15/mo) and Business ($49/mo) for teams.
 
-https://alvento.ltd/email-plugin
+https://alvento.uk/email-plugin
 
 ---
 
@@ -43,7 +43,7 @@ https://alvento.ltd/email-plugin
 
 Free tier: 1 mailbox, 200 emails/mo. npm install regalmail.
 
-https://alvento.ltd/email-plugin
+https://alvento.uk/email-plugin
 
 ---
 
@@ -62,7 +62,7 @@ IMAP IDLE for real-time detection. SMTP with proper threading. Anti-loop protect
 
 Free tier. One npm install.
 
-alvento.ltd/email-plugin
+alvento.uk/email-plugin
 
 ---
 
@@ -74,4 +74,4 @@ Your agents can now receive, understand, and reply to emails automatically. Work
 
 Free to start. npm install regalmail.
 
-alvento.ltd/email-plugin
+alvento.uk/email-plugin

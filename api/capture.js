@@ -4,8 +4,8 @@ import nodemailer from "nodemailer";
 // via OCI SMTP. No tailnet/webhook dependency.
 const SMTP_HOST = "smtp.email.uk-london-1.oci.oraclecloud.com";
 const SMTP_PORT = 587;
-const FROM = "Maeve at Alvento <maeve@alvento.ltd>";
-const NOTIFY_TO = process.env.CAPTURE_NOTIFY_TO || "leads@alvento.ltd";
+const FROM = "Maeve at Alvento <maeve@alvento.uk>";
+const NOTIFY_TO = process.env.CAPTURE_NOTIFY_TO || "leads@alvento.uk";
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
