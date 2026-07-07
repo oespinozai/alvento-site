@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How a one-person company runs on an agent fleet | Alvento</title>
+    <meta name="description" content="One founder, a fleet of AI agents, and the counterintuitive move that made it work: deleting most of the instructions. What survived, what got automated, and what still needs a human.">
+    <meta name="author" content="Oscar Espinoza, Alvento">
+    <meta property="og:title" content="How a one-person company runs on an agent fleet">
+    <meta property="og:description" content="One founder, a fleet of AI agents, and the counterintuitive move that made it work: deleting most of the instructions. What survived, what got automated, and what still needs a human.">
+    <meta property="og:url" content="https://alvento.ltd/blog/how-a-one-person-company-runs-on-an-agent-fleet/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: #b8b8b8;
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .article-container pre {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 20px 22px;
+            margin: 24px 0;
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text);
+            border-radius: 3px;
+        }
+        .article-container code {
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            color: var(--text);
+        }
+        .article-container pre code {
+            font-size: inherit;
+            color: inherit;
+            background: none;
+            padding: 0;
+        }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: #b8b8b8; line-height: 1.7; }
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+        .fade-up {
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How a one-person company runs on an agent fleet",
+        "description": "One founder, a fleet of AI agents, and the counterintuitive move that made it work: deleting most of the instructions. What survived, what got automated, and what still needs a human.",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.ltd" },
+        "datePublished": "2026-07-07",
+        "url": "https://alvento.ltd/blog/how-a-one-person-company-runs-on-an-agent-fleet/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#products">Products</a></li>
+                <li><a href="/case-studies/immunaris">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">How a one-person company runs on an agent fleet</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Alvento, 7 July 2026, 6 min read</p>
+        </div>
+
+        <p>One person runs this company. The staff is a fleet of agents across a small rack of servers in a back room: one strong model that plans and reviews, cheaper models that execute bounded work, and a layer of scripts that watch reality. The founder's job has narrowed, over time, to judgement.</p>
+
+        <p>Day to day, almost nothing is done by hand. Drafting, coding, deploying, invoicing, monitoring, content updates, internal research, even much of the sales correspondence: each goes through an agent, gets reviewed by another agent, and only then lands in front of a human. The human's job is the parts the agents can't do well. Deciding what to build. Saying no to clients. Taking blame when something goes wrong. Signing things.</p>
+
+        <p>This piece is about the operating system underneath that arrangement. Not the tools, not the latest model release, not the clever prompts. The discipline of running a small operation through agents without it collapsing, and the one move that made the discipline possible in the first place.</p>
+
+        <h2 class="fade-up">The deletion that made it work</h2>
+
+        <p>The setup used to be the opposite of lean. Fifty-two instruction files. Fourteen role definitions. A thick rulebook covering tone, format, escalation, sub-tasks, tool selection, error handling, response length, and several other concerns I can't now reconstruct. Almost all of it got deleted. What survived is one page of hard rules and a handful of reusable skills. The cut was the move that mattered.</p>
+
+        <p>The reason is counterintuitive but consistent. Detailed process instructions were written, originally, to compensate for weaker models. They are scaffolding for a model that cannot generalise: tell it the steps and it follows them. A stronger model does not need the steps. It needs facts, goals, tools and feedback, and it will use judgement. Cluttering the stronger model with steps designed for the weaker one drags it back down to following the steps and producing the mediocre output the steps were meant to prevent.</p>
+
+        <p>This is the move that actually moved the needle on throughput. Not a better model. Not a fancier tool. Cutting the rules and trusting the model with judgement, then bounding the judgement with reality checks rather than process audits.</p>
+
+        <h2 class="fade-up">Watching reality, not process</h2>
+
+        <p>Twice a day, scripts probe the live sites, the backups, the storage mounts, and the live integrations. If anything drifts, a message lands on the founder's phone. Nothing in that loop checks whether the agents followed a process. Everything in that loop checks whether the world is in the right state.</p>
+
+        <p>That distinction matters. A process audit says the agent did step three in the right order, and it feels reassuring, but it doesn't tell you whether the customer's site is up. A state check says the customer's site is up, the backup ran, the storage mount is healthy, the scheduled job fired. That is the question that actually matters. The first kind of check optimises for the appearance of control. The second kind optimises for control.</p>
+
+        <p>When something fails, the failure surfaces fast and with the actual evidence. Not "the agent reported success" but "the agent reported success and the response code was 502". That is the feedback loop a small operation needs, and it is cheaper to build than people assume.</p>
+
+        <h2 class="fade-up">The vendor problem</h2>
+
+        <p>Any model can vanish. A price change. A policy change. An outage. A lab that decides its best customers are no longer its best customers. Every founder who has been in this game longer than two years has watched a model they relied on quietly become unusable, and most of them were caught flat-footed when it happened. The insurance against any one of those outcomes is small and unglamorous: a profile file per alternative model, a one-command switch script, and a two-tier context system that changes the rules around the model, not just the model itself.</p>
+
+        <p>Frontier models get a two-line note in their context: use judgement, no process constraints, just produce the right answer. Lesser models get mandatory scaffolding: plan first, prove done with pasted output, stay inside the task's boundary. The same work order can go to either tier; the wrapper around the model is what changes. The model itself is the smallest part of the wrapper.</p>
+
+        <p>Two small artefacts carry most of the value of the whole arrangement.</p>
+
+        <pre><code># Model tier: frontier
+No process constraints. Use judgment.</code></pre>
+
+        <pre><code>./switch-model.sh backup     # swap the model, the context tier, and the keys in one move
+./switch-model.sh frontier   # put everything back</code></pre>
+
+        <p>That switch script is the difference between a 48 hour incident and a ten minute one. When the strong model goes away, the system does not stop. It falls back, the work continues at lower quality, and the founder gets a note about which work needs re-review once the strong model is back. There is no magic in it, and that is the point.</p>
+
+        <h2 class="fade-up">Two seats, not one</h2>
+
+        <p>The seat split is simple and hard to fake. The best available model writes the plan and verifies the result. Cheaper models execute bounded work orders that must paste evidence for every step. Nothing merges unreviewed. Nothing reaches a client without a reviewer pass.</p>
+
+        <p>A model that plans needs to hold the whole problem in its head, weigh trade-offs, write a brief specific enough that another model can execute it, and spot its own blind spots before the work goes out the door. A model that executes needs to be cheap, fast, disciplined enough to stop at the boundary of its competence, and honest enough to paste the evidence that proves the step actually worked rather than the step that the model hoped would work. Those are different skills. Pretending one tier can do both well at the same price is how small operations burn through time and budget without anything to show for it.</p>
+
+        <p>This post is itself an example of the split working. The plan was written by the strong model, fact-checked, and handed to a cheaper executor as a work order. The cheaper executor drafted this body, paste by paste, from that spec. The strong model reviewed the result. If you are reading this, the system produced it. That is the system working as designed.</p>
+
+        <h2 class="fade-up">The honest ending</h2>
+
+        <p>What does not transfer is judgement. When the strong model is unavailable, the human becomes the verifier of last resort, and throughput on anything non-mechanical drops to a crawl. That is the price. The honest version of this operating system designs for that drop, instead of pretending it does not happen.</p>
+
+        <p>The temptation in any small operation is to over-automate. To claim a model can do judgement when it cannot. To hide the fallback path so the founder does not have to explain it. Both moves feel productive and both cost more than they save. The honest version is: agents handle the parts that can be verified by checking reality. The human handles the parts that cannot. The boundary moves slowly, not because the agents are not improving, but because judgement is the part that does not transfer cleanly, and pretending otherwise is how small companies get caught out at the worst possible moment.</p>
+
+        <p>This operational discipline is what Alvento builds for clients. Not magic. Not full autonomy. A system that knows what it does not know, with a founder who still has the time to make the calls that matter. If that sounds like the system your operation is missing, start with a diagnostic at <a href="/#contact">alvento.ltd</a>, or email <a href="mailto:hello@alvento.ltd">hello@alvento.ltd</a>. The first conversation is free.</p>
+
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>alvento.ltd</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+            document.querySelectorAll('.nav-links a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    document.querySelector('.nav-links').classList.remove('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
