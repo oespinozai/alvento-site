@@ -1,5 +1,5 @@
 const WEBHOOK_URL = "https://openclaw.ghost-truck.ts.net:8443/lead";
-const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || "alv-leads-k8m2x9";
+const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
