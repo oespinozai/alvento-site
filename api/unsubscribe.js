@@ -1,3 +1,10 @@
+import dns from "node:dns";
+// Vercel's serverless runtime cannot resolve .ts.net (Tailscale Funnel)
+// hostnames via its default DNS resolver (ENOTFOUND, confirmed live).
+// Force a normal public resolver instead - the address itself is genuinely
+// public once `tailscale funnel` is on, this is purely a DNS-resolution gap.
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
+
 const UNSUB_BASE = "https://openclaw.ghost-truck.ts.net:8443/unsubscribe";
 
 export default async function handler(req, res) {

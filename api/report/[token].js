@@ -1,3 +1,8 @@
+import dns from "node:dns";
+// Same fix as api/unsubscribe.js: Vercel's default DNS resolver can't
+// resolve .ts.net (Tailscale Funnel) hostnames (ENOTFOUND, confirmed live).
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
+
 const REPORT_BASE = "https://openclaw.ghost-truck.ts.net:8443/report";
 
 export default async function handler(req, res) {
