@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     }
     return res.status(resp.status).send(body);
   } catch (err) {
-    console.error("Unsubscribe proxy error:", err.message);
+    console.error("Unsubscribe proxy error:", err.message, "cause:", err.cause?.code || err.cause?.message || err.cause);
     return res.status(502).send("Unable to process unsubscribe request");
   }
 }
