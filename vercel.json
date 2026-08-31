@@ -16,6 +16,7 @@
     { "source": "/tools/mdr-class-check", "destination": "/tools/mdr-class-check/index.html" },
     { "source": "/website-audit", "destination": "/website-audit.html" },
     { "source": "/audit-booked", "destination": "/audit-booked.html" },
+    { "source": "/unsubscribe", "destination": "/api/unsubscribe" },
     { "source": "/RegalMail", "destination": "/email-plugin.html" },
     { "source": "/score-api", "destination": "/score-api.html" },
     { "source": "/aeo", "destination": "/aeo.html" },
