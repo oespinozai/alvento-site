@@ -1,9 +1,7 @@
-import dns from "node:dns";
-// Same fix as api/unsubscribe.js: Vercel's default DNS resolver can't
-// resolve .ts.net (Tailscale Funnel) hostnames (ENOTFOUND, confirmed live).
-dns.setServers(["1.1.1.1", "8.8.8.8"]);
+import { proxyRequest } from "../_ts-net-proxy.js";
 
-const REPORT_BASE = "https://openclaw.ghost-truck.ts.net:8443/report";
+const REPORT_HOST = "openclaw.ghost-truck.ts.net";
+const REPORT_PORT = 8443;
 
 export default async function handler(req, res) {
   const { token } = req.query;
@@ -13,14 +11,17 @@ export default async function handler(req, res) {
   }
 
   try {
-    const resp = await fetch(`${REPORT_BASE}/${token}`);
-    if (!resp.ok) {
-      return res.status(resp.status).send("Report not found");
+    const { status, body } = await proxyRequest(
+      REPORT_HOST,
+      REPORT_PORT,
+      `/report/${encodeURIComponent(token)}`
+    );
+    if (status !== 200) {
+      return res.status(status).send(body || "Report not found");
     }
-    const html = await resp.text();
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.setHeader("Cache-Control", "public, max-age=3600");
-    return res.status(200).send(html);
+    return res.status(200).send(body);
   } catch (err) {
     console.error("Report proxy error:", err.message);
     return res.status(502).send("Unable to load report");
