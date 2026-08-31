@@ -5,9 +5,9 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sample website audit report, Alvento</title>
+<title>Website audit report template, Alvento</title>
 <link rel="canonical" href="https://alvento.uk/sample-audit-report/">
-<meta name="description" content="An illustrative example of Alvento's website audit report format for professional bodies and regulated organisations. Not a named client.">
+<meta name="description" content="A worked example of Alvento's website audit report format for UK professional bodies and regulated organisations, grounded in real WCAG 2.2 and accessibility-regulation standards.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,14 +97,14 @@ footer p{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);te
 </nav>
 
 <div class="disclaimer">
-  <p><strong>Illustrative example.</strong> This report uses a composite, fictional organisation to show the format and structure of a real deliverable. It does not describe any actual client or engagement.</p>
+  <p><strong>Worked example.</strong> This is a report template, not a completed engagement or a real organisation's results. Findings are grounded in real, citable standards (WCAG 2.2, PSBAR) applied to a typical site profile, so the method is real even though no specific client's data is.</p>
 </div>
 
 <div class="container">
   <header class="report-header">
-    <span class="tag">Sample report</span>
-    <h1>Website audit for a <em>specialty membership body</em> (illustrative)</h1>
-    <p class="report-meta">Composite example, not a real organisation. Six-section executive summary, prioritised risk register, three fixed-scope remediation tiers. This is the format every Alvento website audit is delivered in.</p>
+    <span class="tag">Report template</span>
+    <h1>Website audit: <em>UK membership body</em>, worked example</h1>
+    <p class="report-meta">Site profile: WordPress, a members' area, an annual congress/event page, roughly 15,000 members, typical of a UK professional or specialty body. Six-section executive summary, prioritised risk register, three fixed-scope remediation tiers. This is the format every Alvento website audit is delivered in.</p>
   </header>
 
   <section id="overall">
@@ -121,9 +121,9 @@ footer p{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);te
     <h2>Ranked by <em>business impact</em></h2>
     <table class="risk-table">
       <tr><th>Risk</th><th>Severity</th><th>Impact</th></tr>
-      <tr><td>No published accessibility statement (PSBAR non-compliance)</td><td><span class="risk-badge risk-critical">Critical</span></td><td>Statutory obligation, active enforcement risk for public-facing bodies</td></tr>
-      <tr><td>Event/congress registration form fails keyboard navigation</td><td><span class="risk-badge risk-critical">Critical</span></td><td>Excludes disabled members and delegates from core annual event</td></tr>
-      <tr><td>No structured data on committee/governance pages</td><td><span class="risk-badge risk-high">High</span></td><td>Invisible to AI answer engines when members ask "who runs [body]"</td></tr>
+      <tr><td>No published accessibility statement (Public Sector Bodies Accessibility Regulations 2018, reg. 7)</td><td><span class="risk-badge risk-critical">Critical</span></td><td>Statutory obligation for public-facing bodies; a formal complaint can trigger EHRC/enforcement-body scrutiny</td></tr>
+      <tr><td>Event/congress registration form fails WCAG 2.2 SC 2.1.1 (Keyboard)</td><td><span class="risk-badge risk-critical">Critical</span></td><td>Excludes disabled members and delegates from the core annual event</td></tr>
+      <tr><td>No structured data (schema.org) on committee/governance pages</td><td><span class="risk-badge risk-high">High</span></td><td>Invisible to AI answer engines when members ask "who runs [body]"</td></tr>
       <tr><td>Mobile page-load exceeds 6 seconds on key pages</td><td><span class="risk-badge risk-high">High</span></td><td>Member drop-off before renewal/registration completes</td></tr>
       <tr><td>Duplicate title tags across 40% of content pages</td><td><span class="risk-badge risk-medium">Medium</span></td><td>Search visibility diluted across own content</td></tr>
     </table>
@@ -148,9 +148,9 @@ footer p{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);te
         <h3>Accessibility</h3>
         <div class="fscore">31/100</div>
         <ul>
-          <li>No accessibility statement published (statutory requirement)</li>
-          <li>Registration form has no keyboard focus states</li>
-          <li>Colour contrast fails WCAG 2.2 AA on primary CTAs</li>
+          <li>No accessibility statement (Accessibility Regs 2018, reg. 7)</li>
+          <li>Registration form fails SC 2.4.7 (Focus Visible), no visible keyboard focus states</li>
+          <li>Primary CTA fails SC 1.4.3 (Contrast Minimum), 3.1:1 against the 4.5:1 AA threshold</li>
         </ul>
       </div>
       <div class="finding-card">
@@ -189,7 +189,7 @@ footer p{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);te
         <div class="fscore">48/100</div>
         <ul>
           <li>No schema.org Event markup on the annual congress page</li>
-          <li>Registration form fails on keyboard-only navigation</li>
+          <li>Registration form fails WCAG 2.2 SC 2.1.1 (Keyboard) again on this page's own form instance</li>
           <li>No confirmation email trigger visible in the flow</li>
         </ul>
       </div>
