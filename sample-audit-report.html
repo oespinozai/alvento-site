@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample website audit report, Alvento</title>
+<link rel="canonical" href="https://alvento.uk/sample-audit-report/">
+<meta name="description" content="An illustrative example of Alvento's website audit report format for professional bodies and regulated organisations. Not a named client.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--surface:#141414;--surface-2:#1c1c1c;--border:#2a2a2a;
+  --text:#e8e8e8;--text-muted:#888;--text-dim:#555;
+  --lime:#c4f042;--lime-dim:#8aaa2e;
+  --critical:#ef4444;--high:#f59e0b;--medium:#eab308;
+  --font-display:'Instrument Serif',serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.6;text-rendering:optimizeLegibility;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:0 24px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(10,10,10,0.7);border-bottom:1px solid var(--border)}
+nav .container{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:var(--font-display);font-size:1.5rem;color:var(--text);letter-spacing:-0.02em}
+.logo span{color:var(--lime)}
+.nav-back{font-family:var(--font-mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted)}
+.nav-back:hover{color:var(--text)}
+
+.disclaimer{background:var(--surface-2);border-bottom:1px solid var(--border);padding:1rem 0;margin-top:76px}
+.disclaimer p{font-family:var(--font-mono);font-size:0.78rem;color:var(--text-muted);text-align:center;letter-spacing:0.01em}
+.disclaimer strong{color:var(--lime)}
+
+header.report-header{padding:4rem 0 3rem}
+.tag{display:inline-block;font-family:var(--font-mono);font-size:0.75rem;color:var(--lime);border:1px solid var(--lime-dim);padding:0.35rem 0.8rem;border-radius:2px;margin-bottom:1.5rem;letter-spacing:0.06em;text-transform:uppercase}
+h1{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.1;letter-spacing:-0.02em;margin-bottom:1rem;font-weight:400}
+h1 em{font-style:italic;color:var(--lime)}
+.report-meta{color:#b8b8b8;font-size:1rem;line-height:1.7;max-width:640px}
+
+section{padding:3rem 0;border-top:1px solid var(--border)}
+.section-label{font-family:var(--font-mono);font-size:0.7rem;color:var(--lime-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;display:block}
+h2{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-0.01em;margin-bottom:1.25rem;font-weight:400}
+
+.overall-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:2rem;display:flex;gap:2.5rem;align-items:center;flex-wrap:wrap}
+.overall-score{font-family:var(--font-display);font-size:3.5rem;color:var(--lime);line-height:1}
+.overall-score span{font-size:1.2rem;color:var(--text-muted);font-family:var(--font-body)}
+.overall-text{flex:1;min-width:280px;color:#b8b8b8;font-size:0.95rem;line-height:1.7}
+
+.risk-table{width:100%;border-collapse:collapse;font-size:0.92rem}
+.risk-table th{text-align:left;font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);padding:0.75rem 1rem;border-bottom:1px solid var(--border)}
+.risk-table td{padding:0.9rem 1rem;border-bottom:1px solid var(--border);color:#c8c8c8;vertical-align:top}
+.risk-badge{display:inline-block;font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;padding:0.25rem 0.6rem;border-radius:2px;font-weight:600}
+.risk-critical{background:rgba(239,68,68,0.15);color:var(--critical)}
+.risk-high{background:rgba(245,158,11,0.15);color:var(--high)}
+.risk-medium{background:rgba(234,179,8,0.15);color:var(--medium)}
+
+.findings-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media (max-width:640px){.findings-grid{grid-template-columns:1fr}}
+.finding-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1.75rem}
+.finding-card .fnum{font-family:var(--font-mono);font-size:0.7rem;color:var(--lime-dim);margin-bottom:0.6rem;letter-spacing:0.06em}
+.finding-card h3{font-size:1.05rem;font-weight:600;margin-bottom:0.75rem}
+.finding-card .fscore{font-family:var(--font-mono);font-size:0.85rem;color:var(--text-muted);margin-bottom:0.75rem}
+.finding-card ul{padding-left:1.1rem;color:#a8a8a8;font-size:0.88rem;line-height:1.65}
+
+.priority-window{margin-bottom:2rem}
+.priority-window h3{font-family:var(--font-mono);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--lime);margin-bottom:0.9rem}
+.priority-window ul{padding-left:1.2rem;color:#c8c8c8;font-size:0.93rem;line-height:1.8}
+
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media (max-width:768px){.tier-grid{grid-template-columns:1fr}}
+.tier-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1.75rem;display:flex;flex-direction:column}
+.tier-card .tnum{font-family:var(--font-mono);font-size:0.7rem;color:var(--lime-dim);margin-bottom:0.6rem;letter-spacing:0.06em}
+.tier-card h3{font-size:1.05rem;font-weight:600;margin-bottom:0.5rem}
+.tier-card .tprice{font-family:var(--font-display);font-size:1.5rem;color:var(--lime);margin-bottom:0.25rem}
+.tier-card .tdays{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem}
+.tier-card p{color:#a8a8a8;font-size:0.88rem;line-height:1.6;flex:1}
+
+footer{border-top:1px solid var(--border);padding:3rem 0;text-align:center}
+footer p{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem}
+.footer-cta{display:inline-flex;align-items:center;gap:0.5rem;background:var(--lime);color:#0a0a0a;font-weight:600;font-size:0.95rem;padding:0.9rem 2rem;border-radius:3px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">alve<span>nto</span></a>
+    <a href="/website-audit" class="nav-back">&larr; Back to website audit</a>
+  </div>
+</nav>
+
+<div class="disclaimer">
+  <p><strong>Illustrative example.</strong> This report uses a composite, fictional organisation to show the format and structure of a real deliverable. It does not describe any actual client or engagement.</p>
+</div>
+
+<div class="container">
+  <header class="report-header">
+    <span class="tag">Sample report</span>
+    <h1>Website audit for a <em>specialty membership body</em> (illustrative)</h1>
+    <p class="report-meta">Composite example, not a real organisation. Six-section executive summary, prioritised risk register, three fixed-scope remediation tiers. This is the format every Alvento website audit is delivered in.</p>
+  </header>
+
+  <section id="overall">
+    <span class="section-label">01. Overall assessment</span>
+    <h2>Site <em>health score</em></h2>
+    <div class="overall-card">
+      <div class="overall-score">58<span>/100</span></div>
+      <div class="overall-text">A membership-facing site with strong content but structural gaps that create real risk: an inaccessible event-registration flow, missing statutory accessibility statement, and SEO fundamentals that leave the organisation invisible for the searches its own members run most often.</div>
+    </div>
+  </section>
+
+  <section id="risk-register">
+    <span class="section-label">02. Risk register</span>
+    <h2>Ranked by <em>business impact</em></h2>
+    <table class="risk-table">
+      <tr><th>Risk</th><th>Severity</th><th>Impact</th></tr>
+      <tr><td>No published accessibility statement (PSBAR non-compliance)</td><td><span class="risk-badge risk-critical">Critical</span></td><td>Statutory obligation, active enforcement risk for public-facing bodies</td></tr>
+      <tr><td>Event/congress registration form fails keyboard navigation</td><td><span class="risk-badge risk-critical">Critical</span></td><td>Excludes disabled members and delegates from core annual event</td></tr>
+      <tr><td>No structured data on committee/governance pages</td><td><span class="risk-badge risk-high">High</span></td><td>Invisible to AI answer engines when members ask "who runs [body]"</td></tr>
+      <tr><td>Mobile page-load exceeds 6 seconds on key pages</td><td><span class="risk-badge risk-high">High</span></td><td>Member drop-off before renewal/registration completes</td></tr>
+      <tr><td>Duplicate title tags across 40% of content pages</td><td><span class="risk-badge risk-medium">Medium</span></td><td>Search visibility diluted across own content</td></tr>
+    </table>
+  </section>
+
+  <section id="findings">
+    <span class="section-label">03. Detailed findings</span>
+    <h2>Six <em>areas assessed</em></h2>
+    <div class="findings-grid">
+      <div class="finding-card">
+        <div class="fnum">01</div>
+        <h3>SEO</h3>
+        <div class="fscore">42/100</div>
+        <ul>
+          <li>No meta descriptions on 60% of pages</li>
+          <li>Title tags don't follow a consistent, search-relevant pattern</li>
+          <li>No sitemap submitted to Google Search Console</li>
+        </ul>
+      </div>
+      <div class="finding-card">
+        <div class="fnum">02</div>
+        <h3>Accessibility</h3>
+        <div class="fscore">31/100</div>
+        <ul>
+          <li>No accessibility statement published (statutory requirement)</li>
+          <li>Registration form has no keyboard focus states</li>
+          <li>Colour contrast fails WCAG 2.2 AA on primary CTAs</li>
+        </ul>
+      </div>
+      <div class="finding-card">
+        <div class="fnum">03</div>
+        <h3>Performance</h3>
+        <div class="fscore">55/100</div>
+        <ul>
+          <li>Unoptimised hero images add 2.1s to mobile load</li>
+          <li>No caching headers on static assets</li>
+          <li>Render-blocking third-party scripts in the head</li>
+        </ul>
+      </div>
+      <div class="finding-card">
+        <div class="fnum">04</div>
+        <h3>Security</h3>
+        <div class="fscore">70/100</div>
+        <ul>
+          <li>TLS configuration current, no weak protocols</li>
+          <li>Missing Content-Security-Policy header</li>
+          <li>Admin login has no rate limiting visible</li>
+        </ul>
+      </div>
+      <div class="finding-card">
+        <div class="fnum">05</div>
+        <h3>UX</h3>
+        <div class="fscore">61/100</div>
+        <ul>
+          <li>Committee/governance info buried three clicks deep</li>
+          <li>No clear path from homepage to member renewal</li>
+          <li>Mobile navigation menu overlaps page content</li>
+        </ul>
+      </div>
+      <div class="finding-card">
+        <div class="fnum">06</div>
+        <h3>Event/congress page pass</h3>
+        <div class="fscore">48/100</div>
+        <ul>
+          <li>No schema.org Event markup on the annual congress page</li>
+          <li>Registration form fails on keyboard-only navigation</li>
+          <li>No confirmation email trigger visible in the flow</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="priorities">
+    <span class="section-label">04. Recommended priorities</span>
+    <h2>7-day / 30-day / <em>90-day</em></h2>
+    <div class="priority-window">
+      <h3>7 days</h3>
+      <ul>
+        <li>Publish a PSBAR-compliant accessibility statement</li>
+        <li>Fix colour contrast on primary CTAs</li>
+        <li>Add Content-Security-Policy header</li>
+      </ul>
+    </div>
+    <div class="priority-window">
+      <h3>30 days</h3>
+      <ul>
+        <li>Rebuild the event-registration form for keyboard/screen-reader access</li>
+        <li>Compress and lazy-load hero imagery site-wide</li>
+        <li>Add meta descriptions and consistent title-tag pattern</li>
+      </ul>
+    </div>
+    <div class="priority-window">
+      <h3>90 days</h3>
+      <ul>
+        <li>Add schema.org Event markup to the annual congress page</li>
+        <li>Restructure navigation so governance/committee info is one click from the homepage</li>
+        <li>Submit sitemap and monitor search visibility monthly</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="remediation">
+    <span class="section-label">05. Remediation tiers</span>
+    <h2>Fixed-scope, <em>priced</em></h2>
+    <div class="tier-grid">
+      <div class="tier-card">
+        <div class="tnum">Tier 01</div>
+        <h3>Immediate fixes</h3>
+        <div class="tprice">&pound;2,500&ndash;3,500</div>
+        <div class="tdays">5 working days</div>
+        <p>The critical and high-severity items: accessibility statement, contrast fixes, security headers, and the highest-impact quick wins from the findings above.</p>
+      </div>
+      <div class="tier-card">
+        <div class="tnum">Tier 02</div>
+        <h3>Remediation programme</h3>
+        <div class="tprice">&pound;9,000&ndash;14,000</div>
+        <div class="tdays">30 days</div>
+        <p>Full remediation across all six areas: registration-form rebuild, performance work, SEO fundamentals, structured data, and navigation restructuring.</p>
+      </div>
+      <div class="tier-card">
+        <div class="tnum">Tier 03</div>
+        <h3>WCAG 2.2 AA audit</h3>
+        <div class="tprice">&pound;4,500&ndash;7,500</div>
+        <div class="tdays">With accessibility partner</div>
+        <p>A full, independently-verified WCAG 2.2 AA conformance audit for organisations that need a defensible accessibility position, not just fixes.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>This is a sample. Real audits are scoped to your actual site.</p>
+    <a href="/website-audit#contact" class="footer-cta">Request a free audit</a>
+  </footer>
+</div>
+
+</body>
+</html>

@@ -15,6 +15,7 @@
     { "source": "/tools/udi-decoder", "destination": "/tools/udi-decoder/index.html" },
     { "source": "/tools/mdr-class-check", "destination": "/tools/mdr-class-check/index.html" },
     { "source": "/website-audit", "destination": "/website-audit.html" },
+    { "source": "/sample-audit-report", "destination": "/sample-audit-report.html" },
     { "source": "/audit-booked", "destination": "/audit-booked.html" },
     { "source": "/unsubscribe", "destination": "/api/unsubscribe" },
     { "source": "/unsubscribe/", "destination": "/api/unsubscribe" },
