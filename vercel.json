@@ -25,9 +25,7 @@
   ],
   "redirects": [
     { "source": "/seo-audit", "destination": "/website-audit", "permanent": true },
-    { "source": "/seo-audit/", "destination": "/website-audit", "permanent": true },
-    { "source": "/case-studies/:path*", "destination": "/projects/:path*", "permanent": true },
-    { "source": "/case-studies/:path*/", "destination": "/projects/:path*", "permanent": true }
+    { "source": "/seo-audit/", "destination": "/website-audit", "permanent": true }
   ],
   "functions": {
     "api/audit.js": { "maxDuration": 15 }
