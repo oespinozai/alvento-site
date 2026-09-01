@@ -105,7 +105,7 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
 .compliance-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 8px; }
 .compliance-list li { border: 1px solid var(--border); padding: 28px 32px; margin: -0.5px; }
 .compliance-list li .tag { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-dim); letter-spacing: 0.1em; margin-bottom: 10px; text-transform: uppercase; }
-.compliance-list li h4 { font-size: 0.98rem; font-weight: 600; margin-bottom: 8px; }
+.compliance-list li h3 { font-size: 0.98rem; font-weight: 600; margin-bottom: 8px; }
 .compliance-list li p { font-size: 0.88rem; color: var(--muted); max-width: none; }
 
 .stack-list { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
@@ -316,32 +316,32 @@ footer a:hover { color: var(--text); }
     <ul class="compliance-list">
       <li>
         <div class="tag">UK GDPR &amp; DPA 2018</div>
-        <h4>Lawful basis captured per patient, per purpose</h4>
+        <h3>Lawful basis captured per patient, per purpose</h3>
         <p>Consent, vital interests and public-task basis are recorded explicitly at intake, with data-subject rights surfaceable on request.</p>
       </li>
       <li>
         <div class="tag">Caldicott principles</div>
-        <h4>Patient-identifiable data minimised at every view</h4>
+        <h3>Patient-identifiable data minimised at every view</h3>
         <p>Each screen shows only the identifiers the task requires. Downstream reports default to de-identified cohorts unless an explicit clinical justification is attached.</p>
       </li>
       <li>
         <div class="tag">Records retention</div>
-        <h4>Vaccination records retained per NHS schedule</h4>
+        <h3>Vaccination records retained per NHS schedule</h3>
         <p>Adult records retained for ten years after last contact; paediatric records until age twenty-five. Retention is enforced by a sweeper that can be audited and overridden with justification.</p>
       </li>
       <li>
         <div class="tag">GMC record-keeping</div>
-        <h4>Every entry signed, timestamped, attributable</h4>
+        <h3>Every entry signed, timestamped, attributable</h3>
         <p>No silent edits. Corrections are written as new signed events that reference the original, keeping the clinical narrative intact.</p>
       </li>
       <li>
         <div class="tag">Auditable ledger</div>
-        <h4>Append-only event log, inspection-ready</h4>
+        <h3>Append-only event log, inspection-ready</h3>
         <p>Every clinical event is stored as an immutable record in a tamper-evident ledger, exportable as an inspection pack for CQC, sponsors or internal governance.</p>
       </li>
       <li>
         <div class="tag">Row-level security</div>
-        <h4>Clinic-scoped isolation enforced in the database</h4>
+        <h3>Clinic-scoped isolation enforced in the database</h3>
         <p>Data isolation between clinics, cohorts and roles is enforced at the Postgres layer via Supabase RLS, not in the application, where a single bug would breach it.</p>
       </li>
     </ul>
@@ -356,32 +356,32 @@ footer a:hover { color: var(--text); }
     <ul class="compliance-list">
       <li>
         <div class="tag"><a href="https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency" target="_blank" rel="noopener" style="color:inherit">MHRA</a></div>
-        <h4>Medical devices and clinical investigations</h4>
+        <h3>Medical devices and clinical investigations</h3>
         <p>Relevant whenever a registry interacts with device outcomes, post-market surveillance, or investigational products.</p>
       </li>
       <li>
         <div class="tag"><a href="https://ico.org.uk/" target="_blank" rel="noopener" style="color:inherit">ICO</a></div>
-        <h4>UK GDPR and DPA 2018</h4>
+        <h3>UK GDPR and DPA 2018</h3>
         <p>Lawful basis, subject rights, retention schedules and breach posture are written in the system rather than interpreted at read time.</p>
       </li>
       <li>
         <div class="tag"><a href="https://www.gmc-uk.org/" target="_blank" rel="noopener" style="color:inherit">GMC</a></div>
-        <h4>Good medical practice, record-keeping</h4>
+        <h3>Good medical practice, record-keeping</h3>
         <p>Every entry attributable, no silent edits, corrections written as new signed events that reference the original.</p>
       </li>
       <li>
         <div class="tag"><a href="https://www.hra.nhs.uk/" target="_blank" rel="noopener" style="color:inherit">HRA</a></div>
-        <h4>Health research approvals</h4>
+        <h3>Health research approvals</h3>
         <p>Consent and approvals modelled explicitly so research-use cohorts can be derived without re-engineering the base record.</p>
       </li>
       <li>
         <div class="tag"><a href="https://www.dsptoolkit.nhs.uk/" target="_blank" rel="noopener" style="color:inherit">DSPT</a></div>
-        <h4>NHS data security and protection toolkit</h4>
+        <h3>NHS data security and protection toolkit</h3>
         <p>Isolation, access control and audit evidence are produced as artefacts, not claimed in a policy document.</p>
       </li>
       <li>
         <div class="tag"><a href="https://www.nice.org.uk/" target="_blank" rel="noopener" style="color:inherit">NICE</a></div>
-        <h4>Clinical guidance authority</h4>
+        <h3>Clinical guidance authority</h3>
         <p>Referenced when registry questions carry implications for published care pathways and standards.</p>
       </li>
     </ul>
@@ -431,7 +431,7 @@ footer a:hover { color: var(--text); }
 
 <footer>
   <div class="container">
-    <p>&copy; 2026 Alvento Ltd, <a href="/">Home</a>, <a href="/case-studies/immunaris">Case studies</a>, <a href="mailto:hello@alvento.uk">hello@alvento.uk</a></p>
+    <p>&copy; 2026 Alvento Ltd, <a href="/">Home</a>, <a href="/case-studies/immunaris">Case studies</a>, <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, <a href="/privacy">Privacy</a></p>
   </div>
 </footer>
 

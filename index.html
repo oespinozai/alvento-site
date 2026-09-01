@@ -130,6 +130,8 @@ nav .container {
   color: var(--bg);
 }
 
+.skip-link:focus { left: 12px !important; top: 12px !important; }
+
 .nav-toggle {
   display: none;
   background: none;
@@ -553,7 +555,7 @@ nav .container {
   margin: -0.5px;
 }
 
-.credibility-point h4 {
+.credibility-point h3 {
   font-family: var(--font-display);
   font-size: 1.1rem;
   margin-bottom: 10px;
@@ -759,6 +761,8 @@ footer p {
 </head>
 <body>
 
+<a href="#hero" class="skip-link" style="position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--bg);padding:12px 20px;z-index:1000;font-family:var(--font-mono);font-size:0.85rem;">Skip to main content</a>
+
 <!-- NAV -->
 <nav>
   <div class="container">
@@ -945,7 +949,7 @@ footer p {
       <!-- Tool 1: Live -->
       <div style="border: 1px solid var(--border); padding: 48px 40px; margin: -0.5px; transition: background 0.3s; position: relative;">
         <div style="font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-dim); margin-bottom: 20px;">Knowledge</div>
-        <h3 style="font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; margin-bottom: 16px; letter-spacing: -0.01em;">PDF → Markdown</h3>
+        <h3 style="font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; margin-bottom: 16px; letter-spacing: -0.01em;">PDF to Markdown</h3>
         <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 24px;">Convert PDFs to clean Markdown before uploading to Claude or ChatGPT. Cut token usage by up to 30x. No upload, runs in your browser.</p>
         <a href="/tools/pdf-to-markdown" style="display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); border-bottom: 1px solid var(--accent-dim); padding-bottom: 2px; transition: color 0.3s;">Open tool ›</a>
       </div>
@@ -985,19 +989,19 @@ footer p {
       <h2>Built for <em>operational complexity</em>, not controlled demos</h2>
       <div class="credibility-grid">
         <div class="credibility-point">
-          <h4>Registries, professional bodies, and regulated medtech</h4>
+          <h3>Registries, professional bodies, and regulated medtech</h3>
           <p>We understand the obligations that bind UK clinical registries, royal colleges and professional associations, and medtech manufacturers, statutory accessibility, data-submission integrity, post-market surveillance, membership-data protection. We build to your risk envelope, not around it.</p>
         </div>
         <div class="credibility-point">
-          <h4>Data-heavy operations</h4>
+          <h3>Data-heavy operations</h3>
           <p>Clinical submissions, case logs, post-market surveillance files, membership archives, structured and unstructured data at volume. We build the pipelines, QA layers, and scoring systems that turn that data into something operationally useful, not a compliance liability.</p>
         </div>
         <div class="credibility-point">
-          <h4>Complex workflows</h4>
+          <h3>Complex workflows</h3>
           <p>Multi-step, multi-party processes with exceptions, edge cases, and human judgment requirements. We map complexity before we automate it.</p>
         </div>
         <div class="credibility-point">
-          <h4>Without an in-house engineering team</h4>
+          <h3>Without an in-house engineering team</h3>
           <p>Mid-sized businesses and operationally serious SMEs that need to build genuine AI capability without hiring a permanent development team. We build systems that your teams can run, not retainers that depend on us to maintain.</p>
         </div>
       </div>
@@ -1057,19 +1061,19 @@ footer p {
     <p class="engagement-intro fade-up">We work as a fractional AI operations team. We install the agent inside your environment, run it alongside your team, measure it against a real business outcome, and hand it over once it works.</p>
     <div class="credibility-grid">
       <div class="credibility-point fade-up">
-        <h4>Installed, not handed over</h4>
+        <h3>Installed, not handed over</h3>
         <p>The system runs inside your environment, on your accounts, under your controls. You do not need to hire engineers to keep it alive after we leave.</p>
       </div>
       <div class="credibility-point fade-up">
-        <h4>Measured against outcomes</h4>
+        <h3>Measured against outcomes</h3>
         <p>Every agent system is wired to a specific business outcome. We report against it. If it does not do the work, we change it.</p>
       </div>
       <div class="credibility-point fade-up">
-        <h4>Fractional operations</h4>
+        <h3>Fractional operations</h3>
         <p>We operate the system for as long as it takes to prove it works in production. Then we hand the keys to your team, with documentation and handover.</p>
       </div>
       <div class="credibility-point fade-up">
-        <h4>Built for production, not pilots</h4>
+        <h3>Built for production, not pilots</h3>
         <p>The work starts from a real operational constraint, not from a demo brief. The output runs in your business, not in a sandbox.</p>
       </div>
     </div>
@@ -1077,11 +1081,19 @@ footer p {
 </section>
 
 <!-- CONTACT -->
+<section id="founder">
+  <div class="container">
+    <div class="section-label fade-up">09. Who's behind this</div>
+    <h2 class="fade-up">One <em>operator</em>, no outsourcing</h2>
+    <p class="fade-up" style="color:var(--muted);max-width:680px;font-size:1.05rem;line-height:1.75;">Alvento is run by one person. Every diagnostic, build, and handover is delivered personally, not passed to junior staff or outsourced. That means slower at scale, but it also means no gap between who scoped the work and who did it, and no incentive to keep a system running longer than it needs a human involved.</p>
+  </div>
+</section>
+
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-inner">
       <div class="fade-up">
-        <div class="section-label">09. Contact</div>
+        <div class="section-label">10. Contact</div>
         <h2>Book a diagnostic</h2>
       </div>
       <div class="contact-info fade-up">
@@ -1096,7 +1108,7 @@ footer p {
 <footer>
   <div class="container">
     <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
-    <p>alvento.uk</p>
+    <p>alvento.uk &middot; <a href="/privacy">Privacy</a></p>
   </div>
 </footer>
 
