@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lizette's, a village coffee shop loyalty rollout | Alvento case study</title>
+<meta name="description" content="Lizette's is a village coffee shop running on Staamp, our loyalty infrastructure for independent hospitality. Three months of live customer data, not a mockup.">
+<link rel="canonical" href="https://alvento.uk/case-studies/staamp/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-raised: #1c1c1c;
+  --border: #2a2a2a;
+  --text: #e8e8e8;
+  --muted: #a8a8a8;
+  --dim: #7a7a7a;
+  --accent: #c4f042;
+  --accent-hover: #d4ff4a;
+  --accent-dim: #a6c53a;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(10,10,10,0.7); border-bottom: 1px solid var(--border); }
+nav .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.02em; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); transition: color 0.3s; }
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links .nav-cta { background: var(--accent); color: var(--bg); font-weight: 600; padding: 8px 18px; border-radius: 4px; }
+.nav-links .nav-cta:hover { background: var(--accent-hover); color: var(--bg); }
+
+.page-hero { padding: 160px 0 60px; }
+.page-hero .label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dim); margin-bottom: 24px; }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; max-width: 920px; font-weight: 500; }
+.page-hero h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.page-hero .lede { font-size: 1.1rem; color: var(--muted); max-width: 680px; line-height: 1.7; margin-bottom: 40px; }
+.meta-row { display: flex; gap: 32px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; padding-top: 24px; border-top: 1px solid var(--border); margin-top: 24px; }
+.meta-row strong { color: var(--muted); font-weight: 500; display: block; margin-bottom: 4px; font-size: 0.65rem; }
+.meta-row span { color: var(--text); font-family: var(--font-body); font-size: 0.9rem; text-transform: none; letter-spacing: 0; }
+
+.btn-primary { display: inline-block; background: var(--accent); color: var(--bg); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; padding: 14px 32px; border-radius: 4px; transition: background 0.3s; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-secondary { display: inline-block; background: transparent; color: var(--text); font-family: var(--font-body); font-weight: 500; font-size: 0.95rem; padding: 14px 32px; border: 1px solid var(--border); border-radius: 4px; transition: border-color 0.3s; }
+.btn-secondary:hover { border-color: var(--muted); }
+.btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.section { padding: 96px 0; border-top: 1px solid var(--border); }
+.section-tier { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent-dim); margin-bottom: 16px; }
+.section-tier em { font-style: normal; color: var(--accent); }
+.section h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.6vw, 2.8rem); margin-bottom: 28px; max-width: 880px; line-height: 1.15; font-weight: 500; letter-spacing: -0.02em; }
+.section h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.section p { color: var(--muted); max-width: 720px; margin-bottom: 16px; font-size: 1rem; line-height: 1.75; }
+.section p strong { color: var(--text); font-weight: 500; }
+.section-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dim); margin-bottom: 32px; }
+
+.why-pullquote { font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.8rem); font-style: italic; color: var(--text); max-width: 820px; line-height: 1.4; border-left: 2px solid var(--accent); padding: 8px 0 8px 28px; margin: 32px 0; }
+
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 32px; }
+.stat-item { border: 1px solid var(--border); padding: 32px 28px; margin: -0.5px; }
+.stat-item .stat-num { font-family: var(--font-display); font-size: 2.6rem; color: var(--accent); font-weight: 500; letter-spacing: -0.02em; line-height: 1; margin-bottom: 12px; }
+.stat-item .stat-label { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+.stat-footnote { font-family: var(--font-mono); font-size: 0.7rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 18px; }
+
+.contrast-table { margin-top: 32px; border: 1px solid var(--border); }
+.contrast-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid var(--border); }
+.contrast-row:last-child { border-bottom: 0; }
+.contrast-row.header { background: var(--surface); }
+.contrast-row.header .cell { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); padding: 20px 24px; }
+.contrast-row.header .cell.mine { color: var(--accent); }
+.contrast-row .cell { padding: 22px 24px; font-size: 0.92rem; color: var(--muted); line-height: 1.55; border-right: 1px solid var(--border); }
+.contrast-row .cell:last-child { border-right: 0; }
+.contrast-row .cell.axis { color: var(--text); font-weight: 500; font-family: var(--font-display); font-size: 1.05rem; letter-spacing: -0.01em; }
+.contrast-row .cell.mine { color: var(--text); }
+.contrast-footnote { font-family: var(--font-mono); font-size: 0.7rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 18px; }
+
+.stack-list { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.stack-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); border: 1px solid var(--border); padding: 8px 16px; border-radius: 4px; letter-spacing: 0.05em; }
+
+.folio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 24px; }
+.folio-item { border: 1px solid var(--border); padding: 32px; margin: -0.5px; }
+.folio-item .item-tag { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-dim); letter-spacing: 0.1em; margin-bottom: 16px; text-transform: uppercase; }
+.folio-item h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 500; margin-bottom: 12px; }
+.folio-item p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; max-width: none; }
+.folio-item .shot { border: 1px solid var(--border); background: var(--surface); overflow: hidden; }
+.folio-item .shot img { display: block; width: 100%; height: auto; }
+.folio-item.wide { grid-column: 1 / -1; }
+.folio-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.disclosure { font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+
+.cta-section { padding: 100px 0; text-align: center; border-top: 1px solid var(--border); }
+.cta-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 16px; font-weight: 500; }
+.cta-section p { color: var(--muted); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.cta-section .btn-group { justify-content: center; }
+
+footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; }
+footer p { font-size: 0.85rem; color: var(--dim); }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--text); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .stat-grid { grid-template-columns: 1fr; }
+  .folio-grid, .folio-grid.cols-3 { grid-template-columns: 1fr; }
+  .contrast-row { grid-template-columns: 1fr; }
+  .contrast-row .cell { border-right: 0; border-bottom: 1px solid var(--border); }
+  .contrast-row .cell:last-child { border-bottom: 0; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">alvento<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="/#capabilities">Capabilities</a></li>
+      <li><a href="/#products">Products</a></li>
+      <li><a href="/tools">Tools</a></li>
+      <li><a href="/case-studies/immunaris">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+      <li><a href="/#contact" class="nav-cta">Book a diagnostic</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="label">Case study, Hospitality loyalty</div>
+    <h1>Lizette's, a village coffee shop that replaced paper stamp cards with a system its <em>regulars</em> actually keep using.</h1>
+    <p class="lede">Lizette's is a small, independent coffee shop with a village-sized customer base, not a chain chasing volume. Staamp is loyalty infrastructure built for exactly this kind of business: no app download, no punch card to lose, and no need for thousands of sign-ups before the system proves itself.</p>
+    <div class="btn-group">
+      <a href="#proof" class="btn-primary">See the live numbers</a>
+      <a href="mailto:hello@alvento.uk?subject=Loyalty system for my business" class="btn-secondary">Talk to us about a loyalty build</a>
+    </div>
+    <div class="meta-row">
+      <div><strong>Domain</strong><span>Hospitality, independent village coffee shop</span></div>
+      <div><strong>Scope</strong><span>Tenant platform, customer PWA, staff portal, superadmin</span></div>
+      <div><strong>Stack</strong><span>Flask &middot; React PWA &middot; SQLite</span></div>
+      <div><strong>Status</strong><span>Live, paying client since June 2026</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section">
+  <div class="container">
+    <div class="section-tier"><em>01</em>, The problem</div>
+    <h2>A paper stamp card can't tell a shop who its <em>regulars</em> are.</h2>
+    <p>Paper cards get lost, forgotten, or forged, and a small shop never learns who's actually coming back, how often, or when they've drifted off. In a village, the customer base is small and mostly known by name already. The job here isn't chasing new volume. It's proving the regulars keep coming back, and building a channel to reach them when they don't.</p>
+    <p>Generic loyalty apps are built for chains with thousands of locations and marketing budgets to match. Almost none of them are built for a single-site shop where thirty customers is the whole business.</p>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="section" id="proof">
+  <div class="container">
+    <div class="section-tier"><em>02</em>, The proof</div>
+    <h2>Three months live, real customers, no mock data.</h2>
+    <p>Lizette's has been running on Staamp since 13 June 2026. These numbers come straight from her live tenant database.</p>
+    <div class="stat-grid">
+      <div class="stat-item">
+        <div class="stat-num">70%</div>
+        <div class="stat-label">of enrolled customers have visited more than once. That repeat rate is the number that actually matters for a loyalty system.</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">27</div>
+        <div class="stat-label">regulars enrolled: close to the core customer base of a single-site village shop, not a fraction of it.</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">103</div>
+        <div class="stat-label">recorded visits and 10 free rewards claimed. The loop closes; sign-ups aren't sitting idle.</div>
+      </div>
+    </div>
+    <p class="stat-footnote">41% opted into email at signup, the retention channel, not just the punch card. Usage held steady month over month instead of spiking at launch and dying off.</p>
+  </div>
+</section>
+
+<!-- CONTRAST -->
+<section class="section">
+  <div class="container">
+    <div class="section-tier">Where it differs</div>
+    <h2>What a paper card can't do, Staamp does <em>by default</em>.</h2>
+    <p>This is a comparison against paper stamp cards and generic loyalty apps as a category, not any specific vendor.</p>
+
+    <div class="contrast-table">
+      <div class="contrast-row header">
+        <div class="cell">Axis</div>
+        <div class="cell">Paper stamp cards</div>
+        <div class="cell mine">Staamp</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Repeat-customer visibility</div>
+        <div class="cell">None, the business has to guess</div>
+        <div class="cell mine">Full ledger per customer, visits and rewards tracked automatically</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Customer data capture</div>
+        <div class="cell">None</div>
+        <div class="cell mine">Name, email, consent, opt-in, ready for a re-engagement channel</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Cost and friction to the customer</div>
+        <div class="cell">Free, but easy to lose or forget</div>
+        <div class="cell mine">Free, no app download, works from a phone browser</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Reward tracking</div>
+        <div class="cell">Manual, honour system, easy to forge</div>
+        <div class="cell mine">Automatic count, staff-approved claim, can't be duplicated</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Setup for the business</div>
+        <div class="cell">None needed, but none of the upside either</div>
+        <div class="cell mine">One-time onboarding, live within a day</div>
+      </div>
+    </div>
+    <p class="contrast-footnote">Fair comparison: category defaults we've observed, not claims about any named vendor.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-tier"><em>03</em>, The product</div>
+    <h2>The card a customer holds, the dashboard staff use.</h2>
+    <p>All three screens below are live in production at Lizette's, not a mockup. Other customers' names are redacted for privacy; the coffee counts and layout are real.</p>
+
+    <div class="folio-grid cols-3">
+      <div class="folio-item">
+        <div class="item-tag">Live in production, Lizette's, Godalming</div>
+        <h3>Self check-in, consent captured at the point of use</h3>
+        <p>A real member's card: coffee count, claimed rewards, and a consent checkbox before any visit is recorded. No login, no app download: it lives in the phone's browser.</p>
+        <div class="shot"><img src="img/oscar-loyalty-card.png" alt="A real Staamp member card at Lizette's, showing coffee count and self check-in with consent"></div>
+      </div>
+      <div class="folio-item">
+        <div class="item-tag">Staff dashboard, names redacted</div>
+        <h3>Every regular, one screen</h3>
+        <p>Staff look up a customer by name or scan the recent list. Coffee counts are real; other customers' names are blurred here for privacy.</p>
+        <div class="shot"><img src="img/staff-dashboard.png" alt="Staamp staff dashboard showing recent customers and coffee counts, names redacted for privacy"></div>
+      </div>
+      <div class="folio-item">
+        <div class="item-tag">Staff dashboard, names redacted</div>
+        <h3>A stamp can't be self-awarded</h3>
+        <p>The customer checks in and gives consent on their own phone. Staff approve or reject at the counter, so the stamp only counts once someone on-site confirms it.</p>
+        <div class="shot"><img src="img/pending-approval.png" alt="Staamp pending approval screen, a new customer's check-in awaiting staff approval, name redacted for privacy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">Technical stack</div>
+    <h2>Boring, proven, cheap to run.</h2>
+    <p>A single-site village shop doesn't need enterprise infrastructure. It needs something that stays up, costs almost nothing to host, and is simple enough that we can onboard a new tenant in a day.</p>
+    <div class="stack-list">
+      <span class="stack-tag">Flask</span>
+      <span class="stack-tag">React PWA</span>
+      <span class="stack-tag">SQLite, per-tenant</span>
+      <span class="stack-tag">Cloudflare Tunnel</span>
+      <span class="stack-tag">nginx</span>
+    </div>
+    <p class="disclosure">Source is private and owned by Alvento Ltd. The platform, tenant model and reward logic shown here are the artefacts we sell, not the source. Live demo at staamp.co.uk/demo</p>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Running a loyalty scheme on paper, or a generic app nobody opens twice?</h2>
+    <p>If you run an independent coffee shop, salon, or local retail business, we'll show you what your actual repeat-customer number is, and build the system to grow it.</p>
+    <div class="btn-group">
+      <a href="mailto:hello@alvento.uk?subject=Loyalty system for my business" class="btn-primary">Email hello@alvento.uk</a>
+      <a href="https://calendly.com/alventohope/demo" class="btn-secondary">Book a 20-min call</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Alvento Ltd, <a href="/">Home</a>, <a href="/case-studies/immunaris">Case studies</a>, <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, <a href="/privacy">Privacy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
