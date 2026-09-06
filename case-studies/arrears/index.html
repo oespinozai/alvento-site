@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arrears, an automated invoice follow-up system | Alvento case study</title>
+<meta name="description" content="Arrears is a reference build showing how we think an accounts-receivable follow-up system should behave: an escalation cadence a human doesn't have to remember, and a payment status that updates itself.">
+<link rel="canonical" href="https://alvento.uk/case-studies/arrears/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-raised: #1c1c1c;
+  --border: #2a2a2a;
+  --text: #e8e8e8;
+  --muted: #a8a8a8;
+  --dim: #7a7a7a;
+  --accent: #c4f042;
+  --accent-hover: #d4ff4a;
+  --accent-dim: #a6c53a;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(10,10,10,0.7); border-bottom: 1px solid var(--border); }
+nav .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.02em; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); transition: color 0.3s; }
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links .nav-cta { background: var(--accent); color: var(--bg); font-weight: 600; padding: 8px 18px; border-radius: 4px; }
+.nav-links .nav-cta:hover { background: var(--accent-hover); color: var(--bg); }
+
+.page-hero { padding: 160px 0 60px; }
+.page-hero .label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dim); margin-bottom: 24px; }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; max-width: 920px; font-weight: 500; }
+.page-hero h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.page-hero .lede { font-size: 1.1rem; color: var(--muted); max-width: 680px; line-height: 1.7; margin-bottom: 40px; }
+.meta-row { display: flex; gap: 32px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; padding-top: 24px; border-top: 1px solid var(--border); margin-top: 24px; }
+.meta-row strong { color: var(--muted); font-weight: 500; display: block; margin-bottom: 4px; font-size: 0.65rem; }
+.meta-row span { color: var(--text); font-family: var(--font-body); font-size: 0.9rem; text-transform: none; letter-spacing: 0; }
+
+.btn-primary { display: inline-block; background: var(--accent); color: var(--bg); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; padding: 14px 32px; border-radius: 4px; transition: background 0.3s; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-secondary { display: inline-block; background: transparent; color: var(--text); font-family: var(--font-body); font-weight: 500; font-size: 0.95rem; padding: 14px 32px; border: 1px solid var(--border); border-radius: 4px; transition: border-color 0.3s; }
+.btn-secondary:hover { border-color: var(--muted); }
+.btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.section { padding: 96px 0; border-top: 1px solid var(--border); }
+.section-tier { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent-dim); margin-bottom: 16px; }
+.section-tier em { font-style: normal; color: var(--accent); }
+.section h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.6vw, 2.8rem); margin-bottom: 28px; max-width: 880px; line-height: 1.15; font-weight: 500; letter-spacing: -0.02em; }
+.section h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.section p { color: var(--muted); max-width: 720px; margin-bottom: 16px; font-size: 1rem; line-height: 1.75; }
+.section p strong { color: var(--text); font-weight: 500; }
+.section-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dim); margin-bottom: 32px; }
+
+.how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 24px; }
+.how-item { border: 1px solid var(--border); padding: 36px 36px; margin: -0.5px; }
+.how-item .item-tag { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-dim); letter-spacing: 0.1em; margin-bottom: 14px; text-transform: uppercase; }
+.how-item h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; margin-bottom: 12px; letter-spacing: -0.01em; }
+.how-item p { font-size: 0.92rem; color: var(--muted); line-height: 1.65; max-width: none; }
+
+.contrast-table { margin-top: 32px; border: 1px solid var(--border); }
+.contrast-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid var(--border); }
+.contrast-row:last-child { border-bottom: 0; }
+.contrast-row.header { background: var(--surface); }
+.contrast-row.header .cell { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); padding: 20px 24px; }
+.contrast-row.header .cell.mine { color: var(--accent); }
+.contrast-row .cell { padding: 22px 24px; font-size: 0.92rem; color: var(--muted); line-height: 1.55; border-right: 1px solid var(--border); }
+.contrast-row .cell:last-child { border-right: 0; }
+.contrast-row .cell.axis { color: var(--text); font-weight: 500; font-family: var(--font-display); font-size: 1.05rem; letter-spacing: -0.01em; }
+.contrast-row .cell.mine { color: var(--text); }
+.contrast-footnote { font-family: var(--font-mono); font-size: 0.7rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 18px; }
+
+.email-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; margin-top: 24px; }
+.email-item { border: 1px solid var(--border); padding: 28px; margin: -0.5px; }
+.email-item .item-tag { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-dim); letter-spacing: 0.1em; margin-bottom: 14px; text-transform: uppercase; }
+.email-item .email-mock { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 18px 20px; }
+.email-item .email-mock .subject { font-weight: 600; font-size: 0.88rem; color: var(--text); margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.email-item .email-mock .body { font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
+
+.stack-list { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.stack-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); border: 1px solid var(--border); padding: 8px 16px; border-radius: 4px; letter-spacing: 0.05em; }
+
+.disclosure { font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+
+.cta-section { padding: 100px 0; text-align: center; border-top: 1px solid var(--border); }
+.cta-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 16px; font-weight: 500; }
+.cta-section p { color: var(--muted); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.cta-section .btn-group { justify-content: center; }
+
+footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; }
+footer p { font-size: 0.85rem; color: var(--dim); }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--text); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .how-grid, .email-grid { grid-template-columns: 1fr; }
+  .contrast-row { grid-template-columns: 1fr; }
+  .contrast-row .cell { border-right: 0; border-bottom: 1px solid var(--border); }
+  .contrast-row .cell:last-child { border-bottom: 0; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">alvento<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="/#capabilities">Capabilities</a></li>
+      <li><a href="/#products">Products</a></li>
+      <li><a href="/tools">Tools</a></li>
+      <li><a href="/case-studies/immunaris">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+      <li><a href="/#contact" class="nav-cta">Book a diagnostic</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="label">Case study, Operations, accounts receivable</div>
+    <h1>Arrears, an automated invoice follow-up system that <em>never forgets</em> an unpaid invoice.</h1>
+    <p class="lede">We built Arrears to show how we think an accounts-receivable follow-up system should behave: an escalation cadence a human doesn't have to remember, and a payment status that updates itself instead of living in someone's head.</p>
+    <div class="btn-group">
+      <a href="#method" class="btn-primary">See how it works</a>
+      <a href="mailto:hello@alvento.uk?subject=Invoice follow-up system" class="btn-secondary">Talk to us about an operations build</a>
+    </div>
+    <div class="meta-row">
+      <div><strong>Domain</strong><span>Operations, accounts receivable</span></div>
+      <div><strong>Scope</strong><span>Escalation schema, payment reconciliation, email sequencing</span></div>
+      <div><strong>Stack</strong><span>Workflow engine, spreadsheet-backed ledger, Stripe webhook</span></div>
+      <div><strong>Status</strong><span>Private, Alvento-owned reference build</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section">
+  <div class="container">
+    <div class="section-tier"><em>01</em>, The problem</div>
+    <h2>Chasing payment is a job someone already has, done from <em>memory</em>.</h2>
+    <p>Almost every B2B service business runs on invoices: agencies, contractors, wholesalers. The chasing itself is rarely automated. Someone glances at a spreadsheet, remembers who's overdue, and sends a follow-up when they get to it, or when cash flow forces the question. Follow-ups get inconsistent, some clients get chased hard and others get forgotten entirely, and nobody can say with confidence what's actually outstanding right now.</p>
+    <p>The fix isn't complicated. It's making the cadence structural instead of memorised, so the business doesn't lose money to a task nobody has time to do reliably.</p>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="section" id="method">
+  <div class="container">
+    <div class="section-tier"><em>02</em>, The approach</div>
+    <h2>Four decisions that make the system trustworthy.</h2>
+    <p>The value isn't the email-sending. It's the schema and the reconciliation behind it, decided up front so nothing depends on someone remembering to check.</p>
+    <div class="how-grid">
+      <div class="how-item">
+        <div class="item-tag">Decision 01</div>
+        <h3>Escalation as data, not memory</h3>
+        <p>Day count since due date drives which template fires: 7, 14, 21, 28, 35, 42. The cadence lives in the schema, so it runs the same way for every invoice, every time, regardless of who's watching.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Decision 02</div>
+        <h3>Payment status that updates itself</h3>
+        <p>A Stripe webhook matches incoming payments to the ledger by customer and amount, and flips status to paid automatically. No one has to cross-reference a bank statement against a spreadsheet by hand.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Decision 03</div>
+        <h3>Polite by design, firmer by schedule</h3>
+        <p>Tone escalates with day count, a gentle check-in at day 7, a direct request by day 28, without turning adversarial before it needs to. The words are decided once, not improvised under pressure.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Decision 04</div>
+        <h3>One ledger, one source of truth</h3>
+        <p>Every invoice, its due date, its days overdue, and its current status live in a single place a business owner can open and trust, not scattered across inboxes and three different spreadsheets.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEQUENCE -->
+<section class="section">
+  <div class="container">
+    <div class="section-tier"><em>03</em>, The sequence</div>
+    <h2>What the client actually receives, at three points in the cadence.</h2>
+    <p>Full sequence runs 7, 14, 21, 28, 35 and 42 days overdue. Three stages shown here to give a sense of how the tone shifts.</p>
+    <div class="email-grid">
+      <div class="email-item">
+        <div class="item-tag">Day 7</div>
+        <div class="email-mock">
+          <div class="subject">Following up on invoice #1042</div>
+          <div class="body">Hi Sam, hope you're doing well. Just wanted to check in on the invoice I sent over last week. Let me know if you have any questions.</div>
+        </div>
+      </div>
+      <div class="email-item">
+        <div class="item-tag">Day 21</div>
+        <div class="email-mock">
+          <div class="subject">Invoice #1042, now three weeks overdue</div>
+          <div class="body">Hi Sam, invoice #1042 (£1,850) is now three weeks past due. Could you confirm when payment is likely to go through? Happy to resend the invoice or answer any questions on our end.</div>
+        </div>
+      </div>
+      <div class="email-item">
+        <div class="item-tag">Day 42</div>
+        <div class="email-mock">
+          <div class="subject">Invoice #1042, six weeks overdue: please advise</div>
+          <div class="body">Hi Sam, invoice #1042 remains unpaid at six weeks overdue. Please let us know today how you'd like to proceed, or reply if there's a dispute we should be aware of. We'd like to resolve this before it needs to go further.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRAST -->
+<section class="section">
+  <div class="container">
+    <div class="section-tier">Where it differs</div>
+    <h2>What manual chasing leaves to chance, Arrears makes <em>structural</em>.</h2>
+    <p>This is a comparison against manual invoice chasing as a category, not any specific vendor or tool.</p>
+    <div class="contrast-table">
+      <div class="contrast-row header">
+        <div class="cell">Axis</div>
+        <div class="cell">Manual chasing</div>
+        <div class="cell mine">Arrears</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Follow-up timing</div>
+        <div class="cell">Whenever someone remembers, or cash flow forces it</div>
+        <div class="cell mine">Fixed cadence, every invoice, every time</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Payment reconciliation</div>
+        <div class="cell">Manual bank-statement checking</div>
+        <div class="cell mine">Automatic match against Stripe payments</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Tone consistency</div>
+        <div class="cell">Varies by mood, workload, and how overdue it already is</div>
+        <div class="cell mine">Consistent per stage, escalates on a set schedule</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Visibility</div>
+        <div class="cell">Scattered across inboxes and spreadsheets</div>
+        <div class="cell mine">One ledger, one status column, always current</div>
+      </div>
+    </div>
+    <p class="contrast-footnote">Fair comparison: category defaults we've observed, not claims about any named vendor.</p>
+  </div>
+</section>
+
+<!-- FOR FINANCE -->
+<section class="section">
+  <div class="container">
+    <div class="section-tier">For the finance function</div>
+    <h2>What it gives back to <em>accounts receivable</em>.</h2>
+    <p>Chasing overdue invoices sits with someone on the finance team already, alongside reconciliation, forecasting and the rest of the month-end workload. Automating the cadence doesn't remove their job, it removes the part of it that shouldn't need a person.</p>
+    <div class="how-grid">
+      <div class="how-item">
+        <div class="item-tag">Time back</div>
+        <h3>Hours a week returned to higher-value work</h3>
+        <p>Every invoice a person no longer has to remember to chase is time back for reconciliation, forecasting, or supplier and customer relationships, the parts of finance that actually need judgement.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Faster cash conversion</div>
+        <h3>A shorter gap between due date and payment</h3>
+        <p>A consistent cadence from day 7 through day 42 closes the gap that inconsistent, whenever-someone-gets-to-it chasing leaves open, which is a direct lever on days sales outstanding and cash flow predictability.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Fewer write-offs</div>
+        <h3>Invoices stop falling through the cracks</h3>
+        <p>Unpaid invoices that age into bad debt are usually ones nobody followed up on in time, not ones a customer genuinely refused to pay. A cadence that never skips a step catches them earlier.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Audit-ready trail</div>
+        <h3>Every follow-up and status change logged automatically</h3>
+        <p>No dependence on someone's memory of "I think I emailed them twice." Every escalation sent and every payment reconciled is recorded as it happens, ready for month-end review or an auditor's question.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">Technical stack</div>
+    <h2>Deliberately simple, so it never becomes the thing that breaks.</h2>
+    <p>An invoice ledger doesn't need a bespoke application. It needs a schema that can't drift, a cadence that fires reliably, and a payment source of truth that doesn't need manual reconciliation.</p>
+    <div class="stack-list">
+      <span class="stack-tag">Workflow automation engine</span>
+      <span class="stack-tag">Spreadsheet-backed ledger</span>
+      <span class="stack-tag">Stripe webhook sync</span>
+      <span class="stack-tag">Scheduled cadence trigger</span>
+    </div>
+    <p class="disclosure">This is a reference build: the schema and escalation logic are the artefacts we sell, not a specific client's live system.</p>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Chasing invoices from memory, or watching cash flow slip through inconsistent follow-up?</h2>
+    <p>If your finance team is chasing invoices from memory, we'll build the ledger and the cadence once: less time on collections, faster cash conversion, an audit trail that doesn't rely on anyone's inbox.</p>
+    <div class="btn-group">
+      <a href="mailto:hello@alvento.uk?subject=Invoice follow-up system" class="btn-primary">Email hello@alvento.uk</a>
+      <a href="https://calendly.com/alventohope/demo" class="btn-secondary">Book a 20-min call</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Alvento Ltd, <a href="/">Home</a>, <a href="/case-studies/immunaris">Case studies</a>, <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, <a href="/privacy">Privacy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
