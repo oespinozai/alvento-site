@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foyer, an AI phone receptionist | Alvento case study</title>
+<meta name="description" content="Foyer is a reference build showing how we think a phone receptionist should behave: answers every call, books real availability, and knows exactly when to hand off to a person.">
+<link rel="canonical" href="https://alvento.uk/case-studies/foyer/">
+<meta property="og:title" content="Foyer, an AI phone receptionist | Alvento case study">
+<meta property="og:description" content="Foyer is a reference build showing how we think a phone receptionist should behave: answers every call, books real availability, and knows exactly when to hand off to a person.">
+<meta property="og:url" content="https://alvento.uk/case-studies/foyer/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://alvento.uk/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alvento.uk/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-raised: #1c1c1c;
+  --border: #2a2a2a;
+  --text: #e8e8e8;
+  --muted: #a8a8a8;
+  --dim: #7a7a7a;
+  --accent: #c4f042;
+  --accent-hover: #d4ff4a;
+  --accent-dim: #a6c53a;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(10,10,10,0.7); border-bottom: 1px solid var(--border); }
+nav .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.02em; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); transition: color 0.3s; }
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links .nav-cta { background: var(--accent); color: var(--bg); font-weight: 600; padding: 8px 18px; border-radius: 4px; }
+.nav-links .nav-cta:hover { background: var(--accent-hover); color: var(--bg); }
+.nav-toggle { display: none; background: transparent; border: 1px solid var(--border); border-radius: 4px; color: var(--text); width: 38px; height: 38px; font-size: 1.1rem; cursor: pointer; }
+.skip-link { position: absolute; left: 12px; top: -60px; z-index: 200; background: var(--accent); color: var(--bg); padding: 10px 16px; border-radius: 4px; font-weight: 600; font-size: 0.85rem; transition: top 0.2s; }
+.skip-link:focus { top: 12px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+.page-hero { padding: 160px 0 60px; }
+.page-hero .label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dim); margin-bottom: 24px; }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; max-width: 920px; font-weight: 500; }
+.page-hero h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.page-hero .lede { font-size: 1.1rem; color: var(--muted); max-width: 680px; line-height: 1.7; margin-bottom: 40px; }
+.meta-row { display: flex; gap: 32px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; padding-top: 24px; border-top: 1px solid var(--border); margin-top: 24px; }
+.meta-row strong { color: var(--muted); font-weight: 500; display: block; margin-bottom: 4px; font-size: 0.65rem; }
+.meta-row span { color: var(--text); font-family: var(--font-body); font-size: 0.9rem; text-transform: none; letter-spacing: 0; }
+
+.btn-primary { display: inline-block; background: var(--accent); color: var(--bg); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; padding: 14px 32px; border-radius: 4px; transition: background 0.3s; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-secondary { display: inline-block; background: transparent; color: var(--text); font-family: var(--font-body); font-weight: 500; font-size: 0.95rem; padding: 14px 32px; border: 1px solid var(--border); border-radius: 4px; transition: border-color 0.3s; }
+.btn-secondary:hover { border-color: var(--muted); }
+.btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.section { padding: 96px 0; border-top: 1px solid var(--border); }
+.section-tier { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent-dim); margin-bottom: 16px; }
+.section-tier em { font-style: normal; color: var(--accent); }
+.section h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.6vw, 2.8rem); margin-bottom: 28px; max-width: 880px; line-height: 1.15; font-weight: 500; letter-spacing: -0.02em; }
+.section h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.section p { color: var(--muted); max-width: 720px; margin-bottom: 16px; font-size: 1rem; line-height: 1.75; }
+.section p strong { color: var(--text); font-weight: 500; }
+.section-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dim); margin-bottom: 32px; }
+
+.how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 24px; }
+.how-item { border: 1px solid var(--border); padding: 36px 36px; margin: -0.5px; }
+.how-item .item-tag { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-dim); letter-spacing: 0.1em; margin-bottom: 14px; text-transform: uppercase; }
+.how-item h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; margin-bottom: 12px; letter-spacing: -0.01em; }
+.how-item p { font-size: 0.92rem; color: var(--muted); line-height: 1.65; max-width: none; }
+
+.contrast-table { margin-top: 32px; border: 1px solid var(--border); }
+.contrast-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid var(--border); }
+.contrast-row:last-child { border-bottom: 0; }
+.contrast-row.header { background: var(--surface); }
+.contrast-row.header .cell { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); padding: 20px 24px; }
+.contrast-row.header .cell.mine { color: var(--accent); }
+.contrast-row .cell { padding: 22px 24px; font-size: 0.92rem; color: var(--muted); line-height: 1.55; border-right: 1px solid var(--border); }
+.contrast-row .cell:last-child { border-right: 0; }
+.contrast-row .cell.axis { color: var(--text); font-weight: 500; font-family: var(--font-display); font-size: 1.05rem; letter-spacing: -0.01em; }
+.contrast-row .cell.mine { color: var(--text); }
+.contrast-footnote { font-family: var(--font-mono); font-size: 0.7rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 18px; }
+
+.call-stage { position: relative; margin-top: 24px; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 32px 0; }
+.audio-player { position: relative; border: 1px solid var(--border); background: var(--surface); border-radius: 4px; padding: 20px 24px; width: 100%; max-width: 560px; z-index: 1; }
+.audio-player audio { width: 100%; display: block; color-scheme: dark; }
+.demo-audio { color-scheme: dark; }
+
+.transcript { border: 1px solid var(--border); background: var(--surface); border-radius: 4px; margin-top: 24px; max-height: 360px; overflow-y: auto; overscroll-behavior: contain; }
+.transcript .line { display: grid; grid-template-columns: 110px 1fr; gap: 20px; padding: 16px 24px; border-bottom: 1px solid var(--border); transition: background 0.25s ease; }
+.transcript .line:last-child { border-bottom: 0; }
+.transcript .line.caller { background: var(--surface-raised); }
+.transcript .speaker { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-dim); padding-top: 2px; }
+.transcript .line.caller .speaker { color: var(--dim); }
+.transcript .text { font-size: 0.95rem; color: var(--text); line-height: 1.6; }
+.transcript .line.caller .text { color: var(--muted); }
+.transcript .line.active { background: rgba(196, 240, 66, 0.12); }
+.transcript .line.active .speaker { color: var(--accent); }
+.transcript .line.active .text { color: var(--text); }
+
+.stack-list { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.stack-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); border: 1px solid var(--border); padding: 8px 16px; border-radius: 4px; letter-spacing: 0.05em; }
+
+.disclosure { font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+
+.demo-box { border: 1px solid var(--border); background: var(--surface); border-radius: 4px; margin-top: 24px; max-width: 640px; }
+.demo-scenarios { display: flex; gap: 10px; flex-wrap: wrap; padding: 20px 20px 0; }
+.demo-scenario-btn { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); background: transparent; border: 1px solid var(--border); padding: 8px 14px; border-radius: 4px; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+.demo-scenario-btn:hover { border-color: var(--accent-dim); color: var(--text); }
+.demo-log { padding: 20px; min-height: 60px; max-height: 360px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+.demo-msg { display: grid; grid-template-columns: 70px 1fr; gap: 16px; font-size: 0.92rem; line-height: 1.55; }
+.demo-msg .who { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim); padding-top: 2px; }
+.demo-msg.foyer .who { color: var(--accent-dim); }
+.demo-msg .txt { color: var(--text); }
+.demo-msg.pending .txt { color: var(--dim); font-style: italic; }
+.demo-input-row { display: flex; gap: 10px; padding: 16px 20px; border-top: 1px solid var(--border); }
+.demo-input-row input { flex: 1; min-width: 0; background: var(--bg); border: 1px solid var(--border); color: var(--text); font-family: var(--font-body); font-size: 0.92rem; padding: 11px 14px; border-radius: 4px; }
+.demo-input-row input:focus { outline: none; border-color: var(--accent-dim); }
+.demo-input-row button { background: var(--accent); color: var(--bg); font-weight: 600; font-size: 0.9rem; padding: 11px 20px; border-radius: 4px; border: 0; cursor: pointer; transition: background 0.2s; }
+.demo-input-row button:hover { background: var(--accent-hover); }
+.demo-input-row button:disabled { opacity: 0.5; cursor: not-allowed; }
+.demo-meta { font-family: var(--font-mono); font-size: 0.68rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.06em; padding: 0 20px 16px; }
+.demo-meta.error { color: #e07a5f; }
+.demo-audio { display: none; width: calc(100% - 40px); margin: 0 20px 16px; }
+.demo-audio.visible { display: block; }
+
+.cta-section { padding: 100px 0; text-align: center; border-top: 1px solid var(--border); }
+.cta-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 16px; font-weight: 500; }
+.cta-section p { color: var(--muted); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.cta-section .btn-group { justify-content: center; }
+
+footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; }
+footer p { font-size: 0.85rem; color: var(--dim); }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--text); }
+
+@media (max-width: 768px) {
+  .nav-toggle { display: block; }
+  .nav-links { position: fixed; top: 68px; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 8px 24px 16px; max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+  .nav-links.open { max-height: 320px; }
+  .nav-links li { width: 100%; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .nav-links li:last-child { border-bottom: 0; padding-top: 16px; }
+  .nav-links .nav-cta { display: inline-block; }
+  .how-grid { grid-template-columns: 1fr; }
+  .transcript .line { grid-template-columns: 1fr; gap: 4px; }
+  .demo-input-row { gap: 8px; padding: 14px 16px; }
+
+  /* Comparison table becomes labelled cards: each axis is its own card,
+     header row hidden since labels now come from data-label on each value. */
+  .contrast-row.header { display: none; }
+  .contrast-row { grid-template-columns: 1fr; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 12px; border-bottom: 1px solid var(--border); overflow: hidden; }
+  .contrast-row:last-child { margin-bottom: 0; }
+  .contrast-row .cell { border-right: 0; border-bottom: 1px solid var(--border); }
+  .contrast-row .cell:last-child { border-bottom: 0; }
+  .contrast-row .cell.axis { background: var(--surface-raised); }
+  .contrast-row .cell:not(.axis)::before { content: attr(data-label); display: block; font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim); margin-bottom: 6px; }
+  .contrast-row .cell.mine::before { color: var(--accent-dim); }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">alvento<span>.</span></a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/#capabilities">Capabilities</a></li>
+      <li><a href="/#products">Products</a></li>
+      <li><a href="/tools">Tools</a></li>
+      <li><a href="/case-studies/">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+      <li><a href="https://calendly.com/alventohope/demo" class="nav-cta">Book a 20-minute Foyer demo</a></li>
+    </ul>
+  </div>
+</nav>
+<script>
+(function () {
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function () {
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
+
+<main id="main-content">
+<section class="page-hero">
+  <div class="container">
+    <div class="label">Case study, Service, phone reception</div>
+    <h1>Foyer, an AI phone receptionist that answers every call, <em>day or night</em>.</h1>
+    <p class="lede">We built Foyer to show how we think a phone receptionist should behave: it answers before the second ring, checks real availability, books directly against the calendar, and knows exactly when a call needs a person instead of a script.</p>
+    <div class="btn-group">
+      <a href="#call" class="btn-primary">Hear Foyer in action</a>
+      <a href="https://calendly.com/alventohope/demo" class="btn-secondary">Book a 20-minute Foyer demo</a>
+    </div>
+    <div class="meta-row">
+      <div><strong>Domain</strong><span>Service, phone reception and intake</span></div>
+      <div><strong>Scope</strong><span>Call answering, live booking, escalation logic, CRM sync, SMS follow-up</span></div>
+      <div><strong>Stack</strong><span>Voice AI platform, telephony, calendar sync, call transcript store</span></div>
+      <div><strong>Status</strong><span>Private, Alvento-owned reference build</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE CALL -->
+<section class="section" id="call">
+  <div class="container">
+    <div class="section-tier"><em>01</em>, The call</div>
+    <h2>What it sounds like, from pickup to booked appointment.</h2>
+    <p>An illustrative sample call, not a recording of a real customer, showing the shape of a typical booking interaction. Synthetic voice, generated for this artefact; the transcript highlights in step with playback.</p>
+    <div class="call-stage">
+      <canvas class="alvento-orb-canvas" aria-hidden="true"></canvas>
+      <div class="audio-player">
+        <audio id="callAudio" controls preload="metadata">
+          <source src="audio/sample-call.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+    <div class="transcript" id="transcript">
+      <div class="line" data-start="0.0" data-end="5.26">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thanks for calling, this is the practice's digital assistant, just to let you know, this call's recorded for quality. How can I help?</div>
+      </div>
+      <div class="line caller" data-start="5.61" data-end="12.394">
+        <div class="speaker">Caller</div>
+        <div class="text">Oh, hi. Um, yeah, I've been having some knee pain, been going on a couple of weeks now, and I was hoping to get seen this week if possible?</div>
+      </div>
+      <div class="line" data-start="13.244" data-end="21.177">
+        <div class="speaker">Foyer</div>
+        <div class="text">Sorry to hear that. Let me have a look&hellip; okay, so this week I've got Wednesday at half ten in the morning, or Thursday at three in the afternoon. Either of those work?</div>
+      </div>
+      <div class="line caller" data-start="21.577" data-end="23.83">
+        <div class="speaker">Caller</div>
+        <div class="text">Thursday at three's better for me, yeah.</div>
+      </div>
+      <div class="line" data-start="24.98" data-end="28.628">
+        <div class="speaker">Foyer</div>
+        <div class="text">Great, I'll pop you in for Thursday at three. Can I take your full name, please?</div>
+      </div>
+      <div class="line caller" data-start="28.928" data-end="34.266">
+        <div class="speaker">Caller</div>
+        <div class="text">It's Priya Nair. P-R-I-Y-A, Nair, N-A-I-R.</div>
+      </div>
+      <div class="line" data-start="34.916" data-end="37.698">
+        <div class="speaker">Foyer</div>
+        <div class="text">Priya Nair, got it. And a contact number for you?</div>
+      </div>
+      <div class="line caller" data-start="38.648" data-end="44.128">
+        <div class="speaker">Caller</div>
+        <div class="text">Yeah, it's o-seven-seven-double-o, sorry, hang on, o-seven-seven-zero-zero, nine-double-o, one-two-three.</div>
+      </div>
+      <div class="line" data-start="44.528" data-end="51.153">
+        <div class="speaker">Foyer</div>
+        <div class="text">No worries, let me read that back: o-seven-seven-zero-zero-nine-zero-zero-one-two-three. Is that right?</div>
+      </div>
+      <div class="line caller" data-start="51.903" data-end="53.102">
+        <div class="speaker">Caller</div>
+        <div class="text">That's it, yeah.</div>
+      </div>
+      <div class="line" data-start="53.402" data-end="62.354">
+        <div class="speaker">Foyer</div>
+        <div class="text">Perfect. So that's Thursday at three, under Priya Nair, for the knee. You'll get a text confirmation in the next few minutes with the details. Is there anything else I can help with?</div>
+      </div>
+      <div class="line caller" data-start="62.954" data-end="65.205">
+        <div class="speaker">Caller</div>
+        <div class="text">No, I think that's everything. Thank you.</div>
+      </div>
+      <div class="line" data-start="66.205" data-end="70.076">
+        <div class="speaker">Foyer</div>
+        <div class="text">No problem at all. Thanks for calling, Priya, take care, and we'll see you Thursday.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRY IT -->
+<section class="section" id="try-it">
+  <div class="container">
+    <div class="section-tier"><em>02</em>, Try it</div>
+    <h2>Say something to Foyer, <em>hear it respond</em>.</h2>
+    <p>A live, scoped demo: booking and escalation only, running on our own infrastructure, not a recording. This is a simulated booking demo, use fictional details. Messages are processed on Alvento's infrastructure and held temporarily in memory to keep the conversation going, then cleared. No real appointment is booked and nothing reaches a real calendar.</p>
+    <div class="demo-box">
+      <div class="demo-scenarios">
+        <button class="demo-scenario-btn" data-msg="Hi, I need to book an appointment for a toothache.">Book an appointment</button>
+        <button class="demo-scenario-btn" data-msg="Actually, can we move it to next Tuesday instead?">Change the day</button>
+        <button class="demo-scenario-btn" data-msg="I'm unhappy about my last visit and want to speak to someone in charge.">File a complaint</button>
+      </div>
+      <div class="demo-log" id="demoLog" role="log" aria-live="polite" aria-label="Conversation with Foyer"></div>
+      <div class="demo-input-row">
+        <label for="demoInput" class="sr-only">Type what you'd say to a receptionist</label>
+        <input type="text" id="demoInput" placeholder="Type what you'd say to a receptionist&hellip;" maxlength="300">
+        <button id="demoSend">Send</button>
+      </div>
+      <div class="demo-meta" id="demoMeta">12 messages per demo session.</div>
+      <div class="call-stage" id="demoVoiceStage" hidden>
+        <canvas class="alvento-orb-canvas" aria-hidden="true"></canvas>
+        <audio id="demoAudio" class="demo-audio" controls></audio>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var DEMO_ENDPOINT = 'https://foyer-demo.alvento.uk/chat';
+  var log = document.getElementById('demoLog');
+  var input = document.getElementById('demoInput');
+  var sendBtn = document.getElementById('demoSend');
+  var meta = document.getElementById('demoMeta');
+  var sessionId = null;
+  var busy = false;
+  var demoAudio = document.getElementById('demoAudio');
+
+  function addMsg(who, text, pending) {
+    var row = document.createElement('div');
+    row.className = 'demo-msg ' + who + (pending ? ' pending' : '');
+    row.innerHTML = '<div class="who">' + (who === 'foyer' ? 'Foyer' : 'You') + '</div><div class="txt"></div>';
+    row.querySelector('.txt').textContent = text;
+    log.appendChild(row);
+    log.scrollTop = log.scrollHeight;
+    return row;
+  }
+
+  function setBusy(state) {
+    busy = state;
+    input.disabled = state;
+    sendBtn.disabled = state;
+  }
+
+  function send(message) {
+    if (busy || !message) return;
+    setBusy(true);
+    addMsg('you', message, false);
+    var pendingRow = addMsg('foyer', 'listening…', true);
+
+    fetch(DEMO_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: message, sessionId: sessionId })
+    })
+      .then(function (r) {
+        if (!r.ok) return r.json().then(function (e) { throw new Error(e.error || ('HTTP ' + r.status)); });
+        return r.json();
+      })
+      .then(function (data) {
+        sessionId = data.sessionId || sessionId;
+        pendingRow.classList.remove('pending');
+        pendingRow.querySelector('.txt').textContent = data.reply;
+        if (typeof data.turnsLeft === 'number') {
+          meta.textContent = data.turnsLeft > 0
+            ? data.turnsLeft + ' messages left in this demo session.'
+            : 'Demo session limit reached, refresh the page to start a new one.';
+        }
+        if (data.audio) {
+          demoAudio.src = 'data:audio/mpeg;base64,' + data.audio;
+          demoAudio.classList.add('visible');
+          document.getElementById('demoVoiceStage').hidden = false;
+          demoAudio.play().catch(function (err) {
+            meta.textContent = 'Audio playback failed, tap play on the player below to retry.';
+            meta.classList.add('error');
+          });
+        }
+      })
+      .catch(function (err) {
+        pendingRow.classList.remove('pending');
+        pendingRow.querySelector('.txt').textContent = 'Demo unavailable right now, try again shortly.';
+        meta.textContent = 'Error: ' + err.message;
+        meta.classList.add('error');
+      })
+      .finally(function () {
+        setBusy(false);
+        input.focus();
+      });
+  }
+
+  sendBtn.addEventListener('click', function () {
+    var v = input.value.trim();
+    if (!v) return;
+    input.value = '';
+    send(v);
+  });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') sendBtn.click();
+  });
+  Array.prototype.slice.call(document.querySelectorAll('.demo-scenario-btn')).forEach(function (btn) {
+    btn.addEventListener('click', function () { send(btn.getAttribute('data-msg')); });
+  });
+})();
+</script>
+
+
+<!-- WHY -->
+<section class="section">
+  <div class="container">
+    <div class="section-tier"><em>03</em>, The problem</div>
+    <h2>A missed call is a lead that <em>called someone else</em>.</h2>
+    <p>Home services, dental practices and clinics live or die on the phone, and most of them have a receptionist for exactly the hours they can afford to staff one. Outside those hours, or during a rush, calls go to voicemail, and the caller usually hangs up and rings the next name on the list rather than waiting for a callback.</p>
+    <p>Industry research puts a number on that: BrightLocal's Local Consumer Communication Study found that 85% of callers who don't reach a person never call the business again, even without immediately calling a competitor. Every unanswered call is closer to a lost customer than a delayed one.</p>
+    <p>The fix isn't a script that pretends to be human. It's a system that answers immediately, handles what it can safely handle, and hands off cleanly the moment a call needs real judgement.</p>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="section">
+  <div class="container">
+    <div class="section-tier"><em>04</em>, The approach</div>
+    <h2>Seven decisions that keep it trustworthy on a live line.</h2>
+    <p>A voice agent fails the moment it either sounds like a robot reading a script, or pretends competence it doesn't have. These decisions are what keep it useful instead of embarrassing.</p>
+    <div class="how-grid">
+      <div class="how-item">
+        <div class="item-tag">Decision 01</div>
+        <h3>Answer first, qualify second</h3>
+        <p>Every call is picked up immediately, no hold music, no queue. The first exchange establishes what the caller needs before anything else happens.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Decision 02</div>
+        <h3>Booking is a live function call, not a promise</h3>
+        <p>Availability is checked against the real calendar during the call itself, and the booking is confirmed on the spot. Nothing is promised that a follow-up email later has to walk back.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Decision 03</div>
+        <h3>Knows when to hand off</h3>
+        <p>Anything outside a defined scope, a complaint, an emergency, a negotiation, is routed to a person rather than answered badly. The system is built to recognise the edge of its own competence.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Decision 04</div>
+        <h3>Every call logged, nothing lost</h3>
+        <p>Transcript and outcome are recorded automatically for every call, so a missed detail is a two-minute review, not a mystery.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Decision 05</div>
+        <h3>A changed mind doesn't break the flow</h3>
+        <p>"Actually, can we do Tuesday instead?" is handled as a normal turn in the conversation, not a script restart. The call keeps its shape even when the caller doesn't.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Decision 06</div>
+        <h3>Every call becomes CRM data, automatically</h3>
+        <p>Caller details, the booking, and the outcome sync straight into the practice's existing calendar and CRM. No manual re-entry, no second system to keep in step.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Decision 07</div>
+        <h3>A text follow-up, not just a call</h3>
+        <p>Confirmation and reminder texts fire automatically once a booking is made, the same way a good receptionist would follow up, without anyone having to remember to send one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HANDOFF CALL -->
+<section class="section" id="handoff-call">
+  <div class="container">
+    <div class="section-tier"><em>05</em>, The hand-off</div>
+    <h2>What it sounds like when the call isn't a booking.</h2>
+    <p>A booking call only proves the easy path. This is what happens when a caller needs something outside Foyer's scope, a complaint, not an appointment. Same illustrative-sample caveat applies: synthetic voice, not a real customer.</p>
+    <div class="call-stage">
+      <canvas class="alvento-orb-canvas" aria-hidden="true"></canvas>
+      <div class="audio-player">
+        <audio id="callAudio2" controls preload="metadata">
+          <source src="audio/handoff-call.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+    <div class="transcript" id="transcript2">
+      <div class="line" data-start="0.0" data-end="5.368">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thanks for calling, this is the practice's digital assistant, just to let you know, this call's recorded for quality. How can I help?</div>
+      </div>
+      <div class="line caller" data-start="5.768" data-end="13.128">
+        <div class="speaker">Caller</div>
+        <div class="text">Yeah, I'm calling about my appointment last Tuesday. I'm really not happy with how it went, and I want to speak to someone in charge, not book anything.</div>
+      </div>
+      <div class="line" data-start="14.028" data-end="21.76">
+        <div class="speaker">Foyer</div>
+        <div class="text">I'm sorry to hear that. That's definitely something I'll pass straight to the practice manager rather than try to sort out myself. Can I take your name and a number, so they can call you back today?</div>
+      </div>
+      <div class="line caller" data-start="22.11" data-end="27.828">
+        <div class="speaker">Caller</div>
+        <div class="text">It's Michael Doyle. And my number's o-seven-nine-nine, double-one-two, three-four-five.</div>
+      </div>
+      <div class="line" data-start="28.828" data-end="38.425">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thanks, Michael. I've flagged this as a priority complaint, the practice manager will call you back before the end of the day. Is there anything urgent I should note for them right now?</div>
+      </div>
+      <div class="line caller" data-start="38.725" data-end="40.68">
+        <div class="speaker">Caller</div>
+        <div class="text">Just that I want a proper explanation, that's all.</div>
+      </div>
+      <div class="line" data-start="41.38" data-end="45.821">
+        <div class="speaker">Foyer</div>
+        <div class="text">Understood, I've noted that. Someone will be in touch very soon. Thanks for your patience, Michael.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRAST -->
+<section class="section">
+  <div class="container">
+    <div class="section-tier">Where it differs</div>
+    <h2>What a staffed desk can only do part-time, Foyer does <em>every time</em>.</h2>
+    <p>This is a comparison against a typical staffed reception desk as a category, not any specific vendor or product.</p>
+    <div class="contrast-table">
+      <div class="contrast-row header">
+        <div class="cell">Axis</div>
+        <div class="cell">Staffed reception desk</div>
+        <div class="cell mine">Foyer</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Coverage</div>
+        <div class="cell" data-label="Staffed reception desk">Business hours only, absent evenings and weekends</div>
+        <div class="cell mine" data-label="Foyer">Every call answered, any hour</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Consistency</div>
+        <div class="cell" data-label="Staffed reception desk">Varies with energy, mood, and how busy the desk already is</div>
+        <div class="cell mine" data-label="Foyer">Same qualifying flow, every call</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Booking speed</div>
+        <div class="cell" data-label="Staffed reception desk">Often a callback later, once someone has time</div>
+        <div class="cell mine" data-label="Foyer">Booked live, on the same call</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell axis">Cost of a missed call</div>
+        <div class="cell" data-label="Staffed reception desk">A lost lead, gone to a competitor</div>
+        <div class="cell mine" data-label="Foyer">No missed calls to lose</div>
+      </div>
+    </div>
+    <p class="contrast-footnote">Fair comparison: category defaults we've observed, not claims about any named vendor.</p>
+  </div>
+</section>
+
+<!-- FOR THE BUSINESS -->
+<section class="section">
+  <div class="container">
+    <div class="section-tier">For the business</div>
+    <h2>What it gives back to the <em>front desk</em>.</h2>
+    <p>The value isn't replacing a receptionist. It's covering the hours and the call volume a single person never could, and giving the team a clean log of every interaction instead of a voicemail inbox nobody has time to work through.</p>
+    <div class="how-grid">
+      <div class="how-item">
+        <div class="item-tag">Coverage without headcount</div>
+        <h3>Every hour covered, without a night shift</h3>
+        <p>Evenings, weekends and lunch breaks stop being hours where the phone simply goes unanswered.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Fewer lost leads</div>
+        <h3>A missed call stops being a lost customer</h3>
+        <p>Callers who would otherwise hang up and ring a competitor get answered and booked before they have the chance to look elsewhere.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Consistent triage</div>
+        <h3>The same qualifying questions, every time</h3>
+        <p>No variation by who happened to pick up, or how their day was going. Every caller gets the same standard of first response.</p>
+      </div>
+      <div class="how-item">
+        <div class="item-tag">Reviewable call log</div>
+        <h3>A record for quality and for compliance</h3>
+        <p>Every call transcript is available for review, which matters as much for spotting where the script needs work as for answering a complaint after the fact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">Technical stack</div>
+    <h2>Voice handled properly, booking handled live.</h2>
+    <p>The hard part isn't making it sound conversational. It's the function-calling layer underneath: real calendar availability, a real booking, and a clean handoff path when the call goes outside scope.</p>
+    <div class="stack-list">
+      <span class="stack-tag">Voice AI platform</span>
+      <span class="stack-tag">Telephony, inbound routing</span>
+      <span class="stack-tag">Calendar availability and booking API</span>
+      <span class="stack-tag">CRM sync</span>
+      <span class="stack-tag">SMS confirmation and reminders</span>
+      <span class="stack-tag">Call transcript and outcome log</span>
+    </div>
+    <p class="disclosure">This is a reference build: the call flow and escalation logic are the artefacts we sell, not a specific client's live system. The sample call above is illustrative, not a recording of a real customer.</p>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Missing calls after hours, or watching leads go cold before anyone calls back?</h2>
+    <p>If your business runs on the phone, we'll build the receptionist that never misses a call, and knows exactly when to hand off to a person.</p>
+    <div class="btn-group">
+      <a href="https://calendly.com/alventohope/demo" class="btn-primary">Book a 20-minute Foyer demo</a>
+      <a href="mailto:hello@alvento.uk?subject=Phone receptionist build" class="btn-secondary">Email hello@alvento.uk</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Alvento Ltd, <a href="/">Home</a>, <a href="/case-studies/">Case studies</a>, <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, <a href="/privacy">Privacy</a></p>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function initTranscriptSync(audioId, transcriptId) {
+    var audio = document.getElementById(audioId);
+    var panel = document.getElementById(transcriptId);
+    var lines = Array.prototype.slice.call(document.querySelectorAll('#' + transcriptId + ' .line'));
+
+    function scrollWithinPanel(el) {
+      // Scroll only the bounded transcript panel, never the page.
+      var target = el.offsetTop - (panel.clientHeight / 2) + (el.clientHeight / 2);
+      panel.scrollTo({ top: Math.max(0, target), behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+
+    function updateActiveLine() {
+      var t = audio.currentTime;
+      lines.forEach(function (el) {
+        var start = parseFloat(el.getAttribute('data-start'));
+        var end = parseFloat(el.getAttribute('data-end'));
+        if (t >= start && t <= end) {
+          if (!el.classList.contains('active')) {
+            el.classList.add('active');
+            scrollWithinPanel(el);
+          }
+        } else {
+          el.classList.remove('active');
+        }
+      });
+    }
+
+    audio.addEventListener('ended', function () {
+      lines.forEach(function (el) { el.classList.remove('active'); });
+    });
+    audio.addEventListener('timeupdate', updateActiveLine);
+  }
+
+  initTranscriptSync('callAudio', 'transcript');
+  initTranscriptSync('callAudio2', 'transcript2');
+
+  // Only one audio source plays at a time across the page (recordings + live demo replies).
+  function wireExclusivePlayback(ids) {
+    var els = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    els.forEach(function (el) {
+      el.addEventListener('play', function () {
+        els.forEach(function (other) {
+          if (other !== el && !other.paused) other.pause();
+        });
+      });
+    });
+  }
+  wireExclusivePlayback(['callAudio', 'callAudio2', 'demoAudio']);
+})();
+</script>
+
+<style>
+#demoVoiceStage[hidden] { display: none; }
+#demoVoiceStage { padding: 0 20px 20px; margin-top: 0; }
+.call-stage .alvento-orb-canvas {
+  position: relative;
+  display: block;
+  width: clamp(220px, 24vw, 260px);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  flex: none;
+  background: var(--bg, #0a0a0a);
+  mask-image: radial-gradient(circle closest-side, #000 78%, transparent 100%);
+}
+.call-stage .alvento-orb-canvas::after {
+  content: '';
+  position: absolute;
+  inset: -14%;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 58%, var(--bg, #0a0a0a) 74%);
+  filter: blur(16px);
+  pointer-events: none;
+}
+</style>
+
+<!-- Required before the module: the pinned addons internally import "three".
+     If the page already has an import map, merge this entry into that map. -->
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"}}
+</script>
+<script type="module">
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js";
+import { EffectComposer } from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/postprocessing/RenderPass.js";
+import { OutputPass } from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/postprocessing/OutputPass.js";
+import { UnrealBloomPass } from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/postprocessing/UnrealBloomPass.js";
+
+// Module-local registries; nothing is added to window.
+const instances = new WeakMap();
+const audioGraphs = new WeakMap();
+
+// Pass { analyser: existingAnalyser } when the page already owns an audio graph.
+// That graph must already route audio to its destination. It is never reconnected.
+function createAlventoOrb(canvas, audio, { analyser: suppliedAnalyser } = {}) {
+  if (!(canvas instanceof HTMLCanvasElement) || !(audio instanceof HTMLMediaElement)) {
+    throw new TypeError("Orb requires a canvas and an audio element.");
+  }
+  if (instances.has(canvas)) return instances.get(canvas);
+  let analyser = suppliedAnalyser || audioGraphs.get(audio)?.analyser;
+  if (analyser) analyser.fftSize = 256;
+  const reducedMotion=matchMedia("(prefers-reduced-motion: reduce)");
+  const data = new Uint8Array(128);
+  const waveform = new Float32Array(256);
+  const levels = [0, 0, 0, 0];
+  let disposed = false, visible = true, frame = 0, last = 0, time = 0, flow = 0;
+  let lowQuality = false, samples = 0, elapsed = 0, frameCost = 0;
+  let measuredFPS = 0, measuredCPU = 0;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.15;
+  renderer.setClearColor(new THREE.Color(getComputedStyle(canvas).getPropertyValue('--bg').trim() || '#0a0a0a'));
+  const scene = new THREE.Scene();
+  scene.background = renderer.getClearColor(new THREE.Color());
+  const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+  camera.position.z = 4.1;
+  // Canvas antialiasing does not cover composer's offscreen scene target.
+  const sceneTarget = new THREE.WebGLRenderTarget(1, 1, {
+    type: THREE.HalfFloatType,
+    samples: Math.min(4, renderer.capabilities.maxSamples)
+  });
+  const composer = new EffectComposer(renderer, sceneTarget);
+  const renderPass = new RenderPass(scene, camera);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(128, 128), 0.18, 0.5, 0.85);
+  composer.addPass(renderPass);
+  composer.addPass(bloom);
+  const outputPass = new OutputPass();
+  composer.addPass(outputPass);
+  const core = new THREE.Group();
+  scene.add(core);
+  const uniforms = {
+    uTime: { value: 0 }, uFlow: { value: 0 },
+    uAudio: { value: 0 }, uBass: { value: 0 }, uMid: { value: 0 }, uHigh: { value: 0 },
+    uLime: { value: new THREE.Color('#c4f042') }
+  };
+  // Analytic surface derivatives keep reflections smooth between mesh vertices.
+  const surfaceField = `
+    vec3 surfaceData(vec3 n) {
+      float theta=acos(clamp(n.y,-1.,1.));
+      float phi=atan(n.z,n.x);
+      float st=max(.00001,sin(theta)), ct=cos(theta);
+      float belt=st*sqrt(st), beltTheta=1.5*sqrt(st)*ct;
+      float p=theta*2.1+uTime*1.45;
+      float q=theta*3.4-uTime*1.15;
+      float turn=phi+.18*sin(p)+.10*sin(q)+.16*sin(uFlow*.85);
+      float turnTheta=.378*cos(p)+.34*cos(q);
+      float a=turn*7.+theta*.65;
+      float b=turn*11.-theta*2.+uTime*.8;
+      float crease=.5+.5*sin(a+.65);
+      float crease4=crease*crease*crease*crease;
+      float fold=.035*sin(a)-.068*crease4*crease+.008*sin(b);
+      float df=.035*cos(a)-.17*crease4*cos(a+.65);
+      float foldTheta=df*(7.*turnTheta+.65)+.008*cos(b)*(11.*turnTheta-2.);
+      float foldPhi=df*7.+.088*cos(b);
+      float m=theta*5.+phi*3.-uTime*1.5;
+      float voice=phi*4.+uTime*2.;
+      float gain=1.+uBass*.2+uMid*.35;
+      float layer=fold*gain+.014*sin(m)+.018*uAudio*sin(voice);
+      float radius=1.+belt*layer;
+      float thetaDerivative=beltTheta*layer+belt*(foldTheta*gain+.07*cos(m));
+      float phiDerivative=belt*(foldPhi*gain+.042*cos(m)+.072*uAudio*cos(voice));
+      return vec3(radius,thetaDerivative,phiDerivative);
+    }
+  `;
+  const shellMaterial = new THREE.ShaderMaterial({
+    uniforms,
+    vertexShader: `
+      uniform float uTime, uFlow, uAudio, uBass, uMid;
+      varying vec3 vDirection, vView;
+      ${surfaceField}
+      void main() {
+        vec3 n=normalize(position);
+        vec3 p=n*surfaceData(n).x*1.22;
+        vDirection=n;
+        vec4 mv=modelViewMatrix*vec4(p,1.);
+        vView=-mv.xyz;
+        gl_Position=projectionMatrix*mv;
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 uLime;
+      uniform float uTime, uFlow, uAudio, uBass, uMid, uHigh;
+      uniform mat3 normalMatrix;
+      varying vec3 vDirection, vView;
+      ${surfaceField}
+      // Smooth angular studio lights avoid projection singularities and hard patches.
+      float softbox(vec3 ray, vec3 center, vec2 size) {
+        vec3 axis=normalize(center);
+        vec3 horizontal=normalize(cross(vec3(0.,1.,0.),axis));
+        vec3 vertical=cross(axis,horizontal);
+        float forward=dot(ray,axis);
+        vec2 angles=vec2(atan(dot(ray,horizontal),forward),atan(dot(ray,vertical),forward));
+        vec2 q=angles/size;
+        return exp(-2.*dot(q,q))*smoothstep(-.1,.2,forward);
+      }
+      void main() {
+        vec3 n=normalize(vDirection);
+        vec3 field=surfaceData(n);
+        float st=max(.00001,length(n.xz));
+        vec3 eTheta=vec3(n.y*n.x/st,-st,n.y*n.z/st);
+        vec3 ePhi=vec3(-n.z/st,0.,n.x/st);
+        vec3 localNormal=normalize(n-eTheta*field.y/field.x-ePhi*field.z/(field.x*st));
+        vec3 N=normalize(normalMatrix*localNormal), V=normalize(vView);
+        vec3 R=reflect(-V,N);
+        float nv=max(dot(N,V),0.);
+        float fresnel=.035+.965*pow(1.-nv,4.);
+        float broad=softbox(R,vec3(2.8,.3,1.),vec2(.46,1.18));
+        float strip=softbox(R,vec3(-2.8,.5,.4),vec2(.18,1.16));
+        float top=softbox(R,vec3(-.8,2.,.5),vec2(.74,.23));
+        float rim=softbox(R,vec3(1.2,.1,-2.),vec2(.59,1.32));
+        float bottom=softbox(R,vec3(-.2,-2.,-.7),vec2(.94,.23));
+        float occlusion=smoothstep(.82,1.02,field.x);
+        vec3 pigment=uLime, pearl=mix(pigment,vec3(1.),.92);
+        vec3 reflection=pearl*(broad*3.4+top*2.6+strip*2.1);
+        reflection+=mix(pigment,pearl,.25)*(rim*1.8+bottom*.7);
+        vec3 color=pigment*.002;
+        color+=reflection*(.018+fresnel*1.6)*(.45+.55*occlusion);
+        color+=pigment*pow(1.-nv,3.)*.16;
+        color*=1.+uAudio*.65+uHigh*.4;
+        gl_FragColor=vec4(color,1.);
+      }
+    `
+  });
+  const shell = new THREE.Mesh(new THREE.SphereGeometry(1,128,96),shellMaterial);
+  core.add(shell);
+
+  // Lazily create an audio graph on a user gesture; reuse it on remount.
+  // Keeping its playback route alive on destroy avoids muting the existing player.
+  function activateAudio() {
+    if (disposed) return;
+    try {
+      if (!analyser) {
+        let graph = audioGraphs.get(audio);
+        if (!graph) {
+          const context = new AudioContext();
+          const next = context.createAnalyser();
+          next.fftSize=256; next.smoothingTimeConstant=.82;
+          let source;
+          try { source=context.createMediaElementSource(audio); }
+          catch (error) { void context.close(); throw error; }
+          source.connect(next); next.connect(context.destination);
+          graph={ analyser: next, context, source };
+          audioGraphs.set(audio,graph);
+        }
+        analyser=graph.analyser;
+      }
+      if (analyser.context.state==='suspended') {
+        void analyser.context.resume().catch(error => console.warn('Orb audio resume:',error));
+      }
+    } catch (error) {
+      console.error('Orb: pass the existing analyser as the third argument if this audio already has a MediaElementSource.',error);
+      audio.removeEventListener('play',activateAudio);
+      document.removeEventListener('pointerdown',activateAudio);
+      document.removeEventListener('keydown',activateAudio);
+    }
+  }
+  audio.addEventListener('play',activateAudio);
+  document.addEventListener('pointerdown',activateAudio);
+  document.addEventListener('keydown',activateAudio);
+
+  function resize() {
+    const {width,height}=canvas.getBoundingClientRect();
+    if (!width || !height) return;
+    const ratio=Math.min(2,Math.max(1.5,devicePixelRatio || 1));
+    renderer.setPixelRatio(ratio);
+    renderer.setSize(width,height,false);
+    composer.setPixelRatio(ratio);
+    composer.setSize(width,height);
+    // Must happen AFTER composer.setSize(), which resizes every pass.
+    const limit=lowQuality ? 96 : 128;
+    const scale=Math.min(1,limit/Math.max(width*ratio,height*ratio));
+    bloom.setSize(Math.round(width*ratio*scale),Math.round(height*ratio*scale));
+    camera.aspect=width/height;
+    camera.updateProjectionMatrix();
+  }
+  function animate(now) {
+    frame=0;
+    if (disposed || document.hidden || !visible) return;
+    if (!canvas.isConnected) { destroy(); return; }
+    const start=performance.now();
+    const raw=last ? (now-last)/1000 : 1/60;
+    const dt=Math.min(raw,.15); last=now; if (!reducedMotion.matches) time+=dt;
+    const target=[0,0,0,0], counts=[128,0,0,0];
+    if (analyser && !audio.paused && !audio.ended && audio.readyState>=2) {
+      analyser.getByteFrequencyData(data);
+      analyser.getFloatTimeDomainData(waveform);
+      let energy=0;
+      for (const value of waveform) energy+=value*value;
+      const hz=analyser.context.sampleRate/analyser.fftSize;
+      for (let i=0;i<data.length;i++) {
+        const value=data[i]/255;
+        target[0]+=value;
+        const band=i*hz<300 ? 1 : i*hz<3400 ? 2 : 3;
+        if (i*hz<=8000) { target[band]+=value; counts[band]++; }
+      }
+      for (let i=0;i<4;i++) target[i]/=Math.max(1,counts[i]);
+      // RMS catches spoken syllables without diluting them across silent FFT bins.
+      target[0]=Math.min(1,Math.sqrt(energy/waveform.length)*5);
+      target[1]=Math.min(1,target[1]*.9);
+      target[2]=Math.min(1,target[2]*1.2);
+      target[3]=Math.min(1,target[3]*1.4);
+    }
+    for (let i=0;i<4;i++) levels[i]+=(target[i]-levels[i])*(1-Math.exp(-dt*(target[i]>levels[i]?24:7)));
+    if (!reducedMotion.matches) flow+=dt*(1.5+levels[0]*3.0+levels[2]*2.);
+    ['uAudio','uBass','uMid','uHigh'].forEach((key,i)=>uniforms[key].value=reducedMotion.matches ? 0 : levels[i]);
+    uniforms.uTime.value=time; uniforms.uFlow.value=flow;
+    core.scale.setScalar(reducedMotion.matches ? 1 : 1+Math.sin(time*1.1)*.004+levels[1]*.014);
+    core.rotation.y=.18+Math.sin(time*1.05)*.12;
+    core.rotation.z=-.16+Math.sin(time*.85)*.035;
+    core.rotation.x=.08+Math.sin(time*1.2)*.045;
+    bloom.strength=.15+levels[0]*.15+levels[3]*.12;
+    composer.render();
+    frameCost+=performance.now()-start; elapsed+=raw; samples++;
+    if (elapsed>=3) {
+      measuredFPS=samples/elapsed; measuredCPU=frameCost/samples;
+      if (measuredFPS<50 && !lowQuality) { lowQuality=true; resize(); }
+      elapsed=0; samples=0; frameCost=0;
+    }
+    frame=requestAnimationFrame(animate);
+  }
+  function sync() {
+    cancelAnimationFrame(frame); frame=0; last=0;
+    elapsed=0; samples=0; frameCost=0;
+    if (!disposed && !document.hidden && visible) frame=requestAnimationFrame(animate);
+  }
+  const resizeObserver=new ResizeObserver(resize);
+  resizeObserver.observe(canvas);
+  const intersectionObserver=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting; sync();});
+  intersectionObserver.observe(canvas);
+  document.addEventListener('visibilitychange',sync);
+  const removalObserver=new MutationObserver(()=>{if(!canvas.isConnected) destroy();});
+  removalObserver.observe(document.body,{childList:true,subtree:true});
+  function destroy() {
+    if (disposed) return;
+    disposed=true; cancelAnimationFrame(frame); frame=0;
+    resizeObserver.disconnect(); intersectionObserver.disconnect(); removalObserver.disconnect();
+    document.removeEventListener('visibilitychange',sync);
+    document.removeEventListener('pointerdown',activateAudio);
+    document.removeEventListener('keydown',activateAudio);
+    audio.removeEventListener('play',activateAudio);
+    for (const mesh of [shell]) {mesh.geometry.dispose(); mesh.material.dispose();}
+    outputPass.dispose(); bloom.dispose(); renderPass.dispose(); composer.dispose(); renderer.dispose();
+    instances.delete(canvas);
+  }
+  const api={destroy, getStats:()=>({fps:measuredFPS,cpuMs:measuredCPU,lowQuality,levels:[...levels],running:!!frame,pixelRatio:renderer.getPixelRatio(),samples:sceneTarget.samples,segments:shell.geometry.parameters.widthSegments})};
+  instances.set(canvas,api);
+  resize(); sync();
+  return api;
+}
+
+// Place one <canvas class="alvento-orb-canvas" aria-hidden="true"></canvas>
+// in each existing .call-stage. Audio controls/layout are left to the page.
+// If existing code owns analysers, pass them here as the third argument:
+// createAlventoOrb(canvas, audio, { analyser: existingAnalyser });
+for (const id of ['callAudio','callAudio2','demoAudio']) {
+  const audio=document.getElementById(id);
+  const canvas=audio?.closest('.call-stage')?.querySelector('.alvento-orb-canvas');
+  if (canvas && audio) createAlventoOrb(canvas,audio);
+}
+</script>
+
+<script defer src="../../consent-banner.js"></script>
+</body>
+</html>

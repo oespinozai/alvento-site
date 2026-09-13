@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SOP to Checklist: Turn Procedures Into Actionable Lists · Alvento</title>
@@ -519,7 +519,7 @@ footer a:hover { color: var(--accent); }
       <li><a href="/#capabilities">Capabilities</a></li>
       <li><a href="/#products">Products</a></li>
       <li><a href="/tools" class="current">Tools</a></li>
-      <li><a href="/case-studies/immunaris">Case studies</a></li>
+      <li><a href="/case-studies/">Case studies</a></li>
       <li><a href="/blog/">Insights</a></li>
       <li><a href="/#contact" class="btn-nav">Book a diagnostic</a></li>
     </ul>
@@ -1210,5 +1210,6 @@ function flashBtn(btn, original) {
   setTimeout(() => { btn.textContent = original; }, 1800);
 }
 </script>
+<script defer src="../../consent-banner.js"></script>
 </body>
 </html>

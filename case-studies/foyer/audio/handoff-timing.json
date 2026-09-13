@@ -1,0 +1,53 @@
+{
+  "lines": [
+    {
+      "line": 0,
+      "speaker": "foyer",
+      "text": "Thanks for calling, this is the practice's digital assistant, just to let you know, this call's recorded for quality. How can I help?",
+      "start": 0.0,
+      "end": 5.368
+    },
+    {
+      "line": 1,
+      "speaker": "caller",
+      "text": "Yeah, I'm calling about my appointment last Tuesday. I'm really not happy with how it went, and I want to speak to someone in charge, not book anything.",
+      "start": 5.768,
+      "end": 13.128
+    },
+    {
+      "line": 2,
+      "speaker": "foyer",
+      "text": "I'm sorry to hear that. That's definitely something I'll pass straight to the practice manager rather than try to sort out myself. Can I take your name and a number, so they can call you back today?",
+      "start": 14.028,
+      "end": 21.76
+    },
+    {
+      "line": 3,
+      "speaker": "caller",
+      "text": "It's Michael Doyle. And my number's o-seven-nine-nine, double-one-two, three-four-five.",
+      "start": 22.11,
+      "end": 27.828
+    },
+    {
+      "line": 4,
+      "speaker": "foyer",
+      "text": "Thanks, Michael. I've flagged this as a priority complaint, the practice manager will call you back before the end of the day. Is there anything urgent I should note for them right now?",
+      "start": 28.828,
+      "end": 38.425
+    },
+    {
+      "line": 5,
+      "speaker": "caller",
+      "text": "Just that I want a proper explanation, that's all.",
+      "start": 38.725,
+      "end": 40.68
+    },
+    {
+      "line": 6,
+      "speaker": "foyer",
+      "text": "Understood, I've noted that. Someone will be in touch very soon. Thanks for your patience, Michael.",
+      "start": 41.38,
+      "end": 45.821
+    }
+  ]
+}

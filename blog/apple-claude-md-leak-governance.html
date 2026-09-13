@@ -175,7 +175,7 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-XBMBRD8E00');
+        gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag('config', 'G-XBMBRD8E00');
     </script>
 
     <script type="application/ld+json">
@@ -200,7 +200,7 @@
             <ul class="nav-links">
                 <li><a href="/#capabilities">Capabilities</a></li>
                 <li><a href="/#products">Products</a></li>
-                <li><a href="/case-studies/immunaris">Case studies</a></li>
+                <li><a href="/case-studies/">Case studies</a></li>
                 <li><a href="/blog/">Insights</a></li>
                 <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
             </ul>
@@ -256,8 +256,7 @@
         <div class="related-tools" style="margin:48px 0 24px;padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--surface);">
             <p style="font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:16px;">Related free tools</p>
             <ul style="list-style:none;margin:0;padding:0;">
-                <li style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);"><a href="https://alvento.app/tools/sop-to-checklist" style="color:var(--accent);font-weight:500;border-bottom:0;">SOP to Checklist Generator</a><div style="color:#b8b8b8;font-size:0.92rem;margin-top:4px;">Paste an SOP, get a structured checklist with owners and frequency. Turn your governance framework into an actionable workflow.</div></li>
-                <li><a href="https://alvento.app/tools/hash-generator" style="color:var(--accent);font-weight:500;border-bottom:0;">Hash Generator</a><div style="color:#b8b8b8;font-size:0.92rem;margin-top:4px;">Generate SHA-256 checksums to verify file integrity in your deployment pipeline. Catch config drift before it ships.</div></li>
+                <li><a href="https://alvento.uk/tools/sop-to-checklist" style="color:var(--accent);font-weight:500;border-bottom:0;">SOP to Checklist Generator</a><div style="color:#b8b8b8;font-size:0.92rem;margin-top:4px;">Paste an SOP, get a structured checklist with owners and frequency. Turn your governance framework into an actionable workflow.</div></li>
             </ul>
         </div>
 
@@ -300,5 +299,6 @@
             });
         });
     </script>
+<script defer src="../consent-banner.js"></script>
 </body>
 </html>

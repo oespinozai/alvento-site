@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website audit report template | Alvento</title>
@@ -53,7 +53,8 @@ h2{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.2rem);letter-spa
 .overall-score span{font-size:1.2rem;color:var(--text-muted);font-family:var(--font-body)}
 .overall-text{flex:1;min-width:280px;color:#b8b8b8;font-size:0.95rem;line-height:1.7}
 
-.risk-table{width:100%;border-collapse:collapse;font-size:0.92rem}
+.table-wrap{overflow-x:auto}
+.risk-table{width:100%;border-collapse:collapse;font-size:0.92rem;min-width:480px}
 .risk-table th{text-align:left;font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);padding:0.75rem 1rem;border-bottom:1px solid var(--border)}
 .risk-table td{padding:0.9rem 1rem;border-bottom:1px solid var(--border);color:#c8c8c8;vertical-align:top}
 .risk-badge{display:inline-block;font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;padding:0.25rem 0.6rem;border-radius:2px;font-weight:600}
@@ -119,6 +120,7 @@ footer p{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);te
   <section id="risk-register">
     <span class="section-label">02. Risk register</span>
     <h2>Ranked by <em>business impact</em></h2>
+    <div class="table-wrap">
     <table class="risk-table">
       <tr><th>Risk</th><th>Severity</th><th>Impact</th></tr>
       <tr><td>No published accessibility statement (Public Sector Bodies Accessibility Regulations 2018, reg. 7)</td><td><span class="risk-badge risk-critical">Critical</span></td><td>Statutory obligation for public-facing bodies; a formal complaint can trigger EHRC/enforcement-body scrutiny</td></tr>
@@ -127,6 +129,7 @@ footer p{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);te
       <tr><td>Mobile page-load exceeds 6 seconds on key pages</td><td><span class="risk-badge risk-high">High</span></td><td>Member drop-off before renewal/registration completes</td></tr>
       <tr><td>Duplicate title tags across 40% of content pages</td><td><span class="risk-badge risk-medium">Medium</span></td><td>Search visibility diluted across own content</td></tr>
     </table>
+    </div>
   </section>
 
   <section id="findings">
@@ -260,5 +263,6 @@ footer p{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);te
   </footer>
 </div>
 
+<script defer src="consent-banner.js"></script>
 </body>
 </html>

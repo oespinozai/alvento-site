@@ -233,7 +233,7 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-XBMBRD8E00');
+        gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag('config', 'G-XBMBRD8E00');
     </script>
 
     <script type="application/ld+json">
@@ -257,7 +257,7 @@
             <ul class="nav-links">
                 <li><a href="/#capabilities">Capabilities</a></li>
                 <li><a href="/#products">Products</a></li>
-                <li><a href="/case-studies/immunaris">Case studies</a></li>
+                <li><a href="/case-studies/">Case studies</a></li>
       <li><a href="/blog/">Insights</a></li>
                 <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
             </ul>
@@ -352,5 +352,6 @@ No process constraints. Use judgment.</code></pre>
             });
         });
     </script>
+<script defer src="../consent-banner.js"></script>
 </body>
 </html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case studies | Alvento</title>
+<meta name="description" content="Four Alvento builds: a village coffee shop loyalty platform live with a paying client, an AI phone receptionist, an automated invoice follow-up system, and a clinical vaccination registry.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://alvento.uk/case-studies/">
+<meta property="og:title" content="Case studies | Alvento">
+<meta property="og:description" content="Four Alvento builds, client work and reference artefacts, showing how we build.">
+<meta property="og:url" content="https://alvento.uk/case-studies/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://alvento.uk/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alvento.uk/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-raised: #1c1c1c;
+  --border: #2a2a2a;
+  --text: #e8e8e8;
+  --muted: #a8a8a8;
+  --dim: #7a7a7a;
+  --accent: #c4f042;
+  --accent-hover: #d4ff4a;
+  --accent-dim: #a6c53a;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(10,10,10,0.7); border-bottom: 1px solid var(--border); }
+nav .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.02em; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); transition: color 0.3s; }
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links .nav-cta { background: var(--accent); color: var(--bg); font-weight: 600; padding: 8px 18px; border-radius: 4px; }
+.nav-links .nav-cta:hover { background: var(--accent-hover); color: var(--bg); }
+
+.page-hero { padding: 160px 0 60px; }
+.page-hero .label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dim); margin-bottom: 24px; }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; max-width: 920px; font-weight: 500; }
+.page-hero h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.page-hero .lede { font-size: 1.1rem; color: var(--muted); max-width: 680px; line-height: 1.7; margin-bottom: 0; }
+
+.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 40px 0 96px; border: 1px solid var(--border); }
+.case-card { border: 1px solid var(--border); margin: -0.5px; padding: 40px; display: flex; flex-direction: column; }
+.case-card .status-tag { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 12px; border-radius: 4px; display: inline-block; margin-bottom: 20px; width: fit-content; }
+.case-card .status-tag.client { color: var(--bg); background: var(--accent); }
+.case-card .status-tag.reference { color: var(--muted); border: 1px solid var(--border); background: transparent; }
+.case-card h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 500; margin-bottom: 12px; letter-spacing: -0.01em; }
+.case-card h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.case-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.65; margin-bottom: 24px; flex-grow: 1; }
+.case-card .meta { font-family: var(--font-mono); font-size: 0.7rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+.case-card .btn-secondary { display: inline-block; background: transparent; color: var(--text); font-family: var(--font-body); font-weight: 500; font-size: 0.9rem; padding: 12px 24px; border: 1px solid var(--border); border-radius: 4px; transition: border-color 0.3s; width: fit-content; }
+.case-card .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+.cta-section { padding: 100px 0; text-align: center; border-top: 1px solid var(--border); }
+.cta-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 16px; font-weight: 500; }
+.cta-section p { color: var(--muted); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.btn-primary { display: inline-block; background: var(--accent); color: var(--bg); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; padding: 14px 32px; border-radius: 4px; transition: background 0.3s; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; }
+footer p { font-size: 0.85rem; color: var(--dim); }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--text); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .case-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">alvento<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="/#capabilities">Capabilities</a></li>
+      <li><a href="/#products">Products</a></li>
+      <li><a href="/tools">Tools</a></li>
+      <li><a href="/case-studies/" class="active">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+      <li><a href="/#contact" class="nav-cta">Book a diagnostic</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="label">Case studies</div>
+    <h1>What we&rsquo;ve <em>actually built</em>.</h1>
+    <p class="lede">One is live with a paying client. The other three are reference artefacts we built and own, to show how we work when compliance, reliability and follow-through are load-bearing rather than bolted on.</p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="case-grid">
+    <div class="case-card">
+      <span class="status-tag client">Live, paying client</span>
+      <h2>Lizette&rsquo;s, a village coffee shop <em>loyalty rollout</em></h2>
+      <div class="meta">Hospitality &middot; Flask &middot; React PWA &middot; SQLite</div>
+      <p>Replaced paper stamp cards with a tenant platform, customer PWA and staff portal for an independent coffee shop. Live and in use by regulars since June 2026.</p>
+      <a href="/case-studies/staamp" class="btn-secondary">Read the case study &rarr;</a>
+    </div>
+    <div class="case-card">
+      <span class="status-tag reference">Reference build</span>
+      <h2>Foyer, an AI phone <em>receptionist</em></h2>
+      <div class="meta">Voice &middot; Reception</div>
+      <p>Answers every call, day or night. A private, Alvento-owned reference build demonstrating a full voice-agent booking flow, not a client engagement.</p>
+      <a href="/case-studies/foyer" class="btn-secondary">Read the case study &rarr;</a>
+    </div>
+    <div class="case-card">
+      <span class="status-tag reference">Reference build</span>
+      <h2>Arrears, automated <em>invoice follow-up</em></h2>
+      <div class="meta">Finance ops</div>
+      <p>Never forgets an unpaid invoice. A private, Alvento-owned reference build showing how we approach persistent, low-supervision follow-up automation.</p>
+      <a href="/case-studies/arrears" class="btn-secondary">Read the case study &rarr;</a>
+    </div>
+    <div class="case-card">
+      <span class="status-tag reference">Reference artefact</span>
+      <h2>Immunaris, a <em>clinical vaccination registry</em></h2>
+      <div class="meta">Clinical / registry &middot; React &middot; Supabase &middot; Postgres RLS</div>
+      <p>Built to read like an instrument, not a dashboard. A private, Alvento-owned artefact showing how a regulated-medtech record system should behave.</p>
+      <a href="/case-studies/" class="btn-secondary">Read the case study &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Have something like this to build?</h2>
+    <p>Tell us the domain and the constraint that matters most, compliance, reliability, or follow-through, and we&rsquo;ll tell you honestly whether it&rsquo;s a fit.</p>
+    <div class="btn-group">
+      <a href="mailto:hello@alvento.uk?subject=Case study enquiry" class="btn-primary">Email hello@alvento.uk</a>
+      <a href="https://calendly.com/alventohope/demo" class="btn-secondary">Book a 20-min call &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Alvento Ltd, <a href="/">Home</a>, <a href="/case-studies/">Case studies</a>, <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, <a href="/privacy">Privacy</a></p>
+  </div>
+</footer>
+
+<script defer src="../consent-banner.js"></script>
+</body>
+</html>

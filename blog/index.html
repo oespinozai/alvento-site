@@ -434,7 +434,7 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-XBMBRD8E00');
+        gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag('config', 'G-XBMBRD8E00');
     </script>
 
     <script type="application/ld+json">
@@ -463,7 +463,7 @@
             <li><a href="/#capabilities">Capabilities</a></li>
             <li><a href="/#products">Products</a></li>
             <li><a href="/tools">Tools</a></li>
-            <li><a href="/case-studies/immunaris">Case studies</a></li>
+            <li><a href="/case-studies/">Case studies</a></li>
             <li><a href="/blog/" class="active">Insights</a></li>
             <li><a href="/#contact" class="btn-nav">Book a diagnostic</a></li>
         </ul>
@@ -484,7 +484,7 @@
 <!-- FEATURED POST -->
 <section class="featured-section">
     <div class="container">
-                    <a href="/blog/patient-data-governance-pitt-lessons/" class="featured-image" style="background-color: #1a1a2e; background-image: url('https://alvento.uk/blog/images/patient-data-governance-pitt-lessons.jpg'); background-size: cover; background-position: center;" aria-label="Read featured post"></a>
+                    <a href="/blog/patient-data-governance-pitt-lessons/" class="featured-image" style="background-color: #1a1a2e; background-image: url('https://alvento.uk/blog/images/patient-data-governance-pitt-lessons-hero.jpg'); background-size: cover; background-position: center;" aria-label="Read featured post"></a>
             <div class="featured-body">
                 <div class="featured-label">Featured &middot; Latest</div>
                 <h2><a href="/blog/patient-data-governance-pitt-lessons/">Navigating Clinical Data: Lessons from 'The Pitt' for Healthcare Governance</a></h2>
@@ -661,5 +661,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<script defer src="../consent-banner.js"></script>
 </body>
 </html>

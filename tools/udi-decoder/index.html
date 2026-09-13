@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical Device UDI Decoder: GS1 + HIBCC · Alvento</title>
@@ -337,84 +337,129 @@
         document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
     }
 
-    function decodeLine(line) {
-        line = line.trim().replace(/\s+/g, '');
+    const FIXED_LENGTH_AI = { '01': 14, '17': 6, '11': 6 };
+    const VARIABLE_LENGTH_AI = ['10', '21'];
+    const KNOWN_AI = Object.keys(FIXED_LENGTH_AI).concat(VARIABLE_LENGTH_AI);
+
+    function decodeLine(raw) {
+        const line = raw.trim().replace(/\s+/g, '');
+        if (line === '') return null;
         if (line.startsWith('+') || line.startsWith('$$')) return decodeHIBCC(line);
-        return decodeGS1(line);
+        if (/^\(\d{2,4}\)/.test(line) || /^\d/.test(line)) return decodeGS1(line);
+        return { format: 'Unrecognised', di: '', lot: '', serial: '', expiry: '', mfg: '', error: 'Unsupported UDI format', raw: line };
     }
 
-    function decodeGS1(udi) {
-        let result = { format: 'GS1', di: '', lot: '', serial: '', expiry: '', mfg: '' };
-        let current = udi.replace(/\(|\)/g, ''); // Remove brackets if present
-        
-        while (current.length > 0) {
-            if (current.startsWith('01')) {
-                result.di = current.substring(2, 16);
-                current = current.substring(16);
-            } else if (current.startsWith('17')) {
-                result.expiry = formatGS1Date(current.substring(2, 8));
-                current = current.substring(8);
-            } else if (current.startsWith('11')) {
-                result.mfg = formatGS1Date(current.substring(2, 8));
-                current = current.substring(8);
-            } else if (current.startsWith('10')) {
-                let end = current.indexOf('\x1D');
-                if (end === -1) {
-                    // Try to guess end if concatenated without FNC1
-                    // This is hard, but usually 10 is followed by another AI like (17) or (21)
-                    let nextAI = current.match(/(17|21|11|01)/g);
-                    if (nextAI && nextAI.length > 1) {
-                        end = current.indexOf(nextAI[1]);
-                    } else {
-                        end = current.length;
-                    }
-                }
-                result.lot = current.substring(2, end);
-                current = current.substring(end === current.length ? end : end + 1);
-            } else if (current.startsWith('21')) {
-                let end = current.indexOf('\x1D');
-                if (end === -1) end = current.length;
-                result.serial = current.substring(2, end);
-                current = current.substring(end === current.length ? end : end + 1);
-            } else {
-                // Unknown or unsupported AI, skip one char to avoid infinite loop
-                current = current.substring(1);
-            }
-        }
+    // Bracketed human-readable format, e.g. (01)00884838048157(17)251231(10)ABC123(21)XYZ789
+    function decodeGS1Bracketed(udi) {
+        const result = { format: 'GS1', di: '', lot: '', serial: '', expiry: '', mfg: '' };
+        const groups = [...udi.matchAll(/\((\d{2,4})\)([^(]*)/g)];
+        if (groups.length === 0) return null;
+        let recognised = false;
+        groups.forEach(([, ai, value]) => {
+            value = value.trim();
+            if (ai === '01') { result.di = value; recognised = true; }
+            else if (ai === '17') { result.expiry = formatGS1Date(value); recognised = true; }
+            else if (ai === '11') { result.mfg = formatGS1Date(value); recognised = true; }
+            else if (ai === '10') { result.lot = value; recognised = true; }
+            else if (ai === '21') { result.serial = value; recognised = true; }
+        });
+        if (!recognised) return null;
         return result;
     }
 
+    // Raw concatenated format with GS1-128 group separator (\x1D / FNC1) terminating variable-length fields.
+    function decodeGS1Raw(udi) {
+        const result = { format: 'GS1', di: '', lot: '', serial: '', expiry: '', mfg: '' };
+        let current = udi;
+        let recognised = false;
+        let guard = 0;
+        while (current.length > 0 && guard++ < 50) {
+            const ai = current.substring(0, 2);
+            if (FIXED_LENGTH_AI[ai]) {
+                const len = FIXED_LENGTH_AI[ai];
+                const value = current.substring(2, 2 + len);
+                if (ai === '01') result.di = value;
+                else if (ai === '17') result.expiry = formatGS1Date(value);
+                else if (ai === '11') result.mfg = formatGS1Date(value);
+                recognised = true;
+                current = current.substring(2 + len);
+            } else if (VARIABLE_LENGTH_AI.includes(ai)) {
+                let end = current.indexOf('\x1D', 2);
+                if (end === -1) {
+                    // No FNC1 present: only safe to stop at the start of another *known* AI code.
+                    // Ambiguous inputs (value could itself contain a 2-digit AI-like substring)
+                    // are read to the end of the string rather than guessed at.
+                    end = current.length;
+                    for (let i = 2; i < current.length - 1; i++) {
+                        if (KNOWN_AI.includes(current.substring(i, i + 2))) { end = i; break; }
+                    }
+                }
+                const value = current.substring(2, end);
+                if (ai === '10') result.lot = value;
+                else if (ai === '21') result.serial = value;
+                recognised = true;
+                current = current.substring(end);
+                if (current.charCodeAt(0) === 0x1D) current = current.substring(1);
+            } else {
+                // Unknown AI: cannot determine its length, so stop rather than mis-parse the remainder.
+                break;
+            }
+        }
+        if (!recognised) return null;
+        return result;
+    }
+
+    function decodeGS1(udi) {
+        const bracketed = udi.includes('(') ? decodeGS1Bracketed(udi) : null;
+        if (bracketed) return bracketed;
+        const raw = decodeGS1Raw(udi.replace(/\(|\)/g, ''));
+        if (raw) return raw;
+        return { format: 'GS1', di: '', lot: '', serial: '', expiry: '', mfg: '', error: 'Could not parse as GS1', raw: udi };
+    }
+
     function formatGS1Date(yymmdd) {
+        if (!/^\d{6}$/.test(yymmdd)) return yymmdd;
         return `20${yymmdd.substring(0, 2)}-${yymmdd.substring(2, 4)}-${yymmdd.substring(4, 6)}`;
     }
 
     function decodeHIBCC(udi) {
-        let result = { format: 'HIBCC', di: '', lot: '', serial: '', expiry: '', mfg: '' };
-        // Basic HIBCC parsing
+        const result = { format: 'HIBCC', di: '', lot: '', serial: '', expiry: '', mfg: '' };
         if (udi.startsWith('+')) {
-            result.di = udi.substring(1, udi.length - 1); // Simple DI capture
+            result.di = udi.substring(1, udi.length - 1);
         } else if (udi.startsWith('$$')) {
-            // Secondary label
-            let lotMatch = udi.match(/\d[A-Z0-9]{1,18}/);
+            const lotMatch = udi.match(/\d[A-Z0-9]{1,18}/);
             if (lotMatch) result.lot = lotMatch[0];
+            else return { ...result, error: 'Could not parse HIBCC secondary label' };
         }
+        if (!result.di && !result.lot) return { ...result, error: 'Could not parse as HIBCC' };
         return result;
+    }
+
+    function csvField(v) {
+        v = String(v == null ? '' : v);
+        return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
     }
 
     function renderResults() {
         const body = document.getElementById('resultBody');
-        body.innerHTML = '';
-        
+        while (body.firstChild) body.removeChild(body.firstChild);
+
         let md = '| Format | DI | Lot | Serial | Expiry | Mfg |\n|---|---|---|---|---|---|\n';
         let csv = 'Format,DI,Lot,Serial,Expiry,Mfg\n';
 
         decodedData.forEach(d => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td>${d.format}</td><td>${d.di}</td><td>${d.lot}</td><td>${d.serial}</td><td>${d.expiry}</td><td>${d.mfg}</td>`;
+            const fields = d.error ? [d.format, d.error, '', '', '', ''] : [d.format, d.di, d.lot, d.serial, d.expiry, d.mfg];
+            fields.forEach(v => {
+                const td = document.createElement('td');
+                td.textContent = v;
+                tr.appendChild(td);
+            });
             body.appendChild(tr);
 
-            md += `| ${d.format} | ${d.di} | ${d.lot} | ${d.serial} | ${d.expiry} | ${d.mfg} |\n`;
-            csv += `${d.format},${d.di},${d.lot},${d.serial},${d.expiry},${d.mfg}\n`;
+            const row = d.error ? [d.format, d.error, '', '', '', ''] : [d.format, d.di, d.lot, d.serial, d.expiry, d.mfg];
+            md += `| ${row.map(v => String(v).replace(/\|/g, '\\|')).join(' | ')} |\n`;
+            csv += row.map(csvField).join(',') + '\n';
         });
 
         document.getElementById('markdown-box').textContent = md;
@@ -436,5 +481,6 @@
     }
 </script>
 
+<script defer src="../../consent-banner.js"></script>
 </body>
 </html>

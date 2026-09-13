@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AEO for Regulated Organisations: MHRA/GMC/ICO-grade AI Visibility | Alvento</title>
@@ -28,8 +28,8 @@
   --font-body:'DM Sans',sans-serif;
   --font-mono:'JetBrains Mono',monospace;
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
 /* --- NAV --- */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(10,10,10,0.8);border-bottom:1px solid var(--border)}
@@ -168,7 +168,7 @@ footer a:hover{color:var(--lime)}
     <ul class="nav-links">
       <li><a href="/#capabilities">Capabilities</a></li>
       <li><a href="/#products">Products</a></li>
-      <li><a href="/case-studies/immunaris">Case studies</a></li>
+      <li><a href="/case-studies/">Case studies</a></li>
       <li><a href="/blog/">Insights</a></li>
       <li><a href="/#contact" style="background:var(--lime);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
     </ul>
@@ -189,7 +189,7 @@ footer a:hover{color:var(--lime)}
 
 <!-- CONTEXT BRIDGE -->
 <div style="max-width:700px;margin:0 auto;padding:2rem 2rem 0;text-align:center">
-  <p style="font-size:1rem;color:var(--muted);line-height:1.7;">AEO is one way Alvento deploys Growth capability for regulated organisations. It can be procured on its own, or scoped alongside a registry build (see <a href="/case-studies/immunaris" style="color:var(--accent);">Immunaris</a>), member systems, or wider clinical-adjacent engagements. If your brief is broader, <a href="/#contact" style="color:var(--accent);">tell us the full picture</a>.</p>
+  <p style="font-size:1rem;color:var(--muted);line-height:1.7;">AEO is one way Alvento deploys Growth capability for regulated organisations. It can be procured on its own, or scoped alongside a registry build (see <a href="/case-studies/" style="color:var(--accent);">Immunaris</a>), member systems, or wider clinical-adjacent engagements. If your brief is broader, <a href="/#contact" style="color:var(--accent);">tell us the full picture</a>.</p>
 </div>
 
 <!-- STATS -->
@@ -517,5 +517,6 @@ footer a:hover{color:var(--lime)}
   ]
 }
 </script>
+<script defer src="consent-banner.js"></script>
 </body>
 </html>

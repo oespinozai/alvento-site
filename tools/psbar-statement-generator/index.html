@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSBAR Accessibility Statement Generator: WCAG 2.2 AA · Alvento</title>
@@ -226,7 +226,9 @@
             .footer-flex { flex-direction: column; gap: 20px; }
             .tabs { flex-wrap: wrap; }
             .output-actions { flex-direction: column; }
+            .form-row { grid-template-columns: 1fr !important; }
         }
+        input[type="date"] { min-width: 0; }
     </style>
 </head>
 <body>
@@ -519,5 +521,6 @@
     }
 </script>
 
+<script defer src="../../consent-banner.js"></script>
 </body>
 </html>

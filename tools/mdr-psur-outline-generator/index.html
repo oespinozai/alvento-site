@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MDR PSUR Outline Generator: Article 86 compliant · Alvento</title>
@@ -213,6 +213,11 @@
         .cta-card p { color: var(--muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
 
         footer { padding: 60px 0; border-top: 1px solid var(--border); color: var(--dim); font-family: var(--font-mono); font-size: 0.75rem; }
+
+        input[type="date"] { min-width: 0; }
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr !important; }
+        }
     </style>
 </head>
 <body>
@@ -442,5 +447,6 @@
     }
 </script>
 
+<script defer src="../../consent-banner.js"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CPD Tracker: Royal College Compliance · Alvento</title>
@@ -240,7 +240,8 @@
         </div>
 
         <div class="card summary-card">
-            <div class="card-title">Yearly Progress</div>
+            <div class="card-title">Rolling 12-Month Progress</div>
+            <p style="font-size:0.75rem;color:var(--dim);margin:-8px 0 12px;">Counts activities dated within the last 365 days only.</p>
             <div class="total-hours" id="totalHours">0</div>
             <div class="total-label" id="totalLabel">Hours Logged</div>
             <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
@@ -317,7 +318,14 @@
 </div>
 
 <script>
-    let activities = JSON.parse(localStorage.getItem('alvento.cpd.v1') || '[]');
+    let activities = [];
+    try {
+        const stored = JSON.parse(localStorage.getItem('alvento.cpd.v1') || '[]');
+        if (Array.isArray(stored)) activities = stored;
+    } catch (e) {
+        console.warn('Stored CPD data was corrupted; starting from an empty log.', e);
+        activities = [];
+    }
 
     function save() {
         localStorage.setItem('alvento.cpd.v1', JSON.stringify(activities));
@@ -332,6 +340,7 @@
         const url = document.getElementById('actUrl').value;
 
         if (!name || !date || !hours) return alert('Please fill in required fields.');
+        if (!(hours > 0) || !isFinite(hours)) return alert('Hours must be a positive number.');
 
         activities.push({ id: Date.now(), name, date, hours, cat, url });
         save();
@@ -346,21 +355,56 @@
         save();
     }
 
+    function isSafeUrl(url) {
+        try {
+            const u = new URL(url, window.location.href);
+            return u.protocol === 'http:' || u.protocol === 'https:';
+        } catch (e) {
+            return false;
+        }
+    }
+
     function render() {
         const body = document.getElementById('logBody');
-        body.innerHTML = '';
-        
+        while (body.firstChild) body.removeChild(body.firstChild);
+
         let total = 0;
         activities.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(a => {
-            total += a.hours;
+            if (inRollingWindow(a.date)) total += a.hours;
             const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${a.date}</td>
-                <td>${a.name} ${a.url ? '<a href="'+a.url+'" target="_blank" style="color:var(--accent); font-size:0.7rem;">[Link]</a>' : ''}</td>
-                <td style="text-transform: capitalize;">${a.cat}</td>
-                <td>${a.hours}</td>
-                <td><button class="btn-action btn-danger" style="padding: 4px 8px;" onclick="removeActivity(${a.id})">&times;</button></td>
-            `;
+
+            const dateTd = document.createElement('td');
+            dateTd.textContent = a.date;
+
+            const nameTd = document.createElement('td');
+            nameTd.appendChild(document.createTextNode(a.name + ' '));
+            if (a.url && isSafeUrl(a.url)) {
+                const link = document.createElement('a');
+                link.href = a.url;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.style.color = 'var(--accent)';
+                link.style.fontSize = '0.7rem';
+                link.textContent = '[Link]';
+                nameTd.appendChild(link);
+            }
+
+            const catTd = document.createElement('td');
+            catTd.style.textTransform = 'capitalize';
+            catTd.textContent = a.cat;
+
+            const hoursTd = document.createElement('td');
+            hoursTd.textContent = a.hours;
+
+            const actionTd = document.createElement('td');
+            const btn = document.createElement('button');
+            btn.className = 'btn-action btn-danger';
+            btn.style.padding = '4px 8px';
+            btn.textContent = '×';
+            btn.addEventListener('click', () => removeActivity(a.id));
+            actionTd.appendChild(btn);
+
+            tr.append(dateTd, nameTd, catTd, hoursTd, actionTd);
             body.appendChild(tr);
         });
 
@@ -368,14 +412,23 @@
         updateCompliance();
     }
 
+    function inRollingWindow(dateStr) {
+        const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return false;
+        const cutoff = new Date();
+        cutoff.setDate(cutoff.getDate() - 365);
+        return d >= cutoff && d <= new Date();
+    }
+
     function updateCompliance() {
-        const total = activities.reduce((sum, a) => sum + a.hours, 0);
+        const windowActivities = activities.filter(a => inRollingWindow(a.date));
+        const total = windowActivities.reduce((sum, a) => sum + a.hours, 0);
         const college = document.getElementById('collegeSelect').value;
         const fill = document.getElementById('progressFill');
         const note = document.getElementById('complianceNote');
-        
+
         let target = 50;
-        let extHours = activities.filter(a => a.cat === 'external').reduce((sum, a) => sum + a.hours, 0);
+        let extHours = windowActivities.filter(a => a.cat === 'external').reduce((sum, a) => sum + a.hours, 0);
         
         let status = '';
         let color = 'var(--accent)';
@@ -406,10 +459,17 @@
         note.style.color = color;
     }
 
+    function csvField(v) {
+        v = String(v == null ? '' : v);
+        return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
+    }
+
     function exportCSV() {
         if (activities.length === 0) return alert('No data to export.');
         const headers = 'date,name,category,hours,url\n';
-        const rows = activities.map(a => `${a.date},"${a.name}",${a.cat},${a.hours},${a.url}`).join('\n');
+        const rows = activities.map(a =>
+            [a.date, a.name, a.cat, a.hours, a.url].map(csvField).join(',')
+        ).join('\n');
         const blob = new Blob([headers + rows], { type: 'text/csv' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -418,26 +478,66 @@
         a.click();
     }
 
+    // RFC 4180-style CSV line parser: handles quoted fields with embedded commas,
+    // quotes ("") and newlines. Returns one row's fields as an array.
+    function parseCSVRow(text, startIndex) {
+        const fields = [];
+        let field = '';
+        let i = startIndex;
+        let inQuotes = false;
+        while (i < text.length) {
+            const c = text[i];
+            if (inQuotes) {
+                if (c === '"') {
+                    if (text[i + 1] === '"') { field += '"'; i += 2; continue; }
+                    inQuotes = false; i++; continue;
+                }
+                field += c; i++; continue;
+            }
+            if (c === '"') { inQuotes = true; i++; continue; }
+            if (c === ',') { fields.push(field); field = ''; i++; continue; }
+            if (c === '\r') { i++; continue; }
+            if (c === '\n') { fields.push(field); return { fields, nextIndex: i + 1 }; }
+            field += c; i++;
+        }
+        fields.push(field);
+        return { fields, nextIndex: i };
+    }
+
     function importCSV(input) {
         const file = input.files[0];
         if (!file) return;
         const reader = new FileReader();
         reader.onload = function(e) {
-            const lines = e.target.result.split('\n').slice(1);
-            lines.forEach(line => {
-                const [date, name, cat, hours, url] = line.split(',');
-                if (date && name && hours) {
-                    activities.push({
-                        id: Date.now() + Math.random(),
-                        date,
-                        name: name.replace(/"/g, ''),
-                        cat,
-                        hours: parseFloat(hours),
-                        url: url || ''
-                    });
+            const text = e.target.result;
+            let idx = 0;
+            let isHeader = true;
+            let imported = 0, rejected = 0;
+            while (idx < text.length) {
+                const { fields, nextIndex } = parseCSVRow(text, idx);
+                idx = nextIndex;
+                if (isHeader) { isHeader = false; continue; }
+                if (fields.length === 1 && fields[0].trim() === '') continue;
+
+                const [date, name, cat, hoursRaw, url] = fields;
+                const hours = parseFloat(hoursRaw);
+                const validDate = date && !isNaN(new Date(date).getTime());
+                if (!validDate || !name || !isFinite(hours) || !(hours > 0)) {
+                    rejected++;
+                    continue;
                 }
-            });
+                activities.push({
+                    id: Date.now() + Math.random(),
+                    date,
+                    name,
+                    cat: cat || 'external',
+                    hours,
+                    url: url || ''
+                });
+                imported++;
+            }
             save();
+            if (rejected > 0) alert(`Imported ${imported} row(s). Skipped ${rejected} invalid row(s) (missing/invalid date, name or hours).`);
         };
         reader.readAsText(file);
     }
@@ -452,5 +552,6 @@
     render();
 </script>
 
+<script defer src="../../consent-banner.js"></script>
 </body>
 </html>

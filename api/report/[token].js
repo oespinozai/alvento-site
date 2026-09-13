@@ -20,7 +20,7 @@ export default async function handler(req, res) {
       return res.status(status).send(body || "Report not found");
     }
     res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.setHeader("Cache-Control", "private, no-store");
     return res.status(200).send(body);
   } catch (err) {
     console.error("Report proxy error:", err.message);

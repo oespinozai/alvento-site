@@ -14,7 +14,7 @@
     <meta property="og:image" content="https://alvento.uk/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XBMBRD8E00");</script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -502,11 +502,23 @@
             <ul>${basis.map(b => `<li>${b}</li>`).join('')}</ul>
         `;
 
-        document.getElementById('psurTeaser').innerHTML = `
-            <div class="psur-teaser-title">Ready for your PSUR?</div>
-            <p>Class ${cls} devices require ${cls === 'IIa' ? 'biennial' : 'annual'} Periodic Safety Update Reports. Alvento's PSUR Generator drafts yours in under 30 minutes.</p>
-            <a href="/tools/mdr-psur-outline-generator/">Try PSUR Generator</a>
-        `;
+        let psurHtml;
+        if (cls === 'I') {
+            psurHtml = `
+                <div class="psur-teaser-title">Class I: Post-Market Surveillance Report, not a PSUR</div>
+                <p>Class I devices require a Post-Market Surveillance Report (PSR) under EU MDR Article 85, not a Periodic Safety Update Report. PSURs apply only to Class IIa, IIb and III devices under Article 86.</p>
+            `;
+        } else {
+            const cadence = cls === 'IIa'
+                ? 'updated when necessary, and at least every two years'
+                : 'updated at least annually';
+            psurHtml = `
+                <div class="psur-teaser-title">Ready for your PSUR?</div>
+                <p>Class ${cls} devices require a Periodic Safety Update Report under EU MDR Article 86, ${cadence}. Alvento's PSUR Generator drafts yours in under 30 minutes.</p>
+                <a href="/tools/mdr-psur-outline-generator/">Try PSUR Generator</a>
+            `;
+        }
+        document.getElementById('psurTeaser').innerHTML = psurHtml;
     }
 
     function restart() {
@@ -525,5 +537,6 @@
 
     renderStep();
     </script>
+<script defer src="../../consent-banner.js"></script>
 </body>
 </html>

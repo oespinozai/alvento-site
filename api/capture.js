@@ -25,9 +25,8 @@ export default async function handler(req, res) {
   const user = process.env.OCI_SMTP_USER;
   const pass = process.env.OCI_SMTP_PASS;
   if (!user || !pass) {
-    console.error("capture: SMTP credentials not configured");
-    // Don't block the user — capture failure is non-critical.
-    return res.status(200).json({ ok: true });
+    console.error("capture: SMTP credentials not configured, lead was NOT recorded", { email, product });
+    return res.status(500).json({ ok: false, error: "Capture is temporarily unavailable. Please email hello@alvento.uk instead." });
   }
 
   try {
@@ -63,8 +62,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error("capture: send failed:", err.message);
-    // Don't block the user — capture failure is non-critical.
-    return res.status(200).json({ ok: true });
+    console.error("capture: send failed, lead was NOT recorded:", err.message, { email, product });
+    return res.status(502).json({ ok: false, error: "Capture is temporarily unavailable. Please email hello@alvento.uk instead." });
   }
 }
