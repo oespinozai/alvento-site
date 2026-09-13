@@ -219,11 +219,11 @@
 
         <img src="/blog/images/apple-claude-leak-hero.jpg" alt="An isometric editorial illustration of a smartphone with its screen cracked open, internal configuration files spilling out as glowing acid-lime green code fragments against a matte black background, rendered in charcoal stipple." class="hero-image fade-up">
 
-        <p>On 30 April 2026, Apple shipped version 5.13 of its Support app. Developer Aaron Perris unpacked the bundle and found two files that weren't meant to be there. <code>CLAUDE.md</code> instruction files &mdash; the configuration documents that tell Anthropic's Claude Code how a project works.</p>
+        <p>On 30 April 2026, Apple shipped version 5.13 of its Support app. Developer Aaron Perris unpacked the bundle and found two files that weren't meant to be there: <code>CLAUDE.md</code> instruction files, the configuration documents that tell Anthropic's Claude Code how a project works.</p>
 
         <p>The files described a dual AI-human support architecture internally called "Juno AI." They referenced conditional compilation flags (<code>JUNO_ENABLED</code>, <code>DEV_BUILD</code>), internal bug-tracker tickets, and routing logic for conversations between AI agents and live support staff. Apple pushed a silent hotfix (v5.13.1) within 24 hours. No statement. No acknowledgment.</p>
 
-        <p>The news isn't that Apple uses Claude. Bloomberg's Mark Gurman reported months ago that "Apple runs on Anthropic at this point." The news is that Apple &mdash; a company famous for obsessive security controls &mdash; shipped internal AI configuration files in a consumer app bundle. The pipeline didn't catch it. Nobody did.</p>
+        <p>The news isn't that Apple uses Claude. Bloomberg's Mark Gurman reported months ago that "Apple runs on Anthropic at this point." The news is that Apple, a company famous for obsessive security controls, shipped internal AI configuration files in a consumer app bundle. The pipeline didn't catch it. Nobody did.</p>
 
         <p>If that can happen at Apple, it can happen at your organisation. The question is what gets leaked when it does.</p>
 
@@ -237,11 +237,11 @@
 
         <h2 class="fade-up">Three layers of governance that actually work</h2>
 
-        <p><strong>Layer one</strong> &mdash; admit it's already happening. Stop writing policies that pretend you can ban AI tools. Your team uses them. Your competitors' teams use them. Run an honest audit. Ask what tools are being used and with what data. You cannot govern what you refuse to see.</p>
+        <p><strong>Layer one</strong>: admit it's already happening. Stop writing policies that pretend you can ban AI tools. Your team uses them. Your competitors' teams use them. Run an honest audit. Ask what tools are being used and with what data. You cannot govern what you refuse to see.</p>
 
-        <p><strong>Layer two</strong> &mdash; classify data, not tools. A clinician pasting anonymised test data into ChatGPT is a different risk from one pasting patient-identifiable information. Define sensitivity levels and what's allowed at each. This survives tool changes. It works for ChatGPT, Claude, Copilot, Gemini, and whatever launches next week.</p>
+        <p><strong>Layer two</strong>: classify data, not tools. A clinician pasting anonymised test data into ChatGPT is a different risk from one pasting patient-identifiable information. Define sensitivity levels and what's allowed at each. This survives tool changes. It works for ChatGPT, Claude, Copilot, Gemini, and whatever launches next week.</p>
 
-        <p><strong>Layer three</strong> &mdash; check the pipeline, not just the person. Apple's mistake was a CI/CD pipeline that didn't know to exclude <code>.md</code> files. For a regulated organisation the question is: does your deployment process catch AI-generated code? Does your procurement process require vendors to disclose model usage? Does your incident plan cover an AI configuration leak?</p>
+        <p><strong>Layer three</strong>: check the pipeline, not just the person. Apple's mistake was a CI/CD pipeline that didn't know to exclude <code>.md</code> files. For a regulated organisation the question is: does your deployment process catch AI-generated code? Does your procurement process require vendors to disclose model usage? Does your incident plan cover an AI configuration leak?</p>
 
         <h2 class="fade-up">The regulatory angle</h2>
 
@@ -251,7 +251,7 @@
 
         <h2 class="fade-up">This week</h2>
 
-        <p>Run the audit. Replace the ban policy with a data classification policy. Review your pipelines. Write it down &mdash; one page, not forty. Your compliance officer and your engineering lead should both be able to read it in ten minutes.</p>
+        <p>Run the audit. Replace the ban policy with a data classification policy. Review your pipelines. Write it down: one page, not forty. Your compliance officer and your engineering lead should both be able to read it in ten minutes.</p>
 
         <div class="related-tools" style="margin:48px 0 24px;padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--surface);">
             <p style="font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:16px;">Related free tools</p>
@@ -261,7 +261,7 @@
         </div>
 
         <div class="cta-box fade-up">
-            <p><strong>Deploying AI in a regulated environment?</strong> Alvento helps businesses deploy and govern AI systems in production &mdash; evaluation harnesses, version discipline, and vendor risk modelling. Discuss your project at <a href="/#contact">alvento.uk</a> or email <a href="mailto:hello@alvento.uk">hello@alvento.uk</a> &mdash; first conversation is free.</p>
+            <p><strong>Deploying AI in a regulated environment?</strong> Alvento helps businesses deploy and govern AI systems in production: evaluation harnesses, version discipline, and vendor risk modelling. Discuss your project at <a href="/#contact">alvento.uk</a> or email <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>. First conversation is free.</p>
         </div>
 
         <section class="sources">

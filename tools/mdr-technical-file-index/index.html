@@ -195,7 +195,7 @@
         .toc-item.missing { color: var(--danger); }
         .toc-item.missing .status-tag { background: var(--danger); color: white; }
         .toc-item .status-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 6px; border-radius: 2px; text-transform: uppercase; margin-right: 10px; }
-        .toc-item .warning { font-size: 0.75rem; display: block; margin-top: 4px; }
+        .toc-item .warning { font-size: 0.75rem; display: block; margin-top: 4px; color: var(--danger); font-weight: 600; }
 
         code-block { display: block; white-space: pre-wrap; font-family: var(--font-mono); font-size: 0.9rem; color: #dcdcdc; }
 
@@ -369,7 +369,7 @@
         items.forEach((item, index) => {
             const isSelected = selectedIds.includes(item.id);
             const statusTag = isSelected ? '<span class="status-tag" style="background:var(--accent); color:var(--bg)">Ready</span>' : '<span class="status-tag">Missing</span>';
-            const warning = !isSelected ? '<span class="warning">⚠️ This section is mandatory for Annex ' + item.annex + '. Add this before submission.</span>' : '';
+            const warning = !isSelected ? '<span class="warning">This section is mandatory for Annex ' + item.annex + '. Add this before submission.</span>' : '';
             
             previewHtml += `
                 <div class="toc-item ${!isSelected ? 'missing' : ''}">
