@@ -24,8 +24,8 @@
   --font-body:'DM Sans',sans-serif;
   --font-mono:'JetBrains Mono',monospace;
 }
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.6;text-rendering:optimizeLegibility;overflow-x:hidden}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.6;text-rendering:optimizeLegibility}
 a{color:inherit;text-decoration:none}
 
 /* --- NAV --- */
@@ -39,7 +39,7 @@ nav .container{display:flex;justify-content:space-between;align-items:center;max
 .nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
 
 /* --- HERO --- */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2rem 4rem;max-width:900px;margin:0 auto;position:relative}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2rem 4rem;max-width:900px;margin:0 auto;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:15%;left:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(196,240,66,0.06) 0%,transparent 70%);pointer-events:none}
 .tag{display:inline-block;font-family:var(--font-mono);font-size:0.75rem;color:var(--lime);border:1px solid var(--lime-dim);padding:0.35rem 0.8rem;border-radius:2px;margin-bottom:2rem;letter-spacing:0.06em;text-transform:uppercase}
 .hero h1{font-family:var(--font-display);font-size:clamp(3rem,7vw,5.5rem);line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.5rem;font-weight:400}
@@ -126,7 +126,7 @@ footer p{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);let
       <li><a href="/#products">Products</a></li>
       <li><a href="/case-studies/">Case studies</a></li>
       <li><a href="/blog/">Insights</a></li>
-      <li><a href="/#contact" style="background:var(--lime);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Book a diagnostic</a></li>
+      <li><a href="/#contact" style="background:var(--lime);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Discuss your project</a></li>
     </ul>
   </div>
 </nav>
@@ -286,6 +286,6 @@ document.querySelectorAll('.nav-links a').forEach(function(link) {
 });
 </script>
 
-<script defer src="consent-banner.js"></script>
+<script defer src="/consent-banner.js"></script>
 </body>
 </html>
