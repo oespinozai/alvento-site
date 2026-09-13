@@ -1,7 +1,4 @@
-import { proxyRequest } from "../_ts-net-proxy.js";
-
-const REPORT_HOST = "openclaw.ghost-truck.ts.net";
-const REPORT_PORT = 8443;
+const REPORT_URL = "https://reports.alvento.uk";
 
 export default async function handler(req, res) {
   const { token } = req.query;
@@ -11,13 +8,12 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { status, body } = await proxyRequest(
-      REPORT_HOST,
-      REPORT_PORT,
-      `/report/${encodeURIComponent(token)}`
-    );
-    if (status !== 200) {
-      return res.status(status).send(body || "Report not found");
+    const upstream = await fetch(`${REPORT_URL}/report/${encodeURIComponent(token)}`, {
+      signal: AbortSignal.timeout(10000),
+    });
+    const body = await upstream.text();
+    if (!upstream.ok) {
+      return res.status(upstream.status).send(body || "Report not found");
     }
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.setHeader("Cache-Control", "private, no-store");
