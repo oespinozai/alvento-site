@@ -122,9 +122,14 @@
         }
 
         .dropzone:hover,
-        .dropzone.dragover {
+        .dropzone.dragover,
+        .dropzone:focus-visible {
             border-color: #00d4aa;
             background-color: rgba(0, 212, 170, 0.05);
+        }
+        .dropzone:focus-visible {
+            outline: 2px solid #00d4aa;
+            outline-offset: 2px;
         }
 
         .dropzone-text {
@@ -685,20 +690,20 @@
         <section>
             <div class="section-title">Upload PDFs</div>
 
-            <div class="dropzone" id="dropzone">
+            <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Upload PDF files, drop files here or press Enter to select">
                 <div class="dropzone-text">Drop your PDFs here or click to select</div>
                 <div class="dropzone-hint">Supports multiple files • Processes sequentially</div>
             </div>
 
-            <input type="file" id="fileInput" multiple accept=".pdf">
+            <input type="file" id="fileInput" multiple accept=".pdf" aria-hidden="true" tabindex="-1">
 
             <div id="fileQueue" class="file-queue"></div>
 
             <button class="button button-primary" id="processingBtn" disabled style="justify-content: center;">
-                <span class="spinner"></span> Processing...
+                <span id="processingBtnLabel">Convert to Markdown</span>
             </button>
 
-            <button class="button button-primary" id="downloadAllBtn" class="hidden" style="justify-content: center;">
+            <button class="button button-primary hidden" id="downloadAllBtn" style="justify-content: center;">
                 Download All as ZIP
             </button>
 
@@ -822,6 +827,7 @@
             fileInput: document.getElementById('fileInput'),
             fileQueue: document.getElementById('fileQueue'),
             processingBtn: document.getElementById('processingBtn'),
+            processingBtnLabel: document.getElementById('processingBtnLabel'),
             downloadAllBtn: document.getElementById('downloadAllBtn'),
             markdownOutput: document.getElementById('markdownOutput'),
             previewOutput: document.getElementById('previewOutput'),
@@ -859,6 +865,12 @@
 
         // Dropzone handlers
         elements.dropzone.addEventListener('click', () => elements.fileInput.click());
+        elements.dropzone.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                elements.fileInput.click();
+            }
+        });
         elements.dropzone.addEventListener('dragover', (e) => {
             e.preventDefault();
             elements.dropzone.classList.add('dragover');
@@ -917,6 +929,7 @@
             if (state.isProcessing) return;
             state.isProcessing = true;
             elements.processingBtn.disabled = true;
+            elements.processingBtnLabel.innerHTML = '<span class="spinner"></span> Processing...';
 
             for (let i = 0; i < state.files.length; i++) {
                 const file = state.files[i];
@@ -939,6 +952,7 @@
             }
 
             state.isProcessing = false;
+            elements.processingBtnLabel.textContent = 'Convert to Markdown';
             renderFileQueue();
 
             if (state.files.some(f => f.status === 'done')) {

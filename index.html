@@ -767,8 +767,8 @@ footer p {
 <nav>
   <div class="container">
     <a href="/" class="logo">alvento<span>.</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
-    <ul class="nav-links">
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))">&#9776;</button>
+    <ul class="nav-links" id="primary-nav">
       <li><a href="#capabilities">Capabilities</a></li>
       <li><a href="#lab">Lab</a></li>
       <li><a href="#work-with-us">Work with us</a></li>
