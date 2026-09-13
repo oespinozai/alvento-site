@@ -120,7 +120,8 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
 .disclosure { font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
 
 .demo-box { border: 1px solid var(--border); background: var(--surface); border-radius: 4px; margin-top: 24px; max-width: 640px; }
-.demo-scenarios { display: flex; gap: 10px; flex-wrap: wrap; padding: 20px 20px 0; }
+.demo-scenarios { display: flex; gap: 10px; flex-wrap: wrap; padding: 20px 20px 0; align-items: center; }
+.demo-scenarios-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.06em; width: 100%; margin-bottom: 4px; }
 .demo-scenario-btn { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); background: transparent; border: 1px solid var(--border); padding: 8px 14px; border-radius: 4px; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
 .demo-scenario-btn:hover { border-color: var(--accent-dim); color: var(--text); }
 .demo-log { padding: 20px; min-height: 60px; max-height: 360px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
@@ -188,7 +189,7 @@ footer a:hover { color: var(--text); }
       <li><a href="/tools">Tools</a></li>
       <li><a href="/case-studies/">Case studies</a></li>
       <li><a href="/blog/">Insights</a></li>
-      <li><a href="https://calendly.com/alventohope/demo" class="nav-cta">Book a 20-minute Foyer demo</a></li>
+      <li><a href="mailto:hello@alvento.uk?subject=Phone%20reception%20enquiry&body=Business%3A%20%0D%0A%0D%0AWebsite%3A%20%0D%0A%0D%0ACurrent%20call%20handling%3A%20" class="nav-cta">Talk to Alvento about your phone line</a></li>
     </ul>
   </div>
 </nav>
@@ -212,12 +213,12 @@ footer a:hover { color: var(--text); }
 <main id="main-content">
 <section class="page-hero">
   <div class="container">
-    <div class="label">Case study, Service, phone reception</div>
+    <div class="label">Case study: phone reception</div>
     <h1>Foyer, an AI phone receptionist that answers every call, <em>day or night</em>.</h1>
-    <p class="lede">We built Foyer to show how we think a phone receptionist should behave: it answers before the second ring, checks real availability, books directly against the calendar, and knows exactly when a call needs a person instead of a script.</p>
+    <p class="lede">We built Foyer to show how we think a phone receptionist should behave: it checks real availability, books directly against the calendar, and knows exactly when a call needs a person instead of a script.</p>
     <div class="btn-group">
       <a href="#call" class="btn-primary">Hear Foyer in action</a>
-      <a href="https://calendly.com/alventohope/demo" class="btn-secondary">Book a 20-minute Foyer demo</a>
+      <a href="mailto:hello@alvento.uk?subject=Phone%20reception%20enquiry&body=Business%3A%20%0D%0A%0D%0AWebsite%3A%20%0D%0A%0D%0ACurrent%20call%20handling%3A%20" class="btn-secondary">Talk to Alvento about your phone line</a>
     </div>
     <div class="meta-row">
       <div><strong>Domain</strong><span>Service, phone reception and intake</span></div>
@@ -228,10 +229,21 @@ footer a:hover { color: var(--text); }
   </div>
 </section>
 
+<!-- PROBLEM -->
+<section class="section">
+  <div class="container">
+    <div class="section-tier"><em>01</em>, The problem</div>
+    <h2>A missed call is a lead that <em>called someone else</em>.</h2>
+    <p>Home services, dental practices and clinics live or die on the phone, and most of them have a receptionist for exactly the hours they can afford to staff one. Outside those hours, or during a rush, calls go to voicemail, and the caller usually hangs up and rings the next name on the list rather than waiting for a callback.</p>
+    <p>Missed-call research consistently finds the same pattern: most callers who don't reach a person don't leave a voicemail, and most of those never call back. The exact figure varies by study, but the direction doesn't: every unanswered call is closer to a lost customer than a delayed one.</p>
+    <p>The fix isn't a script that pretends to be human. It's a system that answers immediately, handles what it can safely handle, and hands off cleanly the moment a call needs real judgement.</p>
+  </div>
+</section>
+
 <!-- SAMPLE CALL -->
 <section class="section" id="call">
   <div class="container">
-    <div class="section-tier"><em>01</em>, The call</div>
+    <div class="section-tier"><em>02</em>, The call</div>
     <h2>What it sounds like, from pickup to booked appointment.</h2>
     <p>An illustrative sample call, not a recording of a real customer, showing the shape of a typical booking interaction. Synthetic voice, generated for this artefact; the transcript highlights in step with playback.</p>
     <div class="call-stage">
@@ -303,22 +315,23 @@ footer a:hover { color: var(--text); }
 <!-- TRY IT -->
 <section class="section" id="try-it">
   <div class="container">
-    <div class="section-tier"><em>02</em>, Try it</div>
-    <h2>Say something to Foyer, <em>hear it respond</em>.</h2>
-    <p>A live, scoped demo: booking and escalation only, running on our own infrastructure, not a recording. This is a simulated booking demo, use fictional details. Messages are processed on Alvento's infrastructure and held temporarily in memory to keep the conversation going, then cleared. No real appointment is booked and nothing reaches a real calendar.</p>
+    <div class="section-tier"><em>03</em>, Try it</div>
+    <h2>Type what you'd say. <em>Foyer answers back in its own voice.</em></h2>
+    <p>The receptionist is real, the same one in the recording above. The calendar it books into is not: nothing you type is really booked, and nothing reaches a real business. Use a fictional name and number. Messages are held in memory only for the length of the conversation, then cleared.</p>
     <div class="demo-box">
       <div class="demo-scenarios">
+        <div class="demo-scenarios-label">Not sure what to say? Start with one of these:</div>
         <button class="demo-scenario-btn" data-msg="Hi, I need to book an appointment for a toothache.">Book an appointment</button>
-        <button class="demo-scenario-btn" data-msg="Actually, can we move it to next Tuesday instead?">Change the day</button>
+        <button class="demo-scenario-btn" data-msg="I already have an appointment booked, but I need to move it to a different day.">Ask to rebook</button>
         <button class="demo-scenario-btn" data-msg="I'm unhappy about my last visit and want to speak to someone in charge.">File a complaint</button>
       </div>
       <div class="demo-log" id="demoLog" role="log" aria-live="polite" aria-label="Conversation with Foyer"></div>
       <div class="demo-input-row">
         <label for="demoInput" class="sr-only">Type what you'd say to a receptionist</label>
-        <input type="text" id="demoInput" placeholder="Type what you'd say to a receptionist&hellip;" maxlength="300">
-        <button id="demoSend">Send</button>
+        <input type="text" id="demoInput" placeholder="Try a fictional name and number, nothing is really booked&hellip;" maxlength="300">
+        <button id="demoSend">Say it</button>
       </div>
-      <div class="demo-meta" id="demoMeta">12 messages per demo session.</div>
+      <div class="demo-meta" id="demoMeta">You have 12 turns in this demo.</div>
       <div class="call-stage" id="demoVoiceStage" hidden>
         <canvas class="alvento-orb-canvas" aria-hidden="true"></canvas>
         <audio id="demoAudio" class="demo-audio" controls></audio>
@@ -358,7 +371,7 @@ footer a:hover { color: var(--text); }
     if (busy || !message) return;
     setBusy(true);
     addMsg('you', message, false);
-    var pendingRow = addMsg('foyer', 'listening…', true);
+    var pendingRow = addMsg('foyer', 'Foyer is answering…', true);
 
     fetch(DEMO_ENDPOINT, {
       method: 'POST',
@@ -374,25 +387,35 @@ footer a:hover { color: var(--text); }
         pendingRow.classList.remove('pending');
         pendingRow.querySelector('.txt').textContent = data.reply;
         if (typeof data.turnsLeft === 'number') {
-          meta.textContent = data.turnsLeft > 0
-            ? data.turnsLeft + ' messages left in this demo session.'
-            : 'Demo session limit reached, refresh the page to start a new one.';
+          if (data.turnsLeft > 0) {
+            meta.classList.remove('error');
+            meta.textContent = 'You have ' + data.turnsLeft + (data.turnsLeft === 1 ? ' turn' : ' turns') + ' left in this demo.';
+          } else {
+            meta.classList.remove('error');
+            meta.innerHTML = 'You’ve used all your turns in this demo. Want to hear it on your own line? <a href="mailto:hello@alvento.uk?subject=Phone%20reception%20enquiry">Email hello@alvento.uk</a>.';
+          }
         }
         if (data.audio) {
           demoAudio.src = 'data:audio/mpeg;base64,' + data.audio;
           demoAudio.classList.add('visible');
           document.getElementById('demoVoiceStage').hidden = false;
           demoAudio.play().catch(function (err) {
-            meta.textContent = 'Audio playback failed, tap play on the player below to retry.';
-            meta.classList.add('error');
+            meta.textContent = 'Tap play to hear Foyer’s reply.';
           });
         }
       })
       .catch(function (err) {
         pendingRow.classList.remove('pending');
         pendingRow.querySelector('.txt').textContent = 'Demo unavailable right now, try again shortly.';
-        meta.textContent = 'Error: ' + err.message;
+        var friendly = 'Demo is offline right now. The recordings above are the same system.';
+        if (err.message === 'rate limit exceeded, try again later') {
+          friendly = 'The demo is busy, try again in a minute.';
+        } else if (err.message === 'conversation limit reached for this demo session') {
+          friendly = 'You’ve used all your turns in this demo.';
+        }
+        meta.textContent = friendly;
         meta.classList.add('error');
+        console.error('Foyer demo error:', err.message);
       })
       .finally(function () {
         setBusy(false);
@@ -417,16 +440,6 @@ footer a:hover { color: var(--text); }
 
 
 <!-- WHY -->
-<section class="section">
-  <div class="container">
-    <div class="section-tier"><em>03</em>, The problem</div>
-    <h2>A missed call is a lead that <em>called someone else</em>.</h2>
-    <p>Home services, dental practices and clinics live or die on the phone, and most of them have a receptionist for exactly the hours they can afford to staff one. Outside those hours, or during a rush, calls go to voicemail, and the caller usually hangs up and rings the next name on the list rather than waiting for a callback.</p>
-    <p>Industry research puts a number on that: BrightLocal's Local Consumer Communication Study found that 85% of callers who don't reach a person never call the business again, even without immediately calling a competitor. Every unanswered call is closer to a lost customer than a delayed one.</p>
-    <p>The fix isn't a script that pretends to be human. It's a system that answers immediately, handles what it can safely handle, and hands off cleanly the moment a call needs real judgement.</p>
-  </div>
-</section>
-
 <!-- HOW -->
 <section class="section">
   <div class="container">
@@ -462,12 +475,12 @@ footer a:hover { color: var(--text); }
       <div class="how-item">
         <div class="item-tag">Decision 06</div>
         <h3>Every call becomes CRM data, automatically</h3>
-        <p>Caller details, the booking, and the outcome sync straight into the practice's existing calendar and CRM. No manual re-entry, no second system to keep in step.</p>
+        <p>In a live deployment, caller details, the booking, and the outcome sync straight into the practice's existing calendar and CRM, whichever ones they already use. No manual re-entry, no second system to keep in step.</p>
       </div>
       <div class="how-item">
         <div class="item-tag">Decision 07</div>
         <h3>A text follow-up, not just a call</h3>
-        <p>Confirmation and reminder texts fire automatically once a booking is made, the same way a good receptionist would follow up, without anyone having to remember to send one.</p>
+        <p>In a live deployment, confirmation and reminder texts fire automatically once a booking is made, the same way a good receptionist would follow up, without anyone having to remember to send one.</p>
       </div>
     </div>
   </div>
@@ -551,7 +564,7 @@ footer a:hover { color: var(--text); }
       <div class="contrast-row">
         <div class="cell axis">Cost of a missed call</div>
         <div class="cell" data-label="Staffed reception desk">A lost lead, gone to a competitor</div>
-        <div class="cell mine" data-label="Foyer">No missed calls to lose</div>
+        <div class="cell mine" data-label="Foyer">Answered on the first ring, every time it's running</div>
       </div>
     </div>
     <p class="contrast-footnote">Fair comparison: category defaults we've observed, not claims about any named vendor.</p>
@@ -609,10 +622,9 @@ footer a:hover { color: var(--text); }
 <section class="cta-section">
   <div class="container">
     <h2>Missing calls after hours, or watching leads go cold before anyone calls back?</h2>
-    <p>If your business runs on the phone, we'll build the receptionist that never misses a call, and knows exactly when to hand off to a person.</p>
+    <p>If your business runs on the phone, we'll build the receptionist that never misses a call, and knows exactly when to hand off to a person. This is a real conversation with Alvento, not the demo above.</p>
     <div class="btn-group">
-      <a href="https://calendly.com/alventohope/demo" class="btn-primary">Book a 20-minute Foyer demo</a>
-      <a href="mailto:hello@alvento.uk?subject=Phone receptionist build" class="btn-secondary">Email hello@alvento.uk</a>
+      <a href="mailto:hello@alvento.uk?subject=Phone%20reception%20enquiry&body=Business%3A%20%0D%0A%0D%0AWebsite%3A%20%0D%0A%0D%0ACurrent%20call%20handling%3A%20" class="btn-primary">Email hello@alvento.uk</a>
     </div>
   </div>
 </section>
