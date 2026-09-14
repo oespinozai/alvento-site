@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Foyer — AI phone reception for busy small businesses</title>
+<desc id="desc">Alvento Foyer demo, with a lime-green voice waveform on a dark background.</desc>
+<defs>
+  <radialGradient id="glow"><stop stop-color="#c4f042" stop-opacity=".12"/><stop offset="1" stop-color="#0a0a0a" stop-opacity="0"/></radialGradient>
+  <linearGradient id="line" x2="0" y2="1"><stop stop-color="#d4ff4a"/><stop offset="1" stop-color="#7c992c"/></linearGradient>
+</defs>
+<rect width="1200" height="630" fill="#0a0a0a"/>
+<circle cx="1010" cy="280" r="360" fill="url(#glow)"/>
+<g fill="none" stroke="#c4f042" stroke-opacity=".12"><circle cx="1000" cy="286" r="178"/><circle cx="1000" cy="286" r="216"/><circle cx="1000" cy="286" r="254"/></g>
+<text x="72" y="90" fill="#e8e8e8" font-family="Georgia,serif" font-size="36">alvento<tspan fill="#c4f042">.</tspan></text>
+<text x="72" y="246" fill="#e8e8e8" font-family="Georgia,serif" font-size="112">Foyer<tspan fill="#c4f042">.</tspan></text>
+<text x="76" y="322" fill="#e8e8e8" font-family="Arial,sans-serif" font-size="38">AI phone reception for</text>
+<text x="76" y="374" fill="#e8e8e8" font-family="Arial,sans-serif" font-size="38">busy small businesses.</text>
+<text x="76" y="428" fill="#a8a8a8" font-family="Arial,sans-serif" font-size="22">Explore booking, enquiry capture and human handoff.</text>
+<rect x="76" y="480" width="224" height="58" rx="4" fill="#c4f042"/>
+<text x="107" y="517" fill="#0a0a0a" font-family="Arial,sans-serif" font-size="24" font-weight="bold">Hear the demo</text>
+<g stroke="url(#line)" stroke-width="10" stroke-linecap="round">
+<path d="M878 267v38 M904 237v98 M930 208v156 M956 247v78 M982 184v204 M1008 219v134 M1034 244v84 M1060 207v158 M1086 255v62 M1112 270v32"/>
+</g>
+<path d="M76 576H1124" stroke="#2a2a2a"/>
+<text x="76" y="606" fill="#a8a8a8" font-family="Arial,sans-serif" font-size="16">ALVENTO REFERENCE BUILD</text>
+<text x="1124" y="606" text-anchor="end" fill="#a8a8a8" font-family="Arial,sans-serif" font-size="16">alvento.uk</text>
+</svg>
