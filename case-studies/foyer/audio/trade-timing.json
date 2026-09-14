@@ -1,0 +1,151 @@
+{
+  "lines": [
+    {
+      "line": 0,
+      "speaker": "foyer",
+      "text": "Thanks for calling the workshop. I'm the digital assistant. This call is recorded for quality. How can I help?",
+      "start": 0,
+      "end": 7.44
+    },
+    {
+      "line": 1,
+      "speaker": "caller",
+      "text": "Hi, my boiler's stopped heating the water. Could someone come out and take a look this week?",
+      "start": 7.89,
+      "end": 12.85
+    },
+    {
+      "line": 2,
+      "speaker": "foyer",
+      "text": "Sorry to hear that. Let me check availability. There's Wednesday at ten thirty in the morning. Or Thursday at three in the afternoon. Would either suit you?",
+      "start": 13.3,
+      "end": 23.18
+    },
+    {
+      "line": 3,
+      "speaker": "caller",
+      "text": "Thursday at three, please. Actually, sorry, could we do Friday morning instead?",
+      "start": 23.63,
+      "end": 28.27
+    },
+    {
+      "line": 4,
+      "speaker": "foyer",
+      "text": "Of course. Friday the eighteenth of September at ten in the morning is available. Does that work?",
+      "start": 28.72,
+      "end": 34.76
+    },
+    {
+      "line": 5,
+      "speaker": "caller",
+      "text": "Yes, that's better. Thank you.",
+      "start": 35.21,
+      "end": 37.93
+    },
+    {
+      "line": 6,
+      "speaker": "foyer",
+      "text": "Can I take your full name, please?",
+      "start": 38.38,
+      "end": 40.18
+    },
+    {
+      "line": 7,
+      "speaker": "caller",
+      "text": "Aidan Walsh.",
+      "start": 40.63,
+      "end": 41.71
+    },
+    {
+      "line": 8,
+      "speaker": "foyer",
+      "text": "Thanks, Aidan. And a contact number?",
+      "start": 42.16,
+      "end": 45.52
+    },
+    {
+      "line": 9,
+      "speaker": "caller",
+      "text": "It's zero seven seven zero zero, nine zero zero, one two three.",
+      "start": 45.97,
+      "end": 49.45
+    },
+    {
+      "line": 10,
+      "speaker": "foyer",
+      "text": "Let me read that back. Zero seven seven zero zero; nine zero zero; one two three. Is that right?",
+      "start": 49.9,
+      "end": 58.82
+    },
+    {
+      "line": 11,
+      "speaker": "caller",
+      "text": "Yes, that's right.",
+      "start": 59.27,
+      "end": 60.51
+    },
+    {
+      "line": 12,
+      "speaker": "foyer",
+      "text": "And what's the address for the visit?",
+      "start": 60.96,
+      "end": 63
+    },
+    {
+      "line": 13,
+      "speaker": "caller",
+      "text": "It's fourteen Example Street, Manchester.",
+      "start": 63.45,
+      "end": 65.97
+    },
+    {
+      "line": 14,
+      "speaker": "foyer",
+      "text": "Let me read that back. Fourteen Example Street, Manchester. Is that right?",
+      "start": 66.42,
+      "end": 72.14
+    },
+    {
+      "line": 15,
+      "speaker": "caller",
+      "text": "Yes, that's right.",
+      "start": 72.59,
+      "end": 73.83
+    },
+    {
+      "line": 16,
+      "speaker": "foyer",
+      "text": "Would you prefer your visit confirmation by email or text?",
+      "start": 74.28,
+      "end": 78
+    },
+    {
+      "line": 17,
+      "speaker": "caller",
+      "text": "Text, please.",
+      "start": 78.45,
+      "end": 79.77
+    },
+    {
+      "line": 18,
+      "speaker": "foyer",
+      "text": "You're booked for Friday the eighteenth of September, at ten in the morning. Your confirmation text will include the engineer's estimated arrival window and how to reschedule. Is there anything else you need?",
+      "start": 80.22,
+      "end": 90.26
+    },
+    {
+      "line": 19,
+      "speaker": "caller",
+      "text": "No, that's everything. Thanks.",
+      "start": 90.71,
+      "end": 93.51
+    },
+    {
+      "line": 20,
+      "speaker": "foyer",
+      "text": "You're welcome, Aidan. Take care.",
+      "start": 93.96,
+      "end": 96.68
+    }
+  ]
+}

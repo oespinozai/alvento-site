@@ -1,0 +1,137 @@
+{
+  "lines": [
+    {
+      "line": 0,
+      "speaker": "foyer",
+      "text": "Thanks for calling the salon. I'm the digital assistant. This call is recorded for quality. How can I help?",
+      "start": 0,
+      "end": 7.76
+    },
+    {
+      "line": 1,
+      "speaker": "caller",
+      "text": "Hi, could I book a haircut sometime this week?",
+      "start": 8.21,
+      "end": 10.57
+    },
+    {
+      "line": 2,
+      "speaker": "foyer",
+      "text": "Of course. Let me check availability. There's Wednesday at ten thirty in the morning. Or Thursday at three in the afternoon. Would either suit you?",
+      "start": 11.02,
+      "end": 21.38
+    },
+    {
+      "line": 3,
+      "speaker": "caller",
+      "text": "Thursday at three, please. Actually, sorry, could we do Friday morning instead?",
+      "start": 21.83,
+      "end": 26.71
+    },
+    {
+      "line": 4,
+      "speaker": "foyer",
+      "text": "Of course. Friday the eighteenth of September at ten in the morning is available. Does that work?",
+      "start": 27.16,
+      "end": 32.88
+    },
+    {
+      "line": 5,
+      "speaker": "caller",
+      "text": "Yes, that's better. Thank you.",
+      "start": 33.33,
+      "end": 36.05
+    },
+    {
+      "line": 6,
+      "speaker": "foyer",
+      "text": "Can I take your full name, please?",
+      "start": 36.5,
+      "end": 38.38
+    },
+    {
+      "line": 7,
+      "speaker": "caller",
+      "text": "Tomasz Nowak.",
+      "start": 38.83,
+      "end": 40.07
+    },
+    {
+      "line": 8,
+      "speaker": "foyer",
+      "text": "Thanks, Tomasz. And a contact number?",
+      "start": 40.52,
+      "end": 43.72
+    },
+    {
+      "line": 9,
+      "speaker": "caller",
+      "text": "It's zero seven seven zero zero, nine zero zero, one two three.",
+      "start": 44.17,
+      "end": 47.81
+    },
+    {
+      "line": 10,
+      "speaker": "foyer",
+      "text": "Let me read that back. Zero seven seven zero zero; nine zero zero; one two three. Is that right?",
+      "start": 48.26,
+      "end": 57.02
+    },
+    {
+      "line": 11,
+      "speaker": "caller",
+      "text": "Yes, that's right.",
+      "start": 57.47,
+      "end": 58.95
+    },
+    {
+      "line": 12,
+      "speaker": "foyer",
+      "text": "Would you prefer your appointment confirmation by email or text?",
+      "start": 59.4,
+      "end": 62.88
+    },
+    {
+      "line": 13,
+      "speaker": "caller",
+      "text": "Email, please. It's tomasz at example dot com.",
+      "start": 63.33,
+      "end": 67.17
+    },
+    {
+      "line": 14,
+      "speaker": "foyer",
+      "text": "That's tomasz at example dot com. Have I got that right?",
+      "start": 67.62,
+      "end": 71.78
+    },
+    {
+      "line": 15,
+      "speaker": "caller",
+      "text": "Yes, you have.",
+      "start": 72.23,
+      "end": 73.55
+    },
+    {
+      "line": 16,
+      "speaker": "foyer",
+      "text": "You're booked for Friday the eighteenth of September, at ten in the morning. Your confirmation email will include the salon address and how to reschedule. Is there anything else you need?",
+      "start": 74,
+      "end": 83
+    },
+    {
+      "line": 17,
+      "speaker": "caller",
+      "text": "No, that's everything. Thanks.",
+      "start": 83.45,
+      "end": 85.93
+    },
+    {
+      "line": 18,
+      "speaker": "foyer",
+      "text": "You're welcome, Tomasz. Take care.",
+      "start": 86.38,
+      "end": 89.1
+    }
+  ]
+}
