@@ -155,6 +155,15 @@ section[id] { scroll-margin-top: 100px; }
 .cta-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 16px; font-weight: 500; }
 .cta-section p { color: var(--muted); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
 .cta-section .btn-group { justify-content: center; }
+.lead-form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; max-width: 560px; margin: 0 auto 16px; }
+.lead-form input { flex: 1; min-width: 200px; background: var(--bg); border: 1px solid var(--border); color: var(--text); font-family: var(--font-body); font-size: 0.92rem; padding: 13px 16px; border-radius: 4px; }
+.lead-form input:focus { outline: none; border-color: var(--accent-dim); }
+.lead-form button { border: 0; cursor: pointer; }
+.lead-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+.lead-status { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); min-height: 1.2em; margin-bottom: 20px; }
+.lead-status.ok { color: var(--accent-dim); }
+.lead-status.err { color: #e07a5f; }
+.cta-section .divider-or { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); margin-bottom: 20px; }
 
 footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; }
 footer p { font-size: 0.85rem; color: var(--dim); }
@@ -707,13 +716,59 @@ footer a:hover { color: var(--text); }
 <section class="cta-section">
   <div class="container">
     <h2>Missing calls after hours, or watching leads go cold before anyone calls back?</h2>
-    <p>Tell us your business type, current call handling and the software you use. We’ll review the fit and explain the next steps for a tailored implementation. Email hello@alvento.uk to speak with Alvento.</p>
+    <p>Leave your email and a line about your business. We'll review the fit and follow up with next steps for a tailored implementation.</p>
+    <form id="leadForm" class="lead-form" novalidate>
+      <input type="email" id="leadEmail" name="email" placeholder="you@business.co.uk" autocomplete="email" required>
+      <input type="text" id="leadContext" name="context" placeholder="Business type and current call handling" maxlength="200" autocomplete="off">
+      <button type="submit" class="btn-primary">Send</button>
+    </form>
+    <p id="leadStatus" class="lead-status" role="status" aria-live="polite"></p>
+    <p class="divider-or">Or</p>
     <div class="btn-group">
-      <a href="mailto:hello@alvento.uk?subject=Phone%20reception%20enquiry&body=Business%3A%20%0D%0A%0D%0AWebsite%3A%20%0D%0A%0D%0ACurrent%20call%20handling%3A%20%0D%0A%0D%0ABooking%20or%20job%20software%3A%20" class="btn-primary">Email your requirements</a>
+      <a href="mailto:hello@alvento.uk?subject=Phone%20reception%20enquiry&body=Business%3A%20%0D%0A%0D%0AWebsite%3A%20%0D%0A%0D%0ACurrent%20call%20handling%3A%20%0D%0A%0D%0ABooking%20or%20job%20software%3A%20" class="btn-secondary">Email your requirements</a>
     </div>
   </div>
 </section>
 </main>
+
+<script>
+(function () {
+  var form = document.getElementById('leadForm');
+  if (!form) return;
+  var status = document.getElementById('leadStatus');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('leadEmail').value.trim();
+    var context = document.getElementById('leadContext').value.trim();
+    var btn = form.querySelector('button');
+    btn.disabled = true;
+    status.className = 'lead-status';
+    status.textContent = 'Sending...';
+    fetch('/api/capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, product: 'foyer', context: context })
+    })
+      .then(function (r) { return r.json().then(function (data) { return { httpOk: r.ok, data: data }; }); })
+      .then(function (result) {
+        btn.disabled = false;
+        if (result.httpOk && result.data && result.data.ok) {
+          status.className = 'lead-status ok';
+          status.textContent = "Thanks, we'll be in touch.";
+          form.reset();
+        } else {
+          status.className = 'lead-status err';
+          status.textContent = (result.data && result.data.error) || 'Something went wrong. Please email hello@alvento.uk instead.';
+        }
+      })
+      .catch(function () {
+        btn.disabled = false;
+        status.className = 'lead-status err';
+        status.textContent = 'Something went wrong. Please email hello@alvento.uk instead.';
+      });
+  });
+})();
+</script>
 
 <footer>
   <div class="container">
