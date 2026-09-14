@@ -173,6 +173,18 @@ footer a:hover { color: var(--text); }
   .contrast-row .cell:not(.axis)::before { content: attr(data-label); display: block; font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim); margin-bottom: 6px; }
   .contrast-row .cell.mine::before { color: var(--accent-dim); }
 }
+
+.followup-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 32px; }
+.followup-card { padding: 28px; border: 1px solid var(--border); border-radius: 4px; background: var(--surface); min-width: 0; }
+.followup-card h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; margin: 12px 0 20px; }
+.followup-card .example-label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+.followup-card dl { display: grid; grid-template-columns: 95px minmax(0, 1fr); gap: 12px; font-size: 0.92rem; line-height: 1.6; margin: 20px 0; }
+.followup-card dt { color: var(--dim); }
+.followup-card dd { margin: 0; color: var(--text); overflow-wrap: anywhere; }
+.followup-card .email-body { border-top: 1px solid var(--border); padding-top: 20px; }
+.followup-card a { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 768px) { .followup-grid { grid-template-columns: 1fr; } .followup-card { padding: 22px; } }
+
 </style>
 </head>
 <body>
@@ -222,7 +234,7 @@ footer a:hover { color: var(--text); }
     </div>
     <div class="meta-row">
       <div><strong>Domain</strong><span>Service, phone reception and intake</span></div>
-      <div><strong>Scope</strong><span>Call answering, live booking, escalation logic, CRM sync, SMS follow-up</span></div>
+      <div><strong>Scope</strong><span>Call answering, live booking, escalation logic, CRM sync, email and SMS follow-up</span></div>
       <div><strong>Stack</strong><span>Voice AI platform, telephony, calendar sync, call transcript store</span></div>
       <div><strong>Status</strong><span>Private, Alvento-owned reference build</span></div>
     </div>
@@ -250,64 +262,131 @@ footer a:hover { color: var(--text); }
       <canvas class="alvento-orb-canvas" aria-hidden="true"></canvas>
       <div class="audio-player">
         <audio id="callAudio" controls preload="metadata">
-          <source src="audio/sample-call.mp3" type="audio/mpeg">
+          <source src="audio/sample-call.mp3?v=20260914" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
       </div>
     </div>
     <div class="transcript" id="transcript">
-      <div class="line" data-start="0.0" data-end="5.26">
+      <div class="line" data-start="0" data-end="7.6">
         <div class="speaker">Foyer</div>
-        <div class="text">Thanks for calling, this is the practice's digital assistant, just to let you know, this call's recorded for quality. How can I help?</div>
+        <div class="text">Thanks for calling the practice. I'm the digital assistant. This call is recorded for quality. How can I help?</div>
       </div>
-      <div class="line caller" data-start="5.61" data-end="12.394">
+      <div class="line caller" data-start="8.05" data-end="13.09">
         <div class="speaker">Caller</div>
-        <div class="text">Oh, hi. Um, yeah, I've been having some knee pain, been going on a couple of weeks now, and I was hoping to get seen this week if possible?</div>
+        <div class="text">Hi, I've had some knee pain for a couple of weeks. Could I book an appointment this week?</div>
       </div>
-      <div class="line" data-start="13.244" data-end="21.177">
+      <div class="line" data-start="13.54" data-end="24.14">
         <div class="speaker">Foyer</div>
-        <div class="text">Sorry to hear that. Let me have a look&hellip; okay, so this week I've got Wednesday at half ten in the morning, or Thursday at three in the afternoon. Either of those work?</div>
+        <div class="text">I'm sorry to hear that. Let me check availability. There's Wednesday at ten thirty in the morning. Or Thursday at three in the afternoon. Would either suit you?</div>
       </div>
-      <div class="line caller" data-start="21.577" data-end="23.83">
+      <div class="line caller" data-start="24.59" data-end="29.31">
         <div class="speaker">Caller</div>
-        <div class="text">Thursday at three's better for me, yeah.</div>
+        <div class="text">Thursday at three, please. Actually, sorry, could we do Friday morning instead?</div>
       </div>
-      <div class="line" data-start="24.98" data-end="28.628">
+      <div class="line" data-start="29.76" data-end="35.48">
         <div class="speaker">Foyer</div>
-        <div class="text">Great, I'll pop you in for Thursday at three. Can I take your full name, please?</div>
+        <div class="text">Of course. Friday the eighteenth of September at ten in the morning is available. Does that work?</div>
       </div>
-      <div class="line caller" data-start="28.928" data-end="34.266">
+      <div class="line caller" data-start="35.93" data-end="38.73">
         <div class="speaker">Caller</div>
-        <div class="text">It's Priya Nair. P-R-I-Y-A, Nair, N-A-I-R.</div>
+        <div class="text">Yes, that's better. Thank you.</div>
       </div>
-      <div class="line" data-start="34.916" data-end="37.698">
+      <div class="line" data-start="39.18" data-end="40.9">
         <div class="speaker">Foyer</div>
-        <div class="text">Priya Nair, got it. And a contact number for you?</div>
+        <div class="text">Can I take your full name, please?</div>
       </div>
-      <div class="line caller" data-start="38.648" data-end="44.128">
+      <div class="line caller" data-start="41.35" data-end="45.11">
         <div class="speaker">Caller</div>
-        <div class="text">Yeah, it's o-seven-seven-double-o, sorry, hang on, o-seven-seven-zero-zero, nine-double-o, one-two-three.</div>
+        <div class="text">Priya Nair. That's Nair, N A I R.</div>
       </div>
-      <div class="line" data-start="44.528" data-end="51.153">
+      <div class="line" data-start="45.56" data-end="48.68">
         <div class="speaker">Foyer</div>
-        <div class="text">No worries, let me read that back: o-seven-seven-zero-zero-nine-zero-zero-one-two-three. Is that right?</div>
+        <div class="text">Thanks, Priya. And a contact number?</div>
       </div>
-      <div class="line caller" data-start="51.903" data-end="53.102">
+      <div class="line caller" data-start="49.13" data-end="53.09">
         <div class="speaker">Caller</div>
-        <div class="text">That's it, yeah.</div>
+        <div class="text">It's zero seven seven zero zero, nine zero zero, one two three.</div>
       </div>
-      <div class="line" data-start="53.402" data-end="62.354">
+      <div class="line" data-start="53.54" data-end="61.82">
         <div class="speaker">Foyer</div>
-        <div class="text">Perfect. So that's Thursday at three, under Priya Nair, for the knee. You'll get a text confirmation in the next few minutes with the details. Is there anything else I can help with?</div>
+        <div class="text">Let me read that back. Zero seven seven zero zero; nine zero zero; one two three. Is that right?</div>
       </div>
-      <div class="line caller" data-start="62.954" data-end="65.205">
+      <div class="line caller" data-start="62.27" data-end="63.43">
         <div class="speaker">Caller</div>
-        <div class="text">No, I think that's everything. Thank you.</div>
+        <div class="text">Yes, that's right.</div>
       </div>
-      <div class="line" data-start="66.205" data-end="70.076">
+      <div class="line" data-start="63.88" data-end="67.36">
         <div class="speaker">Foyer</div>
-        <div class="text">No problem at all. Thanks for calling, Priya, take care, and we'll see you Thursday.</div>
+        <div class="text">Would you prefer your appointment confirmation by email or text?</div>
       </div>
+      <div class="line caller" data-start="67.81" data-end="71.73">
+        <div class="speaker">Caller</div>
+        <div class="text">Email, please. It's priya at example dot com.</div>
+      </div>
+      <div class="line" data-start="72.18" data-end="76.1">
+        <div class="speaker">Foyer</div>
+        <div class="text">That's priya at example dot com. Have I got that right?</div>
+      </div>
+      <div class="line caller" data-start="76.55" data-end="77.95">
+        <div class="speaker">Caller</div>
+        <div class="text">Yes, you have.</div>
+      </div>
+      <div class="line" data-start="78.4" data-end="88.04">
+        <div class="speaker">Foyer</div>
+        <div class="text">You're booked for Friday the eighteenth of September, at ten in the morning. Your confirmation email will include the practice address and how to reschedule. Is there anything else you need?</div>
+      </div>
+      <div class="line caller" data-start="88.49" data-end="91.05">
+        <div class="speaker">Caller</div>
+        <div class="text">No, that's everything. Thanks.</div>
+      </div>
+      <div class="line" data-start="91.5" data-end="94.3">
+        <div class="speaker">Foyer</div>
+        <div class="text">You're welcome, Priya. Take care.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AFTER THE CALL -->
+<section class="section" id="after-the-call" aria-labelledby="followup-heading">
+  <div class="container">
+    <div class="section-tier">After the call</div>
+    <h2 id="followup-heading">A confirmation for the caller. <em>A clear record for the team.</em></h2>
+    <p>The call is only the first step. Here is what the follow-up could look like for the booking above: appointment details for Priya, and a separate summary for the practice.</p>
+    <p><strong>Illustrative examples.</strong> All details below are fictional. This demo sends no email or SMS and makes no real booking. Delivery and staff access are connected as part of a live deployment.</p>
+    <div class="followup-grid">
+      <article class="followup-card" aria-labelledby="confirmation-heading">
+        <span class="example-label">Caller email · example</span>
+        <h3 id="confirmation-heading">Your appointment confirmation</h3>
+        <dl>
+          <dt>To</dt><dd>priya@example.com</dd>
+          <dt>Subject</dt><dd>Your appointment · Friday 18 September</dd>
+        </dl>
+        <div class="email-body">
+          <p>Hi Priya, your appointment is confirmed.</p>
+          <dl>
+            <dt>When</dt><dd>Friday 18 September 2026<br>10:00 am · UK time</dd>
+            <dt>Where</dt><dd>Example Practice<br>10 Example Street (fictional address)</dd>
+          </dl>
+          <p>Need to change or cancel? Email reception@example.com with your name and appointment time (example contact).</p>
+          <p>We look forward to seeing you.</p>
+        </div>
+      </article>
+      <article class="followup-card" aria-labelledby="summary-heading">
+        <span class="example-label">Practice summary · example</span>
+        <h3 id="summary-heading">Booking completed</h3>
+        <dl>
+          <dt>Caller</dt><dd>Priya Nair</dd>
+          <dt>Contact</dt><dd>07700 900123<br>priya@example.com</dd>
+          <dt>Appointment</dt><dd>Friday 18 September 2026<br>10:00 am · UK time</dd>
+          <dt>Call summary</dt><dd>Caller asked about Thursday, then chose Friday morning. Name, phone number and email confirmed.</dd>
+          <dt>Follow-up</dt><dd>Email confirmation selected.</dd>
+          <dt>Team action</dt><dd>No callback requested.</dd>
+        </dl>
+        <p><a href="#transcript">Read the full sample transcript</a></p>
+        <p>In a live deployment, the full transcript is available through an access-controlled staff view. It is kept separate from the caller's confirmation.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -317,7 +396,7 @@ footer a:hover { color: var(--text); }
   <div class="container">
     <div class="section-tier"><em>03</em>, Try it</div>
     <h2>Type what you'd say. <em>Foyer answers back in its own voice.</em></h2>
-    <p>The receptionist is real, the same one in the recording above. The calendar it books into is not: nothing you type is really booked, and nothing reaches a real business. Use a fictional name and number. Messages are held in memory only for the length of the conversation, then cleared.</p>
+    <p>The receptionist is real, the same one in the recording above. The calendar it books into is not: nothing you type is really booked, and nothing reaches a real business. Use a fictional name, number and email address. No emails or texts are sent. Conversations are held in memory and expire after 30 minutes of inactivity, with cleanup every five minutes.</p>
     <div class="demo-box">
       <div class="demo-scenarios">
         <div class="demo-scenarios-label">Not sure what to say? Start with one of these:</div>
@@ -479,8 +558,8 @@ footer a:hover { color: var(--text); }
       </div>
       <div class="how-item">
         <div class="item-tag">Decision 07</div>
-        <h3>A text follow-up, not just a call</h3>
-        <p>In a live deployment, confirmation and reminder texts fire automatically once a booking is made, the same way a good receptionist would follow up, without anyone having to remember to send one.</p>
+        <h3>A confirmation, not just a call</h3>
+        <p>In a live deployment, appointment confirmations can go by email or SMS once the booking succeeds. The practice gets a separate call summary and access to the transcript, so the team knows what happened and what needs attention.</p>
       </div>
     </div>
   </div>
@@ -496,39 +575,55 @@ footer a:hover { color: var(--text); }
       <canvas class="alvento-orb-canvas" aria-hidden="true"></canvas>
       <div class="audio-player">
         <audio id="callAudio2" controls preload="metadata">
-          <source src="audio/handoff-call.mp3" type="audio/mpeg">
+          <source src="audio/handoff-call.mp3?v=20260914" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
       </div>
     </div>
     <div class="transcript" id="transcript2">
-      <div class="line" data-start="0.0" data-end="5.368">
+      <div class="line" data-start="0" data-end="7.6">
         <div class="speaker">Foyer</div>
-        <div class="text">Thanks for calling, this is the practice's digital assistant, just to let you know, this call's recorded for quality. How can I help?</div>
+        <div class="text">Thanks for calling the practice. I'm the digital assistant. This call is recorded for quality. How can I help?</div>
       </div>
-      <div class="line caller" data-start="5.768" data-end="13.128">
+      <div class="line caller" data-start="8.05" data-end="12.77">
         <div class="speaker">Caller</div>
-        <div class="text">Yeah, I'm calling about my appointment last Tuesday. I'm really not happy with how it went, and I want to speak to someone in charge, not book anything.</div>
+        <div class="text">I'm unhappy about my appointment last Tuesday. I want to speak to someone in charge.</div>
       </div>
-      <div class="line" data-start="14.028" data-end="21.76">
+      <div class="line" data-start="13.22" data-end="19.9">
         <div class="speaker">Foyer</div>
-        <div class="text">I'm sorry to hear that. That's definitely something I'll pass straight to the practice manager rather than try to sort out myself. Can I take your name and a number, so they can call you back today?</div>
+        <div class="text">I'm sorry you've had a poor experience. I can request a callback from the practice manager. Can I take your name?</div>
       </div>
-      <div class="line caller" data-start="22.11" data-end="27.828">
+      <div class="line caller" data-start="20.35" data-end="25.23">
         <div class="speaker">Caller</div>
-        <div class="text">It's Michael Doyle. And my number's o-seven-nine-nine, double-one-two, three-four-five.</div>
+        <div class="text">Michael Doyle. My number is zero seven seven zero zero, nine zero zero, one.</div>
       </div>
-      <div class="line" data-start="28.828" data-end="38.425">
+      <div class="line" data-start="25.68" data-end="31">
         <div class="speaker">Foyer</div>
-        <div class="text">Thanks, Michael. I've flagged this as a priority complaint, the practice manager will call you back before the end of the day. Is there anything urgent I should note for them right now?</div>
+        <div class="text">Thanks, Michael. I only caught nine digits. Could you repeat the full number, please?</div>
       </div>
-      <div class="line caller" data-start="38.725" data-end="40.68">
+      <div class="line caller" data-start="31.45" data-end="35.61">
         <div class="speaker">Caller</div>
-        <div class="text">Just that I want a proper explanation, that's all.</div>
+        <div class="text">Sorry. Zero seven seven zero zero, nine zero zero, one two four.</div>
       </div>
-      <div class="line" data-start="41.38" data-end="45.821">
+      <div class="line" data-start="36.06" data-end="43.26">
         <div class="speaker">Foyer</div>
-        <div class="text">Understood, I've noted that. Someone will be in touch very soon. Thanks for your patience, Michael.</div>
+        <div class="text">That's zero seven seven zero zero; nine zero zero; one two four. Is that correct?</div>
+      </div>
+      <div class="line caller" data-start="43.71" data-end="47.31">
+        <div class="speaker">Caller</div>
+        <div class="text">Yes. I just want a proper explanation of what happened.</div>
+      </div>
+      <div class="line" data-start="47.76" data-end="55.24">
+        <div class="speaker">Foyer</div>
+        <div class="text">I've noted that you'd like an explanation. I'll pass your callback request to the practice manager. I can't confirm when they'll be available.</div>
+      </div>
+      <div class="line caller" data-start="55.69" data-end="57.69">
+        <div class="speaker">Caller</div>
+        <div class="text">All right. Thank you.</div>
+      </div>
+      <div class="line" data-start="58.14" data-end="60.38">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thank you, Michael. Take care.</div>
       </div>
     </div>
   </div>
@@ -612,7 +707,7 @@ footer a:hover { color: var(--text); }
       <span class="stack-tag">Telephony, inbound routing</span>
       <span class="stack-tag">Calendar availability and booking API</span>
       <span class="stack-tag">CRM sync</span>
-      <span class="stack-tag">SMS confirmation and reminders</span>
+      <span class="stack-tag">Email and SMS confirmations</span>
       <span class="stack-tag">Call transcript and outcome log</span>
     </div>
     <p class="disclosure">This is a reference build: the call flow and escalation logic are the artefacts we sell, not a specific client's live system. The sample call above is illustrative, not a recording of a real customer.</p>
@@ -715,6 +810,18 @@ footer a:hover { color: var(--text); }
   filter: blur(16px);
   pointer-events: none;
 }
+
+.followup-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 32px; }
+.followup-card { padding: 28px; border: 1px solid var(--border); border-radius: 4px; background: var(--surface); min-width: 0; }
+.followup-card h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; margin: 12px 0 20px; }
+.followup-card .example-label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+.followup-card dl { display: grid; grid-template-columns: 95px minmax(0, 1fr); gap: 12px; font-size: 0.92rem; line-height: 1.6; margin: 20px 0; }
+.followup-card dt { color: var(--dim); }
+.followup-card dd { margin: 0; color: var(--text); overflow-wrap: anywhere; }
+.followup-card .email-body { border-top: 1px solid var(--border); padding-top: 20px; }
+.followup-card a { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 768px) { .followup-grid { grid-template-columns: 1fr; } .followup-card { padding: 22px; } }
+
 </style>
 
 <!-- Required before the module: the pinned addons internally import "three".

@@ -3,93 +3,135 @@
     {
       "line": 0,
       "speaker": "foyer",
-      "text": "Thanks for calling, this is the practice's digital assistant, just to let you know, this call's recorded for quality. How can I help?",
-      "start": 0.0,
-      "end": 5.26
+      "text": "Thanks for calling the practice. I'm the digital assistant. This call is recorded for quality. How can I help?",
+      "start": 0,
+      "end": 7.6
     },
     {
       "line": 1,
       "speaker": "caller",
-      "text": "Oh, hi. Um, yeah, I've been having some knee pain, been going on a couple of weeks now, and I was hoping to get seen this week if possible?",
-      "start": 5.61,
-      "end": 12.394
+      "text": "Hi, I've had some knee pain for a couple of weeks. Could I book an appointment this week?",
+      "start": 8.05,
+      "end": 13.09
     },
     {
       "line": 2,
       "speaker": "foyer",
-      "text": "Sorry to hear that. Let me have a look&hellip; okay, so this week I've got Wednesday at half ten in the morning, or Thursday at three in the afternoon. Either of those work?",
-      "start": 13.244,
-      "end": 21.177
+      "text": "I'm sorry to hear that. Let me check availability. There's Wednesday at ten thirty in the morning. Or Thursday at three in the afternoon. Would either suit you?",
+      "start": 13.54,
+      "end": 24.14
     },
     {
       "line": 3,
       "speaker": "caller",
-      "text": "Thursday at three's better for me, yeah.",
-      "start": 21.577,
-      "end": 23.83
+      "text": "Thursday at three, please. Actually, sorry, could we do Friday morning instead?",
+      "start": 24.59,
+      "end": 29.31
     },
     {
       "line": 4,
       "speaker": "foyer",
-      "text": "Great, I'll pop you in for Thursday at three. Can I take your full name, please?",
-      "start": 24.98,
-      "end": 28.628
+      "text": "Of course. Friday the eighteenth of September at ten in the morning is available. Does that work?",
+      "start": 29.76,
+      "end": 35.48
     },
     {
       "line": 5,
       "speaker": "caller",
-      "text": "It's Priya Nair. P-R-I-Y-A, Nair, N-A-I-R.",
-      "start": 28.928,
-      "end": 34.266
+      "text": "Yes, that's better. Thank you.",
+      "start": 35.93,
+      "end": 38.73
     },
     {
       "line": 6,
       "speaker": "foyer",
-      "text": "Priya Nair, got it. And a contact number for you?",
-      "start": 34.916,
-      "end": 37.698
+      "text": "Can I take your full name, please?",
+      "start": 39.18,
+      "end": 40.9
     },
     {
       "line": 7,
       "speaker": "caller",
-      "text": "Yeah, it's o-seven-seven-double-o, sorry, hang on, o-seven-seven-zero-zero, nine-double-o, one-two-three.",
-      "start": 38.648,
-      "end": 44.128
+      "text": "Priya Nair. That's Nair, N A I R.",
+      "start": 41.35,
+      "end": 45.11
     },
     {
       "line": 8,
       "speaker": "foyer",
-      "text": "No worries, let me read that back: o-seven-seven-zero-zero-nine-zero-zero-one-two-three. Is that right?",
-      "start": 44.528,
-      "end": 51.153
+      "text": "Thanks, Priya. And a contact number?",
+      "start": 45.56,
+      "end": 48.68
     },
     {
       "line": 9,
       "speaker": "caller",
-      "text": "That's it, yeah.",
-      "start": 51.903,
-      "end": 53.102
+      "text": "It's zero seven seven zero zero, nine zero zero, one two three.",
+      "start": 49.13,
+      "end": 53.09
     },
     {
       "line": 10,
       "speaker": "foyer",
-      "text": "Perfect. So that's Thursday at three, under Priya Nair, for the knee. You'll get a text confirmation in the next few minutes with the details. Is there anything else I can help with?",
-      "start": 53.402,
-      "end": 62.354
+      "text": "Let me read that back. Zero seven seven zero zero; nine zero zero; one two three. Is that right?",
+      "start": 53.54,
+      "end": 61.82
     },
     {
       "line": 11,
       "speaker": "caller",
-      "text": "No, I think that's everything. Thank you.",
-      "start": 62.954,
-      "end": 65.205
+      "text": "Yes, that's right.",
+      "start": 62.27,
+      "end": 63.43
     },
     {
       "line": 12,
       "speaker": "foyer",
-      "text": "No problem at all. Thanks for calling, Priya, take care, and we'll see you Thursday.",
-      "start": 66.205,
-      "end": 70.076
+      "text": "Would you prefer your appointment confirmation by email or text?",
+      "start": 63.88,
+      "end": 67.36
+    },
+    {
+      "line": 13,
+      "speaker": "caller",
+      "text": "Email, please. It's priya at example dot com.",
+      "start": 67.81,
+      "end": 71.73
+    },
+    {
+      "line": 14,
+      "speaker": "foyer",
+      "text": "That's priya at example dot com. Have I got that right?",
+      "start": 72.18,
+      "end": 76.1
+    },
+    {
+      "line": 15,
+      "speaker": "caller",
+      "text": "Yes, you have.",
+      "start": 76.55,
+      "end": 77.95
+    },
+    {
+      "line": 16,
+      "speaker": "foyer",
+      "text": "You're booked for Friday the eighteenth of September, at ten in the morning. Your confirmation email will include the practice address and how to reschedule. Is there anything else you need?",
+      "start": 78.4,
+      "end": 88.04
+    },
+    {
+      "line": 17,
+      "speaker": "caller",
+      "text": "No, that's everything. Thanks.",
+      "start": 88.49,
+      "end": 91.05
+    },
+    {
+      "line": 18,
+      "speaker": "foyer",
+      "text": "You're welcome, Priya. Take care.",
+      "start": 91.5,
+      "end": 94.3
     }
   ]
 }
