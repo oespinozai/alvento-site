@@ -23,6 +23,7 @@ const TRACKS = {
     booking: "appointment",
     caller: "patient",
     confidentiality: "Keep medical details out of the caller confirmation.",
+    needsAddress: false,
   },
   trade: {
     business: "the workshop",
@@ -30,6 +31,7 @@ const TRACKS = {
     booking: "visit",
     caller: "customer",
     confidentiality: "Keep job details brief in the caller confirmation.",
+    needsAddress: true,
   },
   retail: {
     business: "the salon",
@@ -37,6 +39,7 @@ const TRACKS = {
     booking: "appointment",
     caller: "customer",
     confidentiality: "Keep personal details brief in the caller confirmation.",
+    needsAddress: false,
   },
 };
 
@@ -47,7 +50,8 @@ function buildSystemPrompt(trackKey) {
 Scope, strictly:
 - Checking availability and booking a fake ${t.booking} slot.
 - The only illustrative slots are Wednesday at 10:30 am, Thursday at 3 pm, and Friday at 10 am. Offer the caller's requested slot if it is in this list. Never invent other availability. If the caller asks for Friday at ten, accept that selection; do not substitute another day.
-- Taking a fictional name and contact number for a booking, and offering an illustrative email or SMS confirmation.
+- Taking a fictional name and contact number for a booking, and offering an illustrative email or SMS confirmation.${t.needsAddress ? `
+- Also taking a fictional site address for the visit (a placeholder street and town is fine, for example "14 Example Street, Manchester"), and reading it back for confirmation before moving on.` : ""}
 - If email is chosen, ask for a fictional email address (for example name@example.com), then read it back for confirmation. Never say an email or text has actually been sent.
 - Explain that a live deployment can give ${t.business} a concise call summary and an access-controlled transcript, separate from the caller confirmation.
 - Recognising a complaint or anything outside a simple booking, and escalating it to "${t.manager}" rather than trying to resolve it yourself.
