@@ -134,6 +134,13 @@ section[id] { scroll-margin-top: 100px; }
 .demo-scenarios-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.06em; width: 100%; margin-bottom: 4px; }
 .demo-scenario-btn { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text); background: transparent; border: 1px solid var(--accent-dim); padding: 12px 20px; min-height: 44px; border-radius: 4px; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
 .demo-scenario-btn:hover { border-color: var(--accent); background: rgba(196,240,66,0.06); }
+
+.track-picker { padding: 48px 0 0; text-align: center; }
+.track-picker .section-label { text-align: center; }
+.track-picker-buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.track-btn { font-family: var(--font-body); font-size: 0.9rem; color: var(--muted); background: transparent; border: 1px solid var(--border); padding: 12px 22px; min-height: 44px; border-radius: 4px; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+.track-btn:hover { border-color: var(--accent-dim); color: var(--text); }
+.track-btn[aria-pressed="true"] { border-color: var(--accent); color: var(--bg); background: var(--accent); font-weight: 600; }
 .demo-log { padding: 20px; min-height: 60px; max-height: 360px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
 .demo-msg { display: grid; grid-template-columns: 70px 1fr; gap: 16px; font-size: 0.92rem; line-height: 1.55; }
 .demo-msg .who { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim); padding-top: 2px; }
@@ -274,8 +281,21 @@ footer a:hover { color: var(--text); }
   </div>
 </section>
 
+<!-- TRACK PICKER -->
+<section class="track-picker">
+  <div class="container">
+    <div class="section-label">See it for your kind of business</div>
+    <div class="track-picker-buttons" role="group" aria-label="Choose an example business">
+      <button type="button" class="track-btn" data-track="practice" aria-pressed="true">Clinic or practice</button>
+      <button type="button" class="track-btn" data-track="trade" aria-pressed="false">Trade or callout</button>
+      <button type="button" class="track-btn" data-track="retail" aria-pressed="false">Salon or retail</button>
+    </div>
+  </div>
+</section>
+
 <!-- SAMPLE CALL -->
-<section class="section" id="call">
+<div id="call">
+<section class="section" data-track-panel="practice">
   <div class="container">
     <div class="section-tier"><em>02</em>, The call</div>
     <h2>What it sounds like, from pickup to booked appointment.</h2>
@@ -369,6 +389,187 @@ footer a:hover { color: var(--text); }
     </div>
   </div>
 </section>
+<section class="section" data-track-panel="trade" hidden>
+  <div class="container">
+    <div class="section-tier"><em>02</em>, The call</div>
+    <h2>What it sounds like, from pickup to a booked visit.</h2>
+    <p>An illustrative sample call, not a recording of a real customer, showing the shape of a typical booking interaction. Synthetic voice, generated for this artefact; the transcript highlights in step with playback.</p>
+    <div class="call-stage">
+      <canvas class="alvento-orb-canvas" aria-hidden="true"></canvas>
+      <div class="audio-player">
+        <audio id="callAudio-trade" controls preload="metadata">
+          <source src="audio/trade-sample-call.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+    <div class="transcript" id="transcript-trade">
+      <div class="line" data-start="0" data-end="7.84">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thanks for calling the workshop. I'm the digital assistant. This call is recorded for quality. How can I help?</div>
+      </div>
+      <div class="line caller" data-start="8.29" data-end="13.09">
+        <div class="speaker">Caller</div>
+        <div class="text">Hi, my boiler's stopped heating the water. Could someone come out and take a look this week?</div>
+      </div>
+      <div class="line" data-start="13.54" data-end="23.42">
+        <div class="speaker">Foyer</div>
+        <div class="text">Sorry to hear that. Let me check availability. There's Wednesday at ten thirty in the morning. Or Thursday at three in the afternoon. Would either suit you?</div>
+      </div>
+      <div class="line caller" data-start="23.87" data-end="28.91">
+        <div class="speaker">Caller</div>
+        <div class="text">Thursday at three, please. Actually, sorry, could we do Friday morning instead?</div>
+      </div>
+      <div class="line" data-start="29.36" data-end="35.32">
+        <div class="speaker">Foyer</div>
+        <div class="text">Of course. Friday the eighteenth of September at ten in the morning is available. Does that work?</div>
+      </div>
+      <div class="line caller" data-start="35.77" data-end="38.41">
+        <div class="speaker">Caller</div>
+        <div class="text">Yes, that's better. Thank you.</div>
+      </div>
+      <div class="line" data-start="38.86" data-end="40.66">
+        <div class="speaker">Foyer</div>
+        <div class="text">Can I take your full name, please?</div>
+      </div>
+      <div class="line caller" data-start="41.11" data-end="42.51">
+        <div class="speaker">Caller</div>
+        <div class="text">Aidan Walsh.</div>
+      </div>
+      <div class="line" data-start="42.96" data-end="46.56">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thanks, Aidan. And a contact number?</div>
+      </div>
+      <div class="line caller" data-start="47.01" data-end="50.65">
+        <div class="speaker">Caller</div>
+        <div class="text">It's zero seven seven zero zero, nine zero zero, one two three.</div>
+      </div>
+      <div class="line" data-start="51.1" data-end="59.54">
+        <div class="speaker">Foyer</div>
+        <div class="text">Let me read that back. Zero seven seven zero zero; nine zero zero; one two three. Is that right?</div>
+      </div>
+      <div class="line caller" data-start="59.99" data-end="61.47">
+        <div class="speaker">Caller</div>
+        <div class="text">Yes, that's right.</div>
+      </div>
+      <div class="line" data-start="61.92" data-end="65.24">
+        <div class="speaker">Foyer</div>
+        <div class="text">Would you prefer your visit confirmation by email or text?</div>
+      </div>
+      <div class="line caller" data-start="65.69" data-end="66.93">
+        <div class="speaker">Caller</div>
+        <div class="text">Text, please.</div>
+      </div>
+      <div class="line" data-start="67.38" data-end="77.66">
+        <div class="speaker">Foyer</div>
+        <div class="text">You're booked for Friday the eighteenth of September, at ten in the morning. Your confirmation text will include the engineer's estimated arrival window and how to reschedule. Is there anything else you need?</div>
+      </div>
+      <div class="line caller" data-start="78.11" data-end="80.59">
+        <div class="speaker">Caller</div>
+        <div class="text">No, that's everything. Thanks.</div>
+      </div>
+      <div class="line" data-start="81.04" data-end="83.76">
+        <div class="speaker">Foyer</div>
+        <div class="text">You're welcome, Aidan. Take care.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" data-track-panel="retail" hidden>
+  <div class="container">
+    <div class="section-tier"><em>02</em>, The call</div>
+    <h2>What it sounds like, from pickup to booked appointment.</h2>
+    <p>An illustrative sample call, not a recording of a real customer, showing the shape of a typical booking interaction. Synthetic voice, generated for this artefact; the transcript highlights in step with playback.</p>
+    <div class="call-stage">
+      <canvas class="alvento-orb-canvas" aria-hidden="true"></canvas>
+      <div class="audio-player">
+        <audio id="callAudio-retail" controls preload="metadata">
+          <source src="audio/retail-sample-call.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+    <div class="transcript" id="transcript-retail">
+      <div class="line" data-start="0" data-end="7.76">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thanks for calling the salon. I'm the digital assistant. This call is recorded for quality. How can I help?</div>
+      </div>
+      <div class="line caller" data-start="8.21" data-end="10.57">
+        <div class="speaker">Caller</div>
+        <div class="text">Hi, could I book a haircut sometime this week?</div>
+      </div>
+      <div class="line" data-start="11.02" data-end="21.38">
+        <div class="speaker">Foyer</div>
+        <div class="text">Of course. Let me check availability. There's Wednesday at ten thirty in the morning. Or Thursday at three in the afternoon. Would either suit you?</div>
+      </div>
+      <div class="line caller" data-start="21.83" data-end="26.71">
+        <div class="speaker">Caller</div>
+        <div class="text">Thursday at three, please. Actually, sorry, could we do Friday morning instead?</div>
+      </div>
+      <div class="line" data-start="27.16" data-end="32.88">
+        <div class="speaker">Foyer</div>
+        <div class="text">Of course. Friday the eighteenth of September at ten in the morning is available. Does that work?</div>
+      </div>
+      <div class="line caller" data-start="33.33" data-end="36.05">
+        <div class="speaker">Caller</div>
+        <div class="text">Yes, that's better. Thank you.</div>
+      </div>
+      <div class="line" data-start="36.5" data-end="38.38">
+        <div class="speaker">Foyer</div>
+        <div class="text">Can I take your full name, please?</div>
+      </div>
+      <div class="line caller" data-start="38.83" data-end="40.07">
+        <div class="speaker">Caller</div>
+        <div class="text">Tomasz Nowak.</div>
+      </div>
+      <div class="line" data-start="40.52" data-end="43.72">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thanks, Tomasz. And a contact number?</div>
+      </div>
+      <div class="line caller" data-start="44.17" data-end="47.81">
+        <div class="speaker">Caller</div>
+        <div class="text">It's zero seven seven zero zero, nine zero zero, one two three.</div>
+      </div>
+      <div class="line" data-start="48.26" data-end="57.02">
+        <div class="speaker">Foyer</div>
+        <div class="text">Let me read that back. Zero seven seven zero zero; nine zero zero; one two three. Is that right?</div>
+      </div>
+      <div class="line caller" data-start="57.47" data-end="58.95">
+        <div class="speaker">Caller</div>
+        <div class="text">Yes, that's right.</div>
+      </div>
+      <div class="line" data-start="59.4" data-end="62.88">
+        <div class="speaker">Foyer</div>
+        <div class="text">Would you prefer your appointment confirmation by email or text?</div>
+      </div>
+      <div class="line caller" data-start="63.33" data-end="67.17">
+        <div class="speaker">Caller</div>
+        <div class="text">Email, please. It's tomasz at example dot com.</div>
+      </div>
+      <div class="line" data-start="67.62" data-end="71.78">
+        <div class="speaker">Foyer</div>
+        <div class="text">That's tomasz at example dot com. Have I got that right?</div>
+      </div>
+      <div class="line caller" data-start="72.23" data-end="73.55">
+        <div class="speaker">Caller</div>
+        <div class="text">Yes, you have.</div>
+      </div>
+      <div class="line" data-start="74" data-end="83">
+        <div class="speaker">Foyer</div>
+        <div class="text">You're booked for Friday the eighteenth of September, at ten in the morning. Your confirmation email will include the salon address and how to reschedule. Is there anything else you need?</div>
+      </div>
+      <div class="line caller" data-start="83.45" data-end="85.93">
+        <div class="speaker">Caller</div>
+        <div class="text">No, that's everything. Thanks.</div>
+      </div>
+      <div class="line" data-start="86.38" data-end="89.1">
+        <div class="speaker">Foyer</div>
+        <div class="text">You're welcome, Tomasz. Take care.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
 
 <!-- AFTER THE CALL -->
 <section class="section" id="after-the-call" aria-labelledby="followup-heading">
@@ -452,6 +653,15 @@ footer a:hover { color: var(--text); }
   var busy = false;
   var demoAudio = document.getElementById('demoAudio');
 
+  // Switching the example business mid-conversation would carry old persona
+  // context into a new one; the track picker calls this to start clean.
+  window.foyerResetSession = function () {
+    sessionId = null;
+    log.innerHTML = '';
+    meta.classList.remove('error');
+    meta.textContent = 'You have 12 turns in this demo.';
+  };
+
   function addMsg(who, text, pending) {
     var row = document.createElement('div');
     row.className = 'demo-msg ' + who + (pending ? ' pending' : '');
@@ -477,7 +687,7 @@ footer a:hover { color: var(--text); }
     fetch(DEMO_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: message, sessionId: sessionId })
+      body: JSON.stringify({ message: message, sessionId: sessionId, track: window.foyerTrack || 'practice' })
     })
       .then(function (r) {
         if (!r.ok) return r.json().then(function (e) { throw new Error(e.error || ('HTTP ' + r.status)); });
@@ -588,7 +798,8 @@ footer a:hover { color: var(--text); }
 </section>
 
 <!-- HANDOFF CALL -->
-<section class="section" id="handoff-call">
+<div id="handoff-call">
+<section class="section" data-track-panel="practice">
   <div class="container">
     <div class="section-tier"><em>05</em>, The hand-off</div>
     <h2>What it sounds like when the call isn't a booking.</h2>
@@ -650,6 +861,131 @@ footer a:hover { color: var(--text); }
     </div>
   </div>
 </section>
+<section class="section" data-track-panel="trade" hidden>
+  <div class="container">
+    <div class="section-tier"><em>05</em>, The hand-off</div>
+    <h2>What it sounds like when the call isn't a booking.</h2>
+    <p>A booking call only proves the easy path. This is what happens when a caller needs something outside Foyer's scope, a complaint, not a job booking. Same illustrative-sample caveat applies: synthetic voice, not a real customer.</p>
+    <div class="call-stage">
+      <canvas class="alvento-orb-canvas" aria-hidden="true"></canvas>
+      <div class="audio-player">
+        <audio id="callAudio2-trade" controls preload="metadata">
+          <source src="audio/trade-handoff-call.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+    <div class="transcript" id="transcript2-trade">
+      <div class="line" data-start="0" data-end="7.84">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thanks for calling the workshop. I'm the digital assistant. This call is recorded for quality. How can I help?</div>
+      </div>
+      <div class="line caller" data-start="8.29" data-end="12.69">
+        <div class="speaker">Caller</div>
+        <div class="text">I'm unhappy about the job that was done last Tuesday. I want to speak to someone in charge.</div>
+      </div>
+      <div class="line" data-start="13.14" data-end="19.66">
+        <div class="speaker">Foyer</div>
+        <div class="text">I'm sorry you've had a poor experience. I can request a callback from the site manager. Can I take your name?</div>
+      </div>
+      <div class="line caller" data-start="20.11" data-end="25.87">
+        <div class="speaker">Caller</div>
+        <div class="text">Grace Owusu. My number is zero seven seven zero zero, nine zero zero, one.</div>
+      </div>
+      <div class="line" data-start="26.32" data-end="31.32">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thanks, Grace. I only caught nine digits. Could you repeat the full number, please?</div>
+      </div>
+      <div class="line caller" data-start="31.77" data-end="36.73">
+        <div class="speaker">Caller</div>
+        <div class="text">Sorry. Zero seven seven zero zero, nine zero zero, one two four.</div>
+      </div>
+      <div class="line" data-start="37.18" data-end="44.62">
+        <div class="speaker">Foyer</div>
+        <div class="text">That's zero seven seven zero zero; nine zero zero; one two four. Is that correct?</div>
+      </div>
+      <div class="line caller" data-start="45.07" data-end="48.03">
+        <div class="speaker">Caller</div>
+        <div class="text">Yes. I just want someone to explain what went wrong.</div>
+      </div>
+      <div class="line" data-start="48.48" data-end="55.8">
+        <div class="speaker">Foyer</div>
+        <div class="text">I've noted that you'd like an explanation. I'll pass your callback request to the site manager. I can't confirm when they'll be available.</div>
+      </div>
+      <div class="line caller" data-start="56.25" data-end="58.17">
+        <div class="speaker">Caller</div>
+        <div class="text">All right. Thank you.</div>
+      </div>
+      <div class="line" data-start="58.62" data-end="61.26">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thank you, Grace. Take care.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" data-track-panel="retail" hidden>
+  <div class="container">
+    <div class="section-tier"><em>05</em>, The hand-off</div>
+    <h2>What it sounds like when the call isn't a booking.</h2>
+    <p>A booking call only proves the easy path. This is what happens when a caller needs something outside Foyer's scope, a complaint, not an appointment. Same illustrative-sample caveat applies: synthetic voice, not a real customer.</p>
+    <div class="call-stage">
+      <canvas class="alvento-orb-canvas" aria-hidden="true"></canvas>
+      <div class="audio-player">
+        <audio id="callAudio2-retail" controls preload="metadata">
+          <source src="audio/retail-handoff-call.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+    <div class="transcript" id="transcript2-retail">
+      <div class="line" data-start="0" data-end="7.76">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thanks for calling the salon. I'm the digital assistant. This call is recorded for quality. How can I help?</div>
+      </div>
+      <div class="line caller" data-start="8.21" data-end="12.77">
+        <div class="speaker">Caller</div>
+        <div class="text">I'm unhappy about the treatment I had last Tuesday. I want to speak to someone in charge.</div>
+      </div>
+      <div class="line" data-start="13.22" data-end="19.82">
+        <div class="speaker">Foyer</div>
+        <div class="text">I'm sorry you've had a poor experience. I can request a callback from the salon manager. Can I take your name?</div>
+      </div>
+      <div class="line caller" data-start="20.27" data-end="25.23">
+        <div class="speaker">Caller</div>
+        <div class="text">Bethan Hughes. My number is zero seven seven zero zero, nine zero zero, one.</div>
+      </div>
+      <div class="line" data-start="25.68" data-end="30.76">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thanks, Bethan. I only caught nine digits. Could you repeat the full number, please?</div>
+      </div>
+      <div class="line caller" data-start="31.21" data-end="36.17">
+        <div class="speaker">Caller</div>
+        <div class="text">Sorry. Zero seven seven zero zero, nine zero zero, one two four.</div>
+      </div>
+      <div class="line" data-start="36.62" data-end="44.06">
+        <div class="speaker">Foyer</div>
+        <div class="text">That's zero seven seven zero zero; nine zero zero; one two four. Is that correct?</div>
+      </div>
+      <div class="line caller" data-start="44.51" data-end="47.95">
+        <div class="speaker">Caller</div>
+        <div class="text">Yes. I just want a proper explanation of what happened.</div>
+      </div>
+      <div class="line" data-start="48.4" data-end="56.12">
+        <div class="speaker">Foyer</div>
+        <div class="text">I've noted that you'd like an explanation. I'll pass your callback request to the salon manager. I can't confirm when they'll be available.</div>
+      </div>
+      <div class="line caller" data-start="56.57" data-end="58.49">
+        <div class="speaker">Caller</div>
+        <div class="text">All right. Thank you.</div>
+      </div>
+      <div class="line" data-start="58.94" data-end="61.58">
+        <div class="speaker">Foyer</div>
+        <div class="text">Thank you, Bethan. Take care.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
 
 <!-- BUYER QUESTIONS -->
 <section class="section" id="getting-started">
@@ -820,6 +1156,10 @@ footer a:hover { color: var(--text); }
 
   initTranscriptSync('callAudio', 'transcript');
   initTranscriptSync('callAudio2', 'transcript2');
+  initTranscriptSync('callAudio-trade', 'transcript-trade');
+  initTranscriptSync('callAudio2-trade', 'transcript2-trade');
+  initTranscriptSync('callAudio-retail', 'transcript-retail');
+  initTranscriptSync('callAudio2-retail', 'transcript2-retail');
 
   // Only one audio source plays at a time across the page (recordings + live demo replies).
   function wireExclusivePlayback(ids) {
@@ -832,7 +1172,60 @@ footer a:hover { color: var(--text); }
       });
     });
   }
-  wireExclusivePlayback(['callAudio', 'callAudio2', 'demoAudio']);
+  var allAudioIds = ['callAudio', 'callAudio2', 'callAudio-trade', 'callAudio2-trade', 'callAudio-retail', 'callAudio2-retail', 'demoAudio'];
+  wireExclusivePlayback(allAudioIds);
+
+  // Shared track state: which example business is showing, read by the live-chat
+  // script below and used to send the right persona to the demo backend.
+  window.foyerTrack = 'practice';
+
+  var scenarioText = {
+    practice: [
+      { label: 'Book an appointment', msg: 'Hi, I need to book an appointment for a toothache.' },
+      { label: 'Ask to rebook', msg: 'I already have an appointment booked, but I need to move it to a different day.' },
+      { label: 'File a complaint', msg: "I'm unhappy about my last visit and want to speak to someone in charge." }
+    ],
+    trade: [
+      { label: 'Book a visit', msg: 'Hi, I need someone to come out and fix a leaking pipe.' },
+      { label: 'Ask to rebook', msg: 'I already have a visit booked, but I need to move it to a different day.' },
+      { label: 'File a complaint', msg: "I'm unhappy about the last job and want to speak to someone in charge." }
+    ],
+    retail: [
+      { label: 'Book an appointment', msg: "Hi, I'd like to book a haircut this week." },
+      { label: 'Ask to rebook', msg: 'I already have an appointment booked, but I need to move it to a different day.' },
+      { label: 'File a complaint', msg: "I'm unhappy about my last treatment and want to speak to someone in charge." }
+    ]
+  };
+
+  var trackButtons = Array.prototype.slice.call(document.querySelectorAll('.track-btn'));
+  var scenarioButtons = Array.prototype.slice.call(document.querySelectorAll('.demo-scenario-btn'));
+
+  function setTrack(track) {
+    window.foyerTrack = track;
+    trackButtons.forEach(function (btn) {
+      btn.setAttribute('aria-pressed', btn.getAttribute('data-track') === track ? 'true' : 'false');
+    });
+    Array.prototype.slice.call(document.querySelectorAll('[data-track-panel]')).forEach(function (panel) {
+      var active = panel.getAttribute('data-track-panel') === track;
+      panel.hidden = !active;
+      if (!active) {
+        Array.prototype.slice.call(panel.querySelectorAll('audio')).forEach(function (a) { a.pause(); });
+      }
+    });
+    var texts = scenarioText[track] || scenarioText.practice;
+    scenarioButtons.forEach(function (btn, i) {
+      if (!texts[i]) return;
+      btn.textContent = texts[i].label;
+      btn.setAttribute('data-msg', texts[i].msg);
+    });
+  }
+
+  trackButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      setTrack(btn.getAttribute('data-track'));
+      if (window.foyerResetSession) window.foyerResetSession();
+    });
+  });
 })();
 </script>
 
