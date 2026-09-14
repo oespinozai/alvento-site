@@ -742,8 +742,12 @@ footer a:hover { color: var(--text); }
     var lines = Array.prototype.slice.call(document.querySelectorAll('#' + transcriptId + ' .line'));
 
     function scrollWithinPanel(el) {
-      // Scroll only the bounded transcript panel, never the page.
-      var target = el.offsetTop - (panel.clientHeight / 2) + (el.clientHeight / 2);
+      // Measure within this scroll container: offsetTop can be relative to the
+      // document, which sends the panel straight to the end of the transcript.
+      var lineRect = el.getBoundingClientRect();
+      var panelRect = panel.getBoundingClientRect();
+      var lineTop = lineRect.top - panelRect.top - panel.clientTop + panel.scrollTop;
+      var target = lineTop - (panel.clientHeight / 2) + (lineRect.height / 2);
       panel.scrollTo({ top: Math.max(0, target), behavior: reduceMotion ? 'auto' : 'smooth' });
     }
 
