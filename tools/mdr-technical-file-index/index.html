@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MDR Technical File Index Generator: Annex II/III · Alvento</title>
-    <meta name="description" content="Generate a complete Annex II/III technical documentation index for EU MDR submission. Flags missing sections, exports Markdown + DOCX. Free.">
+    <meta name="description" content="Generate a complete Annex II/III technical documentation index for EU MDR submission. Flags missing sections, exports Markdown + a Word-ready .doc file. Free.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://alvento.uk/tools/mdr-technical-file-index/">
     <meta property="og:title" content="MDR Technical File Index Generator: Annex II/III · Alvento">
-    <meta property="og:description" content="Generate a complete Annex II/III technical documentation index for EU MDR submission. Flags missing sections. Markdown + DOCX export.">
+    <meta property="og:description" content="Generate a complete Annex II/III technical documentation index for EU MDR submission. Flags missing sections. Markdown + Word-ready .doc export.">
     <meta property="og:url" content="https://alvento.uk/tools/mdr-technical-file-index/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://alvento.uk/og-image.png">
@@ -55,7 +55,7 @@
       "name": "What export formats are supported?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Markdown and DOCX. The Markdown output pastes cleanly into Confluence, Notion or any git-backed documentation system; the DOCX output integrates with Greenlight Guru, SharePoint and traditional QMS platforms."
+        "text": "Markdown and a Word-ready .doc file. The Markdown output pastes cleanly into Confluence, Notion or any git-backed documentation system; the .doc file opens directly in Microsoft Word and integrates with Greenlight Guru, SharePoint and traditional QMS platforms."
       }
     },
     {
@@ -276,7 +276,7 @@
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('preview')">Preview</button>
             <button class="tab-btn" onclick="switchTab('markdown')">Markdown</button>
-            <button class="tab-btn" onclick="switchTab('docx')">DOCX</button>
+            <button class="tab-btn" onclick="switchTab('docx')">Word (.doc)</button>
         </div>
 
         <div id="tab-preview" class="tab-content active">
@@ -288,8 +288,8 @@
         </div>
 
         <div id="tab-docx" class="tab-content">
-            <p style="color: var(--muted); margin-bottom: 20px;">Download a formatted .docx index ready for your technical file.</p>
-            <button class="btn-action" onclick="downloadDocx()">Download .docx File</button>
+            <p style="color: var(--muted); margin-bottom: 20px;">Download a Word-ready .doc index for your technical file.</p>
+            <button class="btn-action" onclick="downloadDocx()">Download .doc File</button>
         </div>
 
         <div class="output-actions">
@@ -315,7 +315,7 @@
       </details>
       <details style="border-top:1px solid var(--border);padding:20px 0;">
         <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">What export formats are supported?</summary>
-        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Markdown and DOCX. The Markdown output pastes cleanly into Confluence, Notion or any git-backed documentation system; the DOCX output integrates with Greenlight Guru, SharePoint and traditional QMS platforms.</div>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Markdown and a Word-ready .doc file. The Markdown output pastes cleanly into Confluence, Notion or any git-backed documentation system; the .doc file opens directly in Microsoft Word and integrates with Greenlight Guru, SharePoint and traditional QMS platforms.</div>
       </details>
       <details style="border-top:1px solid var(--border);padding:20px 0;">
         <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Does this cover IVDR as well?</summary>

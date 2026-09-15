@@ -407,6 +407,12 @@
         const websiteUrl = document.getElementById('websiteUrl').value || '[Website URL]';
         const compliance = document.getElementById('compliance').value;
         const inaccessible = document.getElementById('inaccessible').value.split('\n').filter(line => line.trim() !== '');
+
+        if (compliance !== 'fully' && inaccessible.length === 0) {
+            alert('You\'ve marked this site as not fully compliant, so list at least one item of non-accessible content in the "Inaccessible Content" field before generating the statement. A non-compliance statement with no items listed is misleading.');
+            return;
+        }
+
         const contactEmail = document.getElementById('contactEmail').value || '[Contact Email]';
         const complaintsUrl = document.getElementById('complaintsUrl').value || '[Complaints URL]';
         const lastTested = document.getElementById('lastTested').value || '[Date]';
