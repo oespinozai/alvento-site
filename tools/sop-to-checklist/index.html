@@ -390,6 +390,7 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
 }
 .checklist-preview .meta.owner { color: var(--accent-dim); border-color: rgba(196, 240, 66, 0.2); }
 .checklist-preview .meta.freq { color: var(--warn); border-color: rgba(240, 198, 116, 0.2); }
+.checklist-preview .meta.freq.freq-inferred { border-style: dashed; }
 
 .checklist-preview .sop-metadata {
   margin: 0 0 28px;
@@ -860,7 +861,13 @@ document.querySelectorAll('.tab').forEach(tab => {
 // ---- PARSER ----
 
 const FREQUENCY_KEYWORDS = [
-  { pattern: /\b(daily|each day|every day|per day|end of day|eod|start of shift|start of day)\b/i, tag: 'daily' },
+  // Explicit, stated cadence.
+  { pattern: /\b(daily|each day|every day|per day)\b/i, tag: 'daily' },
+  // Heuristic: a one-off deadline phrased relative to a day/shift boundary
+  // ("by EOD", "start of shift") reads like a recurring cadence but isn't
+  // necessarily one — flag these as inferred so the UI doesn't overstate
+  // certainty.
+  { pattern: /\b(end of day|eod|start of shift|start of day)\b/i, tag: 'daily', inferred: true },
   { pattern: /\b(weekly|each week|every week|per week|every (monday|tuesday|wednesday|thursday|friday|saturday|sunday))\b/i, tag: 'weekly' },
   { pattern: /\b(monthly|each month|every month|per month|end of month|eom)\b/i, tag: 'monthly' },
   { pattern: /\b(quarterly|each quarter|every quarter|per quarter)\b/i, tag: 'quarterly' },
@@ -911,13 +918,14 @@ function parseSOP(input) {
     }
   }
 
-  function startSection(title, frequency) {
+  function startSection(title, freqResult) {
     if (currentSection && currentSection.items.length === 0 && sections.length > 0) {
       sections.pop();
     }
     currentSection = {
       title: title || `Section ${++sectionCounter}`,
-      frequency: frequency || null,
+      frequency: freqResult ? freqResult.tag : null,
+      frequencyInferred: freqResult ? !!freqResult.inferred : false,
       items: [],
     };
     sections.push(currentSection);
@@ -963,14 +971,14 @@ function parseSOP(input) {
 
     if (stepText) {
       ensureSection();
-      currentSection.items.push(buildStep(stepText, currentSection.frequency));
+      currentSection.items.push(buildStep(stepText, currentSection.frequency, currentSection.frequencyInferred));
       continue;
     }
 
     // Imperative sentence fallback (starts with common verb)
     if (/^(check|review|run|verify|confirm|send|post|update|log|notify|process|create|complete|assign|schedule|file|draft|ensure|apply|escalate|monitor|coordinate|address|identify|secure)\b/i.test(line)) {
       ensureSection();
-      currentSection.items.push(buildStep(line, currentSection.frequency));
+      currentSection.items.push(buildStep(line, currentSection.frequency, currentSection.frequencyInferred));
       continue;
     }
 
@@ -980,7 +988,7 @@ function parseSOP(input) {
       last.text += ' ' + line;
     } else {
       ensureSection();
-      currentSection.items.push(buildStep(line, currentSection.frequency));
+      currentSection.items.push(buildStep(line, currentSection.frequency, currentSection.frequencyInferred));
     }
   }
 
@@ -999,7 +1007,7 @@ function parseSOP(input) {
 
 function detectFrequency(text) {
   for (const f of FREQUENCY_KEYWORDS) {
-    if (f.pattern.test(text)) return f.tag;
+    if (f.pattern.test(text)) return { tag: f.tag, inferred: !!f.inferred };
   }
   return null;
 }
@@ -1022,7 +1030,7 @@ function extractOwner(text) {
   return { owners: [], cleaned: text };
 }
 
-function buildStep(rawText, inheritedFrequency) {
+function buildStep(rawText, inheritedFrequency, inheritedFrequencyInferred) {
   let text = rawText.trim();
   const { owners, cleaned } = extractOwner(text);
   text = cleaned;
@@ -1032,7 +1040,8 @@ function buildStep(rawText, inheritedFrequency) {
   return {
     text: text.replace(/\s+/g, ' ').trim(),
     owners,
-    frequency: stepFreq || inheritedFrequency,
+    frequency: stepFreq ? stepFreq.tag : inheritedFrequency,
+    frequencyInferred: stepFreq ? stepFreq.inferred : !!inheritedFrequencyInferred,
   };
 }
 
@@ -1051,7 +1060,7 @@ function renderMarkdown(parsed) {
 
   for (const section of sections) {
     if (section.items.length === 0) continue;
-    const freqTag = section.frequency ? ` _[${section.frequency}]_` : '';
+    const freqTag = section.frequency ? ` _[${section.frequency}${section.frequencyInferred ? ', inferred' : ''}]_` : '';
     md += `## ${section.title}${freqTag}\n\n`;
 
     for (const item of section.items) {
@@ -1060,7 +1069,7 @@ function renderMarkdown(parsed) {
       if (item.owners && item.owners.length > 0) {
         tags.push(`${item.owners.length > 1 ? 'Owners' : 'Owner'}: ${item.owners.join(', ')}`);
       }
-      if (item.frequency && item.frequency !== section.frequency) tags.push(`Frequency: ${item.frequency}`);
+      if (item.frequency && item.frequency !== section.frequency) tags.push(`Frequency: ${item.frequency}${item.frequencyInferred ? ' (inferred)' : ''}`);
       if (tags.length > 0) line += ` _(${tags.join(' · ')})_`;
       md += line + '\n';
     }
@@ -1087,7 +1096,9 @@ function renderPreview(parsed) {
 
   for (const section of sections) {
     if (section.items.length === 0) continue;
-    const freqBadge = section.frequency ? ` <span class="meta freq">${esc(section.frequency)}</span>` : '';
+    const freqBadge = section.frequency
+      ? ` <span class="meta freq${section.frequencyInferred ? ' freq-inferred' : ''}"${section.frequencyInferred ? ' title="Inferred from wording (e.g. \'EOD\'), not a stated recurring schedule"' : ''}>${esc(section.frequency)}${section.frequencyInferred ? ' (inferred)' : ''}</span>`
+      : '';
     html += `<h3>${esc(section.title)}${freqBadge}</h3><ul>`;
 
     for (const item of section.items) {
@@ -1096,7 +1107,7 @@ function renderPreview(parsed) {
         for (const owner of item.owners) tags += `<span class="meta owner">${esc(owner)}</span>`;
       }
       if (item.frequency && item.frequency !== section.frequency) {
-        tags += `<span class="meta freq">${esc(item.frequency)}</span>`;
+        tags += `<span class="meta freq${item.frequencyInferred ? ' freq-inferred' : ''}"${item.frequencyInferred ? ' title="Inferred from wording (e.g. \'EOD\'), not a stated recurring schedule"' : ''}>${esc(item.frequency)}${item.frequencyInferred ? ' (inferred)' : ''}</span>`;
       }
       html += `<li>${esc(item.text)}${tags}</li>`;
     }
