@@ -422,6 +422,11 @@
         const reasonThirdParty = document.getElementById('reasonThirdParty').checked;
         const reasonArchive = document.getElementById('reasonArchive').checked;
 
+        if (compliance !== 'fully' && !reasonBurden && !reasonThirdParty && !reasonArchive) {
+            alert('You\'ve marked this site as not fully compliant, so select at least one reason for non-compliance before generating the statement. A non-compliance statement with no reasons listed is misleading.');
+            return;
+        }
+
         let complianceText = '';
         if (compliance === 'fully') {
             complianceText = 'fully compliant';

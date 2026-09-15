@@ -275,3 +275,52 @@ produces is still the same HTML-as-.doc; the fix makes the tool's claims
 match its actual behavior.
 
 **RUN4-DONE**
+
+---
+
+## RUN 5 — PSBAR Statement Generator: same empty-section bug, one block down
+
+File: `tools/psbar-statement-generator/index.html`
+
+Found during Opus review of RUN 1-4 (not in the original work order): the fix
+in RUN 2 guarded the `inaccessible` items list, but the adjacent "reasons for
+non-compliance" block (`reasonBurden`/`reasonThirdParty`/`reasonArchive`
+checkboxes, ~line 461-465) has the identical defect — when `compliance !==
+'fully'` and none of the three checkboxes are ticked, the statement still
+prints the `### Non-compliance with the accessibility regulations` heading
+with zero bullets underneath.
+
+Reproduced and fixed using the same extracted-script-under-Node approach as
+RUN 2 (`new Function(script)` to get a callable `generateStatement`, stubbed
+`document`).
+
+**Before** — `compliance='not'`, `inaccessible` populated, all three reason
+checkboxes unchecked — generated markdown (excerpt):
+```
+## Non-accessible content
+
+The content listed below is non-accessible for the following reasons:
+
+* Some heading issue.
+
+### Non-compliance with the accessibility regulations
+
+## Feedback and contact information
+```
+The reasons heading appears with nothing under it, same pattern as RUN 2.
+
+**Fix:** added a second guard immediately after the three checkboxes are
+read (right before `complianceText` is computed): when `compliance !==
+'fully'` and none of the three reasons are checked, alert and return before
+building any markdown — same pattern, same file, as the RUN 2 guard.
+
+**After** — 5 cases verified with a clean Node harness:
+```
+not compliant, zero reasons     -> alerted: true   (was: silent empty section)
+not compliant, one reason       -> alerted: false  (generates normally)
+fully compliant, zero reasons   -> alerted: false  (unaffected — RUN2/RUN5 guards only apply when compliance !== 'fully')
+partially compliant, zero reasons -> alerted: true
+partially compliant, one reason   -> alerted: false
+```
+
+**RUN5-DONE**
