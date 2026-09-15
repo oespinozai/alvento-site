@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why a Great Benchmark Score Doesn't Predict Real-World Performance | Alvento</title>
+<link rel="canonical" href="https://alvento.uk/blog/why-benchmark-scores-dont-predict-real-world-performance/">
+    <meta name="description" content="You picked the model with the best score on the benchmark closest to your task, and it still underperforms in production. Four reasons a leaderboard position and real-world usefulness are different claims.">
+    <meta name="author" content="Oscar Espinoza, Founder, Alvento">
+    <meta property="og:title" content="Why a Great Benchmark Score Doesn't Predict Real-World Performance">
+    <meta property="og:description" content="You picked the model with the best score on the benchmark closest to your task, and it still underperforms in production. Four reasons a leaderboard position and real-world usefulness are different claims.">
+    <meta property="og:url" content="https://alvento.uk/blog/why-benchmark-scores-dont-predict-real-world-performance/">
+    <meta property="og:image" content="https://alvento.uk/og-image.png">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://alvento.uk/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: #b8b8b8;
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box, .bench-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .bench-box h3 { margin-top: 0; color: var(--accent); font-family: var(--font-mono); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+        .bench-box p:last-child { margin-bottom: 0; }
+        .article-container ul, .article-container ol { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: #b8b8b8; line-height: 1.7; }
+
+        .sources {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        .sources h3 {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted) !important;
+            margin-bottom: 16px;
+            margin-top: 0;
+        }
+        .sources ul { margin-left: 20px; }
+        .sources li {
+            font-size: 0.9rem;
+            color: #b8b8b8;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .sources a { word-break: break-word; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Why a Great Benchmark Score Doesn't Predict Real-World Performance",
+        "description": "You picked the model with the best score on the benchmark closest to your task, and it still underperforms in production. Four reasons a leaderboard position and real-world usefulness are different claims.",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "jobTitle": "Founder", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.uk" },
+        "datePublished": "2026-09-15",
+        "url": "https://alvento.uk/blog/why-benchmark-scores-dont-predict-real-world-performance/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))">&#9776;</button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#lab">Products</a></li>
+                <li><a href="/case-studies/">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Discuss your project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">Why a Great Benchmark Score Doesn't Predict Real-World Performance</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Founder, Alvento | Published 15 September 2026 | Part 2 of 3</p>
+        </div>
+
+        <p>Say you did the homework from <a href="/blog/what-llm-benchmarks-actually-measure/">the first piece in this series</a>. You worked out which benchmark actually resembles your task, found the model that tops it, deployed it, and it still disappoints. It hedges when it should commit, misses your house terminology, or falls apart on the messier version of the task the benchmark never showed it.</p>
+
+        <p>This isn't a sign you read the benchmark wrong. It's what happens when a score built for ranking models against each other gets asked to predict something it was never built to predict: how one specific model will handle one specific business's specific work. Four reasons that gap opens up, and why none of them show up in the headline number.</p>
+
+        <h2 class="fade-up">The test itself can leak into the training</h2>
+
+        <p>Benchmark question sets are public. Labs train on enormous scrapes of text, and some of that text turns out to overlap with the very questions used to score the model afterwards, sometimes word for word, sometimes just reworded. Researchers have shown that even a straightforward paraphrase of a benchmark's test questions can be enough for a model to look like it "solved" the benchmark without having gained the underlying skill.</p>
+
+        <p>This is a live, actively studied problem in AI research, not a fringe theory, and it means a benchmark score can be inflated in ways that are invisible from the outside. You have no way to check a vendor's training data. You can only test the model on tasks it definitely hasn't seen.</p>
+
+        <h2 class="fade-up">A measure that becomes a target stops measuring what you wanted</h2>
+
+        <p>There's an old management principle, Goodhart's Law: when a measure becomes a target, it stops being a good measure. Benchmarks were built as neutral yardsticks. Once climbing them becomes a competitive and commercial priority for every lab in the field, there's constant pressure to optimise specifically for the test, in ways that may or may not track genuine improvement on the underlying skill. This has been documented directly in AI evaluation research, not just speculated about.</p>
+
+        <p>None of this means labs are acting in bad faith. It means a leaderboard position is the result of an optimisation process aimed partly at the leaderboard itself, and that process doesn't automatically produce a model that's better at your work.</p>
+
+        <h2 class="fade-up">An average hides exactly the part you care about</h2>
+
+        <p>A benchmark score is usually one number averaged across thousands of questions. A model can score well overall while performing badly on the specific slice that matters to you: your industry's terminology, your regulatory language, your customers' phrasing, the particular edge cases your work is full of. The average tells you nothing about that slice specifically. It might be sitting right in the tail the average is smoothing over.</p>
+
+        <h2 class="fade-up">Benchmarks are clean. Your work isn't.</h2>
+
+        <p>A benchmark question arrives complete: full context, one clear task, usually a single turn. Real work rarely does. It arrives as a half-specified request from a colleague, buried in a longer conversation, missing information the model has to ask for or guess at, wrapped in your existing systems and file formats, and it needs to stay consistent in tone and instruction-following over many turns, not one. None of the benchmarks in the first piece of this series test any of that, because none of them were built to.</p>
+
+        <p>Cost and latency at your actual usage volume, hallucination rate on your specific domain, and how the model behaves when it's uncertain instead of confidently wrong: also outside what a benchmark score reports, and often the exact things that decide whether a deployment holds up.</p>
+
+        <h2 class="fade-up">What this changes about how you buy</h2>
+
+        <p>None of this makes benchmarks useless. They're still a reasonable first filter, a way to narrow a crowded field down to a handful of serious candidates before you spend real time on any of them. What they can't do is stand in for testing on your own work. A leaderboard position is a hypothesis about a model, not a verdict on it, and the only way to confirm or kill that hypothesis is to run the model against tasks that look like the ones you actually need done.</p>
+
+        <p>The next piece in this series is a practical walkthrough of how to do that: reading a model leaderboard as a buyer, and building a short evaluation of your own before you commit.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Evaluating AI tools for your business?</strong> Alvento helps businesses cut through vendor claims and deploy AI systems that hold up on their actual work, not just a leaderboard. Discuss your project at <a href="/#contact">alvento.uk</a> or email <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, first conversation is free.</p>
+        </div>
+
+        <section class="sources">
+            <h3>Sources</h3>
+            <ul>
+                <li><a href="https://arxiv.org/abs/2311.04850">Rethinking Benchmark and Contamination for Language Models with Rephrased Samples, Yang et al.</a></li>
+                <li><a href="https://arxiv.org/abs/2308.14272">Goodhart's Law Applies to NLP's Explanation Benchmarks, Hsia et al.</a></li>
+                <li><a href="/blog/what-llm-benchmarks-actually-measure/">What LLM Benchmarks Actually Measure, Alvento (part 1 of this series)</a></li>
+            </ul>
+        </section>
+
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>alvento.uk</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+            document.querySelectorAll('.nav-links a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    document.querySelector('.nav-links').classList.remove('open');
+                });
+            });
+        });
+    </script>
+<script defer src="/consent-banner.js"></script>
+</body>
+</html>

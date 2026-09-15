@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What LLM Benchmarks Actually Measure | Alvento</title>
+<link rel="canonical" href="https://alvento.uk/blog/what-llm-benchmarks-actually-measure/">
+    <meta name="description" content="A vendor quotes a benchmark score and expects it to settle things. Here's what MMLU, HumanEval, SWE-bench and GPQA actually test, in plain English, so you can tell what the number means before you buy.">
+    <meta name="author" content="Oscar Espinoza, Founder, Alvento">
+    <meta property="og:title" content="What LLM Benchmarks Actually Measure">
+    <meta property="og:description" content="A vendor quotes a benchmark score and expects it to settle things. Here's what MMLU, HumanEval, SWE-bench and GPQA actually test, in plain English, so you can tell what the number means before you buy.">
+    <meta property="og:url" content="https://alvento.uk/blog/what-llm-benchmarks-actually-measure/">
+    <meta property="og:image" content="https://alvento.uk/og-image.png">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://alvento.uk/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #555555;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: #b8b8b8;
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box, .bench-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .bench-box h3 { margin-top: 0; color: var(--accent); font-family: var(--font-mono); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+        .bench-box p:last-child { margin-bottom: 0; }
+        .article-container ul, .article-container ol { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: #b8b8b8; line-height: 1.7; }
+
+        .sources {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        .sources h3 {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted) !important;
+            margin-bottom: 16px;
+            margin-top: 0;
+        }
+        .sources ul { margin-left: 20px; }
+        .sources li {
+            font-size: 0.9rem;
+            color: #b8b8b8;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .sources a { word-break: break-word; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "What LLM Benchmarks Actually Measure",
+        "description": "A vendor quotes a benchmark score and expects it to settle things. Here's what MMLU, HumanEval, SWE-bench and GPQA actually test, in plain English, so you can tell what the number means before you buy.",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "jobTitle": "Founder", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.uk" },
+        "datePublished": "2026-09-15",
+        "url": "https://alvento.uk/blog/what-llm-benchmarks-actually-measure/"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))">&#9776;</button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#lab">Products</a></li>
+                <li><a href="/case-studies/">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Discuss your project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">What LLM Benchmarks Actually Measure</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Founder, Alvento | Published 15 September 2026 | Part 1 of 3</p>
+        </div>
+
+        <p>A vendor tells you their model scores 92% on some benchmark. It sounds precise, so it gets treated as proof. Most buyers nod along without asking the one question that actually matters: 92% at what, exactly?</p>
+
+        <p>Benchmark names get used as shorthand for "this model is good", and they're not that. Each one is a narrow exam built to test a specific skill, scored a specific way, on a specific kind of question. A model can be excellent at one and mediocre at the task you actually need done, and the benchmark score alone won't tell you which situation you're in.</p>
+
+        <p>This is the first of three pieces on reading AI benchmark claims like a buyer instead of a spectator. Here we'll open up four benchmarks you'll see quoted constantly and explain, in plain terms, what each one is actually testing.</p>
+
+        <h2 class="fade-up">MMLU: a multiple-choice exam across 57 subjects</h2>
+
+        <p>MMLU stands for Massive Multitask Language Understanding. It's a set of multiple-choice questions spanning subjects from elementary maths to US law to professional medicine, roughly 14,000 questions across 57 subject areas. A model reads a question and four answer options and picks one.</p>
+
+        <div class="bench-box fade-up">
+            <h3>What it tells you</h3>
+            <p>How broad the model's factual knowledge is, and how well it recognises the right answer when it's sitting right there among the options. It's closer to a school exam than a work task: no research, no drafting, no back-and-forth, just recognition.</p>
+            <p>What it doesn't tell you: whether the model can produce something useful unprompted, hold a long conversation, follow your specific instructions, or avoid making things up when there's no multiple-choice option to fall back on.</p>
+        </div>
+
+        <h2 class="fade-up">HumanEval: can it write a short function that passes the tests</h2>
+
+        <p>HumanEval gives the model a short, plain-English description of a programming problem and asks it to write a Python function that solves it. The function is then run against a set of hidden test cases. Pass all of them, it counts as solved.</p>
+
+        <div class="bench-box fade-up">
+            <h3>What it tells you</h3>
+            <p>Whether the model can turn a clear, self-contained coding prompt into working code, on problems small enough to fit in a single function. It's a reasonable signal for "can this thing code at all".</p>
+            <p>What it doesn't tell you: whether it can work inside an existing codebase, navigate a real project's structure, understand a vague bug report, or avoid introducing a regression somewhere else in the code. Real engineering work rarely looks like a self-contained function with a clean spec.</p>
+        </div>
+
+        <h2 class="fade-up">SWE-bench: a real GitHub issue, a real codebase, a real fix</h2>
+
+        <p>SWE-bench is closer to actual software work. The model is given a real, previously filed issue from an open-source GitHub repository, along with the codebase as it existed at the time, and asked to produce a patch. The patch is scored by running the project's own test suite against it.</p>
+
+        <div class="bench-box fade-up">
+            <h3>What it tells you</h3>
+            <p>Whether the model can find its way around an unfamiliar, sizeable codebase and produce a change that actually resolves a real problem without breaking existing tests. This is a meaningfully harder and more realistic task than HumanEval.</p>
+            <p>What it doesn't tell you: how it performs outside the mostly Python, mostly popular-open-source-project slice of the software world the benchmark draws from, or how it handles a codebase with poor test coverage, which describes a lot of real business software.</p>
+        </div>
+
+        <h2 class="fade-up">GPQA: graduate-level questions built to resist lookup</h2>
+
+        <p>GPQA stands for Graduate-Level Google-Proof Q&A. The questions are written by subject-matter experts in biology, physics and chemistry, and deliberately constructed so that a skilled non-expert with unrestricted internet access still struggles to answer them correctly by searching.</p>
+
+        <div class="bench-box fade-up">
+            <h3>What it tells you</h3>
+            <p>Raw depth of reasoning and domain knowledge on hard scientific questions, tested in a way that resists simple lookup or pattern-matching.</p>
+            <p>What it doesn't tell you: almost anything about how the model will perform on the kind of work most businesses actually need. Very few SMB use cases involve graduate-level physics reasoning. This benchmark matters far more if you're evaluating a model for scientific research than if you're evaluating one to draft customer emails or summarise reports.</p>
+        </div>
+
+        <h2 class="fade-up">The pattern underneath all four</h2>
+
+        <p>Every benchmark is a narrow exam, and a high score tells you the model is good at that exam. It doesn't tell you the model is good, full stop, and it especially doesn't tell you it's good at your job. A model that tops the leaderboard on graduate-level science questions can still write clumsy customer emails. A model that scores well on a coding benchmark built from tidy open-source projects can still struggle in your fifteen-year-old internal codebase with no tests.</p>
+
+        <p>Once you know what a benchmark is actually testing, a vendor's headline number stops being a verdict and starts being one data point, useful only once you know whether it's testing anything close to the job you have in mind.</p>
+
+        <p>The next piece in this series looks at why a strong benchmark score still doesn't reliably predict how a model performs on your actual work, and what tends to cause the gap. After that, a practical way to read a model leaderboard without needing a machine learning background.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Evaluating AI tools for your business?</strong> Alvento helps businesses cut through vendor claims and deploy AI systems that hold up on their actual work, not just a leaderboard. Discuss your project at <a href="/#contact">alvento.uk</a> or email <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, first conversation is free.</p>
+        </div>
+
+        <section class="sources">
+            <h3>Sources</h3>
+            <ul>
+                <li><a href="https://arxiv.org/abs/2009.03300">Measuring Massive Multitask Language Understanding (MMLU), Hendrycks et al.</a></li>
+                <li><a href="https://arxiv.org/abs/2107.03374">Evaluating Large Language Models Trained on Code (HumanEval), Chen et al.</a></li>
+                <li><a href="https://arxiv.org/abs/2310.06770">SWE-bench: Can Language Models Resolve Real-World GitHub Issues?, Jimenez et al.</a></li>
+                <li><a href="https://arxiv.org/abs/2311.12022">GPQA: A Graduate-Level Google-Proof Q&amp;A Benchmark, Rein et al.</a></li>
+            </ul>
+        </section>
+
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 15808196. United Kingdom.</p>
+            <p>alvento.uk</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+            document.querySelectorAll('.nav-links a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    document.querySelector('.nav-links').classList.remove('open');
+                });
+            });
+        });
+    </script>
+<script defer src="/consent-banner.js"></script>
+</body>
+</html>
