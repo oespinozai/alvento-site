@@ -16,7 +16,25 @@ function speechSegments(text) {
     const n = number.replace(/\D/g, "");
     return [n.slice(0, 5), n.slice(5, 8), n.slice(8)].map(group => [...group].map(d => digits[Number(d)]).join(" ")).join("; ");
   });
-  // Keep email addresses, dates and decimal numbers intact.
+  // Speak "am"/"pm" as letters; the voice otherwise blends "am" into the word
+  // "am" (as in "I am") instead of the initialism (confirmed via word-level
+  // ASR timing: unspaced "30am" renders as one 0.54s blob vs. two distinct
+  // ~0.2s letter sounds once spelled out).
+  text = text.replace(/\b(\d{1,2}(?::\d{2})?)\s*([ap])\.?m\.?\b/gi, (_, time, ap) => `${time} ${ap.toUpperCase()} M`);
+  // Speak email addresses letter-by-letter on the local part (the AI can't
+  // reliably know how to pronounce an arbitrary name/username as a word —
+  // confirmed: "esib" has no unusual spelling pattern and still came out as
+  // "seve"), and "at"/"dot" for the rest. This also removes the "." before
+  // segmentation, so it can't be mistaken for a sentence boundary.
+  const symbolWords = { "+": "plus", "_": "underscore", "-": "dash" };
+  text = text.replace(/\b([A-Za-z0-9][A-Za-z0-9.+_-]*)@([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+)\b/g, (_, local, domain) => {
+    const spellLocal = local.split(".").map(seg =>
+      [...seg].map(ch => (/\d/.test(ch) ? digits[Number(ch)] : symbolWords[ch] || ch.toUpperCase())).join(" ")
+    ).join(" dot ");
+    const sayDomain = (s) => s.replace(/\./g, " dot ").replace(/\s+/g, " ").trim();
+    return `${spellLocal} at ${sayDomain(domain)}`;
+  });
+  // Keep dates and decimal numbers intact.
   const sentences = Array.from(new Intl.Segmenter("en-GB", { granularity: "sentence" }).segment(text), s => s.segment.trim());
   const parts = sentences.flatMap(s => s.split(/;\s+|\s+\|\s+/)).filter(Boolean);
   // Bound upstream work without discarding any spoken content.

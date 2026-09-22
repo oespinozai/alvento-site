@@ -19,27 +19,27 @@
       "speaker": "foyer",
       "text": "I'm sorry you've had a poor experience. I can request a callback from the salon manager. Can I take your name?",
       "start": 13.22,
-      "end": 19.82
+      "end": 20.3
     },
     {
       "line": 3,
       "speaker": "caller",
-      "text": "Bethan Hughes. My number is zero seven seven zero zero, nine zero zero, one.",
-      "start": 20.27,
-      "end": 25.23
+      "text": "Sarah Bennett. My number is zero seven seven zero zero, nine zero zero, one.",
+      "start": 20.75,
+      "end": 25.47
     },
     {
       "line": 4,
       "speaker": "foyer",
-      "text": "Thanks, Bethan. I only caught nine digits. Could you repeat the full number, please?",
-      "start": 25.68,
-      "end": 30.76
+      "text": "Thanks, Sarah. I only caught nine digits. Could you repeat the full number, please?",
+      "start": 25.92,
+      "end": 31.32
     },
     {
       "line": 5,
       "speaker": "caller",
       "text": "Sorry. Zero seven seven zero zero, nine zero zero, one two four.",
-      "start": 31.21,
+      "start": 31.77,
       "end": 36.17
     },
     {
@@ -47,35 +47,35 @@
       "speaker": "foyer",
       "text": "That's zero seven seven zero zero; nine zero zero; one two four. Is that correct?",
       "start": 36.62,
-      "end": 44.06
+      "end": 44.3
     },
     {
       "line": 7,
       "speaker": "caller",
       "text": "Yes. I just want a proper explanation of what happened.",
-      "start": 44.51,
-      "end": 47.95
+      "start": 44.75,
+      "end": 47.87
     },
     {
       "line": 8,
       "speaker": "foyer",
       "text": "I've noted that you'd like an explanation. I'll pass your callback request to the salon manager. I can't confirm when they'll be available.",
-      "start": 48.4,
-      "end": 56.12
+      "start": 48.32,
+      "end": 55.56
     },
     {
       "line": 9,
       "speaker": "caller",
       "text": "All right. Thank you.",
-      "start": 56.57,
-      "end": 58.49
+      "start": 56.01,
+      "end": 58.09
     },
     {
       "line": 10,
       "speaker": "foyer",
-      "text": "Thank you, Bethan. Take care.",
-      "start": 58.94,
-      "end": 61.58
+      "text": "Thank you, Sarah. Take care.",
+      "start": 58.54,
+      "end": 61.02
     }
   ]
 }

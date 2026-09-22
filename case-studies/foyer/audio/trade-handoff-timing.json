@@ -5,77 +5,77 @@
       "speaker": "foyer",
       "text": "Thanks for calling the workshop. I'm the digital assistant. This call is recorded for quality. How can I help?",
       "start": 0,
-      "end": 7.6
+      "end": 7.52
     },
     {
       "line": 1,
       "speaker": "caller",
       "text": "I'm unhappy about the job that was done last Tuesday. I want to speak to someone in charge.",
-      "start": 8.05,
-      "end": 13.01
+      "start": 7.97,
+      "end": 12.69
     },
     {
       "line": 2,
       "speaker": "foyer",
       "text": "I'm sorry you've had a poor experience. I can request a callback from the site manager. Can I take your name?",
-      "start": 13.46,
-      "end": 19.9
+      "start": 13.14,
+      "end": 19.74
     },
     {
       "line": 3,
       "speaker": "caller",
-      "text": "Grace Owusu. My number is zero seven seven zero zero, nine zero zero, one.",
-      "start": 20.35,
-      "end": 25.23
+      "text": "Megan Pryce. My number is zero seven seven zero zero, nine zero zero, one.",
+      "start": 20.19,
+      "end": 25.47
     },
     {
       "line": 4,
       "speaker": "foyer",
-      "text": "Thanks, Grace. I only caught nine digits. Could you repeat the full number, please?",
-      "start": 25.68,
-      "end": 30.92
+      "text": "Thanks, Megan. I only caught nine digits. Could you repeat the full number, please?",
+      "start": 25.92,
+      "end": 31
     },
     {
       "line": 5,
       "speaker": "caller",
       "text": "Sorry. Zero seven seven zero zero, nine zero zero, one two four.",
-      "start": 31.37,
-      "end": 36.17
+      "start": 31.45,
+      "end": 36.89
     },
     {
       "line": 6,
       "speaker": "foyer",
       "text": "That's zero seven seven zero zero; nine zero zero; one two four. Is that correct?",
-      "start": 36.62,
-      "end": 43.98
+      "start": 37.34,
+      "end": 44.3
     },
     {
       "line": 7,
       "speaker": "caller",
       "text": "Yes. I just want someone to explain what went wrong.",
-      "start": 44.43,
-      "end": 47.55
+      "start": 44.75,
+      "end": 47.79
     },
     {
       "line": 8,
       "speaker": "foyer",
       "text": "I've noted that you'd like an explanation. I'll pass your callback request to the site manager. I can't confirm when they'll be available.",
-      "start": 48,
-      "end": 55.24
+      "start": 48.24,
+      "end": 55.64
     },
     {
       "line": 9,
       "speaker": "caller",
       "text": "All right. Thank you.",
-      "start": 55.69,
-      "end": 57.61
+      "start": 56.09,
+      "end": 58.01
     },
     {
       "line": 10,
       "speaker": "foyer",
-      "text": "Thank you, Grace. Take care.",
-      "start": 58.06,
-      "end": 60.62
+      "text": "Thank you, Megan. Take care.",
+      "start": 58.46,
+      "end": 61.02
     }
   ]
 }

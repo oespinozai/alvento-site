@@ -54,7 +54,7 @@
       ["foyer", "Let me read that back. Fourteen Example Street, Manchester. Is that right?"],
       ["caller", "Yes, that's right."],
       ["foyer", "Would you prefer your visit confirmation by email or text?"],
-      ["caller", "Text, please."],
+      ["caller", "By text, please."],
       ["foyer", "You're booked for Friday the eighteenth of September, at ten in the morning. Your confirmation text will include the engineer's estimated arrival window and how to reschedule. Is there anything else you need?"],
       ["caller", "No, that's everything. Thanks."],
       ["foyer", "You're welcome, Aidan. Take care."]
@@ -63,14 +63,14 @@
       ["foyer", "Thanks for calling the workshop. I'm the digital assistant. This call is recorded for quality. How can I help?"],
       ["caller", "I'm unhappy about the job that was done last Tuesday. I want to speak to someone in charge."],
       ["foyer", "I'm sorry you've had a poor experience. I can request a callback from the site manager. Can I take your name?"],
-      ["caller", "Grace Owusu. My number is zero seven seven zero zero, nine zero zero, one."],
-      ["foyer", "Thanks, Grace. I only caught nine digits. Could you repeat the full number, please?"],
+      ["caller", "Megan Pryce. My number is zero seven seven zero zero, nine zero zero, one."],
+      ["foyer", "Thanks, Megan. I only caught nine digits. Could you repeat the full number, please?"],
       ["caller", "Sorry. Zero seven seven zero zero, nine zero zero, one two four."],
       ["foyer", "That's zero seven seven zero zero; nine zero zero; one two four. Is that correct?"],
       ["caller", "Yes. I just want someone to explain what went wrong."],
       ["foyer", "I've noted that you'd like an explanation. I'll pass your callback request to the site manager. I can't confirm when they'll be available."],
       ["caller", "All right. Thank you."],
-      ["foyer", "Thank you, Grace. Take care."]
+      ["foyer", "Thank you, Megan. Take care."]
     ]
   },
   "retail": {
@@ -82,31 +82,31 @@
       ["foyer", "Of course. Friday the eighteenth of September at ten in the morning is available. Does that work?"],
       ["caller", "Yes, that's better. Thank you."],
       ["foyer", "Can I take your full name, please?"],
-      ["caller", "Tomasz Nowak."],
-      ["foyer", "Thanks, Tomasz. And a contact number?"],
+      ["caller", "Lucas Ferreira."],
+      ["foyer", "Thanks, Lucas. And a contact number?"],
       ["caller", "It's zero seven seven zero zero, nine zero zero, one two three."],
       ["foyer", "Let me read that back. Zero seven seven zero zero; nine zero zero; one two three. Is that right?"],
       ["caller", "Yes, that's right."],
       ["foyer", "Would you prefer your appointment confirmation by email or text?"],
-      ["caller", "Email, please. It's tomasz at example dot com."],
-      ["foyer", "That's tomasz at example dot com. Have I got that right?"],
+      ["caller", "Email, please. It's lucas at example dot com."],
+      ["foyer", "That's lucas at example dot com. Have I got that right?"],
       ["caller", "Yes, you have."],
       ["foyer", "You're booked for Friday the eighteenth of September, at ten in the morning. Your confirmation email will include the salon address and how to reschedule. Is there anything else you need?"],
       ["caller", "No, that's everything. Thanks."],
-      ["foyer", "You're welcome, Tomasz. Take care."]
+      ["foyer", "You're welcome, Lucas. Take care."]
     ],
     "handoff": [
       ["foyer", "Thanks for calling the salon. I'm the digital assistant. This call is recorded for quality. How can I help?"],
       ["caller", "I'm unhappy about the treatment I had last Tuesday. I want to speak to someone in charge."],
       ["foyer", "I'm sorry you've had a poor experience. I can request a callback from the salon manager. Can I take your name?"],
-      ["caller", "Bethan Hughes. My number is zero seven seven zero zero, nine zero zero, one."],
-      ["foyer", "Thanks, Bethan. I only caught nine digits. Could you repeat the full number, please?"],
+      ["caller", "Sarah Bennett. My number is zero seven seven zero zero, nine zero zero, one."],
+      ["foyer", "Thanks, Sarah. I only caught nine digits. Could you repeat the full number, please?"],
       ["caller", "Sorry. Zero seven seven zero zero, nine zero zero, one two four."],
       ["foyer", "That's zero seven seven zero zero; nine zero zero; one two four. Is that correct?"],
       ["caller", "Yes. I just want a proper explanation of what happened."],
       ["foyer", "I've noted that you'd like an explanation. I'll pass your callback request to the salon manager. I can't confirm when they'll be available."],
       ["caller", "All right. Thank you."],
-      ["foyer", "Thank you, Bethan. Take care."]
+      ["foyer", "Thank you, Sarah. Take care."]
     ]
   }
 }
