@@ -5,77 +5,91 @@
       "speaker": "foyer",
       "text": "Thanks for calling the workshop. I'm the digital assistant. This call is recorded for quality. How can I help?",
       "start": 0,
-      "end": 7.52
+      "end": 8
     },
     {
       "line": 1,
       "speaker": "caller",
       "text": "I'm unhappy about the job that was done last Tuesday. I want to speak to someone in charge.",
-      "start": 7.97,
-      "end": 12.69
+      "start": 8.45,
+      "end": 12.85
     },
     {
       "line": 2,
       "speaker": "foyer",
       "text": "I'm sorry you've had a poor experience. I can request a callback from the site manager. Can I take your name?",
-      "start": 13.14,
-      "end": 19.74
+      "start": 13.3,
+      "end": 19.82
     },
     {
       "line": 3,
       "speaker": "caller",
-      "text": "Megan Pryce. My number is zero seven seven zero zero, nine zero zero, one.",
-      "start": 20.19,
-      "end": 25.47
+      "text": "Noah Reid.",
+      "start": 20.27,
+      "end": 21.43
     },
     {
       "line": 4,
       "speaker": "foyer",
-      "text": "Thanks, Megan. I only caught nine digits. Could you repeat the full number, please?",
-      "start": 25.92,
-      "end": 31
+      "text": "Thanks, Noah. And a contact number?",
+      "start": 21.88,
+      "end": 25.16
     },
     {
       "line": 5,
       "speaker": "caller",
-      "text": "Sorry. Zero seven seven zero zero, nine zero zero, one two four.",
-      "start": 31.45,
-      "end": 36.89
+      "text": "It's zero seven seven zero zero, nine zero zero, one.",
+      "start": 25.61,
+      "end": 28.93
     },
     {
       "line": 6,
       "speaker": "foyer",
-      "text": "That's zero seven seven zero zero; nine zero zero; one two four. Is that correct?",
-      "start": 37.34,
-      "end": 44.3
+      "text": "Thanks, Noah. I only caught nine digits. Could you repeat the full number, please?",
+      "start": 29.38,
+      "end": 34.3
     },
     {
       "line": 7,
       "speaker": "caller",
-      "text": "Yes. I just want someone to explain what went wrong.",
-      "start": 44.75,
-      "end": 47.79
+      "text": "Sorry. Zero seven seven zero zero, nine zero zero, one two four.",
+      "start": 34.75,
+      "end": 39.31
     },
     {
       "line": 8,
       "speaker": "foyer",
-      "text": "I've noted that you'd like an explanation. I'll pass your callback request to the site manager. I can't confirm when they'll be available.",
-      "start": 48.24,
-      "end": 55.64
+      "text": "That's zero seven seven zero zero; nine zero zero; one two four. Is that correct?",
+      "start": 39.76,
+      "end": 46.72
     },
     {
       "line": 9,
       "speaker": "caller",
-      "text": "All right. Thank you.",
-      "start": 56.09,
-      "end": 58.01
+      "text": "Yes. I just want someone to explain what went wrong.",
+      "start": 47.17,
+      "end": 50.05
     },
     {
       "line": 10,
       "speaker": "foyer",
-      "text": "Thank you, Megan. Take care.",
-      "start": 58.46,
-      "end": 61.02
+      "text": "I've noted that you'd like an explanation. I'll pass your callback request to the site manager. I can't confirm when they'll be available.",
+      "start": 50.5,
+      "end": 57.74
+    },
+    {
+      "line": 11,
+      "speaker": "caller",
+      "text": "All right. Thank you.",
+      "start": 58.19,
+      "end": 60.27
+    },
+    {
+      "line": 12,
+      "speaker": "foyer",
+      "text": "Thank you, Noah. Take care.",
+      "start": 60.72,
+      "end": 63.28
     }
   ]
 }

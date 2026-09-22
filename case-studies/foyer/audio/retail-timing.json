@@ -5,133 +5,133 @@
       "speaker": "foyer",
       "text": "Thanks for calling the salon. I'm the digital assistant. This call is recorded for quality. How can I help?",
       "start": 0,
-      "end": 7.76
+      "end": 8
     },
     {
       "line": 1,
       "speaker": "caller",
       "text": "Hi, could I book a haircut sometime this week?",
-      "start": 8.21,
-      "end": 10.49
+      "start": 8.45,
+      "end": 10.57
     },
     {
       "line": 2,
       "speaker": "foyer",
       "text": "Of course. Let me check availability. There's Wednesday at ten thirty in the morning. Or Thursday at three in the afternoon. Would either suit you?",
-      "start": 10.94,
-      "end": 20.82
+      "start": 11.02,
+      "end": 21.06
     },
     {
       "line": 3,
       "speaker": "caller",
       "text": "Thursday at three, please. Actually, sorry, could we do Friday morning instead?",
-      "start": 21.27,
-      "end": 26.07
+      "start": 21.51,
+      "end": 26.15
     },
     {
       "line": 4,
       "speaker": "foyer",
       "text": "Of course. Friday the eighteenth of September at ten in the morning is available. Does that work?",
-      "start": 26.52,
-      "end": 32.88
+      "start": 26.6,
+      "end": 33.12
     },
     {
       "line": 5,
       "speaker": "caller",
       "text": "Yes, that's better. Thank you.",
-      "start": 33.33,
-      "end": 36.05
+      "start": 33.57,
+      "end": 36.69
     },
     {
       "line": 6,
       "speaker": "foyer",
       "text": "Can I take your full name, please?",
-      "start": 36.5,
-      "end": 38.38
+      "start": 37.14,
+      "end": 39.26
     },
     {
       "line": 7,
       "speaker": "caller",
-      "text": "Lucas Ferreira.",
-      "start": 38.83,
-      "end": 40.23
+      "text": "Noah Reid.",
+      "start": 39.71,
+      "end": 40.87
     },
     {
       "line": 8,
       "speaker": "foyer",
-      "text": "Thanks, Lucas. And a contact number?",
-      "start": 40.68,
-      "end": 44.52
+      "text": "Thanks, Noah. And a contact number?",
+      "start": 41.32,
+      "end": 44.6
     },
     {
       "line": 9,
       "speaker": "caller",
       "text": "It's zero seven seven zero zero, nine zero zero, one two three.",
-      "start": 44.97,
-      "end": 48.85
+      "start": 45.05,
+      "end": 48.77
     },
     {
       "line": 10,
       "speaker": "foyer",
       "text": "Let me read that back. Zero seven seven zero zero; nine zero zero; one two three. Is that right?",
-      "start": 49.3,
-      "end": 58.94
+      "start": 49.22,
+      "end": 58.3
     },
     {
       "line": 11,
       "speaker": "caller",
       "text": "Yes, that's right.",
-      "start": 59.39,
-      "end": 60.63
+      "start": 58.75,
+      "end": 60.47
     },
     {
       "line": 12,
       "speaker": "foyer",
       "text": "Would you prefer your appointment confirmation by email or text?",
-      "start": 61.08,
-      "end": 64.48
+      "start": 60.92,
+      "end": 64.4
     },
     {
       "line": 13,
       "speaker": "caller",
-      "text": "Email, please. It's lucas at example dot com.",
-      "start": 64.93,
-      "end": 68.77
+      "text": "By email, please. It's noah at example dot com.",
+      "start": 64.85,
+      "end": 68.85
     },
     {
       "line": 14,
       "speaker": "foyer",
-      "text": "That's lucas at example dot com. Have I got that right?",
-      "start": 69.22,
-      "end": 72.82
+      "text": "That's noah at example dot com. Have I got that right?",
+      "start": 69.3,
+      "end": 73.22
     },
     {
       "line": 15,
       "speaker": "caller",
       "text": "Yes, you have.",
-      "start": 73.27,
-      "end": 74.43
+      "start": 73.67,
+      "end": 74.91
     },
     {
       "line": 16,
       "speaker": "foyer",
       "text": "You're booked for Friday the eighteenth of September, at ten in the morning. Your confirmation email will include the salon address and how to reschedule. Is there anything else you need?",
-      "start": 74.88,
-      "end": 84.52
+      "start": 75.36,
+      "end": 85.8
     },
     {
       "line": 17,
       "speaker": "caller",
       "text": "No, that's everything. Thanks.",
-      "start": 84.97,
-      "end": 87.21
+      "start": 86.25,
+      "end": 89.05
     },
     {
       "line": 18,
       "speaker": "foyer",
-      "text": "You're welcome, Lucas. Take care.",
-      "start": 87.66,
-      "end": 90.46
+      "text": "You're welcome, Noah. Take care.",
+      "start": 89.5,
+      "end": 92.06
     }
   ]
 }

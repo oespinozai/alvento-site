@@ -8,6 +8,11 @@ const run = promisify(require("node:child_process").execFile);
 const { synthesize } = require("./speech");
 const calls = require("./calls.json");
 
+// Default caller voice is by kind (cosette for "sample", marius for
+// "handoff"), overridden per track where the caller's name is the opposite
+// gender from the default voice.
+const CALLER_VOICE_OVERRIDE = { retail: { sample: "marius" } };
+
 async function main() {
   const base = path.resolve(__dirname, "../../case-studies/foyer");
   const requestedTracks = process.argv.slice(2);
@@ -28,7 +33,7 @@ async function main() {
         await run("ffmpeg", ["-v", "error", "-y", "-f", "lavfi", "-i", "anullsrc=r=24000:cl=mono", "-t", "0.45", "-c:a", "pcm_s16le", silence]);
         for (const [i, [speaker, text]] of turns.entries()) {
           const file = path.join(work, `${track}-${kind}-${i}.wav`);
-          const voice = speaker === "foyer" ? "jean" : kind === "sample" ? "cosette" : "marius";
+          const voice = speaker === "foyer" ? "jean" : (CALLER_VOICE_OVERRIDE[track]?.[kind] ?? (kind === "sample" ? "cosette" : "marius"));
           const audio = await synthesize(text, { url: "http://100.97.130.43:8005/v1/audio/speech", voice, format: "wav", timeoutMs: 90000, requestSpacingMs: 2300 });
           await fs.writeFile(file, audio);
           const { stdout } = await run("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", file]);
