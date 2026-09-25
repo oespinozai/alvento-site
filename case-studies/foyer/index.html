@@ -22,7 +22,7 @@
 <meta name="twitter:image" content="https://alvento.uk/case-studies/foyer/foyer-social.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://alvento.uk/"}, {"@type": "ListItem", "position": 2, "name": "Case studies", "item": "https://alvento.uk/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Foyer", "item": "https://alvento.uk/case-studies/foyer/"}]}</script>
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,8 +37,8 @@
   --accent: #c4f042;
   --accent-hover: #d4ff4a;
   --accent-dim: #a6c53a;
-  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
@@ -211,6 +211,9 @@ footer a:hover { color: var(--text); }
 .followup-card a { text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 768px) { .followup-grid { grid-template-columns: 1fr; } .followup-card { padding: 22px; } }
 
+
+/* Instrument Serif ships one weight; stop browsers faking bold */
+h1, h2, h3, h4 { font-synthesis: none; }
 </style>
 </head>
 <body>

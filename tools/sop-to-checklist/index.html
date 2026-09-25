@@ -71,7 +71,7 @@
 }
     </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -93,8 +93,8 @@
   --success: #9ae66e;
   --warn: #f0c674;
   --err: #e66e6e;
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --glow-accent: radial-gradient(circle, rgba(196,240,66,0.06) 0%, transparent 70%);
 }
@@ -508,6 +508,9 @@ footer a:hover { color: var(--accent); }
   .panel { padding: 22px; }
   .cta-card { padding: 22px; }
 }
+
+/* Instrument Serif ships one weight; stop browsers faking bold */
+h1, h2, h3, h4 { font-synthesis: none; }
 </style>
 </head>
 <body>

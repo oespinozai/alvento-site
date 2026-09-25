@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://alvento.uk/case-studies/staamp/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -24,8 +24,8 @@
   --accent: #c4f042;
   --accent-hover: #d4ff4a;
   --accent-dim: #a6c53a;
-  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 }
 html { scroll-behavior: smooth; }
@@ -121,6 +121,9 @@ footer a:hover { color: var(--text); }
   .contrast-row .cell { border-right: 0; border-bottom: 1px solid var(--border); }
   .contrast-row .cell:last-child { border-bottom: 0; }
 }
+
+/* Instrument Serif ships one weight; stop browsers faking bold */
+h1, h2, h3, h4 { font-synthesis: none; }
 </style>
 </head>
 <body>
