@@ -1,0 +1,8 @@
+name: check-facts
+on: [push, pull_request]
+jobs:
+  check-facts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sh scripts/check-facts.sh
