@@ -6,6 +6,7 @@ Alvento Ltd is a UK company (Company No. 16394298), founded and run by Oscar Esp
 
 ## Services
 
+- [AI for clinical registries and professional bodies](https://alvento.uk/clinical-registries/): submission quality checks, first drafts of audit and annual reports, member enquiry handling and cited document search for UK clinical registries, national clinical audits, royal colleges and healthcare professional bodies, with human sign-off on every external output.
 - [Answer Engine Optimisation](https://alvento.uk/aeo/): structured citations across ChatGPT, Perplexity, Google AI and Copilot for regulated organisations, with copy that survives MHRA, GMC and ICO review.
 - [Free website audit](https://alvento.uk/website-audit/): accessibility, SEO, performance and security audit for professional bodies, registries and regulated medtech, delivered as an executive summary.
 
