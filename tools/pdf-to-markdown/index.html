@@ -10,9 +10,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
+        :root { --font-display: 'Instrument Serif', Georgia, serif; --text: #e8e8e8; }
+        h1, h2, h3, h4 { font-synthesis: none; }
         * {
             margin: 0;
             padding: 0;
@@ -22,13 +24,13 @@
         body {
             background-color: #0a0a0a;
             color: #e0e0e0;
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
             font-size: 14px;
         }
 
         a {
-            color: #00d4aa;
+            color: #c4f042;
             text-decoration: none;
             transition: opacity 0.2s;
         }
@@ -53,10 +55,11 @@
         }
 
         .header-title {
-            font-family: "IBM Plex Mono", monospace;
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: -0.5px;
+            font-family: var(--font-display);
+            font-size: 26px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
         }
 
         .alvento-badge {
@@ -71,8 +74,8 @@
         }
 
         .alvento-badge:hover {
-            border-color: #00d4aa;
-            color: #00d4aa;
+            border-color: #c4f042;
+            color: #c4f042;
         }
 
         main {
@@ -103,7 +106,7 @@
         }
 
         .section-title {
-            font-family: "IBM Plex Mono", monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 13px;
             font-weight: 600;
             text-transform: uppercase;
@@ -118,17 +121,17 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
-            background-color: rgba(0, 212, 170, 0.02);
+            background-color: rgba(196, 240, 66, 0.02);
         }
 
         .dropzone:hover,
         .dropzone.dragover,
         .dropzone:focus-visible {
-            border-color: #00d4aa;
-            background-color: rgba(0, 212, 170, 0.05);
+            border-color: #c4f042;
+            background-color: rgba(196, 240, 66, 0.05);
         }
         .dropzone:focus-visible {
-            outline: 2px solid #00d4aa;
+            outline: 2px solid #c4f042;
             outline-offset: 2px;
         }
 
@@ -140,7 +143,7 @@
 
         .dropzone-hint {
             font-size: 12px;
-            color: #555;
+            color: #8a8a8a;
         }
 
         #fileInput {
@@ -193,14 +196,14 @@
         }
 
         .file-name {
-            font-family: "IBM Plex Mono", monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
             word-break: break-word;
         }
 
         .file-meta {
             font-size: 11px;
-            color: #666;
+            color: #8a8a8a;
         }
 
         .status-badge {
@@ -241,7 +244,7 @@
             padding: 10px 16px;
             border: none;
             border-radius: 6px;
-            font-family: "IBM Plex Mono", monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
@@ -256,12 +259,12 @@
         }
 
         .button-primary {
-            background-color: #00d4aa;
+            background-color: #c4f042;
             color: #0a0a0a;
         }
 
         .button-primary:hover {
-            background-color: #00e0b4;
+            background-color: #d4f76a;
         }
 
         .button-primary:disabled {
@@ -273,13 +276,13 @@
 
         .button-secondary {
             background-color: #222;
-            color: #00d4aa;
+            color: #c4f042;
             border: 1px solid #333;
         }
 
         .button-secondary:hover {
-            border-color: #00d4aa;
-            background-color: rgba(0, 212, 170, 0.1);
+            border-color: #c4f042;
+            background-color: rgba(196, 240, 66, 0.1);
         }
 
         .button-secondary:disabled {
@@ -308,7 +311,7 @@
         }
 
         .tab {
-            font-family: "IBM Plex Mono", monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
@@ -316,15 +319,15 @@
             padding: 8px 12px;
             background: none;
             border: none;
-            color: #666;
+            color: #8a8a8a;
             cursor: pointer;
             border-bottom: 2px solid transparent;
             transition: all 0.2s;
         }
 
         .tab.active {
-            color: #00d4aa;
-            border-bottom-color: #00d4aa;
+            color: #c4f042;
+            border-bottom-color: #c4f042;
         }
 
         .tab:hover {
@@ -345,7 +348,7 @@
             border-radius: 6px;
             padding: 12px;
             color: #e0e0e0;
-            font-family: "IBM Plex Mono", monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
             line-height: 1.6;
             resize: none;
@@ -354,7 +357,7 @@
 
         .markdown-textarea:focus {
             outline: none;
-            border-color: #00d4aa;
+            border-color: #c4f042;
         }
 
         .markdown-preview {
@@ -372,21 +375,21 @@
             font-size: 28px;
             font-weight: 700;
             margin: 20px 0 12px 0;
-            color: #00d4aa;
+            color: #c4f042;
         }
 
         .markdown-preview h2 {
             font-size: 22px;
             font-weight: 700;
             margin: 16px 0 10px 0;
-            color: #00d4aa;
+            color: #c4f042;
         }
 
         .markdown-preview h3 {
             font-size: 18px;
             font-weight: 600;
             margin: 12px 0 8px 0;
-            color: #00d4aa;
+            color: #c4f042;
         }
 
         .markdown-preview h4,
@@ -415,9 +418,9 @@
             background-color: #222;
             padding: 2px 6px;
             border-radius: 3px;
-            font-family: "IBM Plex Mono", monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
-            color: #00d4aa;
+            color: #c4f042;
         }
 
         .markdown-preview pre {
@@ -437,7 +440,7 @@
         }
 
         .markdown-preview blockquote {
-            border-left: 3px solid #00d4aa;
+            border-left: 3px solid #c4f042;
             margin: 12px 0;
             padding-left: 12px;
             color: #888;
@@ -457,8 +460,8 @@
         }
 
         .markdown-preview th {
-            background-color: rgba(0, 212, 170, 0.1);
-            color: #00d4aa;
+            background-color: rgba(196, 240, 66, 0.1);
+            color: #c4f042;
             font-weight: 600;
         }
 
@@ -494,20 +497,20 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            color: #666;
-            font-family: "IBM Plex Mono", monospace;
+            color: #8a8a8a;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .stat-value {
             font-size: 24px;
             font-weight: 700;
-            color: #00d4aa;
-            font-family: "IBM Plex Mono", monospace;
+            color: #c4f042;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .cost-estimate {
             grid-column: 1 / -1;
-            background-color: rgba(0, 212, 170, 0.05);
+            background-color: rgba(196, 240, 66, 0.05);
             border: 1px solid #222;
             border-radius: 6px;
             padding: 12px;
@@ -534,7 +537,7 @@
             border: 1px solid #333;
             border-radius: 4px;
             padding: 6px 10px;
-            font-family: "IBM Plex Mono", monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             color: #e0e0e0;
             cursor: pointer;
@@ -542,16 +545,16 @@
         }
 
         .model-selector:hover {
-            border-color: #00d4aa;
+            border-color: #c4f042;
         }
 
         .model-selector:focus {
             outline: none;
-            border-color: #00d4aa;
+            border-color: #c4f042;
         }
 
         .cta-card {
-            background-color: rgba(0, 212, 170, 0.1);
+            background-color: rgba(196, 240, 66, 0.1);
             border: 1px solid #333;
             border-radius: 8px;
             padding: 20px;
@@ -579,7 +582,7 @@
             padding: 20px;
             text-align: center;
             font-size: 12px;
-            color: #666;
+            color: #8a8a8a;
         }
 
         .file-selector-group {
@@ -596,7 +599,7 @@
             border: 1px solid #333;
             border-radius: 4px;
             padding: 6px 10px;
-            font-family: "IBM Plex Mono", monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             color: #e0e0e0;
             cursor: pointer;
@@ -604,7 +607,7 @@
 
         .file-selector:focus {
             outline: none;
-            border-color: #00d4aa;
+            border-color: #c4f042;
         }
 
         .scroll-area {
@@ -617,7 +620,7 @@
             width: 12px;
             height: 12px;
             border: 2px solid #555;
-            border-top-color: #00d4aa;
+            border-top-color: #c4f042;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             vertical-align: -2px;
@@ -680,7 +683,7 @@
 <body>
     <header>
         <div class="header-left">
-            <div class="header-title">PDF to Markdown</div>
+            <h1 class="header-title">PDF to Markdown converter</h1>
             <a href="https://alvento.uk" target="_blank" class="alvento-badge">by Alvento</a>
         </div>
     </header>
