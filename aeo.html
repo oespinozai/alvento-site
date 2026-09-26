@@ -160,7 +160,7 @@ footer a:hover{color:var(--lime)}
 </style>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<link rel="stylesheet" href="/illustration-band.css">
+<link rel="stylesheet" href="/hero-art.css">
 </head>
 <body>
 
@@ -179,7 +179,8 @@ footer a:hover{color:var(--lime)}
 </nav>
 
 <!-- HERO -->
-<div class="hero">
+<div class="hero hero--split">
+<div class="hero__text">
   <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.5rem;"><a href="/" style="color:var(--text-dim);text-decoration:none;">Alvento</a> &nbsp;/&nbsp; <a href="/#capabilities" style="color:var(--text-dim);text-decoration:none;">Capabilities</a> &nbsp;/&nbsp; Growth</div>
   <span class="tag">Growth Capability / Regulated Organisations</span>
   <h1>When a clinician asks AI about your society, registry or device, <em>you should be the answer</em>.</h1>
@@ -189,11 +190,8 @@ footer a:hover{color:var(--lime)}
     <a href="#problem" class="btn-secondary">Why this matters</a>
   </div>
 </div>
-
-<section class="ill-band">
-  <img class="ill-band__img" src="/images/illustrations/aeo-citations.webp" width="1456" height="816" loading="lazy" decoding="async" alt="Illustration: a speech bubble built from stacked index cards, with one card near the front highlighted in lime green as the cited source">
-  <div class="ill-band__caption"><span class="ill-band__eyebrow">Answer engines</span><p class="ill-band__line">When the answer is quoted, <em>the source should be you</em>.</p></div>
-</section>
+<div class="hero__art"><img src="/images/illustrations/aeo-citations-1200.webp" srcset="/images/illustrations/aeo-citations-1200.webp 1200w, /images/illustrations/aeo-citations-1800.webp 1800w" sizes="(max-width: 900px) 100vw, 50vw" width="1800" height="1009" fetchpriority="high" decoding="async" alt="Illustration: a speech bubble built from stacked index cards, with one card near the front highlighted in lime green as the cited source"></div>
+</div>
 
 <!-- CONTEXT BRIDGE -->
 <div style="max-width:700px;margin:0 auto;padding:2rem 2rem 0;text-align:center">
@@ -550,6 +548,5 @@ footer a:hover{color:var(--lime)}
 }
 </script>
 <script defer src="/consent-banner.js"></script>
-<script defer src="/illustration-band.js"></script>
 </body>
 </html>

@@ -120,7 +120,7 @@ footer p{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);let
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://alvento.uk/og/website-audit.png">
-<link rel="stylesheet" href="/illustration-band.css">
+<link rel="stylesheet" href="/hero-art.css">
 </head>
 <body>
 
@@ -138,7 +138,8 @@ footer p{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);let
   </div>
 </nav>
 
-<div class="hero">
+<div class="hero hero--split">
+<div class="hero__text">
   <span class="tag">Free audit &middot; Executive summary</span>
   <h1>A board-ready website audit for <em>regulated organisations</em></h1>
   <p>We assess accessibility (WCAG 2.2 / PSBAR), SEO hygiene, performance, and security, and deliver a shareable executive summary your SMT can act on. Free for eligible professional bodies, registries, and regulated medtech.</p>
@@ -147,11 +148,8 @@ footer p{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);let
     <a href="#what" class="btn-secondary">What we audit</a>
   </div>
 </div>
-
-<section class="ill-band">
-  <img class="ill-band__img" src="/images/illustrations/website-audit.webp" width="1456" height="816" loading="lazy" decoding="async" alt="Illustration: the columned front of an institutional building seen through a magnifying loupe with a measurement grid, one window lit in lime green">
-  <div class="ill-band__caption"><span class="ill-band__eyebrow">Free audit</span><p class="ill-band__line">Your site, seen the way <em>a regulator, a member and a screen reader</em> see it.</p></div>
-</section>
+<div class="hero__art"><img src="/images/illustrations/website-audit-1200.webp" srcset="/images/illustrations/website-audit-1200.webp 1200w, /images/illustrations/website-audit-1800.webp 1800w" sizes="(max-width: 900px) 100vw, 50vw" width="1800" height="1009" fetchpriority="high" decoding="async" alt="Illustration: the columned front of an institutional building seen through a magnifying loupe with a measurement grid, one window lit in lime green"></div>
+</div>
 
 <section id="what">
   <span class="section-label">01. What we audit</span>
@@ -299,6 +297,5 @@ document.querySelectorAll('.nav-links a').forEach(function(link) {
 </script>
 
 <script defer src="/consent-banner.js"></script>
-<script defer src="/illustration-band.js"></script>
 </body>
 </html>

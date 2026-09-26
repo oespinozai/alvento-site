@@ -1,0 +1,40 @@
+/* Split hero: text left, illustration right; stacks on narrow screens.
+   Markup: <div class="hero hero--split"><div class="hero__text">...</div><div class="hero__art"><img></div></div>
+   tools.html uses .hero-split-grid on its .container instead of .hero--split. */
+.hero.hero--split {
+  max-width: 1240px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+  min-height: min(100vh, 860px);
+}
+.hero--split h1 { font-size: clamp(2.5rem, 4.4vw, 4.2rem); }
+.hero-split-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+}
+.hero__art { position: relative; }
+.hero__art img {
+  display: block;
+  width: 116%;
+  max-width: none;
+  height: auto;
+  margin-left: -8%;
+  /* dissolve the edges into the page so the art has no box */
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 58%, transparent 100%);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 58%, transparent 100%);
+  animation: heroArtIn 0.9s ease-out 0.35s both;
+}
+@keyframes heroArtIn { from { opacity: 0; transform: translateY(14px) scale(0.985); } to { opacity: 1; transform: none; } }
+@media (max-width: 900px) {
+  .hero.hero--split,
+  .hero-split-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+  .hero.hero--split { min-height: auto; padding-top: 7rem; }
+  .hero__art img { width: 112%; margin-left: -6%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__art img { animation: none; }
+}
