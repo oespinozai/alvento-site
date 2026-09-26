@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free AI Tools for Business Teams | Alvento</title>
 <link rel="canonical" href="https://alvento.uk/tools/">
-<meta name="description" content="Free browser-based tools for teams using AI. PDF to Markdown, SOP to Checklist, Compliance Checklist, Contract Clause Extractor. Built by Alvento.">
+<meta name="description" content="Free browser-based tools for regulated teams: PDF to Markdown, SOP to Checklist, MDR device class checker, MDR technical file index, PSUR outline, UDI decoder, PSBAR accessibility statement and CPD tracker. Built by Alvento.">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -108,6 +108,8 @@ nav .container {
 }
 
 .nav-links .btn-nav:hover { background: var(--accent-hover); }
+
+.nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
 
 /* ---- SECTION LABEL ---- */
 .section-label {
@@ -310,6 +312,8 @@ footer p {
 /* ---- RESPONSIVE ---- */
 @media (max-width: 768px) {
   .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 24px; gap: 20px; border-bottom: 1px solid var(--border); }
+  .nav-toggle { display: block; }
   .tools-grid { grid-template-columns: 1fr; }
   .cta-section { padding: 60px 0; }
   .hero { padding-top: 120px; padding-bottom: 60px; }
@@ -320,7 +324,7 @@ footer p {
 h1, h2, h3, h4 { font-synthesis: none; }
 </style>
 <meta property="og:title" content="Free AI Tools for Business Teams | Alvento">
-<meta property="og:description" content="Free browser-based tools for teams using AI. PDF to Markdown, SOP to Checklist, Compliance Checklist, Contract Clause Extractor. Built by Alvento.">
+<meta property="og:description" content="Free browser-based tools for regulated teams: PDF to Markdown, SOP to Checklist, MDR device class checker, MDR technical file index, PSUR outline, UDI decoder, PSBAR accessibility statement and CPD tracker. Built by Alvento.">
 <meta property="og:url" content="https://alvento.uk/tools/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://alvento.uk/og/tools.png">
@@ -328,20 +332,22 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://alvento.uk/og/tools.png">
+<link rel="stylesheet" href="/illustration-band.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-    <a href="/" style="font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text);">alvento<span style="color: var(--accent);">.</span></a>
-    <ul style="display: flex; gap: 32px; list-style: none; align-items: center;">
-      <li><a href="/#capabilities" style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); transition: color 0.3s;">Capabilities</a></li>
-      <li><a href="/#lab" style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); transition: color 0.3s;">Products</a></li>
-      <li><a href="/tools" style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); transition: color 0.3s;">Tools</a></li>
-      <li><a href="/case-studies/" style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); transition: color 0.3s;">Case studies</a></li>
-      <li><a href="/blog/" style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); transition: color 0.3s;">Insights</a></li>
-      <li><a href="/#contact" style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; background: var(--accent); color: var(--bg); font-weight: 600; padding: 8px 18px; border-radius: 4px;">Discuss your project</a></li>
+  <div class="container">
+    <a href="/" class="logo">alvento<span>.</span></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))">&#9776;</button>
+    <ul class="nav-links" id="primary-nav">
+      <li><a href="/#capabilities">Capabilities</a></li>
+      <li><a href="/#lab">Products</a></li>
+      <li><a href="/tools">Tools</a></li>
+      <li><a href="/case-studies/">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+      <li><a href="/#contact" class="btn-nav">Discuss your project</a></li>
     </ul>
   </div>
 </nav>
@@ -436,7 +442,10 @@ h1, h2, h3, h4 { font-synthesis: none; }
   </div>
 </section>
 
-<figure style="max-width:1100px;margin:2rem auto 0;padding:0 24px"><img src="/images/illustrations/tools-instruments.webp" width="1456" height="816" loading="lazy" decoding="async" alt="Illustration: drafting instruments, a ruler, set square and compass, laid on a circuit board, with one tip lit in lime green" style="display:block;width:100%;height:auto;border:1px solid #2a2a2a;border-radius:3px"></figure>
+<section class="ill-band">
+  <img class="ill-band__img" src="/images/illustrations/tools-instruments.webp" width="1456" height="816" loading="lazy" decoding="async" alt="Illustration: drafting instruments, a ruler, set square and compass, laid on a circuit board, with one tip lit in lime green">
+  <div class="ill-band__caption"><span class="ill-band__eyebrow">Free tools</span><p class="ill-band__line">Small, exact tools <em>for regulated work</em>.</p></div>
+</section>
 
 <!-- CTA SECTION -->
 <section class="cta-section">
@@ -456,5 +465,6 @@ h1, h2, h3, h4 { font-synthesis: none; }
 </footer>
 
 <script defer src="/consent-banner.js"></script>
+<script defer src="/illustration-band.js"></script>
 </body>
 </html>

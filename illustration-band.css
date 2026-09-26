@@ -1,0 +1,74 @@
+/* Full-bleed parallax illustration band. Markup:
+   <section class="ill-band"><img class="ill-band__img" ...><div class="ill-band__caption">...</div></section> */
+.ill-band {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  height: max(260px, min(88vh, 46vw));
+  margin: 3rem 0 0;
+  padding: 0;
+  overflow: hidden;
+  background: #0a0a0a;
+  isolation: isolate;
+}
+.ill-band__img {
+  position: absolute;
+  left: 0;
+  top: -12%;
+  width: 100%;
+  height: 124%;
+  object-fit: cover;
+  object-position: center;
+  will-change: transform;
+  z-index: -1;
+}
+/* fade the image into the page at top and bottom so there is no hard edge */
+.ill-band::before,
+.ill-band::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+.ill-band::before { top: 0; height: 18%; background: linear-gradient(#0a0a0a, rgba(10,10,10,0)); }
+.ill-band::after { bottom: 0; height: 38%; background: linear-gradient(rgba(10,10,10,0), rgba(10,10,10,0.9) 75%, #0a0a0a); }
+.ill-band__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(1.5rem, 5vw, 4rem);
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.ill-band.is-visible .ill-band__caption { opacity: 1; transform: none; }
+.ill-band__eyebrow {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c4f042;
+  margin-bottom: 0.75rem;
+}
+.ill-band__line {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-synthesis: none;
+  font-size: clamp(1.6rem, 4.2vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #e8e8e8;
+  max-width: 820px;
+  margin: 0;
+}
+.ill-band__line em { font-style: italic; color: #c4f042; }
+@media (prefers-reduced-motion: reduce) {
+  .ill-band__img { transform: none !important; }
+  .ill-band__caption { opacity: 1; transform: none; transition: none; }
+}

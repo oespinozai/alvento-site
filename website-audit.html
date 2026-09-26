@@ -120,6 +120,7 @@ footer p{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);let
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://alvento.uk/og/website-audit.png">
+<link rel="stylesheet" href="/illustration-band.css">
 </head>
 <body>
 
@@ -147,7 +148,10 @@ footer p{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);let
   </div>
 </div>
 
-<figure style="max-width:900px;margin:2rem auto 0;padding:0 24px"><img src="/images/illustrations/website-audit.webp" width="1200" height="673" loading="lazy" decoding="async" alt="Illustration: the columned front of an institutional building seen through a magnifying loupe with a measurement grid, one window lit in lime green" style="display:block;width:100%;height:auto;border:1px solid #2a2a2a;border-radius:3px"></figure>
+<section class="ill-band">
+  <img class="ill-band__img" src="/images/illustrations/website-audit.webp" width="1456" height="816" loading="lazy" decoding="async" alt="Illustration: the columned front of an institutional building seen through a magnifying loupe with a measurement grid, one window lit in lime green">
+  <div class="ill-band__caption"><span class="ill-band__eyebrow">Free audit</span><p class="ill-band__line">Your site, seen the way <em>a regulator, a member and a screen reader</em> see it.</p></div>
+</section>
 
 <section id="what">
   <span class="section-label">01. What we audit</span>
@@ -295,5 +299,6 @@ document.querySelectorAll('.nav-links a').forEach(function(link) {
 </script>
 
 <script defer src="/consent-banner.js"></script>
+<script defer src="/illustration-band.js"></script>
 </body>
 </html>
