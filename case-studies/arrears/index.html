@@ -5,8 +5,8 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arrears, an automated invoice follow-up system | Alvento case study</title>
-<meta name="description" content="Arrears is a reference build showing how we think an accounts-receivable follow-up system should behave: an escalation cadence a human doesn't have to remember, and a payment status that updates itself.">
+<title>Arrears, automated invoice follow-up with a live ledger | Alvento</title>
+<meta name="description" content="Try Arrears, an Alvento reference build for automated invoice follow-up: six reminder stages from day 7 to 42, one ledger, verified payment matching.">
 <link rel="canonical" href="https://alvento.uk/case-studies/arrears/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -250,15 +250,16 @@ button:focus-visible, a:focus-visible, summary:focus-visible, .ledger-scroll:foc
 }
 
 </style>
-<meta property="og:title" content="Arrears, an automated invoice follow-up system | Alvento case study">
-<meta property="og:description" content="Arrears is a reference build showing how we think an accounts-receivable follow-up system should behave: an escalation cadence a human doesn't have to remember, and a payment status that updates itself.">
+<meta property="og:title" content="Arrears, automated invoice follow-up with a live ledger | Alvento">
+<meta property="og:description" content="Try Arrears, an Alvento reference build for automated invoice follow-up: six reminder stages from day 7 to 42, one ledger, verified payment matching.">
 <meta property="og:url" content="https://alvento.uk/case-studies/arrears/">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:image" content="https://alvento.uk/og/arrears.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://alvento.uk/og/arrears.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://alvento.uk/"}, {"@type": "ListItem", "position": 2, "name": "Case studies", "item": "https://alvento.uk/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Arrears", "item": "https://alvento.uk/case-studies/arrears/"}]}, {"@type": "Article", "headline": "Arrears, automated invoice follow-up with a working ledger", "description": "Try Arrears, an Alvento reference build for automated invoice follow-up: six reminder stages from day 7 to 42, one ledger, verified payment matching.", "url": "https://alvento.uk/case-studies/arrears/", "mainEntityOfPage": "https://alvento.uk/case-studies/arrears/", "image": "https://alvento.uk/og/arrears.png", "datePublished": "2026-09-06", "dateModified": "2026-10-04", "author": {"@type": "Organization", "name": "Alvento Ltd", "url": "https://alvento.uk/"}, "publisher": {"@type": "Organization", "name": "Alvento Ltd", "url": "https://alvento.uk/"}, "about": ["Accounts receivable", "Invoice follow-up", "Payment reconciliation"]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How does automated invoice follow-up work?", "acceptedAnswer": {"@type": "Answer", "text": "A scheduled job reads the invoice ledger, works out how many days each unpaid invoice is overdue, and sends the reminder for that stage. In Arrears the job runs daily, records every message it generates, and skips any invoice already marked paid, so nobody has to remember who to chase."}}, {"@type": "Question", "name": "When should overdue invoice reminders be sent?", "acceptedAnswer": {"@type": "Answer", "text": "Arrears uses six stages: 7, 14, 21, 28, 35 and 42 days after the due date. Tone starts as a gentle check-in at day 7, asks for a payment date by day 21, and makes a direct request at day 28. Each invoice gets at most one reminder per stage."}}, {"@type": "Question", "name": "How does a payment stop the reminders?", "acceptedAnswer": {"@type": "Answer", "text": "The payment handler verifies the webhook signature, then matches the invoice reference, customer, amount and currency before marking the invoice paid. Paid invoices drop out of every later reminder run, so a client who has paid is never chased again."}}, {"@type": "Question", "name": "What happens if the same payment event arrives twice?", "acceptedAnswer": {"@type": "Answer", "text": "The ledger records each payment event once. A repeated event is recognised as already processed and ignored, so a webhook retry cannot mark a second payment or change the ledger again."}}, {"@type": "Question", "name": "Is Arrears client work?", "acceptedAnswer": {"@type": "Answer", "text": "No. Arrears is a private, Alvento-owned reference build. The public demo uses fictional invoices, captured emails that are never sent, and simulated payments. A live rollout needs a payment account and an email delivery integration."}}]}]}</script>
 </head>
 <body>
 
@@ -442,6 +443,21 @@ button:focus-visible, a:focus-visible, summary:focus-visible, .ledger-scroll:foc
       <span class="stack-tag">systemd daily timer</span>
     </div>
     <p class="disclosure">This is a private, Alvento-owned reference build, not client work. The public demo uses mock data, captured emails and simulated payments. No client results or financial outcomes are claimed. A live rollout requires payment-account setup and an email delivery integration.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-label">Questions</div>
+    <h2>Invoice follow-up, <em>answered</em>.</h2>
+    <div class="how-grid">
+      <div class="how-item"><h3>How does automated invoice follow-up work?</h3><p>A scheduled job reads the invoice ledger, works out how many days each unpaid invoice is overdue, and sends the reminder for that stage. In Arrears the job runs daily, records every message it generates, and skips any invoice already marked paid, so nobody has to remember who to chase.</p></div>
+      <div class="how-item"><h3>When should overdue invoice reminders be sent?</h3><p>Arrears uses six stages: 7, 14, 21, 28, 35 and 42 days after the due date. Tone starts as a gentle check-in at day 7, asks for a payment date by day 21, and makes a direct request at day 28. Each invoice gets at most one reminder per stage.</p></div>
+      <div class="how-item"><h3>How does a payment stop the reminders?</h3><p>The payment handler verifies the webhook signature, then matches the invoice reference, customer, amount and currency before marking the invoice paid. Paid invoices drop out of every later reminder run, so a client who has paid is never chased again.</p></div>
+      <div class="how-item"><h3>What happens if the same payment event arrives twice?</h3><p>The ledger records each payment event once. A repeated event is recognised as already processed and ignored, so a webhook retry cannot mark a second payment or change the ledger again.</p></div>
+      <div class="how-item"><h3>Is Arrears client work?</h3><p>No. Arrears is a private, Alvento-owned reference build. The public demo uses fictional invoices, captured emails that are never sent, and simulated payments. A live rollout needs a payment account and an email delivery integration.</p></div>
+    </div>
   </div>
 </section>
 
