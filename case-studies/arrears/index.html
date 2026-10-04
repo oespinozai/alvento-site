@@ -96,6 +96,9 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
 .stack-list { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
 .stack-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); border: 1px solid var(--border); padding: 8px 16px; border-radius: 4px; letter-spacing: 0.05em; }
 
+.read-more-links { margin-top: 28px; }
+.read-more-links a { color: var(--accent); border-bottom: 1px solid var(--accent-dim); transition: border-color 0.3s; }
+.read-more-links a:hover { border-color: var(--accent); }
 .disclosure { font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
 
 .cta-section { padding: 100px 0; text-align: center; border-top: 1px solid var(--border); }
@@ -442,6 +445,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible, .ledger-scroll:foc
       <span class="stack-tag">Stripe Python SDK</span>
       <span class="stack-tag">systemd daily timer</span>
     </div>
+    <p class="read-more-links">Read more: <a href="/blog/how-we-built-arrears/">How we built Arrears: four decisions that make invoice follow-up trustworthy</a>, and <a href="/blog/invoice-chasing-cadence/">What to say at day 7, 14, 28 and 42: an invoice chasing cadence</a>, with copy-and-paste wording for each stage.</p>
     <p class="disclosure">This is a private, Alvento-owned reference build, not client work. The public demo uses mock data, captured emails and simulated payments. No client results or financial outcomes are claimed. A live rollout requires payment-account setup and an email delivery integration.</p>
   </div>
 </section>
