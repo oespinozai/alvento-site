@@ -118,6 +118,137 @@ footer a:hover { color: var(--text); }
 
 /* Instrument Serif ships one weight; stop browsers faking bold */
 h1, h2, h3, h4 { font-synthesis: none; }
+
+
+.ledger-card { margin-top: 28px; padding: 20px; background: #0b1115; border: 1px solid #1e2a30; border-radius: 16px; overflow: hidden; box-shadow: 0 16px 70px #0003; }
+.ledger-heading, .cadence-strip, .ledger-scroll, .ledger-note { border: 1px solid #233037; border-radius: 12px; background: linear-gradient(125deg, #15202780, #0e161b); }
+.ledger-heading { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 26px 28px; background: radial-gradient(ellipse at 75% 110%, #c4f04215, transparent 45%), linear-gradient(125deg, #172223, #101820 60%, #101b1b); }
+.ledger-brand { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.1; letter-spacing: -0.025em; }
+.ledger-brand span { color: var(--accent); }
+.ledger-subtitle { color: #b3bdc6; font-size: 0.88rem; margin-top: 10px; }
+.ledger-kicker, .ledger-date, .cadence-label, .ledger-note, .demo-caption { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.04em; color: #b3bdc6; }
+.ledger-kicker { margin-bottom: 14px; text-transform: uppercase; }
+.ledger-kicker strong { color: var(--accent); font-weight: 500; }
+.ledger-date { border: 1px solid #2a373e; border-radius: 12px; padding: 15px 20px; line-height: 1.8; white-space: nowrap; background: #0b111640; }
+.ledger-date strong { color: var(--text); font-weight: 500; }
+.cadence-strip { display: flex; align-items: center; gap: 30px; padding: 22px 28px; margin-top: 16px; }
+.cadence-label { text-transform: uppercase; white-space: nowrap; }
+.cadence-steps { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: 0; list-style: none; }
+.cadence-steps li { position: relative; flex: 1; padding-top: 22px; font-family: var(--font-mono); font-size: 0.72rem; color: #b3bdc6; }
+.cadence-steps li:last-child { flex: 0 0 auto; }
+.cadence-steps li::before { content: ''; position: absolute; left: 0; top: 0; width: 11px; height: 11px; border: 3px solid #303d49; background: #9ba8bb; border-radius: 50%; z-index: 1; }
+.cadence-steps li::after { content: ''; position: absolute; top: 5px; left: 0; right: 0; height: 2px; background: #344149; }
+.cadence-steps li:last-child::after { display: none; }
+.cadence-steps li:first-child { color: var(--accent); }
+.cadence-steps li:first-child::before { background: var(--accent); border-color: #c4f04288; box-shadow: 0 0 14px #c4f04270; }
+.cadence-steps li:first-child::after { background: linear-gradient(90deg, var(--accent), #344149 55%); }
+.ledger-scroll { overflow-x: auto; padding: 0 10px 8px; margin-top: 16px; }
+.ledger-table { border-collapse: separate; border-spacing: 0 5px; width: 100%; min-width: 960px; text-align: left; }
+.ledger-table th { font-family: var(--font-mono); font-size: 0.64rem; font-weight: 400; letter-spacing: 0.07em; text-transform: uppercase; color: #b3bdc6; padding: 16px 16px 12px; }
+.ledger-table td { padding: 13px 16px; border-block: 1px solid #24313980; background: #10191e; font-size: 0.84rem; white-space: nowrap; }
+.ledger-table td:first-child { position: relative; border-left: 1px solid #24313980; border-radius: 12px 0 0 12px; padding-left: 76px; }
+.ledger-table td:last-child { border-right: 1px solid #24313980; border-radius: 0 12px 12px 0; }
+.ledger-table td small { display: block; color: #b3bdc6; font-size: 0.72rem; margin-top: 4px; }
+.ledger-table .invoice-id { font-family: var(--font-mono); color: #edf0f6; font-size: 0.84rem; font-weight: 500; }
+.ledger-table .amount { font-family: var(--font-mono); font-size: 0.84rem; }
+.client-avatar { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 43px; height: 43px; border-radius: 11px; background: #26323c70; border: 1px solid #ffffff05; font: 0.8rem var(--font-mono); color: #bec9d6; }
+.ledger-table tr { --urgency: #ffb547; }
+.ledger-table tr[data-stage="14"] { --urgency: #ffab42; }
+.ledger-table tr[data-stage="21"] { --urgency: #ff885c; }
+.ledger-table tr[data-stage="28"], .ledger-table tr[data-stage="35"], .ledger-table tr[data-stage="42"] { --urgency: #ff6478; }
+.ledger-table tr[data-status="paid"] { --urgency: var(--accent); }
+.ledger-table tr[data-status="paid"] td { background: #141e19; }
+.ledger-table tr[data-status="paid"] .client-avatar { background: #c4f04210; color: #d1deb3; }
+.overdue-indicator { display: flex; align-items: center; gap: 20px; }
+.ledger-table .day-count { font-family: var(--font-mono); font-size: 1.05rem; color: var(--urgency); min-width: 2ch; }
+.overdue-track { width: 72px; height: 6px; border-radius: 8px; background: #25313a; overflow: hidden; }
+.overdue-track span { display: block; width: var(--progress, 0%); height: 100%; border-radius: inherit; background: var(--urgency); }
+.stage-content { display: flex; align-items: center; gap: 12px; }
+.ledger-icon { width: 21px; height: 21px; flex-shrink: 0; color: #bfc9d6; }
+.ledger-table tr[data-status="paid"] .ledger-icon { color: var(--accent); }
+.ledger-table tr[data-stage="42"] .ledger-icon { color: #ff6478; }
+.status-pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #45525c; padding: 5px 12px; border-radius: 30px; font-family: var(--font-mono); font-size: 0.72rem; color: #c4ceda; background: #1c283040; box-shadow: inset 0 1px #ffffff08; }
+.status-pill::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.status-pill.paid { color: var(--accent); border-color: #c4f04275; background: #c4f0420c; box-shadow: 0 0 12px #c4f04209; }
+.status-pill.late { color: #ff7786; border-color: #ff6478; background: #ff64780c; box-shadow: 0 0 14px #ff647819; }
+.ledger-note { display: flex; justify-content: space-between; gap: 20px; padding: 20px 28px; margin-top: 16px; line-height: 1.8; font-size: 0.64rem; }
+.ledger-note span:last-child { text-align: right; }
+.ledger-scroll-hint { display: none; }
+.demo-toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.demo-toolbar button { cursor: pointer; font: 500 0.85rem var(--font-body); padding: 12px 18px; border-radius: 4px; min-height: 44px; border: 1px solid #444; background: transparent; color: var(--text); }
+.demo-toolbar button:first-child { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.demo-toolbar button:disabled { opacity: 0.45; cursor: wait; }
+.demo-toolbar button:hover:enabled { border-color: var(--accent); }
+button:focus-visible, a:focus-visible, summary:focus-visible, .ledger-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+.demo-session { margin-top: 18px; padding: 22px 26px; border: 1px solid #2b3939; border-radius: 12px; background: radial-gradient(ellipse at 0 0, #c4f04209, transparent 60%), #10191e; }
+.session-heading { display: flex; align-items: center; gap: 12px; }
+.session-light { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 14px #c4f04265; flex-shrink: 0; }
+.section .demo-status { color: #e3eadc; margin: 0; max-width: none; font-size: 0.9rem; line-height: 1.6; }
+.session-facts { display: flex; flex-wrap: wrap; gap: 10px 24px; margin: 16px 0 0 20px; list-style: none; font: 0.65rem/1.7 var(--font-mono); color: #b3bdc6; }
+.session-facts li { padding-left: 12px; border-left: 2px solid #465735; }
+.section .demo-caption { margin: 14px 0 0 20px; font: 0.77rem/1.65 var(--font-body); color: #aebbc3; max-width: 880px; }
+.demo-panels { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 20px; margin-top: 20px; align-items: stretch; }
+.demo-panel { border: 1px solid #26343c; border-radius: 14px; padding: 24px; min-width: 0; background: linear-gradient(145deg, #15202770, #0e161b); }
+.demo-panel-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+.panel-eyebrow { font: 0.63rem var(--font-mono); color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 9px; }
+.demo-panel h3 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; margin-bottom: 8px; }
+.demo-panel-header p { font-size: 0.8rem; line-height: 1.6; margin: 0; color: #b3bdc6; }
+.panel-count { flex-shrink: 0; font: 0.7rem var(--font-mono); color: #c2ceda; border: 1px solid #354650; border-radius: 8px; padding: 9px 11px; background: #1c283070; }
+.outbox-list, .activity-list { max-height: 580px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #40515c #10191e; padding: 2px; }
+.outbox-list details { border: 1px solid #293944; border-radius: 10px; background: #111c22; margin-bottom: 10px; overflow: hidden; }
+.outbox-list details:last-child { margin-bottom: 0; }
+.outbox-list details[open] { border-color: #465939; background: #111b21; }
+.outbox-list summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 13px; padding: 16px; color: var(--text); }
+.outbox-list summary::-webkit-details-marker { display: none; }
+.outbox-list summary::after { content: ''; width: 7px; height: 7px; border-right: 1.5px solid #aebcc8; border-bottom: 1.5px solid #aebcc8; transform: rotate(45deg); flex-shrink: 0; margin: 0 3px 4px auto; }
+.outbox-list details[open] summary::after { transform: rotate(225deg); margin-top: 6px; }
+.email-stage { display: grid; place-items: center; gap: 4px; flex-shrink: 0; width: 43px; min-height: 46px; border: 1px solid #ffb54735; border-radius: 8px; background: #ffb54707; color: #ffb547; font: 0.95rem var(--font-mono); padding: 6px; }
+.email-stage small { font-size: 0.53rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.email-stage[data-stage="21"] { color: #ff885c; border-color: #ff885c40; }
+.email-stage[data-stage="28"], .email-stage[data-stage="35"], .email-stage[data-stage="42"] { color: #ff7786; border-color: #ff647840; background: #ff647807; }
+.email-heading { min-width: 0; font: 0.78rem/1.5 var(--font-mono); }
+.email-heading small { display: block; font: 0.76rem/1.5 var(--font-body); color: #b3bdc6; margin-top: 3px; }
+.email-content { border-top: 1px solid #2b3b42; margin: 0 16px; padding: 16px 0 18px; }
+.email-meta { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font: 0.59rem/1.6 var(--font-mono); text-transform: uppercase; letter-spacing: 0.04em; color: #c4d5ae; }
+.outbox-list pre { white-space: pre-wrap; overflow-wrap: anywhere; font: 0.85rem/1.85 var(--font-body); color: #c5cfd7; margin: 17px 0 0; }
+.activity-list { list-style: none; }
+.activity-list li { position: relative; margin-left: 7px; padding: 0 0 18px 25px; border-left: 1px solid #35434c; font-size: 0.8rem; line-height: 1.7; color: #b3bdc6; }
+.activity-list li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.activity-list li::before { content: ''; position: absolute; top: 7px; left: -5px; width: 9px; height: 9px; border: 2px solid #a7ba8a; border-radius: 50%; background: #16201b; }
+.activity-list li:first-child::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 12px #c4f04240; }
+.activity-card { padding: 14px 16px; border: 1px solid #25343b; border-radius: 9px; background: #111b21; }
+.activity-list time { display: block; font: 0.63rem/1.6 var(--font-mono); color: #bdcba8; margin-bottom: 8px; }
+.activity-card strong { display: block; color: #e0e6ec; font: 500 0.78rem/1.6 var(--font-body); margin-bottom: 4px; }
+.section .demo-empty { border: 1px dashed #354650; border-radius: 10px; background: #111b21; padding: 28px 22px; color: #b3bdc6; font-size: 0.84rem; margin: 0; }
+@media(max-width:768px) {
+  .demo-session { padding: 20px; }
+  .session-facts, .section .demo-caption { margin-left: 0; }
+  .demo-panel { padding: 19px; }
+  .demo-panel-header { gap: 10px; }
+  .panel-count { font-size: 0.63rem; padding: 8px; }
+  .outbox-list summary { gap: 10px; padding: 13px; }
+  .email-content { margin-inline: 13px; }
+  .activity-list li { padding-left: 19px; }
+  .activity-card { padding: 13px; }
+}
+.ledger-download { margin-top: 24px; }
+.ledger-download a { font-size: 0.85rem; text-decoration: underline; text-underline-offset: 4px; }
+@media(max-width:768px) {
+  .ledger-card { padding: 10px; border-radius: 12px; }
+  .ledger-heading { padding: 22px 18px; flex-direction: column; align-items: flex-start; gap: 18px; }
+  .ledger-date { padding: 10px 14px; }
+  .ledger-kicker { font-size: 0.61rem; line-height: 1.8; }
+  .ledger-date { text-align: left; }
+  .cadence-strip { padding: 16px 20px; flex-direction: column; align-items: stretch; gap: 12px; }
+  .cadence-steps li { font-size: 0.65rem; }
+  .ledger-note { padding: 18px; flex-direction: column; gap: 10px; }
+  .ledger-note span:last-child { text-align: left; }
+  .ledger-scroll-hint { display: block; margin-top: 12px; font: 0.68rem var(--font-mono); color: var(--muted); }
+  .demo-panels { grid-template-columns: 1fr; }
+  .demo-toolbar button { flex: 1 1 145px; }
+}
+
 </style>
 <meta property="og:title" content="Arrears, an automated invoice follow-up system | Alvento case study">
 <meta property="og:description" content="Arrears is a reference build showing how we think an accounts-receivable follow-up system should behave: an escalation cadence a human doesn't have to remember, and a payment status that updates itself.">
@@ -148,16 +279,16 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <section class="page-hero">
   <div class="container">
     <div class="label">Case study, Operations, accounts receivable</div>
-    <h1>Arrears, an automated invoice follow-up system that <em>never forgets</em> an unpaid invoice.</h1>
-    <p class="lede">We built Arrears to show how we think an accounts-receivable follow-up system should behave: an escalation cadence a human doesn't have to remember, and a payment status that updates itself instead of living in someone's head.</p>
+    <h1>Arrears, invoice follow-up with a <em>working ledger</em>.</h1>
+    <p class="lede">We built Arrears as a private, Alvento-owned reference build. Try the reminder cadence, inspect the emails it generates, and watch a simulated payment update the ledger. Every invoice in this demo is fictional.</p>
     <div class="btn-group">
-      <a href="#method" class="btn-primary">See how it works</a>
+      <a href="#ledger" class="btn-primary">Try the working demo</a>
       <a href="mailto:hello@alvento.uk?subject=Invoice follow-up system" class="btn-secondary">Talk to us about an operations build</a>
     </div>
     <div class="meta-row">
       <div><strong>Domain</strong><span>Operations, accounts receivable</span></div>
       <div><strong>Scope</strong><span>Escalation schema, payment reconciliation, email sequencing</span></div>
-      <div><strong>Stack</strong><span>Workflow engine, spreadsheet-backed ledger, Stripe webhook</span></div>
+      <div><strong>Stack</strong><span>Python / Flask, SQLite, Stripe webhook verification</span></div>
       <div><strong>Status</strong><span>Private, Alvento-owned reference build</span></div>
     </div>
   </div>
@@ -183,12 +314,12 @@ h1, h2, h3, h4 { font-synthesis: none; }
       <div class="how-item">
         <div class="item-tag">Decision 01</div>
         <h3>Escalation as data, not memory</h3>
-        <p>Day count since due date drives which template fires: 7, 14, 21, 28, 35, 42. The cadence lives in the schema, so it runs the same way for every invoice, every time, regardless of who's watching.</p>
+        <p>Day count since due date drives which template fires: 7, 14, 21, 28, 35, 42. A Python workflow applies the same rules on each scan. Each invoice gets at most one captured reminder per stage; a missed scan catches up at the current stage.</p>
       </div>
       <div class="how-item">
         <div class="item-tag">Decision 02</div>
         <h3>Payment status that updates itself</h3>
-        <p>A Stripe webhook matches incoming payments to the ledger by customer and amount, and flips status to paid automatically. No one has to cross-reference a bank statement against a spreadsheet by hand.</p>
+        <p>The payment handler verifies a Stripe-format signature, then matches the invoice reference, customer, GBP amount and currency before marking it paid. The demo uses signed test fixtures; no money moves.</p>
       </div>
       <div class="how-item">
         <div class="item-tag">Decision 03</div>
@@ -198,41 +329,53 @@ h1, h2, h3, h4 { font-synthesis: none; }
       <div class="how-item">
         <div class="item-tag">Decision 04</div>
         <h3>One ledger, one source of truth</h3>
-        <p>Every invoice, its due date, its days overdue, and its current status live in a single place a business owner can open and trust, not scattered across inboxes and three different spreadsheets.</p>
+        <p>SQLite stores invoices, payment events and the captured email outbox. Refresh the page and your demo session keeps its state. Paid invoices are excluded from subsequent reminder runs.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SEQUENCE -->
-<section class="section">
+<!-- LEDGER -->
+<section class="section" id="ledger" aria-labelledby="ledger-title">
   <div class="container">
-    <div class="section-tier"><em>03</em>, The sequence</div>
-    <h2>What the client actually receives, at three points in the cadence.</h2>
-    <p>Full sequence runs 7, 14, 21, 28, 35 and 42 days overdue. Three stages shown here to give a sense of how the tone shifts.</p>
-    <div class="email-grid">
-      <div class="email-item">
-        <div class="item-tag">Day 7</div>
-        <div class="email-mock">
-          <div class="subject">Following up on invoice #1042</div>
-          <div class="body">Hi Sam, hope you're doing well. Just wanted to check in on the invoice I sent over last week. Let me know if you have any questions.</div>
-        </div>
+    <div class="section-tier"><em>03</em>, Ledger</div>
+    <h2 id="ledger-title">See the follow-up. <em>Close the loop.</em></h2>
+    <p>Run the reminder cycle to generate the emails. Then simulate a payment for invoice #1200 and run it again: the paid invoice is skipped. Advance a week to see the remaining invoices move through the cadence.</p>
+    <div class="ledger-card" id="ledger-view">
+      <div class="ledger-heading">
+        <div><div class="ledger-kicker"><strong>Alvento</strong> / Reference build / Mock data only</div><div class="ledger-brand">Arrears<span>.</span> Invoice ledger</div><div class="ledger-subtitle">Track outstanding invoices and follow up at the right time.</div></div>
+        <div class="ledger-date">Demo snapshot<br><strong id="ledger-date">04 Oct 2026</strong> &middot; GBP</div>
       </div>
-      <div class="email-item">
-        <div class="item-tag">Day 21</div>
-        <div class="email-mock">
-          <div class="subject">Invoice #1042, now three weeks overdue</div>
-          <div class="body">Hi Sam, invoice #1042 (£1,850) is now three weeks past due. Could you confirm when payment is likely to go through? Happy to resend the invoice or answer any questions on our end.</div>
-        </div>
+      <div class="cadence-strip"><span class="cadence-label">Follow-up cadence</span><ol class="cadence-steps" aria-label="Reminder stages"><li>Day 7</li><li>Day 14</li><li>Day 21</li><li>Day 28</li><li>Day 35</li><li>Day 42</li></ol></div>
+      <div class="ledger-scroll" tabindex="0" role="region" aria-label="Mock invoice ledger, scroll horizontally on small screens">
+        <table class="ledger-table" aria-label="Fictional invoice ledger in GBP"><thead><tr><th scope="col">Invoice / fictional client</th><th scope="col">Amount</th><th scope="col">Due date</th><th scope="col">Days overdue</th><th scope="col">Stage</th><th scope="col">Status</th></tr></thead><tbody id="ledger-rows"><tr data-stage="0" data-status="paid"><td><span class="client-avatar" aria-hidden="true">ES</span><span class="invoice-id">#1000</span><small>Example Studio</small></td><td class="amount">£500</td><td>04 Oct 2026</td><td><div class="overdue-indicator"><span class="day-count">0</span><span class="overdue-track" aria-hidden="true"><span style="--progress:0.00%"></span></span></div></td><td><div class="stage-content"><svg class="ledger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg><div>Complete<small>No further reminders</small></div></div></td><td><span class="status-pill paid">Paid</span></td></tr><tr data-stage="7" data-status="unpaid"><td><span class="client-avatar" aria-hidden="true">EW</span><span class="invoice-id">#1100</span><small>Example Workshop</small></td><td class="amount">£1,000</td><td>27 Sep 2026</td><td><div class="overdue-indicator"><span class="day-count">7</span><span class="overdue-track" aria-hidden="true"><span style="--progress:16.67%"></span></span></div></td><td><div class="stage-content"><svg class="ledger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><div>Day 7<small>Gentle reminder</small></div></div></td><td><span class="status-pill ">Overdue</span></td></tr><tr data-stage="14" data-status="unpaid"><td><span class="client-avatar" aria-hidden="true">ES</span><span class="invoice-id">#1200</span><small>Example Supply</small></td><td class="amount">£1,500</td><td>20 Sep 2026</td><td><div class="overdue-indicator"><span class="day-count">14</span><span class="overdue-track" aria-hidden="true"><span style="--progress:33.33%"></span></span></div></td><td><div class="stage-content"><svg class="ledger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><div>Day 14<small>Payment check-in</small></div></div></td><td><span class="status-pill ">Overdue</span></td></tr><tr data-stage="21" data-status="unpaid"><td><span class="client-avatar" aria-hidden="true">ED</span><span class="invoice-id">#1300</span><small>Example Design</small></td><td class="amount">£2,000</td><td>13 Sep 2026</td><td><div class="overdue-indicator"><span class="day-count">21</span><span class="overdue-track" aria-hidden="true"><span style="--progress:50.00%"></span></span></div></td><td><div class="stage-content"><svg class="ledger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><div>Day 21<small>Payment date request</small></div></div></td><td><span class="status-pill ">Overdue</span></td></tr><tr data-stage="28" data-status="unpaid"><td><span class="client-avatar" aria-hidden="true">EP</span><span class="invoice-id">#1400</span><small>Example Print</small></td><td class="amount">£2,500</td><td>06 Sep 2026</td><td><div class="overdue-indicator"><span class="day-count">28</span><span class="overdue-track" aria-hidden="true"><span style="--progress:66.67%"></span></span></div></td><td><div class="stage-content"><svg class="ledger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><div>Day 28<small>Direct request</small></div></div></td><td><span class="status-pill ">Overdue</span></td></tr><tr data-stage="35" data-status="unpaid"><td><span class="client-avatar" aria-hidden="true">EW</span><span class="invoice-id">#1500</span><small>Example Works</small></td><td class="amount">£3,000</td><td>30 Aug 2026</td><td><div class="overdue-indicator"><span class="day-count">35</span><span class="overdue-track" aria-hidden="true"><span style="--progress:83.33%"></span></span></div></td><td><div class="stage-content"><svg class="ledger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><div>Day 35<small>Priority follow-up</small></div></div></td><td><span class="status-pill ">Overdue</span></td></tr><tr data-stage="42" data-status="unpaid"><td><span class="client-avatar" aria-hidden="true">ET</span><span class="invoice-id">#1600</span><small>Example Trading</small></td><td class="amount">£3,500</td><td>23 Aug 2026</td><td><div class="overdue-indicator"><span class="day-count">42</span><span class="overdue-track" aria-hidden="true"><span style="--progress:100.00%"></span></span></div></td><td><div class="stage-content"><svg class="ledger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6m0 3v1"/></svg><div>Day 42<small>Final follow-up</small></div></div></td><td><span class="status-pill late">Overdue</span></td></tr></tbody></table>
       </div>
-      <div class="email-item">
-        <div class="item-tag">Day 42</div>
-        <div class="email-mock">
-          <div class="subject">Invoice #1042, six weeks overdue: please advise</div>
-          <div class="body">Hi Sam, invoice #1042 remains unpaid at six weeks overdue. Please let us know today how you'd like to proceed, or reply if there's a dispute we should be aware of. We'd like to resolve this before it needs to go further.</div>
-        </div>
+      <div class="ledger-note"><span>Fictional clients and invoices. No client results.<br>Paid rows show 0 days outstanding; reminders stop.</span><span>Python workflow / SQLite ledger<br>alvento.uk/case-studies/arrears/</span></div>
+    </div>
+    <div class="ledger-scroll-hint">Scroll the ledger sideways to see stage and status.</div>
+    <div class="demo-toolbar" aria-label="Try the invoice workflow">
+      <button type="button" data-action="run" disabled>Run reminder cycle</button>
+      <button type="button" data-action="advance" disabled>Advance 7 days</button>
+      <button type="button" data-action="pay" disabled>Simulate payment for #1200</button>
+      <button type="button" data-action="reset" disabled>Reset demo</button>
+    </div>
+    <div class="demo-session">
+      <div class="session-heading"><span class="session-light" aria-hidden="true"></span><p class="demo-status" id="demo-status" role="status" aria-live="polite">Loading the working demo...</p></div>
+      <ul class="session-facts" aria-label="Demo session details"><li>Your own mock ledger</li><li>Kept for 24 hours</li><li>Emails captured, never sent</li></ul>
+      <p class="demo-caption">Payments are simulated with a signed fixture through the same verification and matching code as the test webhook. No Stripe transaction takes place.</p>
+      <noscript><p>Enable JavaScript to try the workflow. The ledger above is a static mock snapshot.</p></noscript>
+    </div>
+    <div class="demo-panels">
+      <div class="demo-panel">
+        <div class="demo-panel-header"><div><div class="panel-eyebrow">Demo outbox</div><h3>Captured emails</h3><p>Open a message to inspect its tone.</p></div><span class="panel-count" id="email-count">0 emails</span></div>
+        <div id="outbox" class="outbox-list"><p class="demo-empty">Run the reminder cycle to capture the first emails.</p></div>
+      </div>
+      <div class="demo-panel">
+        <div class="demo-panel-header"><div><div class="panel-eyebrow">Workflow log</div><h3>Activity trail</h3><p>Reminders and payment matches, newest first.</p></div><span class="panel-count" id="activity-count">0 shown</span></div>
+        <ol id="activity" class="activity-list"><li><div class="activity-card">Ready to open a fresh mock ledger.</div></li></ol>
       </div>
     </div>
+    <div class="ledger-download"><a href="assets/arrears-ledger.png" download="alvento-arrears-ledger.png">Download the mock ledger snapshot (PNG, 1600px)</a></div>
   </div>
 </section>
 
@@ -251,12 +394,12 @@ h1, h2, h3, h4 { font-synthesis: none; }
       <div class="contrast-row">
         <div class="cell axis">Follow-up timing</div>
         <div class="cell">Whenever someone remembers, or cash flow forces it</div>
-        <div class="cell mine">Fixed cadence, every invoice, every time</div>
+        <div class="cell mine">Six defined stages, with repeat runs deduplicated</div>
       </div>
       <div class="contrast-row">
         <div class="cell axis">Payment reconciliation</div>
         <div class="cell">Manual bank-statement checking</div>
-        <div class="cell mine">Automatic match against Stripe payments</div>
+        <div class="cell mine">Verified test-event matching, with paid status persisted</div>
       </div>
       <div class="contrast-row">
         <div class="cell axis">Tone consistency</div>
@@ -266,40 +409,23 @@ h1, h2, h3, h4 { font-synthesis: none; }
       <div class="contrast-row">
         <div class="cell axis">Visibility</div>
         <div class="cell">Scattered across inboxes and spreadsheets</div>
-        <div class="cell mine">One ledger, one status column, always current</div>
+        <div class="cell mine">One persisted ledger with a visible status column</div>
       </div>
     </div>
     <p class="contrast-footnote">Fair comparison: category defaults we've observed, not claims about any named vendor.</p>
   </div>
 </section>
 
-<!-- FOR FINANCE -->
+<!-- VERIFIED BEHAVIOUR -->
 <section class="section">
   <div class="container">
-    <div class="section-tier">For the finance function</div>
-    <h2>What it gives back to <em>accounts receivable</em>.</h2>
-    <p>Chasing overdue invoices sits with someone on the finance team already, alongside reconciliation, forecasting and the rest of the month-end workload. Automating the cadence doesn't remove their job, it removes the part of it that shouldn't need a person.</p>
+    <div class="section-tier">What the build demonstrates</div>
+    <h2>The useful part is what happens <em>after the first run</em>.</h2>
     <div class="how-grid">
-      <div class="how-item">
-        <div class="item-tag">Time back</div>
-        <h3>Hours a week returned to higher-value work</h3>
-        <p>Every invoice a person no longer has to remember to chase is time back for reconciliation, forecasting, or supplier and customer relationships, the parts of finance that actually need judgement.</p>
-      </div>
-      <div class="how-item">
-        <div class="item-tag">Faster cash conversion</div>
-        <h3>A shorter gap between due date and payment</h3>
-        <p>A consistent cadence from day 7 through day 42 closes the gap that inconsistent, whenever-someone-gets-to-it chasing leaves open, which is a direct lever on days sales outstanding and cash flow predictability.</p>
-      </div>
-      <div class="how-item">
-        <div class="item-tag">Fewer write-offs</div>
-        <h3>Invoices stop falling through the cracks</h3>
-        <p>Unpaid invoices that age into bad debt are usually ones nobody followed up on in time, not ones a customer genuinely refused to pay. A cadence that never skips a step catches them earlier.</p>
-      </div>
-      <div class="how-item">
-        <div class="item-tag">Audit-ready trail</div>
-        <h3>Every follow-up and status change logged automatically</h3>
-        <p>No dependence on someone's memory of "I think I emailed them twice." Every escalation sent and every payment reconciled is recorded as it happens, ready for month-end review or an auditor's question.</p>
-      </div>
+      <div class="how-item"><div class="item-tag">Repeat a run</div><h3>One reminder per stage</h3><p>Run the cycle twice on the same demo date. The second run creates no duplicate messages. Advance seven days and the next eligible stage is captured.</p></div>
+      <div class="how-item"><div class="item-tag">Record a payment</div><h3>Paid means stop</h3><p>Simulate payment for #1200, then run the cycle or advance the clock. Its paid status persists, and it receives no further reminders.</p></div>
+      <div class="how-item"><div class="item-tag">Repeat an event</div><h3>A retry is not another payment</h3><p>Repeat the simulated payment. The event has already been recorded, so the handler ignores the duplicate without changing the ledger again.</p></div>
+      <div class="how-item"><div class="item-tag">Inspect the record</div><h3>The output stays visible</h3><p>Open a captured email to read the exact message generated for its stage. Refresh the page to see the same ledger, outbox and activity trail.</p></div>
     </div>
   </div>
 </section>
@@ -307,22 +433,22 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <section class="section">
   <div class="container">
     <div class="section-label">Technical stack</div>
-    <h2>Deliberately simple, so it never becomes the thing that breaks.</h2>
-    <p>An invoice ledger doesn't need a bespoke application. It needs a schema that can't drift, a cadence that fires reliably, and a payment source of truth that doesn't need manual reconciliation.</p>
+    <h2>A small stack, with the workflow <em>in view</em>.</h2>
+    <p>Python and Flask run the workflow. SQLite stores the ledger, captured emails and payment events. A systemd timer scans active demo ledgers daily; the buttons run the same cadence logic on demand. The Stripe Python SDK verifies webhook signatures before reconciliation.</p>
     <div class="stack-list">
-      <span class="stack-tag">Workflow automation engine</span>
-      <span class="stack-tag">Spreadsheet-backed ledger</span>
-      <span class="stack-tag">Stripe webhook sync</span>
-      <span class="stack-tag">Scheduled cadence trigger</span>
+      <span class="stack-tag">Python / Flask</span>
+      <span class="stack-tag">SQLite ledger</span>
+      <span class="stack-tag">Stripe Python SDK</span>
+      <span class="stack-tag">systemd daily timer</span>
     </div>
-    <p class="disclosure">This is a reference build: the schema and escalation logic are the artefacts we sell, not a specific client's live system.</p>
+    <p class="disclosure">This is a private, Alvento-owned reference build, not client work. The public demo uses mock data, captured emails and simulated payments. No client results or financial outcomes are claimed. A live rollout requires payment-account setup and an email delivery integration.</p>
   </div>
 </section>
 
 <section class="cta-section">
   <div class="container">
     <h2>Chasing invoices from memory, or watching cash flow slip through inconsistent follow-up?</h2>
-    <p>If your finance team is chasing invoices from memory, we'll build the ledger and the cadence once: less time on collections, faster cash conversion, an audit trail that doesn't rely on anyone's inbox.</p>
+    <p>We can adapt the ledger, reminder cadence and reconciliation rules to your process. Tell us how you invoice, where payment records live and who handles exceptions.</p>
     <div class="btn-group">
       <a href="mailto:hello@alvento.uk?subject=Invoice follow-up system" class="btn-primary">Email hello@alvento.uk</a>
     </div>
@@ -336,5 +462,6 @@ h1, h2, h3, h4 { font-synthesis: none; }
 </footer>
 
 <script defer src="/consent-banner.js"></script>
+<script defer src="demo.js"></script>
 </body>
 </html>

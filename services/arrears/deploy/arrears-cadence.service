@@ -1,0 +1,16 @@
+[Unit]
+Description=Scan active Arrears mock ledgers
+After=arrears-demo.service
+
+[Service]
+Type=oneshot
+DynamicUser=yes
+User=arrears-demo
+StateDirectory=arrears-demo
+WorkingDirectory=/opt/arrears-demo
+Environment=ARREARS_DB=/var/lib/arrears-demo/ledger.sqlite3
+ExecStart=/opt/arrears-demo/.venv/bin/python scheduler.py
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes

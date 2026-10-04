@@ -1,0 +1,22 @@
+[Unit]
+Description=Alvento Arrears mock-data reference build
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+DynamicUser=yes
+StateDirectory=arrears-demo
+WorkingDirectory=/opt/arrears-demo
+Environment=ARREARS_DB=/var/lib/arrears-demo/ledger.sqlite3
+ExecStart=/opt/arrears-demo/.venv/bin/gunicorn --bind 127.0.0.1:8411 --workers 1 --threads 8 --timeout 30 app:app
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+MemoryMax=256M
+
+[Install]
+WantedBy=multi-user.target
