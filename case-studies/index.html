@@ -92,8 +92,9 @@ h1, h2, h3, h4 { font-synthesis: none; }
 </style>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<link rel="stylesheet" href="/card-refresh.css">
 </head>
-<body>
+<body class="case-index">
 
 <nav>
   <div class="container">
@@ -120,32 +121,48 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <section class="container">
   <div class="case-grid">
     <div class="case-card">
+      <div class="case-preview"><img src="/case-studies/staamp/img/oscar-loyalty-card.png" alt="Customer loyalty card from the Lizette&rsquo;s platform showing seven of nine coffees" loading="lazy" width="615" height="941"></div>
+      <div class="case-card__body">
       <span class="status-tag client">Live, paying client</span>
       <h2>Lizette&rsquo;s, a village coffee shop <em>loyalty rollout</em></h2>
       <div class="meta">Hospitality &middot; Flask &middot; React PWA &middot; SQLite</div>
       <p>Paper stamp cards, replaced with a tenant platform, a customer PWA and a staff portal, for an independent coffee shop. Live and in daily use by regulars since June 2026.</p>
-      <a href="/case-studies/staamp/" class="btn-secondary">Read the case study</a>
+      <div class="case-card__actions"><a href="/case-studies/staamp/" class="btn-preview">Read the case study</a></div>
+      </div>
     </div>
     <div class="case-card">
+      <div class="case-preview case-preview--foyer"><div class="foyer-mini" role="img" aria-label="Example booking summary from the Foyer reference build, fictional details">
+          <div class="foyer-mini__top"><span>Booking example</span><span>Fictional</span></div>
+          <div class="foyer-mini__title">Booking completed</div>
+          <dl class="foyer-mini__rows"><dt>Caller</dt><dd>Priya Nair</dd><dt>When</dt><dd>Friday 18 September, 10:00 am</dd><dt>Practice</dt><dd>Example Practice (fictional)</dd></dl>
+        </div></div>
+      <div class="case-card__body">
       <span class="status-tag reference">Reference build</span>
       <h2>Foyer, AI phone reception for <em>small businesses</em></h2>
       <div class="meta">Voice &middot; Reception</div>
       <p>Explore routine booking, caller details and requests that need a person. This Alvento reference build uses a fictional practice and simulated calendar; hear the sample calls and try the interactive demo.</p>
-      <a href="/case-studies/foyer/" class="btn-secondary">Read the case study</a>
+      <div class="case-card__actions"><a href="/case-studies/foyer/" class="btn-preview">Read the case study</a></div>
+      </div>
     </div>
     <div class="case-card">
+      <div class="case-preview"><img src="/case-studies/arrears/assets/arrears-ledger.png" alt="Arrears invoice ledger with chase stages" loading="lazy" width="1600" height="1065"></div>
+      <div class="case-card__body">
       <span class="status-tag reference">Reference build</span>
       <h2>Arrears, automated <em>invoice follow-up</em></h2>
       <div class="meta">Finance ops</div>
       <p>Chases unpaid invoices on a six-stage schedule from day 7 to day 42, stops the moment a payment matches, and holds any payment it cannot match for a person to review. Built and owned by Alvento, with a working demo.</p>
-      <a href="/case-studies/arrears/" class="btn-secondary">Read the case study</a>
+      <div class="case-card__actions"><a href="/case-studies/arrears/" class="btn-preview">Read the case study</a></div>
+      </div>
     </div>
     <div class="case-card">
+      <div class="case-preview"><img src="/case-studies/immunaris/img/hero-dashboard.png" alt="Immunaris vaccination registry dashboard" loading="lazy" width="2880" height="1800"></div>
+      <div class="case-card__body">
       <span class="status-tag reference">Reference build</span>
       <h2>Immunaris, a <em>clinical vaccination registry</em></h2>
       <div class="meta">Clinical / registry &middot; React &middot; Supabase &middot; Postgres RLS</div>
       <p>Reads like a clinical instrument, not a SaaS dashboard: an append-only ledger, row-level isolation, retention rules enforced in the schema rather than hoped for in policy. Built and owned by Alvento to show what a regulated-medtech record system should look like.</p>
-      <a href="/case-studies/immunaris/" class="btn-secondary">Read the case study</a>
+      <div class="case-card__actions"><a href="/case-studies/immunaris/" class="btn-preview">Read the case study</a></div>
+      </div>
     </div>
   </div>
 </section>

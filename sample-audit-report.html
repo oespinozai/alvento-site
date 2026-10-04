@@ -67,7 +67,6 @@ h2{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.2rem);letter-spa
 .finding-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1.75rem}
 .finding-card .fnum{font-family:var(--font-mono);font-size:0.7rem;color:var(--lime-dim);margin-bottom:0.6rem;letter-spacing:0.06em}
 .finding-card h3{font-size:1.05rem;font-weight:600;margin-bottom:0.75rem}
-.finding-card .fscore{font-family:var(--font-mono);font-size:0.85rem;color:var(--text-muted);margin-bottom:0.75rem}
 .finding-card ul{padding-left:1.1rem;color:#a8a8a8;font-size:0.88rem;line-height:1.65}
 
 .priority-window{margin-bottom:2rem}
@@ -87,8 +86,9 @@ footer{border-top:1px solid var(--border);padding:3rem 0;text-align:center}
 footer p{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem}
 .footer-cta{display:inline-flex;align-items:center;gap:0.5rem;background:var(--lime);color:#0a0a0a;font-weight:600;font-size:0.95rem;padding:0.9rem 2rem;border-radius:3px}
 </style>
+<link rel="stylesheet" href="/card-refresh.css">
 </head>
-<body>
+<body class="sample-report">
 
 <nav>
   <div class="container">
@@ -139,62 +139,62 @@ footer p{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);te
       <div class="finding-card">
         <div class="fnum">01</div>
         <h3>SEO</h3>
-        <div class="fscore">42/100</div>
-        <ul>
+        <div class="finding-score"><span>Score</span><strong>42/100</strong></div>
+        <div class="finding-evidence"><span>Evidence</span><ul>
           <li>No meta descriptions on 60% of pages</li>
           <li>Title tags don't follow a consistent, search-relevant pattern</li>
           <li>No sitemap submitted to Google Search Console</li>
-        </ul>
+        </ul></div>
       </div>
       <div class="finding-card">
         <div class="fnum">02</div>
         <h3>Accessibility</h3>
-        <div class="fscore">31/100</div>
-        <ul>
+        <div class="finding-score"><span>Score</span><strong>31/100</strong></div>
+        <div class="finding-evidence"><span>Evidence</span><ul>
           <li>No accessibility statement (Accessibility Regs 2018, reg. 7)</li>
           <li>Registration form fails SC 2.4.7 (Focus Visible), no visible keyboard focus states</li>
           <li>Primary CTA fails SC 1.4.3 (Contrast Minimum), 3.1:1 against the 4.5:1 AA threshold</li>
-        </ul>
+        </ul></div>
       </div>
       <div class="finding-card">
         <div class="fnum">03</div>
         <h3>Performance</h3>
-        <div class="fscore">55/100</div>
-        <ul>
+        <div class="finding-score"><span>Score</span><strong>55/100</strong></div>
+        <div class="finding-evidence"><span>Evidence</span><ul>
           <li>Unoptimised hero images add 2.1s to mobile load</li>
           <li>No caching headers on static assets</li>
           <li>Render-blocking third-party scripts in the head</li>
-        </ul>
+        </ul></div>
       </div>
       <div class="finding-card">
         <div class="fnum">04</div>
         <h3>Security</h3>
-        <div class="fscore">70/100</div>
-        <ul>
+        <div class="finding-score"><span>Score</span><strong>70/100</strong></div>
+        <div class="finding-evidence"><span>Evidence</span><ul>
           <li>TLS configuration current, no weak protocols</li>
           <li>Missing Content-Security-Policy header</li>
           <li>Admin login has no rate limiting visible</li>
-        </ul>
+        </ul></div>
       </div>
       <div class="finding-card">
         <div class="fnum">05</div>
         <h3>UX</h3>
-        <div class="fscore">61/100</div>
-        <ul>
+        <div class="finding-score"><span>Score</span><strong>61/100</strong></div>
+        <div class="finding-evidence"><span>Evidence</span><ul>
           <li>Committee/governance info buried three clicks deep</li>
           <li>No clear path from homepage to member renewal</li>
           <li>Mobile navigation menu overlaps page content</li>
-        </ul>
+        </ul></div>
       </div>
       <div class="finding-card">
         <div class="fnum">06</div>
         <h3>Event/congress page pass</h3>
-        <div class="fscore">48/100</div>
-        <ul>
+        <div class="finding-score"><span>Score</span><strong>48/100</strong></div>
+        <div class="finding-evidence"><span>Evidence</span><ul>
           <li>No schema.org Event markup on the annual congress page</li>
           <li>Registration form fails WCAG 2.2 SC 2.1.1 (Keyboard) again on this page's own form instance</li>
           <li>No confirmation email trigger visible in the flow</li>
-        </ul>
+        </ul></div>
       </div>
     </div>
   </section>
