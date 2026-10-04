@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How we built Arrears: four decisions that make invoice follow-up trustworthy | Alvento</title>
+<link rel="canonical" href="https://alvento.uk/blog/how-we-built-arrears/">
+    <meta name="description" content="The four design decisions behind Arrears, our invoice follow-up reference build: escalation as data, verified payment matching, consistent tone and one ledger.">
+    <meta name="author" content="Oscar Espinoza, Founder, Alvento">
+    <meta property="og:title" content="How we built Arrears: four decisions that make invoice follow-up trustworthy">
+    <meta property="og:description" content="The four design decisions behind Arrears, our invoice follow-up reference build: escalation as data, verified payment matching, consistent tone and one ledger.">
+    <meta property="og:url" content="https://alvento.uk/blog/how-we-built-arrears/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #8a8a8a;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    
+        /* Instrument Serif ships one weight; stop browsers faking bold */
+        .article-container h1, .article-container h2, .article-container h3 { font-weight: 400; }
+        h1, h2, h3, h4 { font-synthesis: none; }
+    
+        .article-container ol { margin-left: 24px; margin-bottom: 20px; }
+        .article-container ol li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+        .article-container blockquote {
+            background: var(--surface);
+            border-left: 3px solid var(--accent-dim);
+            padding: 16px 20px;
+            margin: 0 0 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container blockquote p { margin: 0; color: var(--text); }
+        .article-container .tpl-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin: 24px 0 8px;
+        }
+        .table-wrap { overflow-x: auto; margin: 0 0 24px; }
+        .article-container table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .article-container th, .article-container td {
+            text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top;
+        }
+        .article-container th {
+            font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--muted); font-weight: 500;
+        }
+        .article-container .note { font-size: 0.9rem; color: var(--muted); }
+        .article-container .note { color: var(--muted); }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How we built Arrears: four decisions that make invoice follow-up trustworthy",
+        "description": "The four design decisions behind Arrears, our invoice follow-up reference build: escalation as data, verified payment matching, consistent tone and one ledger.",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "jobTitle": "Founder", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.uk" },
+        "datePublished": "2026-10-04",
+        "url": "https://alvento.uk/blog/how-we-built-arrears/"
+    }
+    </script>
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://alvento.uk/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alvento.uk/og-image.png">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))">&#9776;</button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#lab">Products</a></li>
+                <li><a href="/case-studies/">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Discuss your project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">How we built Arrears: four decisions that make invoice follow-up trustworthy</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Founder, Alvento | Published 4 October 2026 | 5 min read</p>
+        </div>
+
+        <p>The value of an invoice follow-up system is not the email sending. It is the schema and the payment matching behind it, decided up front so nothing depends on someone remembering to check. Here are the four decisions we made building <a href="/case-studies/arrears/">Arrears</a>, our private reference build.</p>
+
+        <h2 class="fade-up">The problem</h2>
+        <p>Chasing payment is a job someone already has, usually done from memory. The fix is not complicated. It is making the cadence structural, so the business does not lose money to a task nobody has time to do reliably.</p>
+
+        <h2 class="fade-up">Decision 1: escalation as data, not memory</h2>
+        <p>The number of days since the due date decides which template fires: 7, 14, 21, 28, 35 or 42. A Python workflow applies the same rules on every scan. Each invoice gets at most one captured reminder per stage, and a missed scan catches up at the current stage instead of sending a backlog.</p>
+        <p>Why it matters: the rules live in one place and can be read, tested and changed. Nobody has to remember them.</p>
+
+        <h2 class="fade-up">Decision 2: payment status that updates itself</h2>
+        <p>The payment handler verifies a Stripe-format signature first. Only then does it match the invoice reference, customer, GBP amount and currency before marking the invoice paid. The demo uses signed test fixtures, so no money moves.</p>
+        <p>Why it matters: an unverified webhook is an open door. Matching on several fields means a payment for the wrong amount or the wrong client is not silently accepted.</p>
+
+        <h2 class="fade-up">Decision 3: polite by design, firmer by schedule</h2>
+        <p>Tone escalates with the day count: a gentle check-in at day 7, a direct request by day 28. It does not turn adversarial before it needs to. The words are decided once, not improvised under pressure.</p>
+
+        <h2 class="fade-up">Decision 4: one ledger, one source of truth</h2>
+        <p>SQLite stores the invoices, the payment events and the captured email outbox. Paid invoices are excluded from later reminder runs. A repeated payment event is recognised as a retry and ignored, so the ledger is not changed twice.</p>
+        <p>Why it matters: refresh the page and the same state is there. There is one place to look to see what is outstanding.</p>
+
+        <h2 class="fade-up">What the demo shows</h2>
+        <ul>
+            <li><strong>Repeat a run:</strong> run the cycle twice on the same demo date and the second run creates no duplicate messages.</li>
+            <li><strong>Record a payment:</strong> simulate a payment for invoice #1200 and it receives no further reminders.</li>
+            <li><strong>Repeat an event:</strong> replay the same payment and the handler ignores it.</li>
+            <li><strong>Inspect the output:</strong> open a captured email to read exactly what would have been sent.</li>
+        </ul>
+
+        <h2 class="fade-up">The stack</h2>
+        <p>Python and Flask run the workflow. SQLite holds the ledger. The Stripe Python SDK verifies webhook signatures. A daily timer scans active demo ledgers, and the demo buttons run the same logic on demand.</p>
+
+        <h2 class="fade-up">What it is, and what it is not</h2>
+        <p>Arrears is a private, Alvento-owned reference build, not client work. The public demo uses mock data, captured emails and simulated payments, and we claim no client results. A live rollout needs a payment account set up and an email delivery integration.</p>
+        <p><a href="/case-studies/arrears/">Try the demo</a>. If you want the ledger, cadence and matching rules adapted to how you invoice, get in touch.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Want this adapted to your invoicing?</strong> Tell us how you invoice, where your payment records live and who handles exceptions. Email <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, first conversation is free.</p>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 16394298. United Kingdom.</p>
+            <p>alvento.uk</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-up').forEach(function(el, i) {
+            el.style.transitionDelay = (i % 4) * 0.1 + 's';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    });
+    </script>
+<script defer src="/consent-banner.js"></script>
+</body>
+</html>

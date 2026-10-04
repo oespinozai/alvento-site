@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What to say at day 7, 14, 28 and 42: an invoice chasing cadence | Alvento</title>
+<link rel="canonical" href="https://alvento.uk/blog/invoice-chasing-cadence/">
+    <meta name="description" content="A six-stage schedule for chasing overdue invoices, with copy-and-paste wording for day 7, 14, 21, 28, 35 and 42, and four rules that keep it fair.">
+    <meta name="author" content="Oscar Espinoza, Founder, Alvento">
+    <meta property="og:title" content="What to say at day 7, 14, 28 and 42: an invoice chasing cadence">
+    <meta property="og:description" content="A six-stage schedule for chasing overdue invoices, with copy-and-paste wording for day 7, 14, 21, 28, 35 and 42, and four rules that keep it fair.">
+    <meta property="og:url" content="https://alvento.uk/blog/invoice-chasing-cadence/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #8a8a8a;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    
+        /* Instrument Serif ships one weight; stop browsers faking bold */
+        .article-container h1, .article-container h2, .article-container h3 { font-weight: 400; }
+        h1, h2, h3, h4 { font-synthesis: none; }
+    
+        .article-container ol { margin-left: 24px; margin-bottom: 20px; }
+        .article-container ol li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+        .article-container blockquote {
+            background: var(--surface);
+            border-left: 3px solid var(--accent-dim);
+            padding: 16px 20px;
+            margin: 0 0 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container blockquote p { margin: 0; color: var(--text); }
+        .article-container .tpl-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin: 24px 0 8px;
+        }
+        .table-wrap { overflow-x: auto; margin: 0 0 24px; }
+        .article-container table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .article-container th, .article-container td {
+            text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top;
+        }
+        .article-container th {
+            font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--muted); font-weight: 500;
+        }
+        .article-container .note { font-size: 0.9rem; color: var(--muted); }
+        .article-container .note { color: var(--muted); }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "What to say at day 7, 14, 28 and 42: an invoice chasing cadence",
+        "description": "A six-stage schedule for chasing overdue invoices, with copy-and-paste wording for day 7, 14, 21, 28, 35 and 42, and four rules that keep it fair.",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "jobTitle": "Founder", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.uk" },
+        "datePublished": "2026-10-04",
+        "url": "https://alvento.uk/blog/invoice-chasing-cadence/"
+    }
+    </script>
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://alvento.uk/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alvento.uk/og-image.png">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))">&#9776;</button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#lab">Products</a></li>
+                <li><a href="/case-studies/">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Discuss your project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">What to say at day 7, 14, 28 and 42: an invoice chasing cadence</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Founder, Alvento | Published 4 October 2026 | 5 min read</p>
+        </div>
+
+        <p>Chase every overdue invoice on a fixed schedule, and let the tone get firmer as the days pass. That removes the guesswork about who gets nudged and when. Below is the cadence behind our Arrears reference build, with wording you can copy.</p>
+
+        <h2 class="fade-up">Why a schedule beats memory</h2>
+        <p>Most firms chase invoices from memory. Someone glances at a spreadsheet, remembers who is overdue, and sends a nudge when cash gets tight. Three things go wrong:</p>
+        <ul>
+            <li>Some clients get chased hard and others get forgotten.</li>
+            <li>The tone depends on the sender's mood and workload.</li>
+            <li>Nobody can say with confidence what is outstanding right now.</li>
+        </ul>
+        <p>A schedule fixes this because the decision is made once, in advance, instead of under pressure.</p>
+
+        <h2 class="fade-up">The cadence</h2>
+        <div class="table-wrap">
+        <table>
+            <thead><tr><th>Day overdue</th><th>Purpose</th><th>Tone</th></tr></thead>
+            <tbody>
+                <tr><td>7</td><td>Check the invoice arrived and is complete</td><td>Friendly</td></tr>
+                <tr><td>14</td><td>Confirm it is in the payment run</td><td>Polite</td></tr>
+                <tr><td>21</td><td>Ask for a payment date</td><td>Courteous but direct</td></tr>
+                <tr><td>28</td><td>State clearly what you need</td><td>Direct</td></tr>
+                <tr><td>35</td><td>Priority follow-up</td><td>Firm</td></tr>
+                <tr><td>42</td><td>Final follow-up before the next step</td><td>Firm, with a way out</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <h2 class="fade-up">Wording you can copy</h2>
+        <p>Replace the bracketed parts with your own details.</p>
+
+        <p class="tpl-label">Day 7</p>
+        <blockquote><p>Hi [Name], a quick check that invoice [number] for [amount] reached you and has everything you need. If anything is missing, tell me and I will fix it today. Thanks, [Your name]</p></blockquote>
+
+        <p class="tpl-label">Day 14</p>
+        <blockquote><p>Hi [Name], invoice [number] for [amount] is now two weeks overdue. Could you confirm it is in your next payment run and let me know the expected date? Thanks, [Your name]</p></blockquote>
+
+        <p class="tpl-label">Day 21</p>
+        <blockquote><p>Hi [Name], invoice [number] for [amount] is three weeks overdue. What date should we expect payment? If there is a problem with the invoice, please tell me what it is. Thanks, [Your name]</p></blockquote>
+
+        <p class="tpl-label">Day 28</p>
+        <blockquote><p>Hi [Name], invoice [number] for [amount] is four weeks overdue. Please confirm a payment date this week, or tell me what is holding it up so we can resolve it. Thanks, [Your name]</p></blockquote>
+
+        <p class="tpl-label">Day 35</p>
+        <blockquote><p>Hi [Name], invoice [number] for [amount] is now five weeks overdue. We need payment or a firm date by [date]. Please reply today so we can keep this simple. Thanks, [Your name]</p></blockquote>
+
+        <p class="tpl-label">Day 42</p>
+        <blockquote><p>Hi [Name], invoice [number] for [amount] remains unpaid at six weeks overdue. Please reply today with a payment plan or details of any dispute so we can agree the next step. Thanks, [Your name]</p></blockquote>
+
+        <h2 class="fade-up">Four rules that keep it fair</h2>
+        <ol>
+            <li><strong>One reminder per stage.</strong> If a scan is missed, catch up at the current stage. Never send two at once.</li>
+            <li><strong>Paid means stop.</strong> Check payment status before every send.</li>
+            <li><strong>Same words, same stage.</strong> Every client at day 28 gets the same message.</li>
+            <li><strong>Exceptions go to a person.</strong> Disputes, large accounts and long relationships deserve a call, not a template.</li>
+        </ol>
+
+        <h2 class="fade-up">Automating it</h2>
+        <p>The schedule is simple enough to run by hand with a calendar. If you would rather not, that is what we built <a href="/case-studies/arrears/">Arrears</a> to show: the same six stages, payment matching with Stripe-format signature checks, and a ledger that stops the chasing once an invoice is paid. It is a private reference build with mock data and simulated payments, not client work. You can try the demo and read the emails it generates.</p>
+        <p>A live rollout needs a payment account set up and an email delivery integration.</p>
+        <p class="note">UK businesses may also be entitled to statutory interest and compensation on late commercial debts. Check current government guidance before quoting figures to a client.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Chasing invoices from memory?</strong> We can adapt a reminder cadence and payment matching to how you invoice. Email <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, first conversation is free.</p>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 16394298. United Kingdom.</p>
+            <p>alvento.uk</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-up').forEach(function(el, i) {
+            el.style.transitionDelay = (i % 4) * 0.1 + 's';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    });
+    </script>
+<script defer src="/consent-banner.js"></script>
+</body>
+</html>

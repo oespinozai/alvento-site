@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map the process before you automate it | Alvento</title>
+<link rel="canonical" href="https://alvento.uk/blog/map-the-process-before-you-automate/">
+    <meta name="description" content="A four-question method for mapping a business process before automating it: find the re-typing, the waiting and the judgment calls, then automate only the rules.">
+    <meta name="author" content="Oscar Espinoza, Founder, Alvento">
+    <meta property="og:title" content="Map the process before you automate it">
+    <meta property="og:description" content="A four-question method for mapping a business process before automating it: find the re-typing, the waiting and the judgment calls, then automate only the rules.">
+    <meta property="og:url" content="https://alvento.uk/blog/map-the-process-before-you-automate/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #8a8a8a;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    
+        /* Instrument Serif ships one weight; stop browsers faking bold */
+        .article-container h1, .article-container h2, .article-container h3 { font-weight: 400; }
+        h1, h2, h3, h4 { font-synthesis: none; }
+    
+        .article-container ol { margin-left: 24px; margin-bottom: 20px; }
+        .article-container ol li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+        .article-container blockquote {
+            background: var(--surface);
+            border-left: 3px solid var(--accent-dim);
+            padding: 16px 20px;
+            margin: 0 0 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container blockquote p { margin: 0; color: var(--text); }
+        .article-container .tpl-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin: 24px 0 8px;
+        }
+        .table-wrap { overflow-x: auto; margin: 0 0 24px; }
+        .article-container table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .article-container th, .article-container td {
+            text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top;
+        }
+        .article-container th {
+            font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--muted); font-weight: 500;
+        }
+        .article-container .note { font-size: 0.9rem; color: var(--muted); }
+        .article-container .note { color: var(--muted); }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Map the process before you automate it",
+        "description": "A four-question method for mapping a business process before automating it: find the re-typing, the waiting and the judgment calls, then automate only the rules.",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "jobTitle": "Founder", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.uk" },
+        "datePublished": "2026-10-04",
+        "url": "https://alvento.uk/blog/map-the-process-before-you-automate/"
+    }
+    </script>
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://alvento.uk/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alvento.uk/og-image.png">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))">&#9776;</button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#lab">Products</a></li>
+                <li><a href="/case-studies/">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Discuss your project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">Map the process before you automate it</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Founder, Alvento | Published 4 October 2026 | 5 min read</p>
+        </div>
+
+        <p>Automating a process you have not mapped just makes the mess run faster. Spend an hour drawing the steps first, mark where work is re-typed or stuck waiting, and only then decide what to automate. Here is the four-question method we use.</p>
+
+        <h2 class="fade-up">A pattern we keep seeing</h2>
+        <p>An email comes in. Someone copies it into a spreadsheet. Someone chases it. Someone re-keys it into another system. Someone approves it. Someone files it.</p>
+        <p>That is six steps and often four people, and nobody can say where a given item is right now. Most of the steps are not hard. They are just manual, and each handover is a place for delay or error.</p>
+
+        <h2 class="fade-up">Step 1: draw what happens today</h2>
+        <p>On one page, list every step from the moment work arrives to the moment it is filed. Write what actually happens, not what the process document says. Include who does each step and which tool they use.</p>
+
+        <h2 class="fade-up">Step 2: ask four questions of every step</h2>
+        <ol>
+            <li><strong>Where does the work start?</strong> Is it an email, a form, a phone call? Fix the entry point first.</li>
+            <li><strong>Where is it re-typed?</strong> Every place data is copied by hand is a candidate to remove.</li>
+            <li><strong>Where does it wait for a person?</strong> Waiting is where time disappears. Note who it waits for and why.</li>
+            <li><strong>Is this a rule or a judgment?</strong> If the answer is always the same given the same inputs, it is a rule. If someone has to weigh it up, it is judgment.</li>
+        </ol>
+
+        <h2 class="fade-up">Step 3: sort the steps</h2>
+        <div class="table-wrap">
+        <table>
+            <thead><tr><th>Kind of step</th><th>What to do with it</th></tr></thead>
+            <tbody>
+                <tr><td>Re-typing and copying</td><td>Automate first</td></tr>
+                <tr><td>Chasing and reminders</td><td>Put on a fixed schedule</td></tr>
+                <tr><td>Rule-based checks and matching</td><td>Automate, and log the result</td></tr>
+                <tr><td>Approvals and exceptions</td><td>Keep with a person, but give them a clear summary</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <h2 class="fade-up">Step 4: automate the rules, keep the judgment</h2>
+        <p>The aim is not fewer people. It is fewer things people have to remember or re-type. The judgment calls stay with you, and they get better because you are no longer buried in the rest.</p>
+
+        <h2 class="fade-up">A worked example</h2>
+        <p>Take invoicing. Today: an invoice goes out, someone watches a spreadsheet, someone chases, someone checks the bank, someone updates the sheet. Mapped, the rule-based parts are clear: the reminder schedule, the payment matching and the status update. The judgment part is what to do about a dispute or a long-standing client. That is the split we built into our <a href="/case-studies/arrears/">Arrears</a> reference build, which runs on mock data and is not client work.</p>
+
+        <h2 class="fade-up">Where to start</h2>
+        <p>Pick one process that annoys you. Map it in an hour. If you would like a second pair of eyes on it, process mapping is a good first piece of work with us.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Want a second pair of eyes on a process?</strong> We offer process mapping as a first piece of work. Email <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, first conversation is free.</p>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 16394298. United Kingdom.</p>
+            <p>alvento.uk</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-up').forEach(function(el, i) {
+            el.style.transitionDelay = (i % 4) * 0.1 + 's';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    });
+    </script>
+<script defer src="/consent-banner.js"></script>
+</body>
+</html>
