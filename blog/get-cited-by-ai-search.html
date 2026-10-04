@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How small businesses get cited by AI search: what the evidence says | Alvento</title>
+<link rel="canonical" href="https://alvento.uk/blog/get-cited-by-ai-search/">
+    <meta name="description" content="What Google, OpenAI, Microsoft and the one academic study say about appearing in AI search answers, and what a small business can sensibly do about it.">
+    <meta name="author" content="Oscar Espinoza, Founder, Alvento">
+    <meta property="og:title" content="How small businesses get cited by AI search: what the evidence says">
+    <meta property="og:description" content="What Google, OpenAI, Microsoft and the one academic study say about appearing in AI search answers, and what a small business can sensibly do about it.">
+    <meta property="og:url" content="https://alvento.uk/blog/get-cited-by-ai-search/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #8a8a8a;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    
+        /* Instrument Serif ships one weight; stop browsers faking bold */
+        .article-container h1, .article-container h2, .article-container h3 { font-weight: 400; }
+        h1, h2, h3, h4 { font-synthesis: none; }
+    
+        .article-container ol { margin-left: 24px; margin-bottom: 20px; }
+        .article-container ol li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+        .article-container blockquote {
+            background: var(--surface);
+            border-left: 3px solid var(--accent-dim);
+            padding: 16px 20px;
+            margin: 0 0 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container blockquote p { margin: 0; color: var(--text); }
+        .article-container .tpl-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin: 24px 0 8px;
+        }
+        .table-wrap { overflow-x: auto; margin: 0 0 24px; }
+        .article-container table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .article-container th, .article-container td {
+            text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top;
+        }
+        .article-container th {
+            font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--muted); font-weight: 500;
+        }
+        .article-container .note { font-size: 0.9rem; color: var(--muted); }
+        .article-container .note { color: var(--muted); }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How small businesses get cited by AI search: what the evidence says",
+        "description": "What Google, OpenAI, Microsoft and the one academic study say about appearing in AI search answers, and what a small business can sensibly do about it.",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "jobTitle": "Founder", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.uk" },
+        "datePublished": "2026-10-04",
+        "url": "https://alvento.uk/blog/get-cited-by-ai-search/"
+    }
+    </script>
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://alvento.uk/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alvento.uk/og-image.png">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))">&#9776;</button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#lab">Products</a></li>
+                <li><a href="/case-studies/">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Discuss your project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">How small businesses get cited by AI search: what the evidence says</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Founder, Alvento | Published 4 October 2026 | 5 min read</p>
+        </div>
+
+        <p>There is no secret trick. Google says appearing in its AI answers needs nothing beyond normal Search eligibility, and the one academic study on the topic found real but domain-dependent gains from changing how content is written. For a small business, that means doing the basics well and making your pages easy to quote.</p>
+
+        <h2 class="fade-up">What Google says</h2>
+        <p>Google's documentation states there are no additional requirements to appear in AI Overviews or AI Mode, and no special optimizations are necessary. A page needs to be indexed in Google Search and eligible to appear with a snippet. You do not need AI-specific files, markup or schema.</p>
+        <p>Google's advice for site owners is the familiar list:</p>
+        <ul>
+            <li>Let search crawlers in (check robots.txt).</li>
+            <li>Link your pages together so they can be found.</li>
+            <li>Keep the important content as text, not only in images.</li>
+            <li>Make sure structured data matches what is visible on the page.</li>
+            <li>Keep your Business Profile information current.</li>
+        </ul>
+
+        <h2 class="fade-up">What the research says</h2>
+        <p>The main academic paper on this, "GEO: Generative Engine Optimization" (Aggarwal and colleagues, submitted 2023 and revised 2024), reports that its methods can boost visibility in generative engine responses by up to 40%. It also finds that results vary by subject area, so one recipe does not fit every business. The tests ran on the authors' own benchmark, not on live commercial products, so treat the headline figure as a signal, not a promise.</p>
+
+        <h3>What OpenAI and Microsoft say</h3>
+        <p>OpenAI's help documentation says a site must allow its search crawler, OAI-SearchBot, and its host or content delivery network must allow traffic from OpenAI's published IP addresses, to be considered for ChatGPT search results. It also says placement is not guaranteed.</p>
+        <p>Microsoft's guidance on AI search answers recommends clear titles, H1s and headings, content in question-and-answer pairs, lists and tables, schema markup to label content types, measurable facts instead of vague language, and key details in HTML rather than in images or PDFs. It says there is no secret strategy and nothing guarantees selection.</p>
+        <p>The sources differ on one point. Google says no special markup is needed. Microsoft recommends schema markup as a help, not a guarantee. All three agree there are no guarantees.</p>
+
+        <h2 class="fade-up">What this means in practice</h2>
+        <p>The points below are our judgment, drawn from the sources above, not guaranteed rules.</p>
+        <ol>
+            <li><strong>Be findable first.</strong> If your pages are not indexed, nothing else matters. For ChatGPT search, that also means allowing OpenAI's search crawler, OAI-SearchBot.</li>
+            <li><strong>Say plainly what you do, for whom, and where.</strong> A model quoting you needs a clear sentence to quote.</li>
+            <li><strong>Put facts on the page.</strong> Prices, locations, opening hours, named services, dates. Specific beats vague.</li>
+            <li><strong>Keep your listings consistent.</strong> Business Profile, website and directories should agree.</li>
+            <li><strong>Write for the question people ask.</strong> Pages that answer one question clearly are easier to cite than pages that circle it.</li>
+            <li><strong>Measure it.</strong> Ask the assistants the questions your customers ask, note whether you appear, and repeat monthly.</li>
+        </ol>
+
+        <h2 class="fade-up">What to be sceptical of</h2>
+        <p>Anyone promising guaranteed placement in AI answers. The engines change, the sources are not published, and Google, OpenAI and Microsoft each say there is no guarantee.</p>
+
+        <h2 class="fade-up">How we can help</h2>
+        <p>We offer <a href="/aeo/">Answer Engine Optimisation</a> as one of our services, including a review of how your pages read to AI search.</p>
+
+        <h2 class="fade-up">Sources</h2>
+        <ul>
+            <li><a href="https://developers.google.com/search/docs/appearance/ai-features">Google Search Central: AI features and your website</a></li>
+            <li><a href="https://arxiv.org/abs/2311.09735">Aggarwal et al., GEO: Generative Engine Optimization (arXiv:2311.09735)</a></li>
+            <li><a href="https://help.openai.com/en/articles/9237897-chatgpt-search">OpenAI Help Center: ChatGPT search</a></li>
+            <li><a href="https://about.ads.microsoft.com/en/blog/post/october-2025/optimizing-your-content-for-inclusion-in-ai-search-answers">Microsoft Advertising: Optimizing Your Content for Inclusion in AI Search Answers</a></li>
+        </ul>
+        <p class="note">Sources checked 4 October 2026. Guidance from these companies changes, so check the originals before acting on any detail.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Want to know how your pages read to AI search?</strong> We can review it with you. Email <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, first conversation is free.</p>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 16394298. United Kingdom.</p>
+            <p>alvento.uk</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-up').forEach(function(el, i) {
+            el.style.transitionDelay = (i % 4) * 0.1 + 's';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    });
+    </script>
+<script defer src="/consent-banner.js"></script>
+</body>
+</html>
