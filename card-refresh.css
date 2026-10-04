@@ -3,16 +3,8 @@
 /* Case study directory */
 .case-index .case-grid { gap: 18px; border: 0; margin-top: 28px; }
 .case-index .case-card { min-width: 0; overflow: hidden; padding: 0; margin: 0; background: linear-gradient(145deg, #131d22, #0e1519 70%); border: 1px solid #26343c; border-radius: 12px; box-shadow: 0 16px 40px #0002; }
-.case-index .case-preview { height: 210px; background: #10191e; border-bottom: 1px solid #26343c; overflow: hidden; }
-.case-index .case-preview > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-.case-index .case-preview--foyer { display: flex; align-items: center; justify-content: center; padding: 18px; background: radial-gradient(ellipse at 50% 0%, #c4f04212, transparent 65%), #10191e; }
-.case-index .foyer-mini { width: min(100%, 410px); padding: 16px 18px; color: #e8e8e8; background: #131d22; border: 1px solid #2b3b42; border-radius: 9px; box-shadow: 0 12px 28px #0005; }
-.case-index .foyer-mini__top { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 11px; border-bottom: 1px solid #2b3b42; font: 500 .62rem/1.4 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; color: #c4f042; }
-.case-index .foyer-mini__top span:last-child { color: #a8b4b8; text-align: right; }
-.case-index .foyer-mini__title { margin: 11px 0 8px; font: 500 1.15rem/1.2 var(--font-display); }
-.case-index .foyer-mini__rows { display: grid; grid-template-columns: 70px 1fr; gap: 5px 10px; font-size: .7rem; line-height: 1.45; }
-.case-index .foyer-mini__rows dt { color: #95a2a8; }
-.case-index .foyer-mini__rows dd { color: #e0e6e8; }
+.case-index .case-preview { aspect-ratio: 5 / 3; background: #10191e; border-bottom: 1px solid #26343c; overflow: hidden; }
+.case-index .case-preview > img { display: block; width: 100%; height: auto; }
 .case-index .case-card__body { display: flex; flex: 1; flex-direction: column; padding: 24px; }
 .case-index .case-card .status-tag { margin-bottom: 14px; }
 .case-index .case-card .meta { min-height: 1.2em; margin-bottom: 14px; }
@@ -78,7 +70,6 @@
 .aeo-page .problem-card p { font-size: .9rem; }
 @media(max-width:768px){
   .case-index .case-grid { gap: 14px; }
-  .case-index .case-preview { height: 190px; }
   .foyer-page .followup-card { padding: 19px; }
   .foyer-page .followup-card > dl { grid-template-columns: 68px minmax(0,1fr); }
   .website-audit-page .sample-card { grid-template-columns: 1fr; }
