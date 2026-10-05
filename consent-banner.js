@@ -93,4 +93,21 @@
   }
 
   init();
+
+  // Every lead path on the site is a mailto link, so count clicks on them as leads.
+  document.addEventListener('click', function (e) {
+    var link = e.target && e.target.closest && e.target.closest('a[href^="mailto:"]');
+    if (!link || typeof window.gtag !== 'function') return;
+    var subject = '';
+    try {
+      subject = new URL(link.href).searchParams.get('subject') || '';
+    } catch (err) {
+      /* ignore */
+    }
+    window.gtag('event', 'generate_lead', {
+      method: 'email',
+      lead_subject: subject.slice(0, 100),
+      transport_type: 'beacon',
+    });
+  }, true);
 })();
