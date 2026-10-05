@@ -1,0 +1,21 @@
+/* Live version of the Foyer cover, sized identically to the other artwork. */
+.foyer-cover { position: relative; width: 100%; aspect-ratio: 5 / 3; container-type: inline-size; background: #0a0a0a; overflow: hidden; }
+.foyer-cover__art { position: absolute; inset: 0; color: #f0eee6; background: radial-gradient(ellipse at 80% 45%, #29402c38, transparent 58%); }
+.foyer-cover__eyebrow { position: absolute; top: 8%; left: 5.17%; font: 500 1.58cqw var(--font-mono); letter-spacing: .16cqw; text-transform: uppercase; color: #b2c69e; }
+.foyer-cover__title { position: absolute; z-index: 2; top: 21%; left: 5.17%; font: 400 9.33cqw/1 var(--font-display); letter-spacing: -.08cqw; }
+.foyer-cover__caption { position: absolute; z-index: 2; top: 57%; left: 5.17%; font: 400 2.08cqw/1.5 var(--font-body); color: #a9b4a7; }
+.foyer-cover__stamp { position: absolute; left: 5.17%; bottom: 6.67%; font: 500 1.42cqw var(--font-mono); letter-spacing: .12cqw; text-transform: uppercase; color: #9bae8b; }
+.foyer-cover__orb { position: absolute; width: 54.17%; aspect-ratio: 1; right: -1.67%; top: -1.39%; mask-image: radial-gradient(circle, #000 52%, transparent 72%); }
+.foyer-cover__orb img, .foyer-cover__orb canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.foyer-cover__orb canvas { opacity: 0; }
+.foyer-cover.is-animated .foyer-cover__orb canvas { opacity: 1; }
+.foyer-cover__chip { position: absolute; right: 7.67%; bottom: 12.08%; display: flex; align-items: center; gap: 2.33cqw; padding: 1.92cqw 2.42cqw; background: #152017e8; border: 1px solid #4d643b; border-radius: 1.5cqw; color: #e1e9d7; font: 400 2cqw/1.4 var(--font-body); }
+.foyer-cover__chip small { display: block; font-size: 1.5cqw; color: #a9b4a7; }
+.foyer-cover__wave { display: flex; gap: .5cqw; align-items: center; height: 5cqw; }
+.foyer-cover__wave i { width: .42cqw; height: 2cqw; border-radius: 1cqw; background: #c4f042; }
+.foyer-cover__wave i:nth-child(2n) { height: 3.5cqw; }
+.foyer-cover__wave i:nth-child(3n) { height: 5cqw; }
+.foyer-cover__toggle { position: absolute; right: 12px; bottom: 10px; padding: 6px 9px; border: 1px solid #4d643b; border-radius: 5px; background: #0a0a0a; color: #d5e1c8; font: 500 11px/1.4 var(--font-body); cursor: pointer; }
+.foyer-cover__toggle[hidden] { display: none; }
+.foyer-cover__toggle:focus-visible { outline: 2px solid #c4f042; outline-offset: 3px; }
+@media(max-width:480px) { .foyer-cover__toggle { right: 8px; bottom: 6px; padding: 4px 6px; font-size: 10px; } }
