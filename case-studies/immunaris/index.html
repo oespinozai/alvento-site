@@ -147,6 +147,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://alvento.uk/og/immunaris.png">
+<link rel="stylesheet" href="/project-heroes.css">
 </head>
 <body>
 
@@ -164,14 +165,22 @@ h1, h2, h3, h4 { font-synthesis: none; }
   </div>
 </nav>
 
-<section class="page-hero">
+<section class="page-hero project-hero project-hero--immunaris">
   <div class="container">
-    <div class="label">Case study, Clinical registry</div>
-    <h1>Immunaris, a <em>clinical vaccination registry</em> built to read like an instrument, not a dashboard.</h1>
-    <p class="lede">We built Immunaris to show, in one artefact, how we believe regulated-medtech software should behave, and what it looks like when compliance, retention, and auditability are load-bearing from the first commit.</p>
-    <div class="btn-group">
-      <a href="#demo" class="btn-primary">See the live demo</a>
-      <a href="mailto:hello@alvento.uk?subject=Clinical registry build" class="btn-secondary">Talk to us about a registry build &rarr;</a>
+    <div class="project-hero__grid">
+      <div class="project-hero__copy">
+        <div class="label">Case study, Clinical registry</div>
+        <h1>Immunaris, a <em>clinical vaccination registry</em> built to read like an instrument, not a dashboard.</h1>
+        <p class="lede">We built Immunaris to show, in one artefact, how we believe regulated-medtech software should behave, and what it looks like when compliance, retention, and auditability are load-bearing from the first commit.</p>
+        <div class="btn-group">
+          <a href="#demo" class="btn-primary">See the live demo</a>
+          <a href="mailto:hello@alvento.uk?subject=Clinical registry build" class="btn-secondary">Talk to us about a registry build &rarr;</a>
+        </div>
+      </div>
+      <figure class="project-hero__visual">
+        <img src="/case-studies/previews/immunaris.png" alt="Immunaris reference register showing sample clinical dashboard data" width="1200" height="720" fetchpriority="high" decoding="async">
+        <figcaption><span class="project-hero__status">Reference build</span><span>Clinical registry interface with sample data.</span></figcaption>
+      </figure>
     </div>
     <div class="meta-row">
       <div><strong>Domain</strong><span>Clinical / registry</span></div>
