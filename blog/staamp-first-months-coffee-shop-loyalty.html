@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What one village coffee shop taught us about loyalty | Alvento</title>
+<link rel="canonical" href="https://alvento.uk/blog/staamp-first-months-coffee-shop-loyalty/">
+    <meta name="description" content="A village coffee shop, a stamp card with no app, and the numbers from its live dashboard: what 32 customer cards and 106 stamps show, and what they do not.">
+    <meta name="author" content="Oscar Espinoza, Founder, Alvento">
+    <meta property="og:title" content="What one village coffee shop taught us about loyalty">
+    <meta property="og:description" content="A village coffee shop, a stamp card with no app, and the numbers from its live dashboard: what 32 customer cards and 106 stamps show, and what they do not.">
+    <meta property="og:url" content="https://alvento.uk/blog/staamp-first-months-coffee-shop-loyalty/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-raised: #1c1c1c;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --muted: #888888;
+            --dim: #8a8a8a;
+            --accent: #c4f042;
+            --accent-dim: #8aaa2e;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 24px 0;
+        }
+        .breadcrumb a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .article-container { max-width: 800px; margin: 0 auto; padding: 24px 24px 60px; }
+        .article-container h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .article-container h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .article-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .article-container p {
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .article-container a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.3s;
+        }
+        .article-container a:hover { border-color: var(--accent); }
+        .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+        .meta p { color: var(--muted); font-size: 0.8rem; }
+        .cta-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container ul { margin-left: 24px; margin-bottom: 20px; }
+        .article-container li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.04em;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+        }
+    
+        /* Instrument Serif ships one weight; stop browsers faking bold */
+        .article-container h1, .article-container h2, .article-container h3 { font-weight: 400; }
+        h1, h2, h3, h4 { font-synthesis: none; }
+    
+        .article-container ol { margin-left: 24px; margin-bottom: 20px; }
+        .article-container ol li { margin-bottom: 12px; color: var(--text); line-height: 1.7; }
+        .article-container blockquote {
+            background: var(--surface);
+            border-left: 3px solid var(--accent-dim);
+            padding: 16px 20px;
+            margin: 0 0 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .article-container blockquote p { margin: 0; color: var(--text); }
+        .article-container .tpl-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin: 24px 0 8px;
+        }
+        .table-wrap { overflow-x: auto; margin: 0 0 24px; }
+        .article-container table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .article-container th, .article-container td {
+            text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top;
+        }
+        .article-container th {
+            font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--muted); font-weight: 500;
+        }
+        .article-container .note { font-size: 0.9rem; color: var(--muted); }
+        .article-container .note { color: var(--muted); }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag('config', 'G-XBMBRD8E00');
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "What one village coffee shop taught us about loyalty",
+        "description": "A village coffee shop, a stamp card with no app, and the numbers from its live dashboard: what 32 customer cards and 106 stamps show, and what they do not.",
+        "author": { "@type": "Person", "name": "Oscar Espinoza", "jobTitle": "Founder", "affiliation": { "@type": "Organization", "name": "Alvento" } },
+        "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.uk" },
+        "datePublished": "2026-10-05",
+        "url": "https://alvento.uk/blog/staamp-first-months-coffee-shop-loyalty/"
+    }
+    </script>
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://alvento.uk/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alvento.uk/og-image.png">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">alvento<span>.</span></a>
+            <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))">&#9776;</button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><a href="/#lab">Products</a></li>
+                <li><a href="/case-studies/">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+                <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Discuss your project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="/blog/">&larr; Back to Insights</a>
+    </div>
+
+    <article class="article-container">
+        <h1 class="fade-up">What one village coffee shop taught us about loyalty</h1>
+        <div class="meta">
+            <p>By Oscar Espinoza, Founder, Alvento | Published 5 October 2026 | 4 min read</p>
+        </div>
+
+        <p>One small independent, a stamp-card scheme with no app, and a few months of real data. The numbers are small, but they show what a local business learns once it can see who comes back.</p>
+
+        <h2 class="fade-up">The setup</h2>
+        <p><a href="/case-studies/staamp/">Staamp</a> is a loyalty platform for small independents. It has been running at Lizette's, a village coffee shop, since June 2026. There is no app to download. A customer scans a code, opens their card in the phone's browser and gets a stamp with each coffee. The owner can see who is coming back, and the shop builds an email list it did not have before.</p>
+
+        <h2 class="fade-up">The numbers so far</h2>
+        <div class="table-wrap">
+        <table>
+            <thead><tr><th>Measure</th><th>Result</th></tr></thead>
+            <tbody>
+                <tr><td>Customer cards created</td><td>32</td></tr>
+                <tr><td>Cards with at least one stamp</td><td>25</td></tr>
+                <tr><td>Customers with two or more stamps</td><td>20</td></tr>
+                <tr><td>Customers with three or more stamps</td><td>15</td></tr>
+                <tr><td>Stamps (coffees) collected in total</td><td>106</td></tr>
+                <tr><td>Customers who opted in to email</td><td>16 of 32</td></tr>
+            </tbody>
+        </table>
+        </div>
+        <p class="note">Read from the shop's live staff dashboard on 5 October 2026, with Lizette's agreement. One stamp is one coffee. The dashboard does not report rewards redeemed or a repeat rate, so we have not claimed either. The two-or-more and three-or-more counts are our own tally of the customer list.</p>
+
+        <h2 class="fade-up">What we noticed</h2>
+        <ul>
+            <li><strong>People come back if there is a reason.</strong> Of the 25 customers who have collected a stamp, 20 have collected at least two, which is four in five. Fifteen have collected three or more.</li>
+            <li><strong>Email opt-in is realistic.</strong> Half of all customer cards, 16 of 32, come with an email address. That is a list the shop never had.</li>
+            <li><strong>Sign-up is not the same as use.</strong> Seven cards have no stamps at all. People sign up and never come back to the counter, and a paper card hides that completely.</li>
+        </ul>
+
+        <h2 class="fade-up">What this does not prove</h2>
+        <p>One shop is not a trend. The sample is small, the shop is in a village where many customers already know each other, and we have no sales figures to show whether the scheme changed what people spend. We will keep reporting as the data grows, including when it is unflattering.</p>
+
+        <h2 class="fade-up">Why we built it</h2>
+        <p>Small independents deserve the same tools big chains have, at a price that makes sense for them. Staamp costs GBP 29 a month. Read the <a href="/case-studies/staamp/">case study</a> or visit <a href="https://staamp.co.uk">staamp.co.uk</a>.</p>
+
+        <div class="cta-box fade-up">
+            <p><strong>Run a shop where you want to see who comes back?</strong> We can show you how it works. Email <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, first conversation is free.</p>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alvento Ltd. Company No. 16394298. United Kingdom.</p>
+            <p>alvento.uk</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-up').forEach(function(el, i) {
+            el.style.transitionDelay = (i % 4) * 0.1 + 's';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    });
+    </script>
+<script defer src="/consent-banner.js"></script>
+</body>
+</html>
