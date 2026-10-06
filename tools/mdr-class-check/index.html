@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free MDR & UKCA Device Class Checker · Alvento</title>
+    <title>Free MDR &amp; UKCA Device Class Checker  /  Alvento</title>
     <meta name="description" content="Answer 5 questions. Get your medical device class under EU MDR 2017/745 and UKCA. Free, instant, no signup.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://alvento.uk/tools/mdr-class-check/">
-    <meta property="og:title" content="Free MDR & UKCA Device Class Checker · Alvento">
-    <meta property="og:description" content="5 questions. Your device class under EU MDR and UKCA. Instant, free, no signup.">
+    <meta property="og:title" content="Free MDR &amp; UKCA Device Class Checker  /  Alvento">
+    <meta property="og:description" content="Answer 5 questions. Get your medical device class under EU MDR 2017/745 and UKCA. Free, instant, no signup.">
     <meta property="og:url" content="https://alvento.uk/tools/mdr-class-check/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://alvento.uk/og/mdr-class-check.png">
     <meta name="twitter:card" content="summary_large_image">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
+    
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -203,7 +203,7 @@
         .result-detail ul { list-style: none; }
         .result-detail li { padding: 6px 0; font-size: 0.9rem; color: var(--muted); border-bottom: 1px solid var(--border); display: flex; gap: 10px; }
         .result-detail li:last-child { border-bottom: none; }
-        .result-detail li::before { content: '•'; color: var(--accent); flex-shrink: 0; }
+        .result-detail li::before { content: ' / '; color: var(--accent); flex-shrink: 0; }
         .result-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
         .btn-cta {
             background: var(--accent); color: var(--bg);
@@ -263,13 +263,15 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://alvento.uk/og/mdr-class-check.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
 </head>
 <body>
     <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--bg);padding:12px 20px;z-index:1000;font-family:var(--font-mono);font-size:0.85rem;">Skip to main content</a>
     <nav>
         <div class="container">
             <a href="/" class="logo">alvento<span>.</span></a>
-            <a href="/tools" class="back-link">← All tools</a>
+            <a href="/tools" class="back-link"><- All tools</a>
         </div>
     </nav>
     <main class="container" id="main-content">
@@ -283,7 +285,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
             <div class="step-indicator" id="stepIndicator" role="progressbar" aria-label="Question progress"></div>
             <div id="stepContent" aria-live="polite"></div>
             <div class="nav-row">
-                <button class="btn-back" id="btnBack" onclick="prevStep()" style="visibility:hidden" aria-label="Go back to previous question">← Back</button>
+                <button class="btn-back" id="btnBack" onclick="prevStep()" style="visibility:hidden" aria-label="Go back to previous question"><- Back</button>
                 <button class="btn-next" id="btnNext" onclick="nextStep()" disabled aria-label="Continue to next question">Continue</button>
             </div>
         </div>
@@ -315,7 +317,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
     </main>
     <footer>
         <div class="container">
-            <p>&copy; 2026 Alvento Ltd &middot; <a href="/privacy">Privacy</a></p>
+            <p>&copy; 2026 Alvento Ltd  /  <a href="/privacy">Privacy</a></p>
             <p>Built for compliance-heavy environments</p>
         </div>
     </footer>
@@ -328,7 +330,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
             desc: 'This is one of the most fundamental classification rules under MDR Annex VIII.',
             options: [
                 { label: 'Transient', hint: '≤ 60 minutes', value: 'transient', score: 'I' },
-                { label: 'Short-term', hint: '60 min – 30 days', value: 'short', score: 'IIa' },
+                { label: 'Short-term', hint: '60 min - 30 days', value: 'short', score: 'IIa' },
                 { label: 'Long-term', hint: '> 30 days, or permanently', value: 'long', score: 'long' },
                 { label: 'Not applicable', hint: 'Device does not contact the body directly', value: 'na', score: 'na' }
             ]
@@ -349,7 +351,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
             id: 'energy',
             label: 'Question 3 of 5',
             title: 'Does your device deliver or exchange energy with the patient?',
-            desc: 'MDR Annex VIII Rule 9–10 cover active devices that emit or absorb energy.',
+            desc: 'MDR Annex VIII Rule 9-10 cover active devices that emit or absorb energy.',
             options: [
                 { label: 'No energy exchange', hint: 'Passive device: no energy delivery or exchange', value: 'passive', score: null },
                 { label: 'Therapeutic: ionizing radiation', hint: 'Emits ionising radiation for therapeutic purposes', value: 'rad_ther', score: 'IIb' },
@@ -505,7 +507,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
         document.getElementById('resultClass').textContent = `Class ${cls}`;
         document.getElementById('resultClassLabel').textContent = cls === 'I' ? 'Low risk: no Notified Body required' : cls === 'IIa' ? 'Medium risk: Notified Body involvement required' : 'Higher risk: Notified Body + technical documentation required';
         document.getElementById('resultDevice').textContent = 'Medical Device';
-        document.getElementById('resultRegime').textContent = 'EU MDR 2017/745 · UKCA MDR 2002';
+        document.getElementById('resultRegime').textContent = 'EU MDR 2017/745  /  UKCA MDR 2002';
 
         document.getElementById('resultDetail').innerHTML = `
             <h3>Classification basis</h3>
@@ -541,12 +543,13 @@ h1, h2, h3, h4 { font-synthesis: none; }
 
     function copyResult() {
         const { cls, basis } = computeResult();
-        const text = `Device Classification Result\nClass: ${cls}\nRegime: EU MDR 2017/745 · UKCA MDR 2002\n\nBasis:\n${basis.map(b => '- ' + b).join('\n')}\n\nGenerated at alvento.uk/tools/mdr-class-check`;
+        const text = `Device Classification Result\nClass: ${cls}\nRegime: EU MDR 2017/745  /  UKCA MDR 2002\n\nBasis:\n${basis.map(b => '- ' + b).join('\n')}\n\nGenerated at alvento.uk/tools/mdr-class-check`;
         navigator.clipboard.writeText(text);
     }
 
     renderStep();
     </script>
+
 <script defer src="/consent-banner.js"></script>
 </body>
 </html>

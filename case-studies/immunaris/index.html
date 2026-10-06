@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
+
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Immunaris, a clinical vaccination registry | Alvento case study</title>
-<meta name="description" content="Immunaris is a clinical vaccination registry we built to show how a regulated-medtech record system should behave when compliance, retention and auditability are load-bearing from the first commit.">
+<title>Immunaris: a vaccination-tracking reference build | Alvento</title>
+<meta name="description" content="Immunaris is a vaccination-tracking reference build owned by Alvento. It is not a client deployment.">
 <link rel="canonical" href="https://alvento.uk/case-studies/immunaris/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,8 +138,8 @@ footer a:hover { color: var(--text); }
 /* Instrument Serif ships one weight; stop browsers faking bold */
 h1, h2, h3, h4 { font-synthesis: none; }
 </style>
-<meta property="og:title" content="Immunaris, a clinical vaccination registry | Alvento case study">
-<meta property="og:description" content="Immunaris is a clinical vaccination registry we built to show how a regulated-medtech record system should behave when compliance, retention and auditability are load-bearing from the first commit.">
+<meta property="og:title" content="Immunaris: a vaccination-tracking reference build | Alvento">
+<meta property="og:description" content="Immunaris is a vaccination-tracking reference build owned by Alvento. It is not a client deployment.">
 <meta property="og:url" content="https://alvento.uk/case-studies/immunaris/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://alvento.uk/og/immunaris.png">
@@ -148,6 +148,8 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://alvento.uk/og/immunaris.png">
 <link rel="stylesheet" href="/project-heroes.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
 </head>
 <body>
 
@@ -164,30 +166,32 @@ h1, h2, h3, h4 { font-synthesis: none; }
     </ul>
   </div>
 </nav>
+<main>
+
 
 <section class="page-hero project-hero project-hero--immunaris">
   <div class="container">
     <div class="project-hero__card">
       <figure class="project-hero__visual">
         <img src="/case-studies/previews/immunaris.png" alt="Immunaris reference register showing sample clinical dashboard data" width="1200" height="720" fetchpriority="high" decoding="async">
-        <figcaption><span class="project-hero__status">Reference build</span><span>Clinical registry interface with sample data.</span></figcaption>
+        <figcaption><span class="project-hero__status">Reference build</span><span>Vaccination-tracking reference build shown with sample data.</span></figcaption>
       </figure>
     <div class="project-hero__grid">
       <div class="project-hero__copy">
-        <div class="label">Case study, Clinical registry</div>
-        <h1>Immunaris, a <em>clinical vaccination registry</em> built to read like an instrument, not a dashboard.</h1>
-        <p class="lede">We built Immunaris to show, in one artefact, how we believe regulated-medtech software should behave, and what it looks like when compliance, retention, and auditability are load-bearing from the first commit.</p>
+        <div class="label">Reference build / vaccination tracking</div>
+        <h1>Immunaris, a vaccination-tracking reference build</h1>
+        <p class="lede">Immunaris is a vaccination-tracking reference build owned by Alvento. It is not a client deployment.</p>
         <div class="btn-group">
           <a href="#demo" class="btn-primary">See the live demo</a>
-          <a href="mailto:hello@alvento.uk?subject=Clinical registry build" class="btn-secondary">Talk to us about a registry build &rarr;</a>
+          <a href="mailto:hello@alvento.uk?subject=Immunaris%20reference%20build" class="btn-secondary">Ask about the reference build</a>
         </div>
       </div>
 
     </div>
     <div class="meta-row">
-      <div><strong>Domain</strong><span>Clinical / registry</span></div>
+      <div><strong>Domain</strong><span>Reference build / vaccination tracking</span></div>
       <div><strong>Scope</strong><span>Schema, UI, compliance posture, design system</span></div>
-      <div><strong>Stack</strong><span>React &middot; Supabase &middot; Postgres RLS</span></div>
+      <div><strong>Stack</strong><span>React  /  Supabase  /  Postgres RLS</span></div>
       <div><strong>Status</strong><span>Private, Alvento-owned artefact</span></div>
     </div>
   </div>
@@ -213,7 +217,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
     <h2>A clinical record should be the <em>defensible artefact</em>, not a compliance liability.</h2>
     <p>Registries, royal colleges and clinical services fail inspections not because care is bad, but because the record is unprovable. Vaccination history still lives in paper folders, GP silos and spreadsheets, and when an outbreak, an audit, or a recall response arrives, none of those produce the signed, time-stamped, attributable record that the moment requires.</p>
     <p>Generic electronic-record products solve parts of this. Very few solve it with a retention model, an auditable ledger and an accessibility posture that survives contact with a UK regulator or a royal-college inspection.</p>
-    <p class="why-pullquote">&ldquo;The record is not a by-product of clinical work. The record is the clinical work, made defensible.&rdquo;</p>
+    <p class="why-pullquote">"The record is not a by-product of clinical work. The record is the clinical work, made defensible."</p>
     <p>That belief is why we build clinical systems the way we do, and why Immunaris exists as a reference artefact for how we think one should look.</p>
   </div>
 </section>
@@ -254,7 +258,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
   <div class="container">
     <div class="section-tier">Where it differs</div>
     <h2>What generic clinical record tools treat as optional, Immunaris treats as <em>load-bearing</em>.</h2>
-    <p>This is a category contrast, not a product comparison. We&rsquo;re describing the defaults we see across generic clinical-record and EHR-adjacent tooling, not any specific vendor, and the choices we made instead.</p>
+    <p>This is a category contrast, not a product comparison. We're describing the defaults we see across generic clinical-record and EHR-adjacent tooling, not any specific vendor, and the choices we made instead.</p>
 
     <div class="contrast-table">
       <div class="contrast-row header">
@@ -293,7 +297,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
         <div class="cell mine">Clinical Archive, ledger aesthetic, reading-first</div>
       </div>
     </div>
-    <p class="contrast-footnote">Fair comparison: category defaults we&rsquo;ve observed, not claims about any named vendor.</p>
+    <p class="contrast-footnote">Fair comparison: category defaults we've observed, not claims about any named vendor.</p>
   </div>
 </section>
 
@@ -308,7 +312,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
       <div class="folio-item">
         <div class="item-tag">Folio 001, Register</div>
         <h3>Patient register and cohort view</h3>
-        <p>A ledger of every patient under care, filterable by cohort, due date, risk group or clinic. Built to answer &ldquo;who still needs their second dose?&rdquo; in one screen.</p>
+        <p>A ledger of every patient under care, filterable by cohort, due date, risk group or clinic. Built to answer "who still needs their second dose?" in one screen.</p>
         <div class="shot"><img src="img/folio-001-register.png" alt="Immunaris patient register, folio 001"></div>
       </div>
       <div class="folio-item">
@@ -437,26 +441,29 @@ h1, h2, h3, h4 { font-synthesis: none; }
     <div class="demo-frame">
       <iframe src="https://immunaris-case-study.vercel.app/dashboard" title="Immunaris, live demo" loading="lazy" referrerpolicy="no-referrer"></iframe>
     </div>
-    <p style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 12px;">Or open in a new tab &rarr; <a href="https://immunaris-case-study.vercel.app/dashboard" target="_blank" rel="noopener" style="color: var(--muted);">immunaris-case-study.vercel.app</a></p>
+    <p style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 12px;">Or open in a new tab -&gt; <a href="https://immunaris-case-study.vercel.app/dashboard" target="_blank" rel="noopener" style="color: var(--muted);">immunaris-case-study.vercel.app</a></p>
     <p class="disclosure">Source code is private and owned by Alvento Ltd. The schema, design system and compliance posture shown here are the artefacts we sell, not the source.</p>
   </div>
 </section>
 
 <section class="cta-section">
   <div class="container">
-    <h2>Building a registry, a revalidation system, or a clinical record?</h2>
-    <p>If you&rsquo;re a professional body, a clinical registry or a medtech team and you want something that reads like a clinical instrument rather than a startup dashboard, we build these.</p>
+    <h2>Questions about this reference build?</h2>
+    <p>Immunaris is an Alvento-owned reference build. Contact us if you would like to discuss the example.</p>
     <div class="btn-group">
-      <a href="mailto:hello@alvento.uk?subject=Clinical registry build" class="btn-primary">Email hello@alvento.uk</a>
+      <a href="mailto:hello@alvento.uk?subject=Immunaris%20reference%20build" class="btn-primary">Email hello@alvento.uk</a>
     </div>
   </div>
 </section>
 
+
+</main>
 <footer>
   <div class="container">
     <p>&copy; 2026 Alvento Ltd, <a href="/">Home</a>, <a href="/case-studies/">Case studies</a>, <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, <a href="/privacy">Privacy</a></p>
   </div>
 </footer>
+
 
 <script defer src="/consent-banner.js"></script>
 </body>

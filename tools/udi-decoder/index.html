@@ -1,34 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
+    
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Device UDI Decoder: GS1 + HIBCC · Alvento</title>
-    <meta name="description" content="Decode medical device UDI barcodes (GS1 + HIBCC) into structured fields. Free, browser-based, paste-and-parse. Built for implant registry submissions.">
+    <title>Medical Device UDI Decoder: GS1 + HIBCC | Alvento</title>
+    <meta name="description" content="Decode medical-device UDI identifiers into structured fields. Check the decoded output against the source before use.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://alvento.uk/tools/udi-decoder/">
-    <meta property="og:title" content="Medical Device UDI Decoder: GS1 + HIBCC · Alvento">
-    <meta property="og:description" content="Decode medical device UDI barcodes (GS1 + HIBCC) into structured fields. Free, browser-based. Built for implant registry submissions.">
+    <meta property="og:title" content="Medical Device UDI Decoder: GS1 + HIBCC | Alvento">
+    <meta property="og:description" content="Decode medical-device UDI identifiers into structured fields. Check the decoded output against the source before use.">
     <meta property="og:url" content="https://alvento.uk/tools/udi-decoder/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://alvento.uk/og/udi-decoder.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://alvento.uk/og/udi-decoder.png">
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Medical Device UDI Decoder",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Any (browser)",
-      "url": "https://alvento.uk/tools/udi-decoder/",
-      "description": "Decode GS1 and HIBCC UDI barcodes into structured fields (DI, lot, serial, expiry) for implant registry submissions. Paste multiple UDIs at once.",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
-      "publisher": { "@type": "Organization", "name": "Alvento Ltd", "url": "https://alvento.uk" }
-    }
-    </script>
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Medical Device UDI Decoder",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any (browser)",
+  "url": "https://alvento.uk/tools/udi-decoder/",
+  "description": "Decode GS1 and HIBCC identifiers into structured fields, including device identifier, lot, serial number and expiry. Validate the output before use.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "GBP"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Alvento Ltd",
+    "url": "https://alvento.uk"
+  }
+}
+</script>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -39,7 +47,7 @@
       "name": "What is a UDI and why does it matter?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A Unique Device Identifier, a barcode that identifies a specific medical device in the supply chain. It is mandated by Article 27 of EU MDR and by the FDA UDI Rule. Two issuing agencies dominate medtech: GS1 and HIBCC. Implant registries rely on UDI for accurate linkage."
+        "text": "A Unique Device Identifier is used to identify a medical device. This tool extracts fields from supported GS1 and HIBCC identifier formats; it does not verify the device or the accuracy of the source data."
       }
     },
     {
@@ -47,15 +55,15 @@
       "name": "Which UDI formats does the decoder handle?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "GS1 Application Identifiers (DI + PI components: GTIN, lot, serial, expiry, manufacturing date) and HIBCC LIC/PIC formats. Paste a raw barcode string and it returns the structured fields ready for registry submission or EHR integration."
+        "text": "GS1 and HIBCC formats are supported. Paste a raw identifier to extract structured fields, then check the decoded values against the original before using them elsewhere."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I use the output directly for implant registry submissions?",
+      "name": "Can I use the decoded output in another system?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The field layout maps to what implant registries commonly expect. Validate against your registry's current data dictionary before automating ingestion."
+        "text": "Validate the decoded values against the source and the receiving system's current data dictionary before automating ingestion."
       }
     },
     {
@@ -63,12 +71,12 @@
       "name": "Does it decode ICCBBA / ISBT 128 barcodes?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Not currently. ISBT 128 (blood, cells, tissues, organs) is on the roadmap; contact us if you need it prioritised."
+        "text": "Not currently. Contact us if you need this format."
       }
     }
   ]
 }
-    </script>
+</script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -216,6 +224,9 @@ h1, h2, h3, h4 { font-synthesis: none; }
 </style>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<style>.breadcrumb a { text-decoration: underline; text-underline-offset: 3px; }</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
 </head>
 <body>
 
@@ -225,19 +236,19 @@ h1, h2, h3, h4 { font-synthesis: none; }
     </div>
 </nav>
 
-<div class="container">
+<main class="container">
     <div class="breadcrumb">
         <a href="/">Home</a> / <a href="/tools">Tools</a> / UDI Decoder
     </div>
 
     <header>
         <h1>Medical Device <em>UDI Decoder</em></h1>
-        <p class="intro">Paste GS1 or HIBCC UDI strings (one per line) to decode into structured fields for registry submission.</p>
+        <p class="intro">Paste GS1 or HIBCC identifiers, one per line, to extract structured fields. Validate the output before use.</p>
     </header>
 
     <div class="card">
         <div class="card-title">Paste UDI Strings</div>
-        <textarea id="udiInput" placeholder="(01)00884838048157(17)251231(10)ABC123(21)XYZ789"></textarea>
+        <textarea id="udiInput" placeholder="(01)00884838048157(17)251231(10)ABC123(21)XYZ789" aria-label="UDI identifiers, one per line"></textarea>
         <div style="text-align: center;">
             <button class="btn-generate" onclick="decodeUDIs()">Decode Strings</button>
         </div>
@@ -283,28 +294,28 @@ h1, h2, h3, h4 { font-synthesis: none; }
     </section>
 
     <div class="cta-card">
-        <h2>Automating <em>registry submissions</em>?</h2>
-        <p>Alvento builds agents that read theatre records, decode UDIs, and pre-populate implant registry forms, reducing hand-keying error and audit rework.</p>
-        <a href="mailto:hello@alvento.uk?subject=UDI%2Fregistry%20submission%20enquiry" class="btn-generate">Speak to us</a>
+        <h2>Questions about this tool?</h2>
+        
+        <a href="mailto:hello@alvento.uk?subject=UDI%20tool%20enquiry" class="btn-generate">Speak to us</a>
     </div>
 
         <section class="faq-section" aria-labelledby="faq-heading" style="max-width:820px;margin:80px auto 40px;padding:0 24px;">
       <h2 id="faq-heading" style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,2.25rem);margin-bottom:28px;font-weight:400;color:var(--text);">Frequently asked questions</h2>
       <details style="border-top:1px solid var(--border);padding:20px 0;">
         <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">What is a UDI and why does it matter?</summary>
-        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">A Unique Device Identifier, a barcode that identifies a specific medical device in the supply chain. It is mandated by Article 27 of EU MDR and by the FDA UDI Rule. Two issuing agencies dominate medtech: GS1 and HIBCC. Implant registries rely on UDI for accurate linkage.</div>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">A Unique Device Identifier is used to identify a medical device. This tool extracts fields from supported GS1 and HIBCC identifier formats; it does not verify the device or the accuracy of the source data.</div>
       </details>
       <details style="border-top:1px solid var(--border);padding:20px 0;">
         <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Which UDI formats does the decoder handle?</summary>
-        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">GS1 Application Identifiers (DI + PI components: GTIN, lot, serial, expiry, manufacturing date) and HIBCC LIC/PIC formats. Paste a raw barcode string and it returns the structured fields ready for registry submission or EHR integration.</div>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">GS1 and HIBCC formats are supported. Paste a raw identifier to extract structured fields, then check the decoded values against the original before using them elsewhere.</div>
       </details>
       <details style="border-top:1px solid var(--border);padding:20px 0;">
-        <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Can I use the output directly for implant registry submissions?</summary>
-        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">The field layout maps to what implant registries commonly expect. Validate against your registry's current data dictionary before automating ingestion.</div>
+        <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Can I use the decoded output in another system?</summary>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Validate the decoded values against the source and the receiving system&#x27;s current data dictionary before automating ingestion.</div>
       </details>
       <details style="border-top:1px solid var(--border);padding:20px 0;">
         <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Does it decode ICCBBA / ISBT 128 barcodes?</summary>
-        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Not currently. ISBT 128 (blood, cells, tissues, organs) is on the roadmap, contact us if you need it prioritised.</div>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Not currently. Contact us if you need this format.</div>
       </details>
 
       <p style="margin-top:40px;color:var(--muted);font-size:0.9rem;line-height:1.6;">Still have a question, or need a variant for your specific regulatory context? <a href="/#contact" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);">Ask us directly</a>, or read our <a href="/blog/" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);">Insights</a> for longer writeups.</p>
@@ -312,11 +323,11 @@ h1, h2, h3, h4 { font-synthesis: none; }
 
     <footer>
         <div class="container" style="display: flex; justify-content: space-between;">
-            <div>&copy; 2026 Alvento Ltd. &middot; <a href="/privacy">Privacy</a></div>
+            <div>&copy; 2026 Alvento Ltd.  /  <a href="/privacy">Privacy</a></div>
             <div>Pure browser-based parsing.</div>
         </div>
     </footer>
-</div>
+</main>
 
 <script>
     let currentTab = 'preview';
@@ -485,6 +496,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
         a.click();
     }
 </script>
+
 
 <script defer src="/consent-banner.js"></script>
 </body>

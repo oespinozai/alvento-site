@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
+
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lizette's, a village coffee shop loyalty rollout | Alvento case study</title>
-<meta name="description" content="Lizette's is a village coffee shop running on Staamp, our loyalty infrastructure for independent hospitality. Live customer data from a working shop, not a mockup.">
+<title>Staamp: an unpaid live pilot with an independent deli | Alvento</title>
+<meta name="description" content="Staamp is a live pilot with an independent deli. The pilot is unpaid.">
 <link rel="canonical" href="https://alvento.uk/case-studies/staamp/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,200 +125,35 @@ footer a:hover { color: var(--text); }
 /* Instrument Serif ships one weight; stop browsers faking bold */
 h1, h2, h3, h4 { font-synthesis: none; }
 </style>
-<meta property="og:title" content="Lizette&#x27;s, a village coffee shop loyalty rollout | Alvento case study">
-<meta property="og:description" content="Lizette's is a village coffee shop running on Staamp, our loyalty infrastructure for independent hospitality. Live customer data from a working shop, not a mockup.">
+<meta property="og:title" content="Staamp: an unpaid live pilot with an independent deli | Alvento">
+<meta property="og:description" content="Staamp is a live pilot with an independent deli. The pilot is unpaid.">
 <meta property="og:url" content="https://alvento.uk/case-studies/staamp/">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://alvento.uk/og/staamp.png">
+<meta property="og:image" content="https://alvento.uk/og/default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://alvento.uk/og/staamp.png">
+<meta name="twitter:image" content="https://alvento.uk/og/default.png">
 <link rel="stylesheet" href="/project-heroes.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
 </head>
-<body>
-
-<nav>
-  <div class="container">
-    <a href="/" class="logo">alvento<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="/#capabilities">Capabilities</a></li>
-      <li><a href="/#lab">Products</a></li>
-      <li><a href="/tools">Tools</a></li>
-      <li><a href="/case-studies/">Case studies</a></li>
-      <li><a href="/blog/">Insights</a></li>
-      <li><a href="/#contact" class="nav-cta">Discuss your project</a></li>
-    </ul>
-  </div>
-</nav>
-
-<section class="page-hero project-hero project-hero--staamp">
-  <div class="container">
-    <div class="project-hero__card">
-      <figure class="project-hero__visual">
-        <img src="/case-studies/previews/staamp.png" alt="Lizette's customer loyalty card framed in a phone, showing seven of nine stamps" width="1200" height="720" fetchpriority="high" decoding="async">
-        <figcaption><span class="project-hero__status">Live client</span><span>The customer loyalty card at Lizette's.</span></figcaption>
-      </figure>
-    <div class="project-hero__grid">
-      <div class="project-hero__copy">
-        <div class="label">Case study, Hospitality loyalty</div>
-        <h1>Lizette's, village coffee loyalty that <em>regulars keep using</em>.</h1>
-        <p class="lede">Lizette's is a small, independent coffee shop with a village-sized customer base, not a chain chasing volume. Staamp is loyalty infrastructure built for exactly this kind of business: no app download, no punch card to lose, and no need for thousands of sign-ups before the system proves itself.</p>
-        <div class="btn-group">
-          <a href="#proof" class="btn-primary">See the live numbers</a>
-          <a href="mailto:hello@alvento.uk?subject=Loyalty system for my business" class="btn-secondary">Talk to us about a loyalty build</a>
-        </div>
-      </div>
-
-    </div>
-    <div class="meta-row">
-      <div><strong>Domain</strong><span>Hospitality, independent village coffee shop</span></div>
-      <div><strong>Scope</strong><span>Tenant platform, customer PWA, staff portal, superadmin</span></div>
-      <div><strong>Stack</strong><span>Flask &middot; React PWA &middot; SQLite</span></div>
-      <div><strong>Status</strong><span>Live, paying client since June 2026</span></div>
-    </div>
-  </div>
-  </div>
-</section>
-
-<!-- WHY -->
-<section class="section">
-  <div class="container">
-    <div class="section-tier"><em>01</em>, The problem</div>
-    <h2>A paper stamp card can't tell a shop who its <em>regulars</em> are.</h2>
-    <p>Paper cards get lost, forgotten, or forged, and a small shop never learns who's actually coming back, how often, or when they've drifted off. In a village, the customer base is small and mostly known by name already. The job here isn't chasing new volume. It's proving the regulars keep coming back, and building a channel to reach them when they don't.</p>
-    <p>Generic loyalty apps are built for chains with thousands of locations and marketing budgets to match. Almost none of them are built for a single-site shop where thirty customers is the whole business.</p>
-  </div>
-</section>
-
-<!-- PROOF -->
-<section class="section" id="proof">
-  <div class="container">
-    <div class="section-tier"><em>02</em>, The proof</div>
-    <h2>Live since June, real customers, no mock data.</h2>
-    <p>Lizette's has been running on Staamp since June 2026. These numbers were read from the shop's live staff dashboard on 5 October 2026.</p>
-    <div class="stat-grid">
-      <div class="stat-item">
-        <div class="stat-num">20 of 25</div>
-        <div class="stat-label">customers who have collected a stamp have come back for at least a second. That repeat rate is the number that actually matters for a loyalty system.</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">32</div>
-        <div class="stat-label">customer cards created, 25 of them with at least one stamp: close to the core customer base of a single-site village shop, not a fraction of it.</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">106</div>
-        <div class="stat-label">stamps collected in total, one per coffee. Sign-ups are being used, not sitting idle.</div>
-      </div>
-    </div>
-    <p class="stat-footnote">16 of 32 customers (half) opted into email at signup, the retention channel, not just the punch card. The dashboard does not report rewards redeemed, so we make no claim on that. Read the <a href="/blog/staamp-first-months-coffee-shop-loyalty/">full write-up, including what the numbers do not prove</a>.</p>
-  </div>
-</section>
-
-<!-- CONTRAST -->
-<section class="section">
-  <div class="container">
-    <div class="section-tier">Where it differs</div>
-    <h2>What a paper card can't do, Staamp does <em>by default</em>.</h2>
-    <p>This is a comparison against paper stamp cards and generic loyalty apps as a category, not any specific vendor.</p>
-
-    <div class="contrast-table">
-      <div class="contrast-row header">
-        <div class="cell">Axis</div>
-        <div class="cell">Paper stamp cards</div>
-        <div class="cell mine">Staamp</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell axis">Repeat-customer visibility</div>
-        <div class="cell">None, the business has to guess</div>
-        <div class="cell mine">Full ledger per customer, visits and rewards tracked automatically</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell axis">Customer data capture</div>
-        <div class="cell">None</div>
-        <div class="cell mine">Name, email, consent, opt-in, ready for a re-engagement channel</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell axis">Cost and friction to the customer</div>
-        <div class="cell">Free, but easy to lose or forget</div>
-        <div class="cell mine">Free, no app download, works from a phone browser</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell axis">Reward tracking</div>
-        <div class="cell">Manual, honour system, easy to forge</div>
-        <div class="cell mine">Automatic count, staff-approved claim, can't be duplicated</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell axis">Setup for the business</div>
-        <div class="cell">None needed, but none of the upside either</div>
-        <div class="cell mine">One-time onboarding, live within a day</div>
-      </div>
-    </div>
-    <p class="contrast-footnote">Fair comparison: category defaults we've observed, not claims about any named vendor.</p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-tier"><em>03</em>, The product</div>
-    <h2>The card a customer holds, the dashboard staff use.</h2>
-    <p>All three screens below are live in production at Lizette's, not a mockup. Other customers' names are redacted for privacy; the coffee counts and layout are real.</p>
-
-    <div class="folio-grid cols-3">
-      <div class="folio-item">
-        <div class="item-tag">Live in production, Lizette's, Godalming</div>
-        <h3>Self check-in, consent captured at the point of use</h3>
-        <p>A real member's card: coffee count, claimed rewards, and a consent checkbox before any visit is recorded. No login, no app download: it lives in the phone's browser.</p>
-        <div class="shot"><img src="img/oscar-loyalty-card.png" alt="A real Staamp member card at Lizette's, showing coffee count and self check-in with consent"></div>
-      </div>
-      <div class="folio-item">
-        <div class="item-tag">Staff dashboard, names redacted</div>
-        <h3>Every regular, one screen</h3>
-        <p>Staff look up a customer by name or scan the recent list. Coffee counts are real; other customers' names are blurred here for privacy.</p>
-        <div class="shot"><img src="img/staff-dashboard.png" alt="Staamp staff dashboard showing recent customers and coffee counts, names redacted for privacy"></div>
-      </div>
-      <div class="folio-item">
-        <div class="item-tag">Staff dashboard, names redacted</div>
-        <h3>A stamp can't be self-awarded</h3>
-        <p>The customer checks in and gives consent on their own phone. Staff approve or reject at the counter, so the stamp only counts once someone on-site confirms it.</p>
-        <div class="shot"><img src="img/pending-approval.png" alt="Staamp pending approval screen, a new customer's check-in awaiting staff approval, name redacted for privacy"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-label">Technical stack</div>
-    <h2>Boring, proven, cheap to run.</h2>
-    <p>A single-site village shop doesn't need enterprise infrastructure. It needs something that stays up, costs almost nothing to host, and is simple enough that we can onboard a new tenant in a day.</p>
-    <div class="stack-list">
-      <span class="stack-tag">Flask</span>
-      <span class="stack-tag">React PWA</span>
-      <span class="stack-tag">SQLite, per-tenant</span>
-      <span class="stack-tag">Cloudflare Tunnel</span>
-      <span class="stack-tag">nginx</span>
-    </div>
-    <p class="disclosure">Source is private and owned by Alvento Ltd. The platform, tenant model and reward logic shown here are the artefacts we sell, not the source. Live demo at staamp.co.uk/demo</p>
-  </div>
-</section>
-
-<section class="cta-section">
-  <div class="container">
-    <h2>Running a loyalty scheme on paper, or a generic app nobody opens twice?</h2>
-    <p>If you run an independent coffee shop, salon, or local retail business, we'll show you what your actual repeat-customer number is, and build the system to grow it.</p>
-    <div class="btn-group">
-      <a href="mailto:hello@alvento.uk?subject=Loyalty system for my business" class="btn-primary">Email hello@alvento.uk</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <p>&copy; 2026 Alvento Ltd, <a href="/">Home</a>, <a href="/case-studies/">Case studies</a>, <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, <a href="/privacy">Privacy</a></p>
-  </div>
-</footer>
-
-<script defer src="/consent-banner.js"></script>
+<body><nav>
+<div class="container">
+<a class="logo" href="/">alvento<span>.</span></a>
+<ul class="nav-links">
+<li><a href="/#capabilities">Capabilities</a></li>
+<li><a href="/#lab">Products</a></li>
+<li><a href="/tools">Tools</a></li>
+<li><a href="/case-studies/">Case studies</a></li>
+<li><a href="/blog/">Insights</a></li>
+<li><a class="nav-cta" href="/#contact">Discuss your project</a></li>
+</ul>
+</div>
+</nav><main><section class="page-hero"><div class="container"><div class="label">Live pilot - unpaid</div><h1>Staamp: an unpaid live pilot with an independent deli</h1><p class="lede">Staamp is a live pilot with an independent deli. The pilot is unpaid.</p></div></section><section class="container"><h2>What Staamp does</h2><p>Staamp is a digital loyalty-card system. Participants open their card in a phone browser, staff approve stamps, and the deli manages the scheme through a staff dashboard.</p><p>No pilot identity, figures or screenshots are published here.</p></section><section class="cta-section"><div class="container"><h2>Discuss a pilot</h2><a class="btn-primary" href="mailto:hello@alvento.uk?subject=Staamp%20pilot">Email hello@alvento.uk</a></div></section></main><footer>
+<div class="container">
+<p>© 2026 Alvento Ltd, <a href="/">Home</a>, <a href="/case-studies/">Case studies</a>, <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, <a href="/privacy">Privacy</a></p>
+</div>
+</footer><script defer src="/consent-banner.js"></script>
 </body>
 </html>

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
+
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOP to Checklist: Turn Procedures Into Actionable Lists · Alvento</title>
+<title>SOP to Checklist: Turn Procedures Into Actionable Lists  /  Alvento</title>
 <meta name="description" content="Paste any SOP or process document. Get a structured checklist with steps, owners, and frequency. Free, browser-based, built for ops teams. By Alvento.">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="canonical" href="https://alvento.uk/tools/sop-to-checklist/">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="SOP to Checklist: Turn procedures into actionable lists">
-<meta property="og:description" content="Paste an SOP. Get a structured checklist with steps, owners, frequency. Runs in your browser.">
+<meta property="og:title" content="SOP to Checklist: Turn Procedures Into Actionable Lists  /  Alvento">
+<meta property="og:description" content="Paste any SOP or process document. Get a structured checklist with steps, owners, and frequency. Free, browser-based, built for ops teams. By Alvento.">
 <meta property="og:url" content="https://alvento.uk/tools/sop-to-checklist/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://alvento.uk/og/sop-to-checklist.png">
@@ -26,8 +26,16 @@
   "operatingSystem": "Any (browser)",
   "url": "https://alvento.uk/tools/sop-to-checklist/",
   "description": "Paste any SOP or process document. Get a structured checklist with steps, owners, and frequency. Runs entirely in the browser.",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
-  "publisher": { "@type": "Organization", "name": "Alvento Ltd", "url": "https://alvento.uk" }
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "GBP"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Alvento Ltd",
+    "url": "https://alvento.uk"
+  }
 }
 </script>
     <script type="application/ld+json">
@@ -40,7 +48,7 @@
       "name": "What does this tool actually do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You paste an SOP, policy document or process write-up. The tool parses it into a structured checklist with steps, owners, frequency, and decision points \u2014 in a format your team can actually execute against rather than read once and forget."
+        "text": "You paste an SOP, policy document or process write-up. The tool parses it into a structured checklist with steps, owners, frequency, and decision points, in a format your team can actually execute against rather than read once and forget."
       }
     },
     {
@@ -56,7 +64,7 @@
       "name": "Does it use AI, and where does my document go?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, a client-side-assisted parse identifies steps and roles. The document stays within your browser session \u2014 nothing is logged or retained by Alvento."
+        "text": "Yes, a client-side-assisted parse identifies steps and roles. The document stays within your browser session, nothing is logged or retained by Alvento."
       }
     },
     {
@@ -69,7 +77,7 @@
     }
   ]
 }
-    </script>
+</script>
 
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -514,6 +522,8 @@ h1, h2, h3, h4 { font-synthesis: none; }
 </style>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
 </head>
 <body>
 
@@ -692,8 +702,8 @@ Weekly:
 
     <footer>
   <div class="container">
-    <p>Built by <a href="https://alvento.uk">Alvento</a> · AI systems for businesses that run on data</p>
-    <p>© 2026 Alvento Ltd · Company No. 16394298 · <a href="/privacy">Privacy</a></p>
+    <p>Built by <a href="https://alvento.uk">Alvento</a>  /  AI systems for businesses that run on data</p>
+    <p>© 2026 Alvento Ltd  /  Company No. 16394298  /  <a href="/privacy">Privacy</a></p>
   </div>
 </footer>
 
@@ -870,7 +880,7 @@ const FREQUENCY_KEYWORDS = [
   { pattern: /\b(daily|each day|every day|per day)\b/i, tag: 'daily' },
   // Heuristic: a one-off deadline phrased relative to a day/shift boundary
   // ("by EOD", "start of shift") reads like a recurring cadence but isn't
-  // necessarily one — flag these as inferred so the UI doesn't overstate
+  // necessarily one - flag these as inferred so the UI doesn't overstate
   // certainty.
   { pattern: /\b(end of day|eod|start of shift|start of day)\b/i, tag: 'daily', inferred: true },
   { pattern: /\b(weekly|each week|every week|per week|every (monday|tuesday|wednesday|thursday|friday|saturday|sunday))\b/i, tag: 'weekly' },
@@ -912,7 +922,7 @@ function parseSOP(input) {
     const line = lines[i].trim();
     if (!line) continue;
     // Stop scanning once we clearly hit body content
-    if (/^\d+[\.\)]\s/.test(line) || /^[-*•]\s/.test(line)) break;
+    if (/^\d+[\.\)]\s/.test(line) || /^[-* / ]\s/.test(line)) break;
     const m = METADATA_KEY_PATTERN.exec(line);
     if (m) {
       metadata.push({ key: m[1].trim(), value: m[2].trim() });
@@ -960,7 +970,7 @@ function parseSOP(input) {
     }
 
     // Detect first-line title if no section yet and looks like a title
-    if (!currentSection && contentLineCount <= 3 && line.length < 80 && !/^[-*•\d]/.test(line)) {
+    if (!currentSection && contentLineCount <= 3 && line.length < 80 && !/^[-* / \d]/.test(line)) {
       sections.push({ title: line, frequency: null, items: [], isDocTitle: true });
       currentSection = sections[sections.length - 1];
       continue;
@@ -968,7 +978,7 @@ function parseSOP(input) {
 
     // Detect step (numbered, bulleted, or imperative sentence)
     const numberedMatch = /^\s*(?:\d+[\.\)]|step\s+\d+[:\.]?)\s+(.+)$/i.exec(line);
-    const bulletMatch = /^\s*[-*•]\s+(.+)$/.exec(line);
+    const bulletMatch = /^\s*[-* / ]\s+(.+)$/.exec(line);
 
     let stepText = null;
     if (numberedMatch) stepText = numberedMatch[1];
@@ -1075,7 +1085,7 @@ function renderMarkdown(parsed) {
         tags.push(`${item.owners.length > 1 ? 'Owners' : 'Owner'}: ${item.owners.join(', ')}`);
       }
       if (item.frequency && item.frequency !== section.frequency) tags.push(`Frequency: ${item.frequency}${item.frequencyInferred ? ' (inferred)' : ''}`);
-      if (tags.length > 0) line += ` _(${tags.join(' · ')})_`;
+      if (tags.length > 0) line += ` _(${tags.join('  /  ')})_`;
       md += line + '\n';
     }
     md += '\n';
@@ -1226,6 +1236,7 @@ function flashBtn(btn, original) {
   setTimeout(() => { btn.textContent = original; }, 1800);
 }
 </script>
+
 <script defer src="/consent-banner.js"></script>
 </body>
 </html>

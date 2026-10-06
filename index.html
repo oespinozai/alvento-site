@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
+
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alvento: An AI operations studio</title>
 <link rel="canonical" href="https://alvento.uk/">
-<meta name="description" content="Alvento is an AI operations studio. We design, build, and operate autonomous systems that do real business work. Regulated medtech and professional bodies are where we specialise deepest.">
+<meta name="description" content="Alvento produces paid content outputs using its own automation, runs an unpaid Staamp pilot, and builds and operates reference systems.">
 <meta property="og:title" content="Alvento: An AI operations studio">
-<meta property="og:description" content="Alvento is an AI operations studio. We design, build, and operate autonomous systems that do real business work.">
+<meta property="og:description" content="Alvento produces paid content outputs using its own automation, runs an unpaid Staamp pilot, and builds and operates reference systems.">
 <meta property="og:image" content="https://alvento.uk/og/default.png">
 <meta property="og:url" content="https://alvento.uk">
 <meta property="og:type" content="website">
@@ -416,7 +416,7 @@ nav .container {
   font-family: var(--font-mono);
   font-size: 2.5rem;
   font-weight: 500;
-  color: var(--surface-raised);
+  color: #6a6a6a;
   margin-bottom: 24px;
   line-height: 1;
 }
@@ -764,6 +764,115 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <link rel="stylesheet" href="/illustration-band.css">
+<style>@media (prefers-reduced-motion: reduce) { .fade-up { opacity: 1; transform: none; transition: none; } }</style>
+<style>
+/* Homepage structure, October 2026. One spacing scale, one card system. */
+.hx{--hx-pad:clamp(72px,9vw,120px);--hx-line:#26343c;--hx-card:linear-gradient(145deg,#131d22,#0e1519 70%)}
+.hx-sec{padding:var(--hx-pad) 0}
+.hx-sec + .hx-sec{padding-top:0}
+.hx-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px 64px;align-items:end;margin-bottom:clamp(36px,5vw,56px)}
+.hx-eyebrow{font:500 .7rem/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:18px}
+.hx-h2{font-family:var(--font-display);font-weight:400;font-size:clamp(2rem,4.2vw,3.25rem);line-height:1.08;letter-spacing:-.02em;margin:0;max-width:17em}
+.hx-h2 em{font-style:italic;color:var(--accent)}
+.hx-intro{color:var(--muted);font-size:1.05rem;line-height:1.7;max-width:34em;margin:0}
+.hx-card{border:1px solid var(--hx-line);border-radius:14px;background:var(--hx-card)}
+.hx-tag{display:inline-block;align-self:flex-start;width:fit-content;font:500 .65rem/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:6px 10px}
+.hx-link{display:inline-block;font:500 .75rem/1.2 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--accent-dim);padding-bottom:3px}
+.hx-link:hover{color:var(--accent-hover)}
+.hx a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.hero{min-height:min(88vh,820px)}
+.hero .container{width:100%}
+
+/* what we do */
+.hx-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 32px}
+.hx-col{border-top:1px solid #3a3a3a;padding:22px 0 8px}
+.hx-col .k{font:500 .68rem/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent-dim);margin-bottom:14px}
+.hx-col h3{font-family:var(--font-display);font-weight:400;font-size:1.55rem;line-height:1.15;margin:0 0 12px}
+.hx-col p{color:var(--muted);font-size:.95rem;line-height:1.65;margin:0 0 14px}
+.hx-col p a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+/* illustration band: caption on its own scrim so it never fights the art */
+.ill-band__caption{bottom:0;max-width:1200px;padding:clamp(56px,8vw,96px) 24px clamp(28px,4vw,48px);background:none}
+.ill-band::after{pointer-events:none}
+.ill-band__caption::before{content:'';position:absolute;inset:0 -100vw;z-index:-1;background:linear-gradient(to top,rgba(10,10,10,.92),rgba(10,10,10,0))}
+
+/* work */
+.hx-feature{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,1fr);gap:32px;padding:clamp(24px,3.5vw,40px)}
+.hx-feature h3,.hx-row h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.5rem,2.4vw,1.9rem);line-height:1.15;margin:14px 0 12px}
+.hx-feature p,.hx-row p{color:var(--muted);font-size:.97rem;line-height:1.7;margin:0}
+.hx-facts{display:grid;align-self:stretch;margin:0;border-left:1px solid var(--hx-line);padding-left:32px}
+.hx-facts div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--hx-line)}
+.hx-facts div:last-child{border-bottom:0}
+.hx-facts dt{font:500 .68rem/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.hx-facts dd{margin:0;font-family:var(--font-display);font-size:2.4rem;line-height:1;color:var(--accent)}
+.hx-row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px clamp(24px,3.5vw,40px);margin-top:16px}
+.hx-row h3{margin:12px 0 6px}
+.hx-demos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.hx-demo{display:flex;flex-direction:column;overflow:hidden;color:inherit;transition:border-color .2s,transform .2s}
+.hx-demo:hover{border-color:var(--accent-dim);transform:translateY(-2px)}
+.hx-demo .art{aspect-ratio:5/3;background:#10191e;border-bottom:1px solid var(--hx-line);overflow:hidden}
+.hx-demo .art img{display:block;width:100%;height:100%;object-fit:cover}
+.hx-demo .art.foyer{display:flex;align-items:center;justify-content:space-between;padding:6% 8%;background:#0a0a0a}
+.hx-demo .art.foyer span{font-family:var(--font-display);font-size:clamp(1.5rem,2.6vw,2.2rem);line-height:1.05}
+.hx-demo .art.foyer img{width:44%;height:auto;object-fit:contain;mix-blend-mode:screen}
+.hx-demo .body{display:flex;flex:1;flex-direction:column;padding:22px 24px 24px}
+.hx-demo h3{font-family:var(--font-display);font-weight:400;font-size:1.4rem;line-height:1.15;margin:12px 0 10px}
+.hx-demo p{color:var(--muted);font-size:.92rem;line-height:1.65;margin:0 0 18px;flex:1}
+.hx-demo .hx-link{align-self:flex-start}
+.hx-more{margin:24px 0 0;color:var(--muted);font-size:.95rem;line-height:1.7}
+.hx-more a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+/* method */
+.hx-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 32px}
+.hx-step{border-top:1px solid #3a3a3a;padding:22px 0 8px}
+.hx-step .n{font:500 .8rem/1 var(--font-mono);letter-spacing:.08em;color:var(--accent);margin-bottom:18px}
+.hx-step h3{font-family:var(--font-display);font-weight:400;font-size:1.6rem;line-height:1.15;margin:0 0 12px}
+.hx-step p{color:var(--muted);font-size:.97rem;line-height:1.7;margin:0;max-width:30em}
+.hx-get{margin-top:18px;font:500 .78rem/1.5 var(--font-mono);letter-spacing:.04em;color:var(--accent)}
+.hx-more{margin:28px 0 0}
+.hx-own{margin-top:clamp(32px,4vw,48px);padding:clamp(22px,3vw,32px);display:flex;gap:16px 32px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;border-left:2px solid var(--accent)}
+.hx-own strong{font-family:var(--font-display);font-weight:400;font-size:clamp(1.3rem,2.2vw,1.7rem);line-height:1.2}
+.hx-own span{color:var(--muted);font-size:.97rem;line-height:1.6;max-width:36em}
+
+/* engagement */
+.hx-plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
+.hx-plan{display:flex;flex-direction:column;padding:clamp(24px,3vw,32px)}
+.hx-plan.feat{border-color:var(--accent-dim)}
+.hx-plan h3{font-family:var(--font-display);font-weight:400;font-size:1.6rem;line-height:1.15;margin:14px 0 12px}
+.hx-plan p{color:var(--muted);font-size:.95rem;line-height:1.65;margin:0 0 18px}
+.hx-plan ul{list-style:none;margin:0 0 24px;padding:0;border-top:1px solid var(--hx-line)}
+.hx-plan li{padding:10px 0;border-bottom:1px solid var(--hx-line);color:var(--text);font-size:.9rem}
+.hx-plan .btn-primary,.hx-plan .btn-secondary{margin-top:auto;align-self:flex-start;font-size:.88rem;padding:12px 24px}
+
+/* tools */
+.hx-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px}
+.hx-tool{align-content:start;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;align-items:baseline;padding:22px 0;border-top:1px solid #3a3a3a;color:inherit}
+.hx-tool h3{font-family:var(--font-display);font-weight:400;font-size:1.35rem;line-height:1.2;margin:0}
+.hx-tool p{grid-column:1;color:var(--muted);font-size:.9rem;line-height:1.6;margin:0}
+.hx-tool .hx-link{grid-column:2;grid-row:1;white-space:nowrap}
+.hx-tool:hover h3{color:var(--accent)}
+
+/* contact */
+.hx-contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px 64px;align-items:start;border-top:1px solid #3a3a3a;padding-top:clamp(40px,5vw,64px)}
+.hx-contact p{color:var(--muted);font-size:1.05rem;line-height:1.75;margin:0 0 24px;max-width:34em}
+
+@media(max-width:1000px){
+  .hx-cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hx-demos,.hx-plans{grid-template-columns:1fr 1fr}
+  .hx-head{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .hx-cols,.hx-steps,.hx-demos,.hx-plans,.hx-tools,.hx-contact{grid-template-columns:1fr}
+  .hx-feature{grid-template-columns:1fr;gap:20px}
+  .hx-facts{border-left:0;border-top:1px solid var(--hx-line);padding:8px 0 0}
+  .hx-row{flex-direction:column;align-items:flex-start}
+  .hx-tool{grid-template-columns:1fr}
+  .hx-tool .hx-link{grid-column:1;grid-row:auto;justify-self:start;margin-top:6px}
+}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
 </head>
 <body>
 
@@ -785,6 +894,8 @@ h1, h2, h3, h4 { font-synthesis: none; }
     </ul>
   </div>
 </nav>
+<main>
+
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -792,93 +903,48 @@ h1, h2, h3, h4 { font-synthesis: none; }
   <div class="container">
     <div class="hero-content">
       <div class="section-label fade-up">Alvento, an AI operations studio</div>
-      <p class="fade-up" style="font-size: 1.15rem; color: var(--muted); max-width: 560px; margin-bottom: 24px; line-height: 1.7;">Most AI never makes it out of the pilot. We exist to close that gap.</p>
       <h1 class="fade-up">We build and run <em>autonomous systems</em> that do real business work.</h1>
-      <p class="fade-up">We've built this for a coffee shop's loyalty program and a clinical vaccination registry alike. Regulated medtech and professional bodies are where we go deepest, but the same discipline holds anywhere the work is operational, consequential, and on the critical path.</p>
+      <p class="fade-up">Alvento builds and runs the automation behind your recurring work. You agree the outputs, we produce them on schedule, and a person checks each one before it reaches you.</p>
       <div class="hero-buttons fade-up">
         <a href="#contact" class="btn-primary">Discuss your project</a>
-        <a href="#capabilities" class="btn-secondary">See what we build</a>
-      </div>
-      <p class="hero-trust fade-up">Production systems, not pilot decks.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PROBLEM FRAMING -->
-<section class="problem" id="problem">
-  <div class="container">
-    <div class="section-label fade-up">01. The problem</div>
-    <h2 class="fade-up">Most businesses are running on <em>manual processes</em> that compound at scale</h2>
-    <div class="problem-grid">
-      <div class="problem-card fade-up">
-        <div class="problem-icon">01</div>
-        <h3>Manual process drag</h3>
-        <p>Membership renewals, abstract review, committee submissions, and congress bookings running on email threads and spreadsheets. The people doing the work are senior; the work itself is clerical; every cycle rebuilds the same state from scratch.</p>
-      </div>
-      <div class="problem-card fade-up">
-        <div class="problem-icon">02</div>
-        <h3>Fragmented tools</h3>
-        <p>A patchwork of SaaS products that don't talk to each other creates data silos, duplication of effort, and decisions made without the full picture. Integration is not an IT problem, it is a business problem.</p>
-      </div>
-      <div class="problem-card fade-up">
-        <div class="problem-icon">03</div>
-        <h3>Compliance constraints</h3>
-        <p>Statutory accessibility (PSBAR), clinical-data submission QA, and membership-data protection sit on the critical path, not adjacent to it. Generic AI tools were never built with those constraints in view, and retrofitting them inside a risk envelope rarely produces a defensible system.</p>
-      </div>
-      <div class="problem-card fade-up">
-        <div class="problem-icon">04</div>
-        <h3>Growing without headcount</h3>
-        <p>Every business reaches the point where hiring more people to do more of the same thing stops working. The businesses that scale past that ceiling have built AI into the operation, not bolted it on top.</p>
+        <a href="#lab" class="btn-secondary">See our work</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CAPABILITY PILLARS -->
-<section class="capabilities" id="capabilities">
+<div class="hx">
+
+<!-- WHAT WE DO -->
+<section class="hx-sec" id="capabilities">
   <div class="container">
-    <div class="section-label fade-up">02. The approach</div>
-    <h2 class="fade-up">Four domains. <em>One partner.</em></h2>
-    <div class="capabilities-grid">
-      <div class="capability-card fade-up">
-        <div class="capability-number">Operations</div>
+    <div class="hx-head fade-up">
+      <div>
+        <div class="hx-eyebrow">01. What we do</div>
+        <h2 class="hx-h2">Where we build AI into <em>operations</em></h2>
+      </div>
+      <p class="hx-intro">Most AI never makes it out of the pilot. We exist to close that gap.</p>
+    </div>
+    <div class="hx-cols">
+      <div class="hx-col fade-up">
+        <div class="k">Operations</div>
         <h3>Process intelligence</h3>
-        <p>We map, automate, and orchestrate your operational workflows, from job reporting and compliance documentation to approval chains and data pipelines. The result is less manual handling and more reliable outputs at scale.</p>
-        <div class="capability-tags">
-          <span class="tag">Workflow automation</span>
-          <span class="tag">Process orchestration</span>
-          <span class="tag">Compliance tooling</span>
-        </div>
+        <p>We map, automate and orchestrate operational workflows, from job reporting and compliance documentation to approval chains and data pipelines.</p>
       </div>
-      <div class="capability-card fade-up">
-        <div class="capability-number">Knowledge</div>
+      <div class="hx-col fade-up">
+        <div class="k">Knowledge</div>
         <h3>Institutional memory</h3>
-        <p>Your organisation holds expertise that lives in people's heads, inboxes, and disconnected documents. We build AI systems that surface the right information at the right time, for your team and your customers.</p>
-        <div class="capability-tags">
-          <span class="tag">Knowledge bases</span>
-          <span class="tag">Document intelligence</span>
-          <span class="tag">Internal AI agents</span>
-        </div>
+        <p>AI systems that surface the right information at the right time, for your team and your customers.</p>
       </div>
-      <div class="capability-card fade-up">
-        <div class="capability-number">Service</div>
+      <div class="hx-col fade-up">
+        <div class="k">Service</div>
         <h3>Customer-facing AI</h3>
-        <p>Intelligent intake, triage, and response systems that handle the high-volume, low-complexity interactions, freeing your team for work that genuinely requires human judgment. Built to the standards your customers expect.</p>
-        <div class="capability-tags">
-          <span class="tag">AI agents</span>
-          <span class="tag">Email infrastructure</span>
-          <span class="tag">Intake automation</span>
-        </div>
+        <p>Intake, triage and response systems that handle high-volume, low-complexity interactions and leave your team the work that needs human judgment.</p>
       </div>
-      <div class="capability-card fade-up">
-        <div class="capability-number">Growth</div>
+      <div class="hx-col fade-up">
+        <div class="k">Growth</div>
         <h3>Visibility and reach</h3>
-        <p>Getting found by the right buyers, in search, in AI answer engines, and in the channels where purchasing decisions are forming. We build the infrastructure that makes your business the answer, not a footnote. See our <a href="/aeo/" style="color:var(--accent);border-bottom:1px solid var(--accent-dim);">Answer Engine Optimisation</a> service, or get a <a href="/website-audit/" style="color:var(--accent);border-bottom:1px solid var(--accent-dim);">free website audit</a>.</p>
-        <div class="capability-tags">
-          <span class="tag">AEO / AI search</span>
-          <span class="tag">SEO infrastructure</span>
-          <span class="tag">Content systems</span>
-        </div>
+        <p>Infrastructure that makes your business the answer in search and AI answer engines. See our <a href="/aeo/">Answer Engine Optimisation</a> service, or get a <a href="/website-audit/">free website audit</a>.</p>
       </div>
     </div>
   </div>
@@ -886,238 +952,179 @@ h1, h2, h3, h4 { font-synthesis: none; }
 
 <section class="ill-band">
   <img class="ill-band__img" src="/images/illustrations/home-operations-1200.webp" srcset="/images/illustrations/home-operations-1200.webp 1200w, /images/illustrations/home-operations-1800.webp 1800w" sizes="100vw" width="1800" height="1009" loading="lazy" decoding="async" alt="Illustration: a stack of paper forms in an inbox tray feeding a small machine on a circuit board, with one finished sheet coming out lit in lime green">
-  <div class="ill-band__caption"><span class="ill-band__eyebrow">Operations, not demos</span><p class="ill-band__line">Paper in, finished work out, <em>a person signs it off</em>.</p></div>
+  <div class="ill-band__caption"><p class="ill-band__line">Paperwork in. Finished work out. <em>A person approves it first.</em></p></div>
 </section>
 
-<!-- HOW ALVENTO WORKS -->
-<section class="how-it-works" id="how-it-works">
+<!-- WORK -->
+<section class="hx-sec" id="lab" style="padding-top:var(--hx-pad)">
   <div class="container">
-    <div class="section-label fade-up">03. The method</div>
-    <h2 class="fade-up">From capability gap to <em>deployed system</em></h2>
-    <div class="steps">
-      <div class="step fade-up">
-        <div class="step-number" aria-hidden="true">01</div>
-        <h3><em>Diagnose</em> the capability gap</h3>
-        <p>We map your current workflows, data flows, and operational constraints. What's costing time, compounding risk, or blocking growth. You get a clear picture of where AI changes the outcome, not a generic strategy deck.</p>
+    <div class="hx-head fade-up">
+      <div>
+        <div class="hx-eyebrow">02. Our work</div>
+        <h2 class="hx-h2">Paid work, a live pilot and reference builds</h2>
       </div>
-      <div class="step fade-up">
-        <div class="step-number" aria-hidden="true">02</div>
-        <h3><em>Deploy</em> the AI layer</h3>
-        <p>We build and ship the system: lightweight, specific, integrated with what you already use. Fast enough to test before committing. Designed to run in production from day one, not to sit in a pilot forever.</p>
+      <p class="hx-intro">Each piece of work is labelled for what it is, so you can see what is paid, what is a pilot and what we built ourselves.</p>
+    </div>
+
+    <article class="hx-card hx-feature fade-up">
+      <div>
+        <span class="hx-tag">Paid content production</span>
+        <h3>Four countries of social content, produced every month</h3>
+        <p>A European heating and water-treatment brand pays Alvento for 32 social posts a month: eight for each of four European countries. Alvento owns and runs the automation behind them, so the brand buys finished posts, not a tool to operate.</p>
+        <p style="margin-top:20px"><a class="hx-link" href="#contact">Discuss content for your brand</a></p>
       </div>
-      <div class="step fade-up">
-        <div class="step-number" aria-hidden="true">03</div>
-        <h3><em>Operationalise</em> and scale</h3>
-        <p>A system that works once should work reliably at scale. We document, monitor, and iterate, turning the initial deployment into a durable operational capability your business can depend on.</p>
+      <dl class="hx-facts">
+        <div><dt>Posts a month</dt><dd>32</dd></div>
+        <div><dt>Posts per country</dt><dd>8</dd></div>
+        <div><dt>European countries</dt><dd>4</dd></div>
+      </dl>
+    </article>
+
+    <article class="hx-card hx-row fade-up">
+      <div>
+        <span class="hx-tag">Live pilot - unpaid</span>
+        <h3>Staamp</h3>
+        <p>Staamp is a live pilot with an independent deli. The pilot is unpaid.</p>
       </div>
+      <a class="hx-link" href="/case-studies/staamp/">About the pilot</a>
+    </article>
+
+    <div class="hx-demos">
+      <a class="hx-card hx-demo fade-up" href="/case-studies/foyer/">
+        <div class="art foyer"><span>How can<br>I help?</span><img src="/case-studies/previews/foyer-orb.png" alt="" width="600" height="600" loading="lazy" decoding="async"></div>
+        <div class="body"><span class="hx-tag">Reference build</span><h3>Foyer, AI phone reception</h3><p>A reference build with a fictional practice, a simulated calendar and sample calls.</p><span class="hx-link">Read the case study</span></div>
+      </a>
+      <a class="hx-card hx-demo fade-up" href="/case-studies/arrears/">
+        <div class="art"><img src="/case-studies/previews/arrears.png" alt="Arrears mock-ledger excerpt showing paid, day 14 and day 42 invoices" width="1200" height="720" loading="lazy" decoding="async"></div>
+        <div class="body"><span class="hx-tag">Reference build</span><h3>Arrears, invoice follow-up</h3><p>Chases unpaid invoices on a six-stage schedule from day 7 to day 42, and holds any payment it cannot match for a person to review.</p><span class="hx-link">Read the case study</span></div>
+      </a>
+      <a class="hx-card hx-demo fade-up" href="/case-studies/immunaris/">
+        <div class="art"><img src="/case-studies/previews/immunaris.png" alt="Immunaris reference interface with a focused view of the vaccination record" width="1200" height="720" loading="lazy" decoding="async"></div>
+        <div class="body"><span class="hx-tag">Reference build</span><h3>Immunaris, vaccination tracking</h3><p>A vaccination-tracking reference build owned by Alvento. It is not a client deployment.</p><span class="hx-link">Read the case study</span></div>
+      </a>
+    </div>
+
+    <p class="hx-more fade-up">More reference builds, built and operated by Alvento: Portraix, Wren, Kestrel, Licit and Score API. <a href="/case-studies/">See all case studies</a>.</p>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="hx-sec" id="work-with-us">
+  <div class="container">
+    <div class="hx-head fade-up">
+      <div>
+        <div class="hx-eyebrow">03. How it works</div>
+        <h2 class="hx-h2">How a project runs, start to finish</h2>
+      </div>
+    </div>
+    <div class="hx-steps">
+      <div class="hx-step fade-up">
+        <div class="n">01</div>
+        <h3>Agree what you get</h3>
+        <p>We start from the finished output, not the technology. You tell us what you need and where it goes. We agree the format, the schedule and how each one is checked.</p>
+        <div class="hx-get">You get: an agreed list of outputs</div>
+      </div>
+      <div class="hx-step fade-up">
+        <div class="n">02</div>
+        <h3>We run the workflow</h3>
+        <p>Alvento owns and operates the automation, so there is nothing for your team to build, host or maintain.</p>
+        <div class="hx-get">You get: finished outputs, on schedule</div>
+      </div>
+      <div class="hx-step fade-up">
+        <div class="n">03</div>
+        <h3>Review and deliver</h3>
+        <p>A person checks each output before it reaches you. Your feedback shapes the next round.</p>
+        <div class="hx-get">You get: reviewed work you can use</div>
+      </div>
+    </div>
+    <div class="hx-card hx-own fade-up">
+      <strong>You buy the outputs. Alvento runs the automation.</strong>
+      <span>The engagement is for the agreed outputs. The automation is not transferred as part of the service.</span>
     </div>
   </div>
 </section>
 
-<!-- LAB / SHIPPED SYSTEMS -->
-<section class="lab" id="lab">
+<!-- WAYS TO START -->
+<section class="hx-sec" id="engagement">
   <div class="container">
-    <div class="section-label fade-up">04. The lab</div>
-    <h2 class="fade-up">The <em>lab</em></h2>
-    <div class="lab-grid">
-      <div class="product-card fade-up">
-        <div class="product-type">Live, Consumer AI</div>
-        <h3>Portraix</h3>
-        <p>AI headshots generated per occupation, with public pages built for buyer-intent search.</p>
-        <a href="https://portraix.com" class="product-link" target="_blank" rel="noopener">Visit Portraix</a>
+    <div class="hx-head fade-up">
+      <div>
+        <div class="hx-eyebrow">04. Ways to start</div>
+        <h2 class="hx-h2">Three ways to <em>work together</em></h2>
       </div>
-      <div class="product-card fade-up">
-        <div class="product-type">Live, Loyalty SaaS</div>
-        <h3>Staamp</h3>
-        <p>Loyalty and rewards infrastructure for hospitality venues, deployed in production behind cloudflared.</p>
-        <a href="https://staamp.co.uk" class="product-link" target="_blank" rel="noopener">Visit Staamp</a>
+      <p class="hx-intro">Pick the starting point that fits. Each one runs the way described above.</p>
+    </div>
+    <div class="hx-plans">
+      <div class="hx-card hx-plan feat fade-up">
+        <span class="hx-tag">Start here</span>
+        <h3>Diagnostic</h3>
+        <p>A structured assessment of your current workflows, data landscape and capability gaps, so you leave knowing where AI changes the outcome and what a build would involve.</p>
+        <ul><li>Workflow and process mapping</li><li>Capability gap analysis</li><li>Build brief and scoping</li></ul>
+        <a href="#contact" class="btn-primary">Ask about a diagnostic</a>
       </div>
-      <div class="product-card fade-up">
-        <div class="product-type">Live, Compliance monitoring</div>
-        <h3>Wren</h3>
-        <p>Monitors UK private-security regulatory changes and flags them to compliance teams on a six-hour detection cadence.</p>
+      <div class="hx-card hx-plan fade-up">
+        <span class="hx-tag">Time-boxed</span>
+        <h3>Scoped output trial</h3>
+        <p>A time-boxed run of agreed outputs, scoped to one capability domain, so you see real work before deciding on more.</p>
+        <ul><li>One capability domain</li><li>Production-ready output</li><li>Review built in</li></ul>
+        <a href="#contact" class="btn-secondary">Ask about a trial</a>
       </div>
-      <div class="product-card fade-up">
-        <div class="product-type">Live, Procurement intelligence</div>
-        <h3>Kestrel</h3>
-        <p>Tracks public-sector healthcare procurement notices and surfaces relevant tender changes as they are published.</p>
-      </div>
-      <div class="product-card fade-up">
-        <div class="product-type">Live, Procurement intelligence</div>
-        <h3>Licit</h3>
-        <p>Procurement tender alerts and public-buying intelligence for suppliers to the Peruvian state, built on a SEACE data poller and alert engine.</p>
-      </div>
-      <div class="product-card fade-up">
-        <div class="product-type">Live, Agent infrastructure</div>
-        <h3>Score API</h3>
-        <p>Local business scoring for AI agents: feed it a business, get back a structured score other agents can act on.</p>
-        <a href="/score-api/" class="product-link">Visit Score API</a>
+      <div class="hx-card hx-plan fade-up">
+        <span class="hx-tag">Ongoing</span>
+        <h3>Capability partnership</h3>
+        <p>An ongoing relationship for businesses deploying AI across several functions. We act as your AI capability team, designing, building and iterating as the business evolves.</p>
+        <ul><li>Multi-domain deployment</li><li>Continuous iteration</li><li>Strategic AI roadmapping</li></ul>
+        <a href="#contact" class="btn-secondary">Ask about a partnership</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TOOLS -->
-<section class="section" id="tools" style="padding: 120px 0;">
+<section class="hx-sec" id="tools">
   <div class="container">
-    <div class="section-label fade-up">05. Free tools</div>
-    <h2 class="fade-up" style="font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.4rem); margin-bottom: 64px; letter-spacing: -0.025em; line-height: 1.08; max-width: 900px; font-weight: 400;">Built from production. <em style="font-style: italic; color: var(--accent);">Free to use.</em></h2>
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr);" class="fade-up">
-      <!-- Tool 1: Live -->
-      <div style="border: 1px solid var(--border); padding: 48px 40px; margin: -0.5px; transition: background 0.3s; position: relative;">
-        <div style="font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-dim); margin-bottom: 20px;">Knowledge</div>
-        <h3 style="font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; margin-bottom: 16px; letter-spacing: -0.01em;">PDF to Markdown</h3>
-        <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 24px;">Convert PDFs to clean Markdown before uploading to Claude or ChatGPT. Cut token usage by up to 30x. No upload, runs in your browser.</p>
-        <a href="/tools/pdf-to-markdown/" style="display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); border-bottom: 1px solid var(--accent-dim); padding-bottom: 2px; transition: color 0.3s;">Open tool ›</a>
+    <div class="hx-head fade-up">
+      <div>
+        <div class="hx-eyebrow">05. Free tools</div>
+        <h2 class="hx-h2">Built from production. <em>Free to use.</em></h2>
       </div>
-      <!-- Tool 2: Coming soon -->
-      <div style="border: 1px solid var(--border); padding: 48px 40px; margin: -0.5px; transition: background 0.3s; position: relative;">
-        <div style="font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-dim); margin-bottom: 20px;">Operations</div>
-        <h3 style="font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; margin-bottom: 16px; letter-spacing: -0.01em;">SOP to Checklist</h3>
-        <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 24px;">Paste any process document or SOP. Get a structured, actionable checklist with steps, owners, and frequency.</p>
-        <a href="/tools/sop-to-checklist/" style="display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); border-bottom: 1px solid var(--accent-dim); padding-bottom: 2px; transition: color 0.3s;">Open tool ›</a>
-      </div>
-      <!-- Tool 3: MDR Technical File Index -->
-      <div style="border: 1px solid var(--border); padding: 48px 40px; margin: -0.5px; transition: background 0.3s; position: relative;">
-        <div style="font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-dim); margin-bottom: 20px;">Compliance</div>
-        <h3 style="font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; margin-bottom: 16px; letter-spacing: -0.01em;">MDR Technical File Index</h3>
-        <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 24px;">Tick the Annex II/III documents you have ready. Missing sections flagged in red before submission. Markdown + DOCX export.</p>
-        <a href="/tools/mdr-technical-file-index/" style="display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); border-bottom: 1px solid var(--accent-dim); padding-bottom: 2px; transition: color 0.3s;">Open tool ›</a>
-      </div>
-      <!-- Tool 4: PSBAR Accessibility Statement Generator -->
-      <div style="border: 1px solid var(--border); padding: 48px 40px; margin: -0.5px; transition: background 0.3s; position: relative;">
-        <div style="font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-dim); margin-bottom: 20px;">Compliance</div>
-        <h3 style="font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; margin-bottom: 16px; letter-spacing: -0.01em;">PSBAR Accessibility Statement</h3>
-        <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 24px;">Draft a WCAG 2.2 AA accessibility statement for UK public-sector sites. Outputs Markdown + paste-ready HTML.</p>
-        <a href="/tools/psbar-statement-generator/" style="display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); border-bottom: 1px solid var(--accent-dim); padding-bottom: 2px; transition: color 0.3s;">Open tool ›</a>
-      </div>
+      <p class="hx-intro">Four tools you can open right now. Add your document, get a usable result in your browser. No sign-up.</p>
     </div>
-    <div class="fade-up" style="margin-top: 48px;">
-      <a href="/tools" style="display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); border-bottom: 1px solid var(--accent-dim); padding-bottom: 2px; transition: color 0.3s;">See all tools ›</a>
+    <div class="hx-tools">
+      <a class="hx-tool fade-up" href="/tools/pdf-to-markdown/"><h3>PDF to Markdown</h3><span class="hx-link">Convert a PDF</span><p>Convert PDFs to clean Markdown before uploading to Claude or ChatGPT. Cut token usage by up to 30x. No upload, runs in your browser.</p></a>
+      <a class="hx-tool fade-up" href="/tools/sop-to-checklist/"><h3>SOP to Checklist</h3><span class="hx-link">Make a checklist</span><p>Paste any process document or SOP. Get a structured, actionable checklist with steps, owners, and frequency.</p></a>
+      <a class="hx-tool fade-up" href="/tools/mdr-technical-file-index/"><h3>MDR Technical File Index</h3><span class="hx-link">Check your file</span><p>Tick the Annex II/III documents you have ready. Missing sections flagged in red before submission. Markdown + DOCX export.</p></a>
+      <a class="hx-tool fade-up" href="/tools/psbar-statement-generator/"><h3>PSBAR Accessibility Statement</h3><span class="hx-link">Draft a statement</span><p>Draft a WCAG 2.2 AA accessibility statement for UK public-sector sites. Outputs Markdown + paste-ready HTML.</p></a>
     </div>
-  </div>
-</section>
-
-<!-- COMPLEXITY CREDIBILITY -->
-<section class="credibility" id="credibility">
-  <div class="container">
-    <div class="credibility-inner fade-up">
-      <div class="credibility-label">Where we operate</div>
-      <h2>Built for <em>operational complexity</em>, not controlled demos</h2>
-      <div class="credibility-grid">
-        <div class="credibility-point">
-          <h3>Registries, professional bodies, and regulated medtech</h3>
-          <p>We understand the obligations that bind UK clinical registries, royal colleges and professional associations, and medtech manufacturers, statutory accessibility, data-submission integrity, post-market surveillance, membership-data protection. We build to your risk envelope, not around it. <a href="/clinical-registries/" style="color: var(--accent);">AI for registries and professional bodies</a>.</p>
-        </div>
-        <div class="credibility-point">
-          <h3>Data-heavy operations</h3>
-          <p>Clinical submissions, case logs, post-market surveillance files, membership archives, structured and unstructured data at volume. We build the pipelines, QA layers, and scoring systems that turn that data into something operationally useful, not a compliance liability.</p>
-        </div>
-        <div class="credibility-point">
-          <h3>Complex workflows</h3>
-          <p>Multi-step, multi-party processes with exceptions, edge cases, and human judgment requirements. We map complexity before we automate it.</p>
-        </div>
-        <div class="credibility-point">
-          <h3>Without an in-house engineering team</h3>
-          <p>Mid-sized businesses and operationally serious SMEs that need to build genuine AI capability without hiring a permanent development team. We build systems that your teams can run, not retainers that depend on us to maintain.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ENGAGEMENT MODELS -->
-<section class="engagement" id="engagement">
-  <div class="container">
-    <div class="section-label fade-up">06. Engagement models</div>
-    <h2 class="fade-up">Working <em>together</em></h2>
-    <p class="engagement-intro fade-up">Three ways to engage depending on where you are in the process. All start with understanding the problem before committing to a build.</p>
-    <div class="engagement-grid">
-      <div class="engagement-card fade-up">
-        <div class="engagement-badge">Start here</div>
-        <h3>Diagnostic</h3>
-        <p>A structured assessment of your current workflows, data landscape, and capability gaps. You leave with a clear view of where AI changes the outcome and what a build would involve.</p>
-        <ul class="engagement-scope">
-          <li>Workflow and process mapping</li>
-          <li>Capability gap analysis</li>
-          <li>Build brief and scoping</li>
-        </ul>
-        <a href="#contact" class="btn-primary" style="font-size:0.88rem;padding:12px 24px;">Discuss your project</a>
-      </div>
-      <div class="engagement-card featured fade-up">
-        <div class="engagement-badge">Most common</div>
-        <h3>Pilot build</h3>
-        <p>A focused, time-boxed build targeting a specific capability gap. Fast enough to test real business value before committing to full deployment. Designed to run in production from the start.</p>
-        <ul class="engagement-scope">
-          <li>Scoped to one capability domain</li>
-          <li>Production-ready output</li>
-          <li>Handover with documentation</li>
-        </ul>
-        <a href="#contact" class="btn-primary" style="font-size:0.88rem;padding:12px 24px;">Start a conversation</a>
-      </div>
-      <div class="engagement-card fade-up">
-        <div class="engagement-badge">For scale</div>
-        <h3>Capability partnership</h3>
-        <p>An ongoing relationship for businesses deploying AI across multiple functions or operating in fast-moving environments. We act as your AI capability team, designing, building, and iterating as the business evolves.</p>
-        <ul class="engagement-scope">
-          <li>Multi-domain deployment</li>
-          <li>Continuous iteration</li>
-          <li>Strategic AI roadmapping</li>
-        </ul>
-        <a href="#contact" class="btn-secondary" style="font-size:0.88rem;padding:12px 24px;">Get in touch</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WORK WITH US -->
-<section class="work-with-us" id="work-with-us">
-  <div class="container">
-    <div class="section-label fade-up">Working with us</div>
-    <h2 class="fade-up">Install and operate <em>agent systems</em> that do real business work</h2>
-    <p class="engagement-intro fade-up">We work as a fractional AI operations team. We install the agent inside your environment, run it alongside your team, measure it against a real business outcome, and hand it over once it works.</p>
-    <div class="credibility-grid">
-      <div class="credibility-point fade-up">
-        <h3>Installed, not handed over</h3>
-        <p>The system runs inside your environment, on your accounts, under your controls. You do not need to hire engineers to keep it alive after we leave.</p>
-      </div>
-      <div class="credibility-point fade-up">
-        <h3>Measured against outcomes</h3>
-        <p>Every agent system is wired to a specific business outcome. We report against it. If it does not do the work, we change it.</p>
-      </div>
-      <div class="credibility-point fade-up">
-        <h3>Fractional operations</h3>
-        <p>We operate the system for as long as it takes to prove it works in production. Then we hand the keys to your team, with documentation and handover.</p>
-      </div>
-      <div class="credibility-point fade-up">
-        <h3>Built for production, not pilots</h3>
-        <p>The work starts from a real operational constraint, not from a demo brief. The output runs in your business, not in a sandbox.</p>
-      </div>
-    </div>
+    <p class="hx-more fade-up"><a class="hx-link" href="/tools">See all free tools</a></p>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="contact" id="contact">
+<section class="hx-sec" id="contact">
   <div class="container">
-    <div class="contact-inner">
+    <div class="hx-contact">
       <div class="fade-up">
-        <div class="section-label">07. Contact</div>
-        <h2>Discuss your project</h2>
+        <div class="hx-eyebrow">06. Contact</div>
+        <h2 class="hx-h2">Discuss your project</h2>
       </div>
-      <div class="contact-info fade-up">
-        <p>If your business is carrying manual processes, fragmented systems, or untapped operational data, and you want to understand what AI capability would actually look like in your context, send us a note. Tell us what you're trying to solve; we'll reply by email with next steps, no fixed format or charge for that first conversation.</p>
+      <div class="fade-up">
+        <p>Tell us what you are trying to solve. We will reply by email with next steps. There is no fixed format and no charge for that first conversation.</p>
         <a href="mailto:hello@alvento.uk" class="contact-email">hello@alvento.uk</a>
       </div>
     </div>
   </div>
 </section>
 
+</div>
+
 <!-- FOOTER -->
+
+</main>
 <footer>
   <div class="container">
     <p>&copy; 2026 Alvento Ltd. Company No. 16394298. United Kingdom.</p>
-    <p>alvento.uk &middot; <a href="/privacy">Privacy</a></p>
+    <p>alvento.uk  /  <a href="/privacy">Privacy</a></p>
   </div>
 </footer>
 
@@ -1254,16 +1261,32 @@ document.addEventListener('DOMContentLoaded', function() {
   "alternateName": "Alvento",
   "url": "https://alvento.uk",
   "email": "hello@alvento.uk",
-  "description": "Alvento is an AI operations studio. We design, build, and operate autonomous systems that do real business work. Regulated medtech and professional bodies are where we specialise deepest.",
+  "description": "Alvento produces paid content outputs using its own automation, runs an unpaid Staamp pilot, and builds and operates reference systems.",
   "foundingDate": "2025-04-17",
-  "founder": { "@type": "Person", "name": "Oscar Espinoza" },
-  "identifier": { "@type": "PropertyValue", "propertyID": "UK Companies House number", "value": "16394298" },
-  "address": { "@type": "PostalAddress", "streetAddress": "124 City Road", "addressLocality": "London", "postalCode": "EC1V 2NX", "addressCountry": "GB" },
+  "founder": {
+    "@type": "Person",
+    "name": "Oscar Espinoza"
+  },
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "UK Companies House number",
+    "value": "16394298"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "124 City Road",
+    "addressLocality": "London",
+    "postalCode": "EC1V 2NX",
+    "addressCountry": "GB"
+  },
   "areaServed": "GB",
-  "sameAs": ["https://find-and-update.company-information.service.gov.uk/company/16394298"]
+  "sameAs": [
+    "https://find-and-update.company-information.service.gov.uk/company/16394298"
+  ]
 }
 </script>
-<script defer src="/consent-banner.js"></script>
+
 <script defer src="/illustration-band.js"></script>
+<script defer src="/consent-banner.js"></script>
 </body>
 </html>
