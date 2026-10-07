@@ -126,6 +126,9 @@ h1, h2, h3, h4 { font-synthesis: none; }
 .cs-feature .status-tag,.cs-row .status-tag{display:inline-block;font-family:var(--font-mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;padding:6px 12px;border-radius:4px;color:var(--muted);border:1px solid var(--border)}
 @media(max-width:1024px){.case-index .cs-demos{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.cs-block{margin-top:40px}.cs-feature{grid-template-columns:1fr;padding:24px;gap:20px}.cs-facts{border-left:0;border-top:1px solid #26343c;padding:8px 0 0}.cs-row{flex-direction:column;align-items:flex-start;padding:22px 24px}.case-index .cs-demos{grid-template-columns:1fr}.cs-list li{grid-template-columns:1fr;padding:18px 20px}.cs-list li .btn-preview{justify-self:start;margin-top:6px}.cs-list p:empty{display:none}}
+.cs-row--pilot{display:grid;grid-template-columns:minmax(180px,300px) minmax(0,1fr) auto;align-items:center;gap:28px}
+.cs-row__img{display:block;width:100%;height:auto;border-radius:8px;border:1px solid #26343c}
+@media(max-width:760px){.cs-row--pilot{grid-template-columns:1fr;gap:18px}}
 </style>
 
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"}}</script>
@@ -168,7 +171,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
 </div>
 <div class="cs-block">
 <div class="cs-head"><h2>Live pilot</h2></div>
-<article class="cs-row cs-row--pilot"><div><span class="status-tag reference">Live pilot - unpaid</span><h3>Staamp</h3><p>Staamp is a live pilot with an independent deli. The pilot is unpaid.</p></div><a class="btn-preview" href="/case-studies/staamp/">Read more</a></article>
+<article class="cs-row cs-row--pilot"><img class="cs-row__img" src="/case-studies/previews/staamp.png" alt="Customer loyalty card framed in a phone, showing seven of nine stamps" loading="lazy" decoding="async" width="1200" height="720"><div><span class="status-tag reference">Live pilot - unpaid</span><h3>Staamp</h3><p>Staamp is a live pilot with an independent deli. The pilot is unpaid.</p></div><a class="btn-preview" href="/case-studies/staamp/">Read more</a></article>
 </div>
 <div class="cs-block">
 <div class="cs-head"><h2>What we can build for you</h2><p>Reference builds owned by Alvento, with samples and demos you can open.</p></div>
