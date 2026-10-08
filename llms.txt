@@ -12,10 +12,10 @@ Alvento Ltd is a UK company (Company No. 16394298), founded and run by Oscar Esp
 
 ## Case studies
 
-- [Lizette's](https://alvento.uk/case-studies/staamp/): a customer loyalty platform live at Lizette’s, an independent coffee shop and paying Alvento client.
+- [Lizette's](https://alvento.uk/case-studies/staamp/): a customer loyalty platform live at Lizette’s, a paying Alvento client, and adaptable for coffee shops, delis, salons, barbers and other local businesses.
 - [Foyer](https://alvento.uk/case-studies/foyer/): an AI phone receptionist reference build, with a live interactive demo.
 - [Arrears](https://alvento.uk/case-studies/arrears/): an automated invoice follow-up reference build, with a live mock ledger demo: six reminder stages from day 7 to 42 and verified payment matching.
-- [Immunaris](https://alvento.uk/case-studies/immunaris/): a clinical vaccination registry reference artefact, showing compliance-by-schema for regulated-medtech record systems.
+- [Immunaris](https://alvento.uk/case-studies/immunaris/): a clinical workflow reference build covering patient intake, vaccination records and certificates, with an interactive demo using sample data.
 
 ## Free tools
 

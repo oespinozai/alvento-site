@@ -5,8 +5,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Immunaris: a vaccination-tracking reference build | Alvento</title>
-<meta name="description" content="Immunaris is a vaccination-tracking reference build owned by Alvento. It is not a client deployment.">
+<title>Immunaris: a clearer clinical workflow | Alvento</title>
+<meta name="description" content="From patient intake to vaccination records and certificates. Explore Immunaris and discuss a clinical workflow built around your service.">
 <link rel="canonical" href="https://alvento.uk/case-studies/immunaris/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,8 +138,8 @@ footer a:hover { color: var(--text); }
 /* Instrument Serif ships one weight; stop browsers faking bold */
 h1, h2, h3, h4 { font-synthesis: none; }
 </style>
-<meta property="og:title" content="Immunaris: a vaccination-tracking reference build | Alvento">
-<meta property="og:description" content="Immunaris is a vaccination-tracking reference build owned by Alvento. It is not a client deployment.">
+<meta property="og:title" content="Immunaris: a clearer clinical workflow | Alvento">
+<meta property="og:description" content="From patient intake to vaccination records and certificates. Explore Immunaris and discuss a clinical workflow built around your service.">
 <meta property="og:url" content="https://alvento.uk/case-studies/immunaris/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://alvento.uk/og/immunaris.png">
@@ -178,257 +178,57 @@ h1, h2, h3, h4 { font-synthesis: none; }
       </figure>
     <div class="project-hero__grid">
       <div class="project-hero__copy">
-        <div class="label">Reference build / vaccination tracking</div>
-        <h1>Immunaris, a vaccination-tracking reference build</h1>
-        <p class="lede">Immunaris is a vaccination-tracking reference build owned by Alvento. It is not a client deployment.</p>
+        <div class="label">Immunaris / Clinical workflows</div>
+        <h1>A clearer record. From first dose to <em>final certificate.</em></h1>
+        <p class="lede">Who needs their next dose? What was administered? Where’s the certificate? Immunaris brings patient registration, vaccination recording and handover into one focused workflow. Explore the screens and follow the record from intake to certificate.</p>
         <div class="btn-group">
           <a href="#demo" class="btn-primary">See the live demo</a>
-          <a href="mailto:hello@alvento.uk?subject=Immunaris%20reference%20build" class="btn-secondary">Ask about the reference build</a>
+          <a href="mailto:hello@alvento.uk?subject=Clinical%20workflow%20enquiry" class="btn-secondary">Discuss your clinical workflow</a>
         </div>
       </div>
 
     </div>
     <div class="meta-row">
-      <div><strong>Domain</strong><span>Reference build / vaccination tracking</span></div>
-      <div><strong>Scope</strong><span>Schema, UI, compliance posture, design system</span></div>
-      <div><strong>Stack</strong><span>React  /  Supabase  /  Postgres RLS</span></div>
-      <div><strong>Status</strong><span>Private, Alvento-owned artefact</span></div>
+      <div><strong>Built for</strong><span>Clinical teams and record-based services</span></div>
+      <div><strong>Workflow</strong><span>Registration, vaccination records, certificates</span></div>
+      <div><strong>Adaptable for</strong><span>Clinics, occupational health and registries</span></div>
+      <div><strong>Status</strong><span>Alvento reference build</span></div>
     </div>
   </div>
   </div>
 </section>
 
-<section class="hero-shots">
-  <div class="container">
-    <div class="shot-grid">
-      <div class="shot"><img src="img/hero-dashboard.png" alt="Immunaris dashboard, clinician landing view"></div>
-      <div class="stacked">
-        <div class="shot"><img src="img/hero-certificates.png" alt="Immunaris vaccination certificate view"></div>
-        <div class="shot"><img src="img/hero-patient.png" alt="Immunaris patient intake form"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY -->
 <section class="section">
   <div class="container">
-    <div class="section-tier"><em>01</em>, The problem</div>
-    <h2>A clinical record should be the <em>defensible artefact</em>, not a compliance liability.</h2>
-    <p>Registries, royal colleges and clinical services fail inspections not because care is bad, but because the record is unprovable. Vaccination history still lives in paper folders, GP silos and spreadsheets, and when an outbreak, an audit, or a recall response arrives, none of those produce the signed, time-stamped, attributable record that the moment requires.</p>
-    <p>Generic electronic-record products solve parts of this. Very few solve it with a retention model, an auditable ledger and an accessibility posture that survives contact with a UK regulator or a royal-college inspection.</p>
-    <p class="why-pullquote">"The record is not a by-product of clinical work. The record is the clinical work, made defensible."</p>
-    <p>That belief is why we build clinical systems the way we do, and why Immunaris exists as a reference artefact for how we think one should look.</p>
-  </div>
-</section>
-
-<!-- HOW -->
-<section class="section">
-  <div class="container">
-    <div class="section-tier"><em>02</em>, The approach</div>
-    <h2>Four operating principles, visible in every screen.</h2>
-    <p>Most clinical SaaS treats compliance as a feature added late. We treat it as the shape of the schema, the shape of the UI, and the shape of the database permissions, decided on day one, visible to the reviewer on page one.</p>
-    <div class="how-grid">
-      <div class="how-item">
-        <div class="item-tag">Principle 01</div>
-        <h3>Compliance as schema, not afterthought</h3>
-        <p>Lawful basis, clinician ID, consent, retention class and cohort are columns, not comments. The record cannot be created without them, which is what keeps the controls enforced by the schema rather than by policy alone.</p>
-      </div>
-      <div class="how-item">
-        <div class="item-tag">Principle 02</div>
-        <h3>An append-only signed ledger</h3>
-        <p>Every clinical event is a signed, timestamped, attributable entry. Corrections are new events that reference the original, no silent edits, no rewrites of history. What a reviewer sees is what actually happened.</p>
-      </div>
-      <div class="how-item">
-        <div class="item-tag">Principle 03</div>
-        <h3>Isolation enforced in the database</h3>
-        <p>Clinic, cohort, and role scoping are enforced in Postgres via row-level security, not in application code where a single bug breaches it. Getting this right at the DB layer is the difference between a secure system and a breach waiting to happen.</p>
-      </div>
-      <div class="how-item">
-        <div class="item-tag">Principle 04</div>
-        <h3>An interface that tells a clinician it takes the record seriously</h3>
-        <p>Clinical Archive, our editorial design language, borrows from printed ledgers and case notes: restrained serifs, ruled lines, oxblood accents for warnings, reading-first layout. Before a field is read, the user knows the system treats its contents as clinical, not consumer.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTRAST -->
-<section class="section">
-  <div class="container">
-    <div class="section-tier">Where it differs</div>
-    <h2>What generic clinical record tools treat as optional, Immunaris treats as <em>load-bearing</em>.</h2>
-    <p>This is a category contrast, not a product comparison. We're describing the defaults we see across generic clinical-record and EHR-adjacent tooling, not any specific vendor, and the choices we made instead.</p>
-
-    <div class="contrast-table">
-      <div class="contrast-row header">
-        <div class="cell">Axis</div>
-        <div class="cell">Generic clinical record tools</div>
-        <div class="cell mine">Immunaris</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell axis">Audit trail</div>
-        <div class="cell">Optional feature, often enabled late</div>
-        <div class="cell mine">Append-only signed ledger, load-bearing from commit one</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell axis">Retention</div>
-        <div class="cell">Policy document, enforced manually</div>
-        <div class="cell mine">Scheduled sweeper enforcing NHS schedules, override-with-justification</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell axis">Role isolation</div>
-        <div class="cell">Application-layer checks</div>
-        <div class="cell mine">Row-level security at the Postgres layer</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell axis">Corrections</div>
-        <div class="cell">Edit-in-place, history overwritten</div>
-        <div class="cell mine">New signed events referencing originals, no silent rewrites</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell axis">Compliance surface</div>
-        <div class="cell">Bolted on as features later</div>
-        <div class="cell mine">Columns in the schema, decided day one</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell axis">Design language</div>
-        <div class="cell">Generic SaaS dashboard</div>
-        <div class="cell mine">Clinical Archive, ledger aesthetic, reading-first</div>
-      </div>
-    </div>
-    <p class="contrast-footnote">Fair comparison: category defaults we've observed, not claims about any named vendor.</p>
-  </div>
-</section>
-
-<!-- WHAT -->
-<section class="section">
-  <div class="container">
-    <div class="section-tier"><em>03</em>, The artefact</div>
-    <h2>Immunaris, across four folios.</h2>
-    <p>Each folio is narrow on purpose. A clinician doing one job should see only what that job needs, with every action signed and traceable.</p>
+    <div class="section-tier">Follow the record</div>
+    <h2>Four steps. <em>One connected workflow.</em></h2>
+    <p>See how a patient moves from registration to a vaccination record and a certificate. Each screen focuses on the task at hand. The reference build uses sample data.</p>
 
     <div class="folio-grid">
       <div class="folio-item">
-        <div class="item-tag">Folio 001, Register</div>
-        <h3>Patient register and cohort view</h3>
-        <p>A ledger of every patient under care, filterable by cohort, due date, risk group or clinic. Built to answer "who still needs their second dose?" in one screen.</p>
+        <div class="item-tag">01 / Find the patient</div>
+        <h3>Find the patient. See what’s due.</h3>
+        <p>A register brings patients and their vaccination status into view. Explore the cohort and due-date information your team would need to plan the next step.</p>
         <div class="shot"><img src="img/folio-001-register.png" alt="Immunaris patient register, folio 001"></div>
       </div>
       <div class="folio-item">
-        <div class="item-tag">Folio 002, Intake</div>
-        <h3>New patient intake and consent</h3>
-        <p>Structured intake capturing identity, lawful basis for processing, allergies, existing immunisation history and consent, validated at the boundary, not at submission.</p>
+        <div class="item-tag">02 / Gather the details</div>
+        <h3>Get the right details from the start.</h3>
+        <p>The intake screen brings identity, allergies, vaccination history and consent details into one structured form, so the team has a clear starting point.</p>
         <div class="shot"><img src="img/folio-002-intake.png" alt="Immunaris patient intake form, folio 002"></div>
       </div>
       <div class="folio-item">
-        <div class="item-tag">Folio 003, Recording</div>
-        <h3>Recording a vaccination event</h3>
-        <p>Vaccine product, batch, site of administration, clinician, timestamp, captured as a single signed event that lands in the append-only ledger and the patient record simultaneously.</p>
+        <div class="item-tag">03 / Record the dose</div>
+        <h3>Record the dose while the details are fresh.</h3>
+        <p>Product, batch, administration site, clinician and time belong together. The recording screen shows how to capture those details as part of the same workflow.</p>
         <div class="shot"><img src="img/folio-003-recording.png" alt="Immunaris vaccination recording screen, folio 003"></div>
       </div>
       <div class="folio-item">
-        <div class="item-tag">Folio 004, Certificates</div>
-        <h3>Certificates and handover</h3>
-        <p>Printable, signed immunisation certificates for the patient, their GP, occupational health or travel clearance, generated from the ledger, not a separate document store.</p>
+        <div class="item-tag">04 / Complete the handover</div>
+        <h3>Turn the record into a useful handover.</h3>
+        <p>Explore the certificate view and how a recorded vaccination can become a document to share. We can adapt the output to the information your service needs to hand over.</p>
         <div class="shot"><img src="img/folio-004-certificates.png" alt="Immunaris certificate view, folio 004"></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-label">Compliance posture, what it respects</div>
-    <h2>The artefact the regulator sees, written down.</h2>
-    <ul class="compliance-list">
-      <li>
-        <div class="tag">UK GDPR &amp; DPA 2018</div>
-        <h3>Lawful basis captured per patient, per purpose</h3>
-        <p>Consent, vital interests and public-task basis are recorded explicitly at intake, with data-subject rights surfaceable on request.</p>
-      </li>
-      <li>
-        <div class="tag">Caldicott principles</div>
-        <h3>Patient-identifiable data minimised at every view</h3>
-        <p>Each screen shows only the identifiers the task requires. Downstream reports default to de-identified cohorts unless an explicit clinical justification is attached.</p>
-      </li>
-      <li>
-        <div class="tag">Records retention</div>
-        <h3>Vaccination records retained per NHS schedule</h3>
-        <p>Adult records retained for ten years after last contact; paediatric records until age twenty-five. Retention is enforced by a sweeper that can be audited and overridden with justification.</p>
-      </li>
-      <li>
-        <div class="tag">GMC record-keeping</div>
-        <h3>Every entry signed, timestamped, attributable</h3>
-        <p>No silent edits. Corrections are written as new signed events that reference the original, keeping the clinical narrative intact.</p>
-      </li>
-      <li>
-        <div class="tag">Auditable ledger</div>
-        <h3>Append-only event log, inspection-ready</h3>
-        <p>Every clinical event is stored as an immutable record in a tamper-evident ledger, exportable as an inspection pack for CQC, sponsors or internal governance.</p>
-      </li>
-      <li>
-        <div class="tag">Row-level security</div>
-        <h3>Clinic-scoped isolation enforced in the database</h3>
-        <p>Data isolation between clinics, cohorts and roles is enforced at the Postgres layer via Supabase RLS, not in the application, where a single bug would breach it.</p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-label">Frameworks in view</div>
-    <h2>The authorities the design was written against.</h2>
-    <p>Immunaris is not accredited by any of these bodies. It is built so that a reviewer opening the record finds each of their frameworks addressed on purpose, in writing, rather than assumed.</p>
-    <ul class="compliance-list">
-      <li>
-        <div class="tag"><a href="https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency" target="_blank" rel="noopener" style="color:inherit">MHRA</a></div>
-        <h3>Medical devices and clinical investigations</h3>
-        <p>Relevant whenever a registry interacts with device outcomes, post-market surveillance, or investigational products.</p>
-      </li>
-      <li>
-        <div class="tag"><a href="https://ico.org.uk/" target="_blank" rel="noopener" style="color:inherit">ICO</a></div>
-        <h3>UK GDPR and DPA 2018</h3>
-        <p>Lawful basis, subject rights, retention schedules and breach posture are written in the system rather than interpreted at read time.</p>
-      </li>
-      <li>
-        <div class="tag"><a href="https://www.gmc-uk.org/" target="_blank" rel="noopener" style="color:inherit">GMC</a></div>
-        <h3>Good medical practice, record-keeping</h3>
-        <p>Every entry attributable, no silent edits, corrections written as new signed events that reference the original.</p>
-      </li>
-      <li>
-        <div class="tag"><a href="https://www.hra.nhs.uk/" target="_blank" rel="noopener" style="color:inherit">HRA</a></div>
-        <h3>Health research approvals</h3>
-        <p>Consent and approvals modelled explicitly so research-use cohorts can be derived without re-engineering the base record.</p>
-      </li>
-      <li>
-        <div class="tag"><a href="https://www.dsptoolkit.nhs.uk/" target="_blank" rel="noopener" style="color:inherit">DSPT</a></div>
-        <h3>NHS data security and protection toolkit</h3>
-        <p>Isolation, access control and audit evidence are produced as artefacts, not claimed in a policy document.</p>
-      </li>
-      <li>
-        <div class="tag"><a href="https://www.nice.org.uk/" target="_blank" rel="noopener" style="color:inherit">NICE</a></div>
-        <h3>Clinical guidance authority</h3>
-        <p>Referenced when registry questions carry implications for published care pathways and standards.</p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-label">Technical stack</div>
-    <h2>Boring, proven, legible.</h2>
-    <p>We chose a stack a second engineer can pick up on day one and a reviewer can reason about without a tour: typed frontend, a real database with real constraints, validation at the boundary.</p>
-    <div class="stack-list">
-      <span class="stack-tag">React</span>
-      <span class="stack-tag">Vite</span>
-      <span class="stack-tag">TypeScript</span>
-      <span class="stack-tag">Supabase</span>
-      <span class="stack-tag">Postgres + RLS</span>
-      <span class="stack-tag">Zod validation</span>
-      <span class="stack-tag">Tailwind / shadcn-remapped</span>
     </div>
   </div>
 </section>
@@ -436,25 +236,46 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <section class="section" id="demo">
   <div class="container">
     <div class="section-label">Live demo</div>
-    <h2>A seeded, English-language build you can click through.</h2>
-    <p>The embedded build below runs against stubbed auth and seeded demo data, no real patient information. The production build runs against Supabase with RLS and clinician sign-in.</p>
+    <h2>Open the register. <em>Follow a patient through.</em></h2>
+    <p>Explore the register, intake and certificate screens in the interactive demo. It uses sample patient data and demo sign-in; no real patient records are included.</p>
     <div class="demo-frame">
       <iframe src="https://immunaris-case-study.vercel.app/dashboard" title="Immunaris, live demo" loading="lazy" referrerpolicy="no-referrer"></iframe>
     </div>
     <p style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 12px;">Or open in a new tab -&gt; <a href="https://immunaris-case-study.vercel.app/dashboard" target="_blank" rel="noopener" style="color: var(--muted);">immunaris-case-study.vercel.app</a></p>
-    <p class="disclosure">Source code is private and owned by Alvento Ltd. The schema, design system and compliance posture shown here are the artefacts we sell, not the source.</p>
+
   </div>
 </section>
 
-<section class="cta-section">
+<section class="section">
   <div class="container">
-    <h2>Questions about this reference build?</h2>
-    <p>Immunaris is an Alvento-owned reference build. Contact us if you would like to discuss the example.</p>
-    <div class="btn-group">
-      <a href="mailto:hello@alvento.uk?subject=Immunaris%20reference%20build" class="btn-primary">Email hello@alvento.uk</a>
-    </div>
+    <div class="section-tier">Make it yours</div>
+    <h2>Your service has its own workflow. <em>Let’s build for it.</em></h2>
+    <p>Immunaris shows one vaccination workflow. The same approach to structured intake, clear records and useful handovers can inform a system for your service. We start with the tasks your team performs and the decisions the record needs to support.</p><div class="how-grid">
+<div class="how-item"><div class="item-tag">Vaccination clinics</div><h3>Bring the appointment into focus.</h3><p>We can shape registration, dose recording and certificate output around your clinic’s services and the information your team needs at each step.</p></div>
+<div class="how-item"><div class="item-tag">Occupational health</div><h3>Make the handover useful.</h3><p>We can adapt the workflow around staff cohorts, review dates and the reports your service needs, with access and sharing rules agreed during scoping.</p></div>
+<div class="how-item"><div class="item-tag">Registries &amp; clinical services</div><h3>Structure the information you depend on.</h3><p>We can design intake, review and reporting around your own dataset and users. The vaccination example provides a starting point for that conversation.</p></div>
+<div class="how-item"><div class="item-tag">Your people &amp; systems</div><h3>Connect the workflow carefully.</h3><p>We agree required fields, user roles, correction history, retention and integrations with your team before a live implementation.</p></div>
+</div>
   </div>
 </section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-tier">Designed for the task</div>
+    <h2>Less hunting for a field. <em>More clarity at each step.</em></h2>
+    <p>The register, intake form and certificate use a consistent layout: readable type, clearly grouped fields and a focused view of the task. The aim is to make the next action easy to find and the resulting record easy to read.</p><p>For a live service, we work through the clinical and information-governance requirements with your team and test the agreed controls. This reference demo is a way to explore the workflow and design.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-tier">Behind the build</div>
+    <h2>A foundation your team <em>can build on.</em></h2>
+    <p>The interface uses React and TypeScript, with structured forms and reusable components. The implementation stack includes Supabase and Postgres; live authentication, permissions, record history and integrations are part of the deployment scope.</p><div class="stack-list"><span class="stack-tag">React</span><span class="stack-tag">TypeScript</span><span class="stack-tag">Supabase / Postgres</span><span class="stack-tag">Zod validation</span></div>
+  </div>
+</section>
+
+<section class="cta-section"><div class="container"><h2>Your clinical workflow deserves the same care as your records.</h2><p>Tell us where information gets entered, where it gets checked and who needs it next. Let’s design a clearer path through the work.</p><div class="btn-group"><a class="btn-primary" href="mailto:hello@alvento.uk?subject=Clinical%20workflow%20enquiry">Discuss your clinical workflow</a></div></div></section>
 
 
 </main>
