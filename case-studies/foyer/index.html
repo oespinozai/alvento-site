@@ -1114,11 +1114,20 @@ for (const id of ['callAudio','callAudio2','callAudio-trade','callAudio2-trade',
   var meta = document.getElementById('demoMeta');
   var sessionId = null;
   var busy = false;
+  var requestController = null;
+  var requestSerial = 0;
   var demoAudio = document.getElementById('demoAudio');
 
   // Switching the example business mid-conversation would carry old persona
   // context into a new one; the track picker calls this to start clean.
   window.foyerResetSession = function () {
+    requestSerial += 1;
+    if (requestController) requestController.abort();
+    requestController = null;
+    setBusy(false);
+    demoAudio.pause();
+    demoAudio.removeAttribute("src");
+    document.getElementById("demoVoiceStage").hidden = true;
     sessionId = null;
     log.innerHTML = '';
     meta.classList.remove('error');
@@ -1146,10 +1155,15 @@ for (const id of ['callAudio','callAudio2','callAudio-trade','callAudio2-trade',
     setBusy(true);
     addMsg('you', message, false);
     var pendingRow = addMsg('foyer', 'Foyer is answering…', true);
+    var serial = ++requestSerial;
+    var controller = new AbortController();
+    requestController = controller;
+    var deadline = setTimeout(function () { controller.abort(); }, 30000);
 
     fetch(DEMO_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      signal: controller.signal,
       body: JSON.stringify({ message: message, sessionId: sessionId, track: window.foyerTrack || 'practice' })
     })
       .then(function (r) {
@@ -1157,6 +1171,8 @@ for (const id of ['callAudio','callAudio2','callAudio-trade','callAudio2-trade',
         return r.json();
       })
       .then(function (data) {
+        if (serial !== requestSerial) return;
+        if (!data || typeof data.reply !== 'string' || !data.reply.trim()) throw new Error('empty demo response');
         sessionId = data.sessionId || sessionId;
         pendingRow.classList.remove('pending');
         pendingRow.querySelector('.txt').textContent = data.reply;
@@ -1169,6 +1185,12 @@ for (const id of ['callAudio','callAudio2','callAudio-trade','callAudio2-trade',
             meta.innerHTML = 'You’ve used all your turns in this demo. Want to hear it on your own line? <a href="mailto:hello@alvento.uk?subject=Phone%20reception%20enquiry">Email hello@alvento.uk</a>.';
           }
         }
+        if (!data.audio) {
+          demoAudio.pause();
+          demoAudio.removeAttribute('src');
+          document.getElementById('demoVoiceStage').hidden = true;
+          meta.textContent = 'Voice is temporarily unavailable. You can continue with text.';
+        }
         if (data.audio) {
           demoAudio.src = 'data:audio/mpeg;base64,' + data.audio;
           demoAudio.classList.add('visible');
@@ -1179,9 +1201,18 @@ for (const id of ['callAudio','callAudio2','callAudio-trade','callAudio2-trade',
         }
       })
       .catch(function (err) {
+        if (serial !== requestSerial) return;
         pendingRow.classList.remove('pending');
         pendingRow.querySelector('.txt').textContent = 'Demo unavailable right now, try again shortly.';
-        var friendly = 'Demo is offline right now. The recordings above are the same system.';
+        var friendly = 'The demo couldn’t answer this time. Try again, or listen to the sample calls above.';
+        if (err.name === 'AbortError') {
+          pendingRow.querySelector('.txt').textContent = 'That reply took too long. Please try again.';
+          friendly = 'You can retry now. The sample calls are also available above.';
+        } else if (err.message === 'demo warming up, try again shortly') {
+          friendly = 'The demo is warming up. Please try again in a moment.';
+        } else if (err.message === 'demo busy, try again shortly') {
+          friendly = 'Foyer is helping another visitor. Please try again in a moment.';
+        }
         if (err.message === 'rate limit exceeded, try again later') {
           friendly = 'The demo is busy, try again in a minute.';
         } else if (err.message === 'conversation limit reached for this demo session') {
@@ -1192,6 +1223,9 @@ for (const id of ['callAudio','callAudio2','callAudio-trade','callAudio2-trade',
         console.error('Foyer demo error:', err.message);
       })
       .finally(function () {
+        clearTimeout(deadline);
+        if (serial !== requestSerial) return;
+        requestController = null;
         setBusy(false);
         input.focus();
       });

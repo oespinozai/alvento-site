@@ -6,9 +6,10 @@ const { synthesize } = require("./speech");
 const { incompleteMobileReply } = require("./phone");
 
 const PORT = process.env.PORT || 8409;
+const MODEL = process.env.FOYER_MODEL || "gemma4:e4b";
 const GAIA_HOST = process.env.GAIA_HOST || "100.97.130.43";
-const OLLAMA_URL = `http://${GAIA_HOST}:11434/api/chat`;
-const TTS_URL = `http://${GAIA_HOST}:8005/v1/audio/speech`;
+const OLLAMA_URL = process.env.OLLAMA_URL || `http://${GAIA_HOST}:11434/api/chat`;
+const TTS_URL = process.env.TTS_URL || `http://${GAIA_HOST}:8005/v1/audio/speech`;
 const ALLOWED_ORIGINS = new Set(
   (process.env.ALLOWED_ORIGINS || "https://alvento.uk,https://www.alvento.uk").split(",")
 );
@@ -75,6 +76,14 @@ Rules:
 - If you offered two times and the caller says only "yes", ask which time. Do not choose for them.`;
 }
 
+function createFoyerServer({ fetchImpl = fetch, synthesizeImpl = synthesize, log = console, config = {} } = {}) {
+const limits = { llmMs: 15000, speechMs: 10000, warmupMs: 90000, probeMs: 60000, maxInFlight: 1, ...config };
+const shutdown = new AbortController();
+let inFlight = 0;
+let probePromise = null;
+let probeTimer;
+let ready = { at: 0, ollamaOk: false, ttsOk: false, warming: false };
+
 const MAX_MESSAGE_LEN = 300;
 const MAX_HISTORY_TURNS = 24; // Retain the full bounded 12-turn demo, including booking details.
 const MAX_TURNS_PER_SESSION = 12;
@@ -83,8 +92,6 @@ const RATE_LIMIT_MAX_REQUESTS = 30; // per IP per window
 const SESSION_TTL_MS = 30 * 60 * 1000; // 30m idle
 
 const sessions = new Map(); // sessionId -> { turns, lastSeen }
-const READY_CACHE_MS = 10000;
-let readyCache = null; // { at, ollamaOk, ttsOk }
 const rateLimits = new Map(); // ip -> { count, windowStart }
 
 function cleanupStale() {
@@ -96,7 +103,8 @@ function cleanupStale() {
     if (now - r.windowStart > RATE_LIMIT_WINDOW_MS) rateLimits.delete(ip);
   }
 }
-setInterval(cleanupStale, 5 * 60 * 1000).unref();
+const cleanupTimer = setInterval(cleanupStale, 5 * 60 * 1000);
+cleanupTimer.unref();
 
 function checkRateLimit(ip) {
   const now = Date.now();
@@ -182,37 +190,54 @@ async function readJsonBody(req, maxBytes = 4096) {
   });
 }
 
-async function callLLM(history, track) {
+async function callLLM(history, track, { timeoutMs = limits.llmMs, signal } = {}) {
   const messages = [{ role: "system", content: buildSystemPrompt(track) }, ...history];
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 35000); // cold model load on gaia measured 18-29s, keep margin
-  try {
-    const resp = await fetch(OLLAMA_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "gemma4:e4b",
-        messages,
-        stream: false,
-        think: false,
-        options: { temperature: 0.3 },
-        keep_alive: "1h",
-      }),
-      signal: controller.signal,
-    });
-    if (!resp.ok) throw new Error(`ollama http ${resp.status}`);
-    const data = await resp.json();
-    const text = data?.message?.content?.trim();
-    if (!text) throw new Error("empty llm response");
-    return text;
-  } finally {
-    clearTimeout(timeout);
-  }
+  const signals = [AbortSignal.timeout(timeoutMs), shutdown.signal];
+  if (signal) signals.push(signal);
+  const resp = await fetchImpl(OLLAMA_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: MODEL, messages, stream: false, think: false,
+      options: { temperature: 0.3, num_ctx: 8192, num_predict: 128 },
+      keep_alive: -1,
+    }),
+    signal: AbortSignal.any(signals),
+  });
+  if (!resp.ok) throw new Error(`ollama http ${resp.status}`);
+  const data = await resp.json();
+  const text = data?.message?.content?.trim();
+  if (!text) throw new Error("empty llm response");
+  return text;
 }
 
 async function callTTS(text) {
-  const audio = await synthesize(text, { url: TTS_URL });
+  const audio = await synthesizeImpl(text, { url: TTS_URL, timeoutMs: limits.speechMs });
   return audio.toString("base64");
+}
+
+function probe(force = false) {
+  if (!force && ready.at && Date.now() - ready.at < limits.probeMs) return probePromise;
+  if (probePromise || shutdown.signal.aborted || inFlight) return probePromise;
+  ready.warming = true;
+  const started = Date.now();
+  probePromise = (async () => {
+    let ollamaOk = false;
+    let ttsOk = false;
+    try {
+      // The same model, context and receptionist prompt as a visitor request.
+      // A version endpoint cannot detect a stalled model runner.
+      await callLLM([{ role: "user", content: "Hello, can I book Friday at ten?" }], "practice", { timeoutMs: limits.warmupMs });
+      ollamaOk = true;
+    } catch (error) { log.error("foyer readiness llm:", error.message); }
+    try {
+      await callTTS("Hello. How can I help?");
+      ttsOk = true;
+    } catch (error) { log.error("foyer readiness tts:", error.message); }
+    ready = { at: Date.now(), ollamaOk, ttsOk, warming: false, latencyMs: Date.now() - started };
+    log.info(JSON.stringify({ event: "foyer_readiness", ...ready }));
+  })().finally(() => { probePromise = null; });
+  return probePromise;
 }
 
 const server = http.createServer(async (req, res) => {
@@ -229,35 +254,30 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // Liveness (/health) only proves the process is up, not that a chat will work.
-  // This checks the actual upstream dependencies with a short budget, for use
-  // by a synthetic monitor rather than a plain uptime check.
+  // Readiness is the result of a real background inference + speech probe.
+  // Return immediately during a cold load, instead of making a visitor wait.
   if (req.method === "GET" && req.url === "/health/ready") {
-    // Cached rather than rate-limited: a monitor polling this shouldn't share
-    // (and potentially exhaust) the /chat quota with a real visitor behind
-    // the same IP/NAT.
-    const now = Date.now();
-    if (!readyCache || now - readyCache.at > READY_CACHE_MS) {
-      const check = (url) =>
-        fetch(url, { signal: AbortSignal.timeout(3000) })
-          .then((r) => {
-            r.body?.cancel();
-            return r.ok;
-          })
-          .catch(() => false);
-      const [ollamaOk, ttsOk] = await Promise.all([
-        check(`http://${GAIA_HOST}:11434/api/version`),
-        check(`http://${GAIA_HOST}:8005/health`),
-      ]);
-      readyCache = { at: now, ollamaOk, ttsOk };
-    }
-    const { ollamaOk, ttsOk } = readyCache;
-    sendJson(res, ollamaOk && ttsOk ? 200 : 503, { ok: ollamaOk && ttsOk, ollama: ollamaOk, tts: ttsOk });
+    const ok = ready.ollamaOk && ready.ttsOk && Date.now() - ready.at < limits.probeMs * 3;
+    if (!ok) probe();
+    sendJson(res, ok ? 200 : 503, { ok, ollama: ready.ollamaOk, tts: ready.ttsOk,
+      warming: ready.warming, checkedAt: ready.at || null, latencyMs: ready.latencyMs || null });
     return;
   }
 
   if (req.method !== "POST" || req.url !== "/chat") {
     sendJson(res, 404, { error: "not found" });
+    return;
+  }
+
+  if (!ready.ollamaOk) {
+    probe();
+    res.setHeader("Retry-After", "15");
+    sendJson(res, 503, { error: "demo warming up, try again shortly" });
+    return;
+  }
+  if (inFlight >= limits.maxInFlight) {
+    res.setHeader("Retry-After", "5");
+    sendJson(res, 503, { error: "demo busy, try again shortly" });
     return;
   }
 
@@ -297,41 +317,69 @@ const server = http.createServer(async (req, res) => {
     sendJson(res, 429, { error: "conversation limit reached for this demo session", sessionId });
     return;
   }
-  session.turns += 1;
-
-  session.history.push({ role: "user", content: message });
-  session.history = session.history.slice(-MAX_HISTORY_TURNS);
-
-  let reply;
-  try {
-    reply = incompleteMobileReply(message) || await callLLM(session.history, session.track);
-  } catch (e) {
-    console.error("chat error (llm):", e.message);
-    sendJson(res, 502, { error: "demo temporarily unavailable" });
+  if (session.busy || inFlight >= limits.maxInFlight) {
+    sendJson(res, 409, { error: "a reply is already in progress" });
     return;
   }
+  session.busy = true;
+  inFlight += 1;
+  const started = Date.now();
+  const disconnected = new AbortController();
+  res.on("close", () => { if (!res.writableEnded) disconnected.abort(); });
+  const history = [...session.history, { role: "user", content: message }].slice(-MAX_HISTORY_TURNS);
 
-  session.history.push({ role: "assistant", content: reply });
-  session.history = session.history.slice(-MAX_HISTORY_TURNS);
 
-  // A working text reply is the useful part of this demo; if speech synthesis
-  // fails or times out, still return the text rather than discarding it.
-  let audioB64 = null;
   try {
-    audioB64 = await callTTS(reply);
-  } catch (e) {
-    console.error("chat error (tts):", e.message);
+    let reply;
+    try {
+      reply = incompleteMobileReply(message) || await callLLM(history, session.track, { signal: disconnected.signal });
+    } catch (error) {
+      if (!disconnected.signal.aborted) ready.ollamaOk = false;
+      log.error(JSON.stringify({ event: "foyer_chat_failure", stage: "llm", elapsedMs: Date.now() - started, error: error.message }));
+      if (!res.destroyed) sendJson(res, 503, { error: "demo temporarily unavailable" });
+      return;
+    }
+    let audioB64 = null;
+    if (!disconnected.signal.aborted) {
+      try { audioB64 = await callTTS(reply); }
+      catch (error) {
+        ready.ttsOk = false;
+        log.error(JSON.stringify({ event: "foyer_chat_failure", stage: "tts", error: error.message }));
+      }
+    }
+    if (disconnected.signal.aborted) return;
+    // Commit a turn only after a useful answer, never on a failed request.
+    session.turns += 1;
+    session.lastSeen = Date.now();
+    session.history = [...history, { role: "assistant", content: reply }].slice(-MAX_HISTORY_TURNS);
+    sendJson(res, 200, { reply, audio: audioB64, audioError: audioB64 === null,
+      sessionId, turnsLeft: MAX_TURNS_PER_SESSION - session.turns });
+    log.info(JSON.stringify({ event: "foyer_chat_success", track: session.track,
+      elapsedMs: Date.now() - started, audio: audioB64 !== null }));
+  } finally {
+    session.busy = false;
+    inFlight -= 1;
+    if (!ready.ollamaOk || !ready.ttsOk) probe(true);
   }
 
-  sendJson(res, 200, {
-    reply,
-    audio: audioB64,
-    audioError: audioB64 === null,
-    sessionId,
-    turnsLeft: MAX_TURNS_PER_SESSION - session.turns,
-  });
 });
 
-server.listen(PORT, "127.0.0.1", () => {
-  console.log(`[foyer-demo] listening on 127.0.0.1:${PORT}`);
+server.once("listening", () => {
+  probe();
+  probeTimer = setInterval(probe, limits.probeMs);
+  probeTimer.unref();
 });
+server.once("close", () => {
+  shutdown.abort();
+  clearInterval(probeTimer);
+  clearInterval(cleanupTimer);
+});
+return server;
+}
+
+if (require.main === module) {
+  createFoyerServer().listen(PORT, "127.0.0.1", () => {
+    console.log(`[foyer-demo] listening on 127.0.0.1:${PORT}`);
+  });
+}
+module.exports = { createFoyerServer };
