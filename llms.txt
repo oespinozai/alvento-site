@@ -34,7 +34,7 @@ These are not external client deployments.
 
 ## Other products and concepts
 
-[Wren, Kestrel, Licit and Score API](https://alvento.uk/case-studies/#experiments): commercial availability remains unverified. Restricted public requests alone do not establish that a product is broken.
+[Wren, Kestrel, Licit and Score API](https://alvento.uk/case-studies/#experiments): specialist monitoring feeds, tender intelligence and local-business scoring. Contact Alvento to discuss access and integration.
 [PSUR Draft Generator](https://alvento.uk/projects/psur-draft-generator/): unbuilt concept, separate from the available free outline tool.
 
 ## Free tools

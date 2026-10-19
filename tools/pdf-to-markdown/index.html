@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF to Markdown Converter: Reduce LLM Token Usage by 30x | Alvento</title>
+    <title>PDF to Markdown Converter | Alvento</title>
 <link rel="canonical" href="https://alvento.uk/tools/pdf-to-markdown/">
-    <meta name="description" content="Convert PDFs to Markdown before uploading to ChatGPT, Claude, or any LLM. Cut token usage by up to 30x. Free, no upload, runs in your browser.">
+    <meta name="description" content="Extract text from PDFs into Markdown for use with AI tools. Results depend on the document. Free, no upload, runs in your browser.">
     <meta name="theme-color" content="#0a0a0a">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -649,7 +649,7 @@
       "name": "Why convert a PDF to Markdown before sending it to an LLM?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "PDFs encode a lot of layout metadata that becomes noise to a language model. Converting to Markdown strips that overhead, preserves semantic structure (headings, lists, tables) and typically cuts token usage by 20-30x on text-heavy documents. Lower cost, better extraction."
+        "text": "Markdown gives you extracted text to review, edit and share with an AI tool. Whether it reduces token use depends on the PDF, the extraction result and how your chosen tool handles documents. No fixed reduction is promised."
       }
     },
     {
@@ -679,8 +679,8 @@
   ]
 }
 </script>
-<meta property="og:title" content="PDF to Markdown Converter: Reduce LLM Token Usage by 30x | Alvento">
-<meta property="og:description" content="Convert PDFs to Markdown before uploading to ChatGPT, Claude, or any LLM. Cut token usage by up to 30x. Free, no upload, runs in your browser.">
+<meta property="og:title" content="PDF to Markdown Converter | Alvento">
+<meta property="og:description" content="Extract text from PDFs into Markdown for use with AI tools. Results depend on the document. Free, no upload, runs in your browser.">
 <meta property="og:url" content="https://alvento.uk/tools/pdf-to-markdown/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://alvento.uk/og/pdf-to-markdown.png">
@@ -756,31 +756,23 @@
 
             <div id="statsCard" class="stats-card hidden">
                 <div class="stat">
-                    <div class="stat-label">PDF Tokens</div>
-                    <div class="stat-value" id="pdfTokens">0</div>
+                    <div class="stat-label">PDF Size (bytes)</div>
+                    <div class="stat-value" id="pdfBytes">0</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-label">Markdown Tokens</div>
-                    <div class="stat-value" id="markdownTokens">0</div>
+                    <div class="stat-label">Markdown Size (bytes)</div>
+                    <div class="stat-value" id="markdownBytes">0</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-label">Compression</div>
-                    <div class="stat-value" id="compressionRatio">0x</div>
+                    <div class="stat-label">Size Ratio</div>
+                    <div class="stat-value" id="sizeRatio">0x</div>
                 </div>
                 <div class="stat">
                     <div class="stat-label">Files Converted</div>
                     <div class="stat-value" id="filesConverted">0</div>
                 </div>
 
-                <div class="cost-estimate">
-                    <div class="cost-text">
-                        This run saved you approximately <span class="cost-saved" id="costSaved">$0.00</span> at <select id="modelSelect" class="model-selector">
-                            <option value="gpt4o">GPT-4o ($5/1M tokens)</option>
-                            <option value="sonnet">Claude Sonnet ($3/1M)</option>
-                            <option value="haiku" selected>Claude Haiku ($0.25/1M)</option>
-                        </select> prices
-                    </div>
-                </div>
+                <p class="commercial-note">File sizes compare the original PDF with the extracted Markdown.</p>
             </div>
 
             <div id="ctaCard" class="cta-card hidden">
@@ -796,7 +788,7 @@
       <h2 id="faq-heading" style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,2.25rem);margin-bottom:28px;font-weight:400;color:var(--text);">Frequently asked questions</h2>
       <details style="border-top:1px solid var(--border);padding:20px 0;">
         <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Why convert a PDF to Markdown before sending it to an LLM?</summary>
-        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">PDFs encode a lot of layout metadata that becomes noise to a language model. Converting to Markdown strips that overhead, preserves semantic structure (headings, lists, tables) and typically cuts token usage by 20-30x on text-heavy documents. Lower cost, better extraction.</div>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Markdown gives you extracted text to review, edit and share with an AI tool. Whether it reduces token use depends on the PDF, the extraction result and how your chosen tool handles documents. No fixed reduction is promised.</div>
       </details>
       <details style="border-top:1px solid var(--border);padding:20px 0;">
         <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Is my PDF uploaded to a server?</summary>
@@ -849,12 +841,11 @@
             copyRawBtn: document.getElementById('copyRawBtn'),
             statsCard: document.getElementById('statsCard'),
             ctaCard: document.getElementById('ctaCard'),
-            pdfTokens: document.getElementById('pdfTokens'),
-            markdownTokens: document.getElementById('markdownTokens'),
-            compressionRatio: document.getElementById('compressionRatio'),
+            pdfBytes: document.getElementById('pdfBytes'),
+            markdownBytes: document.getElementById('markdownBytes'),
+            sizeRatio: document.getElementById('sizeRatio'),
             filesConverted: document.getElementById('filesConverted'),
-            costSaved: document.getElementById('costSaved'),
-            modelSelect: document.getElementById('modelSelect'),
+
             fileSelector: document.getElementById('fileSelector'),
             fileSelectorSelect: document.getElementById('fileSelectorSelect'),
             errorMessage: document.getElementById('errorMessage'),
@@ -1101,46 +1092,14 @@
 
         function updateStats() {
             const doneFiles = state.files.filter(f => f.status === 'done');
-
-            let totalPdfSize = 0;
-            let totalMarkdownTokens = 0;
-
-            doneFiles.forEach(f => {
-                totalPdfSize += f.file.size;
-                totalMarkdownTokens += Math.ceil(f.markdown.length / 4);
-            });
-
-            const pdfTokens = Math.ceil(totalPdfSize / 4);
-            const compression = pdfTokens > 0 ? (pdfTokens / totalMarkdownTokens).toFixed(1) : 0;
-
-            elements.pdfTokens.textContent = pdfTokens.toLocaleString();
-            elements.markdownTokens.textContent = totalMarkdownTokens.toLocaleString();
-            elements.compressionRatio.textContent = compression + 'x';
+            const pdfBytes = doneFiles.reduce((total, f) => total + f.file.size, 0);
+            const markdownBytes = doneFiles.reduce((total, f) => total + new TextEncoder().encode(f.markdown).length, 0);
+            elements.pdfBytes.textContent = pdfBytes.toLocaleString();
+            elements.markdownBytes.textContent = markdownBytes.toLocaleString();
+            elements.sizeRatio.textContent = markdownBytes > 0 ? (pdfBytes / markdownBytes).toFixed(1) + 'x' : '—';
             elements.filesConverted.textContent = doneFiles.length;
-
-            updateCostSavings(pdfTokens, totalMarkdownTokens);
             elements.statsCard.classList.remove('hidden');
         }
-
-        function updateCostSavings(pdfTokens, markdownTokens) {
-            const models = {
-                gpt4o: 5,
-                sonnet: 3,
-                haiku: 0.25,
-            };
-
-            const selectedModel = elements.modelSelect.value;
-            const cost = models[selectedModel];
-            const saved = ((pdfTokens - markdownTokens) / 1000000) * cost;
-
-            elements.costSaved.textContent = '$' + Math.max(0, saved).toFixed(2);
-        }
-
-        elements.modelSelect.addEventListener('change', () => {
-            const pdfTokens = parseInt(elements.pdfTokens.textContent.replace(/,/g, ''));
-            const markdownTokens = parseInt(elements.markdownTokens.textContent.replace(/,/g, ''));
-            updateCostSavings(pdfTokens, markdownTokens);
-        });
 
         elements.processingBtn.addEventListener('click', processFiles);
 
