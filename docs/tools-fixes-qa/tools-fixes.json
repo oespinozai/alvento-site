@@ -1,0 +1,34 @@
+{
+  "status": "pass",
+  "checks": [
+    {
+      "name": "Real wizard severity/duration regressions and class-specific PSUR copy",
+      "status": "pass"
+    },
+    {
+      "name": "Main landmark, layout and selected accessibility checks: /tools/",
+      "status": "pass"
+    },
+    {
+      "name": "Main landmark, layout and selected accessibility checks: /tools/cpd-tracker/",
+      "status": "pass"
+    },
+    {
+      "name": "Main landmark, layout and selected accessibility checks: /tools/mdr-psur-outline-generator/",
+      "status": "pass"
+    },
+    {
+      "name": "Main landmark, layout and selected accessibility checks: /tools/psbar-statement-generator/",
+      "status": "pass"
+    },
+    {
+      "name": "Main landmark, layout and selected accessibility checks: /score-api/",
+      "status": "pass"
+    },
+    {
+      "name": "CPD labelled inputs remain usable and save fictional activity",
+      "status": "pass"
+    }
+  ],
+  "pageErrors": []
+}

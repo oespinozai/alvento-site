@@ -1,0 +1,97 @@
+[
+  {
+    "path": "/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/case-studies/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/case-studies/staamp/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/case-studies/foyer/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/case-studies/arrears/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/case-studies/immunaris/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/tools/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/tools/pdf-to-markdown/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/tools/sop-to-checklist/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/tools/udi-decoder/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/tools/cpd-tracker/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/tools/mdr-class-check/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/tools/mdr-psur-outline-generator/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/tools/mdr-technical-file-index/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/tools/psbar-statement-generator/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/aeo/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/website-audit/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/privacy/",
+    "status": "pass",
+    "violations": []
+  },
+  {
+    "path": "/score-api/",
+    "status": "pass",
+    "violations": []
+  }
+]

@@ -215,6 +215,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
     </div>
 </nav>
 
+<main>
 <div class="container">
     <div class="breadcrumb">
         <a href="/">Home</a> / <a href="/tools">Tools</a> / CPD Tracker
@@ -230,11 +231,12 @@ h1, h2, h3, h4 { font-synthesis: none; }
             <div class="card-title">Add Activity</div>
             <div class="form-row">
                 <input type="text" id="actName" placeholder="Activity Name">
+                <label for="actDate" class="visually-hidden">Activity date</label>
                 <input type="date" id="actDate">
                 <input type="number" id="actHours" placeholder="Hours" step="0.5">
             </div>
             <div class="form-row">
-                <select id="actCat">
+                <select id="actCat" aria-label="Activity category">
                     <option value="clinical">Clinical</option>
                     <option value="academic">Academic / Research</option>
                     <option value="teaching">Teaching</option>
@@ -245,7 +247,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
                 <button class="btn-add" onclick="addActivity()">Add Entry</button>
             </div>
             <div style="margin-top: 24px; border-top: 1px solid var(--border); padding-top: 24px;">
-                <label style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--dim);">Target College</label>
+                <label for="collegeSelect" style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--dim);">Target College</label>
                 <select id="collegeSelect" style="margin-top: 8px;" onchange="updateCompliance()">
                     <option value="rcs">RCS England (50/yr, 25 ext)</option>
                     <option value="rcp">RCP London (50/yr, 1:1)</option>
@@ -325,13 +327,14 @@ h1, h2, h3, h4 { font-synthesis: none; }
       <p style="margin-top:40px;color:var(--muted);font-size:0.9rem;line-height:1.6;">Still have a question, or need a variant for your specific regulatory context? <a href="/#contact" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);">Ask us directly</a>, or read our <a href="/blog/" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);">Insights</a> for longer writeups.</p>
     </section>
 
+</div>
+</main>
     <footer>
         <div class="container" style="display: flex; justify-content: space-between;">
             <div>&copy; 2026 Alvento Ltd.  /  <a href="/privacy">Privacy</a></div>
             <div>Data stored locally in browser.</div>
         </div>
     </footer>
-</div>
 
 <script>
     let activities = [];

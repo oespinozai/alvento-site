@@ -313,7 +313,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
         </div>
 
         <div style="text-align:center;margin-top:40px;">
-            <a href="mailto:hello@alvento.uk?subject=MDR%20classification%20review" class="btn-cta" style="display:inline-block;text-decoration:none;">Get an expert review of this classification</a>
+            <a href="mailto:hello@alvento.uk?subject=MDR%20classification%20review" class="btn-cta" style="display:inline-block;text-decoration:none;">Discuss a classification review</a>
         </div>
     </main>
     <footer>
@@ -439,6 +439,16 @@ h1, h2, h3, h4 { font-synthesis: none; }
     function computeResult() {
         let cls = 'I'; // default
         let basis = [];
+        const classRank = { I: 0, IIa: 1, IIb: 2, III: 3 };
+
+        // Later adjustments may raise the result, but never lower a class
+        // already reached by the preceding answers.
+        function raiseTo(candidate, reason) {
+            if (classRank[candidate] > classRank[cls]) {
+                cls = candidate;
+                basis.push(reason);
+            }
+        }
 
         // Rule application
         const dur = answers.duration?.value;
@@ -448,9 +458,9 @@ h1, h2, h3, h4 { font-synthesis: none; }
         const risk = answers.risk?.value;
 
         if (inv === 'active_impl') {
-            cls = 'III'; basis.push('Rule 12: Active implantable device');
+            cls = 'III'; basis.push('Rule 8: Active implantable device');
         } else if (inv === 'inv_long') {
-            if (bio === 'medicinal') { cls = 'III'; basis.push('Rule 13: Contains medicinal substance'); }
+            if (bio === 'medicinal') { cls = 'III'; basis.push('Rule 14: Contains medicinal substance'); }
             else if (bio === 'absorbed') { cls = 'IIa'; basis.push('Rule 17: Absorbable invasive device'); }
             else { cls = 'IIb'; basis.push('Rule 8: Surgically invasive device > 60 min / implantable'); }
         } else if (inv === 'inv_short') {
@@ -460,34 +470,34 @@ h1, h2, h3, h4 { font-synthesis: none; }
             else if (bio === 'bio_effect') { cls = 'IIb'; basis.push('Rule 17: Non-invasive with biological effect'); }
             else if (bio === 'absorbed') { cls = 'IIa'; basis.push('Rule 17: Non-invasive, absorbed'); }
             else {
-                cls = 'I'; basis.push('Rule 1: Non-invasive device, no hazardous energy, Class I');
+                cls = 'I'; basis.push('Non-invasive baseline');
             }
         }
 
         // Energy overrides / adjustments
-        if (energy === 'rad_ther' && cls !== 'III') {
-            cls = 'IIb'; basis.push('Rule 9: Therapeutic ionising radiation source');
-        } else if (energy === 'life' && cls !== 'III') {
-            cls = 'IIb'; basis.push('Rule 11: Life-sustaining active device');
-        } else if (energy === 'therapeutic' && cls === 'I') {
-            cls = 'IIa'; basis.push('Rule 9: Therapeutic active device');
-        } else if (energy === 'diagnostic' && cls === 'I') {
-            cls = 'IIa'; basis.push('Rule 10: Active device for diagnosis / monitoring');
+        if (energy === 'rad_ther') {
+            raiseTo('IIb', 'Rule 9: Therapeutic ionising radiation source');
+        } else if (energy === 'life') {
+            raiseTo('IIb', 'Life-sustaining active device');
+        } else if (energy === 'therapeutic') {
+            raiseTo('IIa', 'Rule 9: Therapeutic active device');
+        } else if (energy === 'diagnostic') {
+            raiseTo('IIa', 'Rule 10: Active device for diagnosis / monitoring');
         }
 
         // Risk tiebreaker
         if (risk === 'high') {
-            cls = 'IIb'; basis.push('Risk uplift: Failure could be life-threatening');
+            raiseTo('IIb', 'Risk uplift: Failure could be life-threatening');
         }
 
         // Long-term invasive + substance
         if (dur === 'long' && inv !== 'noninvasive') {
-            cls = 'IIb'; basis.push('Rule 8: Long-term implantable device');
+            raiseTo('IIb', 'Rule 8: Long-term implantable device');
         }
 
         // Medicinal product, highest rule
         if (bio === 'medicinal') {
-            cls = 'III'; basis.push('Rule 13/14: Contains / combines with medicinal product');
+            raiseTo('III', 'Rule 14: Contains / combines with medicinal product');
         }
 
         // Remove duplicates
@@ -526,9 +536,9 @@ h1, h2, h3, h4 { font-synthesis: none; }
                 ? 'updated when necessary, and at least every two years'
                 : 'updated at least annually';
             psurHtml = `
-                <div class="psur-teaser-title">Ready for your PSUR?</div>
-                <p>Class ${cls} devices require a Periodic Safety Update Report under EU MDR Article 86, ${cadence}. Alvento's PSUR Generator drafts yours in under 30 minutes.</p>
-                <a href="/tools/mdr-psur-outline-generator/">Try PSUR Generator</a>
+                <div class="psur-teaser-title">Start with a PSUR outline</div>
+                <p>Class ${cls} devices require a Periodic Safety Update Report under EU MDR Article 86, ${cadence}. Our free tool creates an outline to help organise your source material for drafting and review.</p>
+                <a href="/tools/mdr-psur-outline-generator/">Try the free PSUR outline tool</a>
             `;
         }
         document.getElementById('psurTeaser').innerHTML = psurHtml;
