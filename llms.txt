@@ -1,26 +1,46 @@
 # Alvento
 
-> Alvento is an AI operations studio. We design, build and operate autonomous systems that do real business work, with a focus on regulated medtech, clinical registries and professional bodies where compliance, reliability and auditability are non-negotiable.
+> Alvento builds and operates practical AI-assisted business workflows.
 
-Alvento Ltd is a UK company (Company No. 16394298), founded and run by Oscar Espinoza. Alvento does not outsource client work.
+Alvento Ltd is a UK company (Company No. 16394298), founded and run by Oscar Espinoza. Independent specialists can be included per engagement depending on requirements, availability and cost.
 
-## Services
+## Delivery models
 
-- [AI for clinical registries and professional bodies](https://alvento.uk/clinical-registries/): submission quality checks, first drafts of audit and annual reports, member enquiry handling and cited document search for UK clinical registries, national clinical audits, royal colleges and healthcare professional bodies, with human sign-off on every external output.
-- [Answer Engine Optimisation](https://alvento.uk/aeo/): structured citations across ChatGPT, Perplexity, Google AI and Copilot for regulated organisations, with copy that survives MHRA, GMC and ICO review.
-- [Free website audit](https://alvento.uk/website-audit/): accessibility, SEO, performance and security audit for professional bodies, registries and regulated medtech, delivered as an executive summary.
+Managed services: Alvento runs the workflow and delivers agreed outputs. Bespoke builds: ownership, licensing, hosting, handover and support are agreed commercially. White-label solutions: software or services under another business’s brand. Pricing differs by delivery model. Automation, human review and escalation rules are agreed per workflow.
 
-## Case studies
+## Services and enquiries
 
-- [Lizette's](https://alvento.uk/case-studies/staamp/): a customer loyalty platform live at Lizette’s, a paying Alvento client, and adaptable for coffee shops, delis, salons, barbers and other local businesses.
-- [Foyer](https://alvento.uk/case-studies/foyer/): an AI phone receptionist reference build, with a live interactive demo.
-- [Arrears](https://alvento.uk/case-studies/arrears/): an automated invoice follow-up reference build, with a live mock ledger demo: six reminder stages from day 7 to 42 and verified payment matching.
-- [Immunaris](https://alvento.uk/case-studies/immunaris/): a clinical workflow reference build covering patient intake, vaccination records and certificates, with an interactive demo using sample data.
+- [Services and engagement models](https://alvento.uk/#engagement): content production, workflow automation, bespoke and white-label development.
+- [Workflow examples](https://alvento.uk/clinical-registries/): possible applications and an owned reference build, not evidence of external clinical deployments.
+- [AI-search visibility](https://alvento.uk/aeo/): public-content and discoverability work with sampled answer monitoring; no guaranteed citations.
+- [Website review](https://alvento.uk/website-audit/): scoped accessibility, SEO, performance and security-posture checks, not certification or a full audit.
+
+## Paid client work
+
+- [Content production](https://alvento.uk/case-studies/#content-production): anonymous European heating and water-treatment brand; 32 social posts monthly, eight for each of four countries.
+- [Staamp at Lizette’s](https://alvento.uk/case-studies/staamp/): customer loyalty at an independent coffee shop. Dated usage figures describe usage, not revenue or retention uplift.
+
+## Available products
+
+- [Staamp](https://alvento.uk/case-studies/staamp/): browser-based loyalty cards and staff-approved stamps. Setup and adaptations separately scoped.
+- [Portraix](https://portraix.com): available AI headshot product, formerly ioomm.app. One product under its current name.
+
+## Alvento-owned reference builds
+
+These are not external client deployments.
+- [Foyer](https://alvento.uk/case-studies/foyer/): fictional businesses, synthetic sample calls and simulated bookings.
+- [Arrears](https://alvento.uk/case-studies/arrears/): fictional invoices, captured emails and simulated payments.
+- [Immunaris](https://alvento.uk/case-studies/immunaris/): sample vaccination records and demonstration workflows, not proof of compliance or certification.
+
+## Other products and concepts
+
+[Wren, Kestrel, Licit and Score API](https://alvento.uk/case-studies/#experiments): commercial availability remains unverified. Restricted public requests alone do not establish that a product is broken.
+[PSUR Draft Generator](https://alvento.uk/projects/psur-draft-generator/): unbuilt concept, separate from the available free outline tool.
 
 ## Free tools
 
-Eight free, browser-based tools for regulated-industry teams, listed at [alvento.uk/tools](https://alvento.uk/tools/): PDF to Markdown, SOP to Checklist, UDI Decoder, CPD Tracker, MDR Class Check, MDR PSUR Outline Generator, MDR Technical File Index Generator, and a PSBAR Accessibility Statement Generator.
+[Eight browser-based tools](https://alvento.uk/tools/): PDF to Markdown, SOP to Checklist, UDI Decoder, CPD Activity Tracker, MDR Class Check, MDR PSUR Outline Generator, MDR Technical File Index and PSBAR Accessibility Statement Generator. Documents are processed locally. Optional page analytics is separate and loads only after acceptance. The Technical File Index exports Markdown and a Word-ready HTML .doc file, not .docx. Tools do not establish regulatory compliance.
 
 ## Contact
 
-hello@alvento.uk. Enquiries are answered in writing.
+hello@alvento.uk. Include your business and problem, required output, current systems and approximate volume or frequency.

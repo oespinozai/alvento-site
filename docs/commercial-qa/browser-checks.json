@@ -1,0 +1,323 @@
+[
+  {
+    "name": "Live desktop render",
+    "status": "pass",
+    "detail": "We build and run autonomous systems that do real business work."
+  },
+  {
+    "name": "1440px /",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /case-studies/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /case-studies/staamp/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /case-studies/foyer/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /case-studies/arrears/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /case-studies/immunaris/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /tools/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /tools/mdr-technical-file-index/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /tools/mdr-psur-outline-generator/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /tools/psbar-statement-generator/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /tools/cpd-tracker/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /aeo/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /website-audit/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /privacy/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /score-api/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /projects/psur-draft-generator/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /blog/get-cited-by-ai-search/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "1440px /clinical-registries/",
+    "status": "pass",
+    "detail": {
+      "width": 1440,
+      "scroll": 1440
+    }
+  },
+  {
+    "name": "390px /",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /case-studies/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /case-studies/staamp/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /case-studies/foyer/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /case-studies/arrears/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /case-studies/immunaris/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /tools/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /tools/mdr-technical-file-index/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /tools/mdr-psur-outline-generator/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /tools/psbar-statement-generator/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /tools/cpd-tracker/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /aeo/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /website-audit/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /privacy/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /score-api/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /projects/psur-draft-generator/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /blog/get-cited-by-ai-search/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "390px /clinical-registries/",
+    "status": "pass",
+    "detail": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "name": "Technical index generates and downloads real .doc",
+    "status": "pass",
+    "detail": {
+      "filename": "technical-file-index.doc",
+      "format": "HTML .doc"
+    }
+  },
+  {
+    "name": "Enquiry prompts contain all four requested details",
+    "status": "pass",
+    "detail": 6
+  },
+  {
+    "name": "Reference labels visible",
+    "status": "pass",
+    "detail": "All three visible"
+  },
+  {
+    "name": "Analytics fresh/decline/accept/withdraw",
+    "status": "pass",
+    "detail": "No GA request before consent or after decline; one on accept; withdrawal clears cookies and stops reload"
+  },
+  {
+    "name": "JavaScript page errors",
+    "status": "pass",
+    "detail": []
+  }
+]

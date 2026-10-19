@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
+
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
@@ -211,17 +211,19 @@ footer {
 /* Instrument Serif ships one weight; stop browsers faking bold */
 h1, h2, h3, h4 { font-synthesis: none; }
 </style>
+<link rel="stylesheet" href="/commercial.css">
 </head>
 <body>
 
 <nav>
   <div class="container">
     <a href="/" class="logo">alvento<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="/#capabilities">Capabilities</a></li>
-      <li><a href="/#lab">Products</a></li>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+    <ul id="primary-nav" class="nav-links">
+      <li><a href="/#capabilities">Services</a></li>
+      <li><a href="/case-studies/#products">Products</a></li>
       <li><a href="/tools">Tools</a></li>
-      <li><a href="/case-studies/">Case studies</a></li>
+      <li><a href="/case-studies/">Our work</a></li>
       <li><a href="/blog/">Insights</a></li>
     </ul>
   </div>

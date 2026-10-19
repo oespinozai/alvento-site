@@ -234,18 +234,20 @@ h1, h2, h3, h4 { font-synthesis: none; }
 </style>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
+
+
+<link rel="stylesheet" href="/commercial.css">
 </head>
 <body>
 
 <nav>
   <div class="container">
     <a href="/" class="logo">alvento<span>.</span></a>
-    <ul class="nav-links">
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+    <ul id="primary-nav" class="nav-links">
       <li><a href="/">Home</a></li>
       <li><a href="/tools">Tools</a></li>
-      <li><a href="/projects/psur-draft-generator/">Projects</a></li>
+      <li><a href="/case-studies/">Our work</a></li>
       <li><a href="/blog/">Insights</a></li>
       <li><a href="/#contact" class="nav-cta">Contact</a></li>
     </ul>
@@ -256,18 +258,18 @@ h1, h2, h3, h4 { font-synthesis: none; }
 
 <section class="hero">
   <div class="container">
-    <div class="status-badge"><span class="dot"></span> Validation in progress, join the waitlist</div>
+    <div class="status-badge"><span class="dot"></span> Unbuilt concept / Register interest</div>
     <div class="hero-label">Regulatory Intelligence</div>
     <h1>PSUR Draft Generator: concept</h1>
     <p class="lede">A concept for assisting with periodic safety update report drafting. The full AI draft generator has not been built.</p>
     <div class="hero-ctas">
-      <a href="mailto:hello@alvento.uk?subject=PSUR%20Draft%20Generator%20-%20Early%20Access" class="btn-primary">Reserve early access</a>
+      <a href="mailto:hello@alvento.uk?subject=PSUR%20Draft%20Generator%20concept" class="btn-primary">Discuss the concept</a>
       <a href="/tools/mdr-psur-outline-generator/" class="btn-secondary">Try the free outline tool</a>
     </div>
     <div class="meta-row">
-      <span>Target: <span class="accent">&pound;199-&pound;399/mo</span></span>
+      <span>Pricing: <span class="accent">not agreed</span></span>
       <span>Class: <span class="accent">IIa / IIb / III</span></span>
-      <span>Format: <span class="accent">PDF + DOCX + Markdown</span></span>
+      <span>Proposed formats: <span class="accent">PDF + DOCX + Markdown</span></span>
       <span>Launch: <span class="accent">not confirmed</span></span>
     </div>
   </div>
@@ -287,7 +289,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <section class="section" style="background: var(--surface-raised); margin: 0; padding: 80px 0;">
   <div class="container">
     <h2 class="section-heading">How the concept could work</h2>
-    <p class="section-body" style="margin-bottom: 8px;">Three steps from raw data to draft report.</p>
+    <p class="section-body" style="margin-bottom: 8px;">Four proposed steps from source material to a reviewed draft.</p>
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
@@ -316,7 +318,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <section class="section">
   <div class="container">
     <h2 class="section-heading">The free tool, today</h2>
-    <p class="section-body" style="margin-bottom: 32px;">While the draft generator is in development, we already ship a free Article 86 outline generator. Enter your device class and reporting period and get a conformant structure in seconds.</p>
+    <p class="section-body" style="margin-bottom: 32px;">The full draft generator has not been built; separately, we already ship a free Article 86 outline generator. Enter your device class and reporting period and get a draft structure for review in seconds.</p>
     <div class="visual">
       <div class="browser-frame">
         <div class="browser-header">
@@ -325,7 +327,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
         </div>
         <div class="browser-body" style="background: var(--bg); text-align: center; padding: 60px 40px;">
           <div style="font-family: var(--font-display); font-size: 1.6rem; color: var(--text); margin-bottom: 12px;">MDR Article 86 PSUR Outline</div>
-          <div style="color: var(--muted); font-size: 0.95rem; max-width: 400px; margin: 0 auto 28px;">Generate a conformant outline for your Class IIa/IIb/III device in seconds.</div>
+          <div style="color: var(--muted); font-size: 0.95rem; max-width: 400px; margin: 0 auto 28px;">Generate a draft outline for your Class IIa/IIb/III device in seconds.</div>
           <div style="display: inline-block; background: var(--accent); color: var(--bg); padding: 12px 24px; border-radius: 3px; font-weight: 600; font-size: 0.9rem;">Generate PSUR Outline</div>
         </div>
       </div>
@@ -334,65 +336,22 @@ h1, h2, h3, h4 { font-synthesis: none; }
   </div>
 </section>
 
-<section class="section" style="background: var(--surface-raised); margin: 0; padding: 80px 0;">
-  <div class="container">
-    <h2 class="section-heading">Planned pricing</h2>
-    <p class="section-body" style="margin-bottom: 8px;">Three tiers when the full generator ships. Early access reserved at a fixed discount.</p>
-    <div class="pricing">
-      <div class="price-card">
-        <h3>Starter</h3>
-        <div class="price">&pound;199<span style="font-size:1rem;color:var(--dim);">/mo</span></div>
-        <div class="period">Up to 3 device families</div>
-        <ul>
-          <li>Article 86 outlines</li>
-          <li>AI draft generation</li>
-          <li>PDF + Markdown export</li>
-          <li>Email support</li>
-        </ul>
-        <div class="note">Monthly billing</div>
-      </div>
-      <div class="price-card featured">
-        <h3>Growth</h3>
-        <div class="price">&pound;399<span style="font-size:1rem;color:var(--dim);">/mo</span></div>
-        <div class="period">Up to 10 device families</div>
-        <ul>
-          <li>Everything in Starter</li>
-          <li>DOCX export</li>
-          <li>Version control</li>
-          <li>Priority support</li>
-        </ul>
-        <div class="note">Monthly billing</div>
-      </div>
-      <div class="price-card">
-        <h3>Enterprise</h3>
-        <div class="price">Custom</div>
-        <div class="period">Unlimited device families</div>
-        <ul>
-          <li>Everything in Growth</li>
-          <li>SSO + audit trails</li>
-          <li>Custom integrations</li>
-          <li>Dedicated onboarding</li>
-        </ul>
-        <div class="note">Annual contract</div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <section class="section">
   <div class="container">
     <div class="honesty-box">
       <h3>What exists today</h3>
-      <p>A free Article 86 outline generator and this page. No AI pipeline. No document generator. We are testing whether QA/RA managers will pay for automated PSUR drafting before we build the full product. If you reserve a spot, you help shape what gets built, and you lock in early-access pricing when we ship.</p>
+      <p>A free Article 86 outline generator and this page. No AI pipeline. No document generator. We are testing whether QA/RA managers will pay for automated PSUR drafting before we build the full product. You can register interest to discuss requirements. There is no confirmed launch date or commercial offer.</p>
     </div>
   </div>
 </section>
 
 <section class="cta-section">
   <div class="container">
-    <h2>Reserve your early access spot</h2>
-    <p>Join the waitlist for the PSUR Draft Generator. Early access subscribers get 50 percent off for the first six months.</p>
-    <a href="mailto:hello@alvento.uk?subject=PSUR%20Draft%20Generator%20-%20Early%20Access" class="btn-primary" style="font-size:1rem;padding:16px 36px;">Request early access</a>
+    <h2>Discuss the PSUR concept</h2>
+    <p>Tell us what report preparation involves in your organisation. The full generator is unbuilt; the free outline tool is separate.</p>
+    <a href="mailto:hello@alvento.uk?subject=PSUR%20Draft%20Generator%20concept" class="btn-primary" style="font-size:1rem;padding:16px 36px;">Register interest</a>
   </div>
 </section>
 

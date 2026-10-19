@@ -1,113 +1,85 @@
 (function () {
+  'use strict';
   var STORAGE_KEY = 'alvento_consent';
-
-  function getStoredChoice() {
-    try {
-      return localStorage.getItem(STORAGE_KEY);
-    } catch (e) {
-      return null;
-    }
+  var analyticsLoaded = false;
+  function stored() { try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; } }
+  function save(value) { try { localStorage.setItem(STORAGE_KEY, value); } catch (e) { /* Choice remains effective on this page. */ } }
+  function loadAnalytics() {
+    if (analyticsLoaded) return;
+    analyticsLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+    window.gtag('js', new Date());
+    window.gtag('config', 'G-XBMBRD8E00');
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00';
+    document.head.appendChild(script);
   }
-
-  function setStoredChoice(value) {
-    try {
-      localStorage.setItem(STORAGE_KEY, value);
-    } catch (e) {
-      /* ignore */
-    }
-  }
-
-  function updateConsent(granted) {
-    if (typeof window.gtag === 'function') {
-      window.gtag('consent', 'update', {
-        analytics_storage: granted ? 'granted' : 'denied',
+  function clearAnalyticsCookies() {
+    document.cookie.split(';').forEach(function (cookie) {
+      var name = cookie.split('=')[0].trim();
+      if (!/^_ga(?:_|$)|^_gid$|^_gat/.test(name)) return;
+      var domains = ['', location.hostname, '.' + location.hostname, 'alvento.uk', '.alvento.uk'];
+      domains.forEach(function (domain) {
+        document.cookie = name + '=; Max-Age=0; path=/' + (domain ? '; domain=' + domain : '') + '; SameSite=Lax';
       });
-    }
+    });
   }
-
-  function injectBanner() {
-    var el = document.createElement('div');
-    el.setAttribute('role', 'dialog');
-    el.setAttribute('aria-label', 'Cookie preferences');
-    el.style.cssText = [
-      'position:fixed', 'left:16px', 'right:16px', 'bottom:16px', 'z-index:9999',
-      'max-width:560px', 'margin:0 auto',
-      'background:#141414', 'color:#e8e8e8', 'border:1px solid #2a2a2a',
-      'border-radius:8px', 'padding:20px 24px',
-      'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif',
-      'font-size:0.9rem', 'line-height:1.5',
-      'box-shadow:0 8px 32px rgba(0,0,0,0.4)',
-    ].join(';');
-
+  function showPreferences(opener) {
+    if (document.getElementById('cookie-choices')) return;
+    var box = document.createElement('div');
+    box.id = 'cookie-choices';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-label', 'Cookie preferences');
+    box.style.cssText = 'position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:560px;margin:0 auto;background:#141414;color:#e8e8e8;border:1px solid #555;border-radius:8px;padding:20px 24px;font:0.9rem/1.5 sans-serif;box-shadow:0 8px 32px #0006';
     var text = document.createElement('p');
-    text.style.cssText = 'margin:0 0 14px;color:#c8c8c8;';
-    text.textContent = 'We use analytics cookies to understand how visitors use this site. You can accept or decline; declining does not affect anything else on the site.';
-
-    var btnRow = document.createElement('div');
-    btnRow.style.cssText = 'display:flex;gap:12px;flex-wrap:wrap;';
-
-    function makeBtn(labelText, primary) {
+    text.textContent = 'Optional analytics helps us understand page use. It loads only if you accept. Free-tool documents are processed in your browser, separately from page analytics.';
+    text.style.margin = '0 0 14px';
+    var row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:12px;flex-wrap:wrap';
+    function button(label, granted) {
       var b = document.createElement('button');
-      b.type = 'button';
-      b.textContent = labelText;
-      b.style.cssText = [
-        'font-family:inherit', 'font-size:0.85rem', 'font-weight:600',
-        'padding:10px 20px', 'border-radius:4px', 'cursor:pointer',
-        primary ? 'background:#c4f042;color:#0a0a0a;border:none;' : 'background:transparent;color:#e8e8e8;border:1px solid #2a2a2a;',
-      ].join(';');
-      return b;
+      b.type = 'button'; b.textContent = label;
+      b.style.cssText = 'font:600 .85rem sans-serif;padding:12px 20px;border:1px solid #c4f042;border-radius:4px;cursor:pointer;' + (granted ? 'background:#c4f042;color:#0a0a0a' : 'background:#141414;color:#e8e8e8');
+      b.addEventListener('click', function () {
+        save(granted ? 'granted' : 'denied');
+        box.remove();
+        if (granted) loadAnalytics();
+        else { clearAnalyticsCookies(); if (analyticsLoaded) { location.reload(); return; } }
+        if (opener) opener.focus();
+      });
+      row.appendChild(b); return b;
     }
-
-    var acceptBtn = makeBtn('Accept analytics', true);
-    var declineBtn = makeBtn('Decline', false);
-
-    acceptBtn.addEventListener('click', function () {
-      setStoredChoice('granted');
-      updateConsent(true);
-      el.remove();
-    });
-    declineBtn.addEventListener('click', function () {
-      setStoredChoice('denied');
-      updateConsent(false);
-      el.remove();
-    });
-
-    btnRow.appendChild(acceptBtn);
-    btnRow.appendChild(declineBtn);
-    el.appendChild(text);
-    el.appendChild(btnRow);
-    document.body.appendChild(el);
+    var accept = button('Accept analytics', true);
+    button('Decline', false);
+    var policy = document.createElement('a'); policy.href = '/privacy/'; policy.textContent = 'Privacy policy'; policy.style.cssText = 'color:#c4f042;display:inline-block;margin-top:14px;text-decoration:underline';
+    box.appendChild(text); box.appendChild(row); box.appendChild(policy); document.body.appendChild(box);
+    // The banner is non-modal. Focus moves only when the visitor opens preferences.
+    if (opener) accept.focus();
   }
-
   function init() {
-    var choice = getStoredChoice();
-    if (choice === 'granted' || choice === 'denied') {
-      // Consent default in <head> already reflects this; nothing more to do here.
-      return;
-    }
-    if (document.body) {
-      injectBanner();
-    } else {
-      document.addEventListener('DOMContentLoaded', injectBanner);
-    }
+    if (stored() === 'granted') loadAnalytics();
+    else if (stored() !== 'denied') showPreferences();
+    var footer = document.querySelector('footer') || document.body;
+    var preferences = document.createElement('button'); preferences.type = 'button'; preferences.className = 'cookie-preferences'; preferences.textContent = 'Cookie preferences';
+    preferences.addEventListener('click', function () { showPreferences(preferences); }); footer.appendChild(preferences);
+    document.querySelectorAll('nav .nav-toggle').forEach(function (toggle) {
+      var menu = toggle.closest('nav').querySelector('.nav-links');
+      if (!menu) return;
+      menu.id = menu.id || 'primary-nav'; toggle.setAttribute('aria-controls', menu.id);
+      function close() { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+      toggle.addEventListener('click', function () { toggle.setAttribute('aria-expanded', String(menu.classList.toggle('open'))); });
+      menu.addEventListener('click', function (e) { if (e.target.closest('a')) close(); });
+      toggle.closest('nav').addEventListener('keydown', function (e) { if (e.key === 'Escape') { close(); toggle.focus(); } });
+    });
   }
-
-  init();
-
-  // Every lead path on the site is a mailto link, so count clicks on them as leads.
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
   document.addEventListener('click', function (e) {
     var link = e.target && e.target.closest && e.target.closest('a[href^="mailto:"]');
-    if (!link || typeof window.gtag !== 'function') return;
-    var subject = '';
-    try {
-      subject = new URL(link.href).searchParams.get('subject') || '';
-    } catch (err) {
-      /* ignore */
-    }
-    window.gtag('event', 'generate_lead', {
-      method: 'email',
-      lead_subject: subject.slice(0, 100),
-      transport_type: 'beacon',
-    });
+    if (!link || stored() !== 'granted' || typeof window.gtag !== 'function') return;
+    // Do not send email subjects, addresses, bodies or free-form enquiry data to analytics.
+    window.gtag('event', 'generate_lead', { method: 'email', transport_type: 'beacon' });
   }, true);
 })();

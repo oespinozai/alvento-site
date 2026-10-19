@@ -262,27 +262,30 @@ button:focus-visible, a:focus-visible, summary:focus-visible, .ledger-scroll:foc
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://alvento.uk/og/arrears.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://alvento.uk/"}, {"@type": "ListItem", "position": 2, "name": "Case studies", "item": "https://alvento.uk/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Arrears", "item": "https://alvento.uk/case-studies/arrears/"}]}, {"@type": "Article", "headline": "Good work deserves better than “just following up”.", "description": "Arrears demonstrates consistent invoice reminders, payment matching and a clear ledger. Try the workflow with fictional invoices and simulated payments.", "url": "https://alvento.uk/case-studies/arrears/", "mainEntityOfPage": "https://alvento.uk/case-studies/arrears/", "image": "https://alvento.uk/og/arrears.png", "datePublished": "2026-09-06", "dateModified": "2026-10-08", "author": {"@type": "Organization", "name": "Alvento Ltd", "url": "https://alvento.uk/"}, "publisher": {"@type": "Organization", "name": "Alvento Ltd", "url": "https://alvento.uk/"}, "about": ["Accounts receivable", "Invoice follow-up", "Payment reconciliation"]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can this work with our invoicing process?", "acceptedAnswer": {"@type": "Answer", "text": "Tell us where invoices and payment records live. We check the available integrations and agree how the ledger will stay up to date before scoping a live implementation."}}, {"@type": "Question", "name": "Can we change the reminder schedule?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The demo shows days 7, 14, 21, 28, 35 and 42. We can adapt the timing, wording and escalation rules to your terms and approval process."}}, {"@type": "Question", "name": "Does the demo contact anyone or take payments?", "acceptedAnswer": {"@type": "Answer", "text": "No. It uses fictional invoices, captured emails and simulated payments. A live rollout needs an agreed invoice source, payment connection and email delivery setup."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://alvento.uk/"}, {"@type": "ListItem", "position": 2, "name": "Case studies", "item": "https://alvento.uk/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Arrears", "item": "https://alvento.uk/case-studies/arrears/"}]}, {"@type": "Article", "headline": "Good work deserves better than “just following up”.", "description": "Arrears demonstrates consistent invoice reminders, payment matching and a clear ledger. Try the workflow with fictional invoices and simulated payments.", "url": "https://alvento.uk/case-studies/arrears/", "mainEntityOfPage": "https://alvento.uk/case-studies/arrears/", "image": "https://alvento.uk/og/arrears.png", "datePublished": "2026-09-06", "dateModified": "2026-10-19", "author": {"@type": "Organization", "name": "Alvento Ltd", "url": "https://alvento.uk/"}, "publisher": {"@type": "Organization", "name": "Alvento Ltd", "url": "https://alvento.uk/"}, "about": ["Accounts receivable", "Invoice follow-up", "Payment reconciliation"]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can this work with our invoicing process?", "acceptedAnswer": {"@type": "Answer", "text": "Tell us where invoices and payment records live. We check the available integrations and agree how the ledger will stay up to date before scoping a live implementation."}}, {"@type": "Question", "name": "Can we change the reminder schedule?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The demo shows days 7, 14, 21, 28, 35 and 42. We can adapt the timing, wording and escalation rules to your terms and approval process."}}, {"@type": "Question", "name": "Does the demo contact anyone or take payments?", "acceptedAnswer": {"@type": "Answer", "text": "No. It uses fictional invoices, captured emails and simulated payments. A live rollout needs an agreed invoice source, payment connection and email delivery setup."}}]}]}</script>
 <link rel="stylesheet" href="/project-heroes.css">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
+
+
+<link rel="stylesheet" href="/commercial.css">
 </head>
 <body>
 
 <nav>
   <div class="container">
     <a href="/" class="logo">alvento<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="/#capabilities">Capabilities</a></li>
-      <li><a href="/#lab">Products</a></li>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+    <ul id="primary-nav" class="nav-links">
+      <li><a href="/#capabilities">Services</a></li>
+      <li><a href="/case-studies/#products">Products</a></li>
       <li><a href="/tools">Tools</a></li>
-      <li><a href="/case-studies/">Case studies</a></li>
+      <li><a href="/case-studies/">Our work</a></li>
       <li><a href="/blog/">Insights</a></li>
       <li><a href="/#contact" class="nav-cta">Discuss your project</a></li>
     </ul>
   </div>
 </nav>
 
+<main>
 <section class="page-hero project-hero project-hero--arrears">
   <div class="container">
     <div class="project-hero__card">
@@ -310,7 +313,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible, .ledger-scroll:foc
     </div>
   </div>
   </div>
-</section>
+</section><section class="project-summary"><div class="container"><h2>Scope and evidence</h2><dl class="project-facts"><div><dt>For / problem</dt><dd>Businesses needing consistent invoice follow-up and payment matching.</dd></div><div><dt>Today / status</dt><dd>Alvento-owned reference build, not an external client deployment. Fictional invoices, captured emails and simulated payments.</dd></div><div><dt>Evidence</dt><dd>Interactive ledger, reminder and payment-matching demonstration.</dd></div><div><dt>Separate implementation</dt><dd>Your invoice source, email delivery, payment connection, reminder rules and review responsibilities need a separate scope.</dd></div></dl><a class="btn-secondary" href="mailto:hello@alvento.uk?subject=Workflow%20enquiry&amp;body=Business%20and%20problem%3A%0ARequired%20output%3A%0ACurrent%20systems%3A%0AApproximate%20volume%20or%20frequency%3A%0A">Discuss your workflow</a></div></section>
 
 <section class="section" id="ledger" aria-labelledby="ledger-title">
   <div class="container">
@@ -405,6 +408,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible, .ledger-scroll:foc
 
 <section class="cta-section"><div class="container"><h2>Make invoice chasing a process someone doesn’t have to remember.</h2><p>Tell us how you invoice, where payment records live and who handles exceptions. We’ll help shape the follow-up around your business.</p><div class="btn-group"><a class="btn-primary" href="mailto:hello@alvento.uk?subject=Invoice%20follow-up%20for%20my%20business">Talk about your invoice workflow</a></div></div></section>
 
+</main>
 <footer>
   <div class="container">
     <p>&copy; 2026 Alvento Ltd, <a href="/">Home</a>, <a href="/case-studies/">Case studies</a>, <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, <a href="/privacy">Privacy</a></p>

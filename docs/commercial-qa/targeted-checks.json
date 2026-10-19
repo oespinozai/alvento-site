@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Arrears real service smoke through local proxy",
+    "status": "pass",
+    "detail": {
+      "captured": 6,
+      "status": "Signed test payment matched to #1200. Paid status saved; reminders stopped."
+    }
+  },
+  {
+    "name": "Targeted accessibility /",
+    "status": "pass",
+    "detail": "No violations in selected automated rules"
+  },
+  {
+    "name": "Targeted accessibility /case-studies/",
+    "status": "pass",
+    "detail": "No violations in selected automated rules"
+  },
+  {
+    "name": "Targeted accessibility /case-studies/staamp/",
+    "status": "pass",
+    "detail": "No violations in selected automated rules"
+  },
+  {
+    "name": "Targeted accessibility /aeo/",
+    "status": "pass",
+    "detail": "No violations in selected automated rules"
+  },
+  {
+    "name": "Targeted accessibility /privacy/",
+    "status": "pass",
+    "detail": "No violations in selected automated rules"
+  },
+  {
+    "name": "Targeted accessibility /tools/mdr-technical-file-index/",
+    "status": "pass",
+    "detail": "No violations in selected automated rules"
+  }
+]

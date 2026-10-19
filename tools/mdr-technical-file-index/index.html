@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MDR Technical File Index Generator: Annex II/III  /  Alvento</title>
-    <meta name="description" content="Generate a complete Annex II/III technical documentation index for EU MDR submission. Flags missing sections, exports Markdown + a Word-ready .doc file. Free.">
+    <meta name="description" content="Generate an Annex II/III technical documentation index for review. Flags missing sections, exports Markdown + a Word-ready .doc file (HTML format). Free.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://alvento.uk/tools/mdr-technical-file-index/">
     <meta property="og:title" content="MDR Technical File Index Generator: Annex II/III  /  Alvento">
-    <meta property="og:description" content="Generate a complete Annex II/III technical documentation index for EU MDR submission. Flags missing sections, exports Markdown + a Word-ready .doc file. Free.">
+    <meta property="og:description" content="Generate an Annex II/III technical documentation index for review. Flags missing sections, exports Markdown + a Word-ready .doc file (HTML format). Free.">
     <meta property="og:url" content="https://alvento.uk/tools/mdr-technical-file-index/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://alvento.uk/og/mdr-technical-file-index.png">
@@ -47,7 +47,7 @@
       "name": "What's covered by Annex II and Annex III of EU MDR?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Annex II defines the technical documentation: device description, design and manufacturing information, general safety and performance requirements, risk-benefit analysis, V&V evidence and the PMS plan. Annex III covers post-market surveillance documentation. The generator maps every required section so nothing is missed."
+        "text": "Annex II defines the technical documentation: device description, design and manufacturing information, general safety and performance requirements, risk-benefit analysis, V&V evidence and the PMS plan. Annex III covers post-market surveillance documentation. The tool provides a starting index for review; it does not verify that all applicable requirements are covered."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "Does it flag missing sections?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Incomplete or absent sections are flagged in the generated index, so you know exactly what is still owed before submission to your notified body."
+        "text": "Yes. Incomplete or absent sections are flagged in the generated index, based on your selections. This is not an assessment of the documents themselves."
       }
     },
     {
@@ -63,7 +63,7 @@
       "name": "What export formats are supported?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Markdown and a Word-ready .doc file. The Markdown output pastes cleanly into Confluence, Notion or any git-backed documentation system; the .doc file opens directly in Microsoft Word and integrates with Greenlight Guru, SharePoint and traditional QMS platforms."
+        "text": "Markdown and a Word-ready .doc file (HTML format). The Markdown output pastes cleanly into Confluence, Notion or any git-backed documentation system; the .doc file opens directly in Microsoft Word and can be reviewed and saved in your document-control workflow."
       }
     },
     {
@@ -219,8 +219,9 @@ h1, h2, h3, h4 { font-synthesis: none; }
 </style>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>
+
+
+<link rel="stylesheet" href="/commercial.css">
 </head>
 <body>
 
@@ -230,6 +231,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
     </div>
 </nav>
 
+<main>
 <div class="container">
     <div class="breadcrumb">
         <a href="/">Home</a> / <a href="/tools">Tools</a> / MDR Technical File Index
@@ -237,7 +239,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
 
     <header>
         <h1>MDR Technical File <em>Index Generator</em></h1>
-        <p class="intro">Check your Annex II and Annex III compliance. Generate a structured table of contents for your Notified Body submission.</p>
+        <p class="intro">Map the Annex II and Annex III documents you have into an index. This checklist does not assess document quality or establish compliance. Review the output with a qualified specialist before use.</p>
     </header>
 
     <div class="card">
@@ -322,15 +324,15 @@ h1, h2, h3, h4 { font-synthesis: none; }
       <h2 id="faq-heading" style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,2.25rem);margin-bottom:28px;font-weight:400;color:var(--text);">Frequently asked questions</h2>
       <details style="border-top:1px solid var(--border);padding:20px 0;">
         <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">What's covered by Annex II and Annex III of EU MDR?</summary>
-        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Annex II defines the technical documentation: device description, design and manufacturing information, general safety and performance requirements, risk-benefit analysis, V&amp;V evidence and the PMS plan. Annex III covers post-market surveillance documentation. The generator maps every required section so nothing is missed.</div>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Annex II defines the technical documentation: device description, design and manufacturing information, general safety and performance requirements, risk-benefit analysis, V&amp;V evidence and the PMS plan. Annex III covers post-market surveillance documentation. The tool provides a starting index for review; it does not verify that all applicable requirements are covered.</div>
       </details>
       <details style="border-top:1px solid var(--border);padding:20px 0;">
         <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Does it flag missing sections?</summary>
-        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Yes. Incomplete or absent sections are flagged in the generated index, so you know exactly what is still owed before submission to your notified body.</div>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Yes. Incomplete or absent sections are flagged in the generated index, based on your selections. This is not an assessment of the documents themselves.</div>
       </details>
       <details style="border-top:1px solid var(--border);padding:20px 0;">
         <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">What export formats are supported?</summary>
-        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Markdown and a Word-ready .doc file. The Markdown output pastes cleanly into Confluence, Notion or any git-backed documentation system; the .doc file opens directly in Microsoft Word and integrates with Greenlight Guru, SharePoint and traditional QMS platforms.</div>
+        <div style="margin-top:14px;color:var(--muted);line-height:1.75;">Markdown and a Word-ready .doc file (HTML format). The Markdown output pastes cleanly into Confluence, Notion or any git-backed documentation system; the .doc file opens directly in Microsoft Word and can be reviewed and saved in your document-control workflow.</div>
       </details>
       <details style="border-top:1px solid var(--border);padding:20px 0;">
         <summary style="cursor:pointer;font-weight:500;color:var(--text);font-size:1.05rem;list-style:none;padding-right:24px;">Does this cover IVDR as well?</summary>
@@ -340,13 +342,14 @@ h1, h2, h3, h4 { font-synthesis: none; }
       <p style="margin-top:40px;color:var(--muted);font-size:0.9rem;line-height:1.6;">Still have a question, or need a variant for your specific regulatory context? <a href="/#contact" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);">Ask us directly</a>, or read our <a href="/blog/" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);">Insights</a> for longer writeups.</p>
     </section>
 
+</div>
+</main>
     <footer>
         <div class="container" style="display: flex; justify-content: space-between;">
             <div>&copy; 2026 Alvento Ltd.  /  <a href="/privacy">Privacy</a></div>
             <div>alvento.uk</div>
         </div>
     </footer>
-</div>
 
 <script>
     let currentTab = 'preview';

@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What shipping a consumer AI product taught us about building for businesses | Alvento</title>
 <link rel="canonical" href="https://alvento.uk/blog/what-shipping-a-consumer-ai-product-taught-us/">
-    <meta name="description" content="ioomm.app is a live AI product that takes real payments. Here&#x27;s what building it taught us about the gap between a demo and something that actually runs in production.">
+    <meta name="description" content="Portraix (formerly ioomm.app) is a live AI product that takes real payments. Here&#x27;s what building it taught us about the gap between a demo and something that actually runs in production.">
     <meta name="author" content="Oscar Espinoza, Alvento">
     <meta property="og:title" content="What shipping a consumer AI product taught us about building for businesses | Alvento">
-    <meta property="og:description" content="ioomm.app is a live AI product that takes real payments. Here&#x27;s what building it taught us about the gap between a demo and something that actually runs in production.">
+    <meta property="og:description" content="Portraix (formerly ioomm.app) is a live AI product that takes real payments. Here&#x27;s what building it taught us about the gap between a demo and something that actually runs in production.">
     <meta property="og:url" content="https://alvento.uk/blog/what-shipping-a-consumer-ai-product-taught-us/">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -217,7 +217,7 @@
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": "What shipping a consumer AI product taught us about building for businesses",
-        "description": "ioomm.app is a live AI product that takes real payments. Here's what building it taught us about the gap between a demo and something that actually runs in production.",
+        "description": "Portraix (formerly ioomm.app) is a live AI product that takes real payments. Here's what building it taught us about the gap between a demo and something that actually runs in production.",
         "author": { "@type": "Person", "name": "Oscar Espinoza", "affiliation": { "@type": "Organization", "name": "Alvento" } },
         "publisher": { "@type": "Organization", "name": "Alvento", "url": "https://alvento.uk" },
         "datePublished": "2026-03-18",
@@ -230,23 +230,19 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://alvento.uk/og/blog-what-shipping-a-consumer-ai-product-taught-us.png">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script>
-<script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag('config', 'G-XBMBRD8E00');
-    </script>
+
+
+<link rel="stylesheet" href="/commercial.css">
 </head>
 <body>
     <nav>
         <div class="container">
             <a href="/" class="logo">alvento<span>.</span></a>
-            <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))">&#9776;</button>
+            <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
             <ul class="nav-links" id="primary-nav">
-                <li><a href="/#capabilities">Capabilities</a></li>
-                <li><a href="/#lab">Products</a></li>
-                <li><a href="/case-studies/">Case studies</a></li>
+                <li><a href="/#capabilities">Services</a></li>
+                <li><a href="/case-studies/#products">Products</a></li>
+                <li><a href="/case-studies/">Our work</a></li>
       <li><a href="/blog/">Insights</a></li>
                 <li><a href="/#contact" style="background:var(--accent);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Discuss your project</a></li>
             </ul>
@@ -275,7 +271,7 @@
 
         <p>Every one of those failure modes has to be handled, not because they happen often, but because when they do happen, they happen to a real person who paid real money and has a real expectation. Handling them is not glamorous engineering. It's the difference between a demo and a product.</p>
 
-        <p>Building ioomm forced us to handle all of it. Async job queues. Retry logic. Graceful error states. Stripe webhooks that have to be idempotent. Image processing that has to work across every phone camera. We didn't build these because they were interesting, we built them because the product broke without them.</p>
+        <p>Building Portraix forced us to handle all of it. Async job queues. Retry logic. Graceful error states. Stripe webhooks that have to be idempotent. Image processing that has to work across every phone camera. We didn't build these because they were interesting, we built them because the product broke without them.</p>
 
         <h2 class="fade-up">What this means for B2B tool builds</h2>
 
@@ -293,7 +289,7 @@
 
         <p>A consultant delivering an AI tool asks: does it meet the specification? A product builder asks: does it actually get used? Does it make the person's job easier in practice, not just in theory? Does it survive contact with real workflows, real data, real edge cases?</p>
 
-        <p>Building ioomm gave us product instincts that consulting alone doesn't develop. When we scope a B2B AI tool now, we think about the failure modes before we think about the features. We ask what happens when the input is wrong, when the model is slow, when the user does something unexpected. We design the unhappy path before we polish the happy one.</p>
+        <p>Building Portraix gave us product instincts that consulting alone doesn't develop. When we scope a B2B AI tool now, we think about the failure modes before we think about the features. We ask what happens when the input is wrong, when the model is slow, when the user does something unexpected. We design the unhappy path before we polish the happy one.</p>
 
         <p>That's not a methodology we adopted. It's a reflex we developed by shipping something and watching it break.</p>
 
@@ -305,7 +301,7 @@
 
         <p>The organisations that get the most out of AI right now are the ones that can move from understanding a problem to having something running in production, without a 12-month gap in between. That requires build capability, not just analytical capability. It requires people who have done it before, not just people who understand how it works in theory.</p>
 
-        <p>ioomm exists partly because we wanted to be those people. We wanted to know what it felt like to ship an AI product, take a payment, watch a real user complete a real job, and deal with the things that broke. We know now. And it informs everything we build for clients.</p>
+        <p>Portraix exists partly because we wanted to be those people. We wanted to know what it felt like to ship an AI product, take a payment, watch a real user complete a real job, and deal with the things that broke. We know now. And it informs everything we build for clients.</p>
 
         
         <div class="related-tools" style="margin:48px 0 24px;padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--surface);">
@@ -320,7 +316,8 @@
             <p><strong>Building AI capability for your business?</strong> We help businesses design and deploy AI systems for operations, knowledge, service, and growth. Discuss your project at <a href="/#contact">alvento.uk</a> or email <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, first conversation is free.</p>
         </div>
 
-    </article>
+    <p class="commercial-note"><a href="/case-studies/#products">Explore Portraix and available products</a>. To discuss implementation, include your problem, required output, current systems and approximate volume.</p>
+</article>
 
     <footer>
         <div class="container">
