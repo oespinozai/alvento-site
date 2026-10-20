@@ -1,0 +1,27 @@
+[
+  {
+    "file": "index.html",
+    "old": "    <div class=\"hx-demos\">",
+    "new": "    <article class=\"hx-card hx-row fade-up\"><div><span class=\"hx-tag\">Alvento product \u00b7 Private testing</span><h3>NullKey</h3><p>An Android vault for photos, files and notes, with local encryption, recovery and encrypted backups.</p></div><a class=\"hx-link\" href=\"/case-studies/nullkey/\">Explore the NullKey build</a></article>\n\n    <div class=\"hx-demos\">"
+  },
+  {
+    "file": "index.html",
+    "old": "<a href=\"/case-studies/#experiments\">Other products and experiments</a> have separate status notes.",
+    "new": "<a href=\"/case-studies/#experiments\">Explore more products and experiments</a>."
+  },
+  {
+    "file": "case-studies/index.html",
+    "old": "<li><h3>Wren</h3>",
+    "new": "<li><h3>NullKey</h3><p><strong>Private Android test build.</strong> An Alvento-owned vault for photos, files and notes, with local encryption and encrypted backups. Public release details have not been announced.</p><a class=\"btn-preview\" href=\"/case-studies/nullkey/\">Explore the build</a></li>\n<li><h3>Wren</h3>"
+  },
+  {
+    "file": "llms.txt",
+    "old": "## Other products and concepts",
+    "new": "## Other products and concepts\n\n[NullKey](https://alvento.uk/case-studies/nullkey/): Alvento-owned Android vault for photos, files and notes. Private test build; public release details have not been announced."
+  },
+  {
+    "file": "sitemap.xml",
+    "old": "</urlset>",
+    "new": "  <url><loc>https://alvento.uk/case-studies/nullkey/</loc><lastmod>2026-10-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>\n</urlset>"
+  }
+]

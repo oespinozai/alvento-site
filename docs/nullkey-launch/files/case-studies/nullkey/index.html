@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NullKey: a private Android vault | Alvento</title>
+<meta name="description" content="An Alvento-owned Android vault for photos, files and notes. Explore the private test build, its local encryption and backup approach.">
+<link rel="canonical" href="https://alvento.uk/case-studies/nullkey/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-raised: #1c1c1c;
+  --border: #2a2a2a;
+  --text: #e8e8e8;
+  --muted: #a8a8a8;
+  --dim: #8a8a8a;
+  --accent: #c4f042;
+  --accent-hover: #d4ff4a;
+  --accent-dim: #a6c53a;
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(10,10,10,0.7); border-bottom: 1px solid var(--border); }
+nav .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.02em; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); transition: color 0.3s; }
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links .nav-cta { background: var(--accent); color: var(--bg); font-weight: 600; padding: 8px 18px; border-radius: 4px; }
+.nav-links .nav-cta:hover { background: var(--accent-hover); color: var(--bg); }
+
+.page-hero { padding: 160px 0 60px; }
+.page-hero .label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dim); margin-bottom: 24px; }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; max-width: 920px; font-weight: 500; }
+.page-hero h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.page-hero .lede { font-size: 1.1rem; color: var(--muted); max-width: 680px; line-height: 1.7; margin-bottom: 40px; }
+.meta-row { display: flex; gap: 32px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; padding-top: 24px; border-top: 1px solid var(--border); margin-top: 24px; }
+.meta-row strong { color: var(--muted); font-weight: 500; display: block; margin-bottom: 4px; font-size: 0.65rem; }
+.meta-row span { color: var(--text); font-family: var(--font-body); font-size: 0.9rem; text-transform: none; letter-spacing: 0; }
+
+.btn-primary { display: inline-block; background: var(--accent); color: var(--bg); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; padding: 14px 32px; border-radius: 4px; transition: background 0.3s; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-secondary { display: inline-block; background: transparent; color: var(--text); font-family: var(--font-body); font-weight: 500; font-size: 0.95rem; padding: 14px 32px; border: 1px solid var(--border); border-radius: 4px; transition: border-color 0.3s; }
+.btn-secondary:hover { border-color: var(--muted); }
+.btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.section { padding: 96px 0; border-top: 1px solid var(--border); }
+.section-tier { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent-dim); margin-bottom: 16px; }
+.section-tier em { font-style: normal; color: var(--accent); }
+.section h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.6vw, 2.8rem); margin-bottom: 28px; max-width: 880px; line-height: 1.15; font-weight: 500; letter-spacing: -0.02em; }
+.section h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.section p { color: var(--muted); max-width: 720px; margin-bottom: 16px; font-size: 1rem; line-height: 1.75; }
+.section p strong { color: var(--text); font-weight: 500; }
+.section-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dim); margin-bottom: 32px; }
+
+.why-pullquote { font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.8rem); font-style: italic; color: var(--text); max-width: 820px; line-height: 1.4; border-left: 2px solid var(--accent); padding: 8px 0 8px 28px; margin: 32px 0; }
+
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 32px; }
+.stat-item { border: 1px solid var(--border); padding: 32px 28px; margin: -0.5px; }
+.stat-item .stat-num { font-family: var(--font-display); font-size: 2.6rem; color: var(--accent); font-weight: 500; letter-spacing: -0.02em; line-height: 1; margin-bottom: 12px; }
+.stat-item .stat-label { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+.stat-footnote { font-size: 0.85rem; color: var(--dim); line-height: 1.65; margin-top: 18px; }
+.how-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 24px; }
+.how-item { border: 1px solid var(--border); padding: 32px; margin: -0.5px; }
+.how-item .item-tag { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-dim); letter-spacing: 0.1em; margin-bottom: 14px; text-transform: uppercase; }
+.how-item h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; margin-bottom: 12px; }
+.how-item p { font-size: 0.92rem; line-height: 1.65; }
+@media (max-width: 768px) { .how-grid { grid-template-columns: 1fr; } .how-item { padding: 24px; } }
+
+.contrast-table { margin-top: 32px; border: 1px solid var(--border); }
+.contrast-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid var(--border); }
+.contrast-row:last-child { border-bottom: 0; }
+.contrast-row.header { background: var(--surface); }
+.contrast-row.header .cell { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); padding: 20px 24px; }
+.contrast-row.header .cell.mine { color: var(--accent); }
+.contrast-row .cell { padding: 22px 24px; font-size: 0.92rem; color: var(--muted); line-height: 1.55; border-right: 1px solid var(--border); }
+.contrast-row .cell:last-child { border-right: 0; }
+.contrast-row .cell.axis { color: var(--text); font-weight: 500; font-family: var(--font-display); font-size: 1.05rem; letter-spacing: -0.01em; }
+.contrast-row .cell.mine { color: var(--text); }
+.contrast-footnote { font-family: var(--font-mono); font-size: 0.7rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 18px; }
+
+.stack-list { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.stack-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); border: 1px solid var(--border); padding: 8px 16px; border-radius: 4px; letter-spacing: 0.05em; }
+
+.folio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 24px; }
+.folio-item { border: 1px solid var(--border); padding: 32px; margin: -0.5px; }
+.folio-item .item-tag { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-dim); letter-spacing: 0.1em; margin-bottom: 16px; text-transform: uppercase; }
+.folio-item h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 500; margin-bottom: 12px; }
+.folio-item p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; max-width: none; }
+.folio-item .shot { border: 1px solid var(--border); background: var(--surface); overflow: hidden; }
+.folio-item .shot img { display: block; width: 100%; height: auto; }
+.folio-item.wide { grid-column: 1 / -1; }
+.folio-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.disclosure { font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+
+.cta-section { padding: 100px 0; text-align: center; border-top: 1px solid var(--border); }
+.cta-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 16px; font-weight: 500; }
+.cta-section p { color: var(--muted); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.cta-section .btn-group { justify-content: center; }
+
+footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; }
+footer p { font-size: 0.85rem; color: var(--dim); }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--text); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .stat-grid { grid-template-columns: 1fr; }
+  .folio-grid, .folio-grid.cols-3 { grid-template-columns: 1fr; }
+  .contrast-row { grid-template-columns: 1fr; }
+  .contrast-row .cell { border-right: 0; border-bottom: 1px solid var(--border); }
+  .contrast-row .cell:last-child { border-bottom: 0; }
+}
+
+/* Instrument Serif ships one weight; stop browsers faking bold */
+h1, h2, h3, h4 { font-synthesis: none; }
+</style>
+<meta property="og:title" content="NullKey: a private Android vault | Alvento">
+<meta property="og:description" content="An Alvento-owned Android vault for photos, files and notes. Explore the private test build, its local encryption and backup approach.">
+<meta property="og:url" content="https://alvento.uk/case-studies/nullkey/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://alvento.uk/case-studies/nullkey/img/locked.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://alvento.uk/case-studies/nullkey/img/locked.png">
+<link rel="stylesheet" href="/project-heroes.css">
+<link rel="stylesheet" href="/commercial.css">
+<style>
+.nullkey-screens{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:720px;margin:32px 0}.nullkey-screens img{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:18px}.nullkey-screens figcaption{color:var(--muted);font-size:.85rem;margin-top:12px}.nullkey-note{padding:24px;border-left:2px solid var(--accent);background:var(--surface);margin:24px 0}a:focus-visible{outline:3px solid var(--accent);outline-offset:5px}@media(max-width:480px){.nullkey-screens{gap:12px}.page-hero{padding-top:120px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">alvento<span>.</span></a>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+    <ul id="primary-nav" class="nav-links">
+      <li><a href="/#capabilities">Services</a></li>
+      <li><a href="/case-studies/#products">Products</a></li>
+      <li><a href="/tools">Tools</a></li>
+      <li><a href="/case-studies/">Our work</a></li>
+      <li><a href="/blog/">Insights</a></li>
+      <li><a href="/#contact" class="nav-cta">Discuss your project</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+<section class="page-hero"><div class="container">
+<p class="label">Alvento product · Private Android test build</p>
+<h1>NullKey. Your private files.<br><em>On your phone.</em></h1>
+<p class="lede">An Android vault for photos, files and notes. NullKey encrypts your vault on your device, with a passphrase, a recovery key and optional biometric quick unlock. No account or vault server.</p>
+<div class="btn-group"><a class="btn-primary" href="https://nullkey.alvento.uk/">Explore NullKey</a><a class="btn-secondary" href="mailto:hello@alvento.uk?subject=NullKey%20enquiry">Ask about NullKey</a></div>
+<div class="meta-row"><div><strong>Built by</strong><span>Alvento</span></div><div><strong>Platform</strong><span>Android 11 and later</span></div><div><strong>Current stage</strong><span>Private testing</span></div></div>
+</div></section>
+<section class="section"><div class="container"><p class="section-tier">The product</p><h2>A separate place for <em>personal files.</em></h2>
+<p>Photos, documents and notes can end up scattered across galleries, downloads and messaging apps. NullKey brings selected items into an encrypted vault you unlock when you need them.</p>
+<p>It is an Alvento-owned product in private testing. A public download, release date and price have not been announced.</p>
+<div class="nullkey-screens"><figure><img src="img/locked.png" alt="NullKey locked screen with a passphrase field and unlock button" width="1080" height="2400" loading="lazy"><figcaption>Unlock the vault with your passphrase.</figcaption></figure><figure><img src="img/empty-vault.png" alt="Empty NullKey vault showing Photos, Files and Notes tabs" width="1080" height="2400" loading="lazy"><figcaption>Photos, files and notes in one vault.</figcaption></figure></div>
+<p>Internal test-build screens · 20 October 2026.</p>
+</div></section>
+<section class="section"><div class="container"><p class="section-tier">How it works</p><h2>Import. Lock. <em>Back up.</em></h2><div class="how-grid">
+<div class="how-item"><h3>Keep selected items together</h3><p>Import photos and files through Android’s file picker, or write a note inside the vault. Imports keep the originals by default.</p></div>
+<div class="how-item"><h3>Unlock on your terms</h3><p>A passphrase protects the vault. A separate recovery key provides another way to unlock it, and biometric quick unlock is optional. The app also supports automatic locking.</p></div>
+<div class="how-item"><h3>Create an encrypted backup</h3><p>Export an encrypted backup and verify it. A recovery key unlocks an existing vault; a backup restores its contents if the device or vault is lost. You need to keep both safely.</p></div>
+<div class="how-item"><h3>Choose what leaves the vault</h3><p>The app has no internet permission. You can export a readable copy or save an encrypted backup to storage you choose. Links open separately in your browser.</p></div>
+</div><div class="nullkey-note"><p><strong>Removing originals is optional.</strong> When enabled, NullKey checks the imported copy before requesting removal. Supported photos and videos use Android’s trash confirmation; eligible local documents may be permanently deleted. It does not remove copies held by cloud services or other apps.</p></div>
+</div></section>
+<section class="section"><div class="container"><p class="section-tier">The build</p><h2>A working app, <em>still being tested.</em></h2><p>NullKey demonstrates Alvento’s Android product development: local encrypted storage, recovery and backup flows, system file-picker integration and a focused interface for everyday use.</p><p>The current build uses AES-256-GCM encryption and Argon2id passphrase derivation. Its functional testing includes import, locking, backup and restore workflows. An independent security audit has not been completed.</p><p>Private testing continues on real-device behaviour and usability. Keep a separate copy of important files while testing.</p><p>For a business needing its own Android application, branding, integrations, handover and support would be scoped as a separate bespoke or white-label engagement.</p>
+<div class="btn-group"><a class="btn-primary" href="mailto:hello@alvento.uk?subject=Android%20build%20enquiry&amp;body=Business%20and%20problem%3A%0ARequired%20output%3A%0ACurrent%20systems%3A%0AApproximate%20volume%20or%20frequency%3A">Discuss an Android build</a><a class="btn-secondary" href="/case-studies/">Explore Alvento’s work</a></div>
+</div></section>
+</main>
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Alvento Ltd, <a href="/">Home</a>, <a href="/case-studies/">Case studies</a>, <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>, <a href="/privacy">Privacy</a></p>
+  </div>
+</footer>
+
+<script defer src="/consent-banner.js"></script>
+</body>
+</html>

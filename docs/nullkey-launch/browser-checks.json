@@ -1,0 +1,53 @@
+{
+  "layouts": [
+    {
+      "route": "/",
+      "width": 1440,
+      "result": "pass"
+    },
+    {
+      "route": "/case-studies/",
+      "width": 1440,
+      "result": "pass"
+    },
+    {
+      "route": "/case-studies/nullkey/",
+      "width": 1440,
+      "result": "pass"
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "result": "pass"
+    },
+    {
+      "route": "/case-studies/",
+      "width": 390,
+      "result": "pass"
+    },
+    {
+      "route": "/case-studies/nullkey/",
+      "width": 390,
+      "result": "pass"
+    }
+  ],
+  "links": [
+    {
+      "text": "Explore NullKey",
+      "href": "https://nullkey.alvento.uk/"
+    },
+    {
+      "text": "Ask about NullKey",
+      "href": "mailto:hello@alvento.uk?subject=NullKey%20enquiry"
+    },
+    {
+      "text": "Discuss an Android build",
+      "href": "mailto:hello@alvento.uk?subject=Android%20build%20enquiry&body=Business%20and%20problem%3A%0ARequired%20output%3A%0ACurrent%20systems%3A%0AApproximate%20volume%20or%20frequency%3A"
+    },
+    {
+      "text": "Explore Alvento’s work",
+      "href": "/case-studies/"
+    }
+  ],
+  "status": true
+}
