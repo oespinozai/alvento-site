@@ -85,6 +85,116 @@
   ],
   "redirects": [
     {
+      "source": "/brand",
+      "has": [
+        {
+          "type": "host",
+          "value": "nullkey.alvento.uk"
+        }
+      ],
+      "destination": "https://alvento.uk/nullkey/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/brand/",
+      "has": [
+        {
+          "type": "host",
+          "value": "nullkey.alvento.uk"
+        }
+      ],
+      "destination": "https://alvento.uk/nullkey/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/terms",
+      "has": [
+        {
+          "type": "host",
+          "value": "nullkey.alvento.uk"
+        }
+      ],
+      "destination": "https://alvento.uk/nullkey/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/terms/",
+      "has": [
+        {
+          "type": "host",
+          "value": "nullkey.alvento.uk"
+        }
+      ],
+      "destination": "https://alvento.uk/nullkey/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/government-requests",
+      "has": [
+        {
+          "type": "host",
+          "value": "nullkey.alvento.uk"
+        }
+      ],
+      "destination": "https://alvento.uk/nullkey/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/government-requests/",
+      "has": [
+        {
+          "type": "host",
+          "value": "nullkey.alvento.uk"
+        }
+      ],
+      "destination": "https://alvento.uk/nullkey/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/robots.txt",
+      "has": [
+        {
+          "type": "host",
+          "value": "nullkey.alvento.uk"
+        }
+      ],
+      "destination": "https://alvento.uk/robots.txt",
+      "statusCode": 301
+    },
+    {
+      "source": "/sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "nullkey.alvento.uk"
+        }
+      ],
+      "destination": "https://alvento.uk/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "nullkey.alvento.uk"
+        }
+      ],
+      "destination": "https://alvento.uk/nullkey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "nullkey.alvento.uk"
+        }
+      ],
+      "destination": "https://alvento.uk/nullkey/:path*",
+      "statusCode": 301
+    },
+    {
       "source": "/blog/staamp-first-months-coffee-shop-loyalty/",
       "destination": "/blog/staamp-deli-pilot/",
       "statusCode": 301
