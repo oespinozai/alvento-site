@@ -17,6 +17,10 @@ Alvento Ltd is a UK company (Company No. 16394298), founded and run by Oscar Esp
 - [Arrears](https://alvento.uk/case-studies/arrears/): an automated invoice follow-up reference build, with a live mock ledger demo: six reminder stages from day 7 to 42 and verified payment matching.
 - [Immunaris](https://alvento.uk/case-studies/immunaris/): a clinical workflow reference build covering patient intake, vaccination records and certificates, with an interactive demo using sample data.
 
+## NullKey
+
+[NullKey](https://alvento.uk/nullkey/): an offline encrypted Android vault for private photos, files and notes. Version 0.4.2 is in Google Play internal testing; public app availability is not yet announced. The current build is free with no billing or item cap. [Availability](https://alvento.uk/nullkey/availability/) · [Security](https://alvento.uk/nullkey/security/) · [App privacy policy](https://alvento.uk/nullkey/privacy/).
+
 ## Free tools
 
 Eight free, browser-based tools for regulated-industry teams, listed at [alvento.uk/tools](https://alvento.uk/tools/): PDF to Markdown, SOP to Checklist, UDI Decoder, CPD Tracker, MDR Class Check, MDR PSUR Outline Generator, MDR Technical File Index Generator, and a PSBAR Accessibility Statement Generator.

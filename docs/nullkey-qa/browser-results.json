@@ -1,0 +1,17 @@
+{
+  "pages": 11,
+  "responsiveChecks": 55,
+  "widths": [
+    320,
+    390,
+    768,
+    1024,
+    1440
+  ],
+  "keyboard": "skip link, FAQ, mobile navigation and Escape passed",
+  "testingLink": "mailto enquiry; no automatic enrolment",
+  "reducedMotion": true,
+  "reflow512": true,
+  "consoleErrors": [],
+  "axeViolations": []
+}

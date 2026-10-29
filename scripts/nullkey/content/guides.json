@@ -1,0 +1,140 @@
+[
+  [
+    "store-private-documents-android",
+    "Where should private documents live on Android?",
+    "A practical home for passport scans, certificates and the files you want to keep to yourself.",
+    [
+      [
+        "Start with the copies you already have",
+        "A document can exist in your gallery, Downloads, a messaging app and a cloud backup at the same time. Moving one copy does not necessarily remove the others. Before choosing a vault, identify where the document came from and which apps may have copied or backed it up."
+      ],
+      [
+        "Choose the protection you actually need",
+        "A hidden album changes visibility. A separate locked folder adds an access boundary. An encrypted vault protects stored contents with encryption and a secret. These protections depend on the implementation and the state of your device. None makes an unlocked, compromised phone trustworthy."
+      ],
+      [
+        "Keep recovery and backup separate",
+        "A recovery key helps unlock an existing vault. A backup preserves a copy of the data. To recover after a lost phone, you need a usable backup and the passphrase or recovery key that opens that backup. Store these separately from the phone."
+      ],
+      [
+        "A sensible routine",
+        "Start with sample files. Import copies, check their contents and make an encrypted backup. Restore into a separate, empty vault before removing any old app or original. NullKey stores photos, files and notes; PDFs and videos need a readable export to view in another app, outside the vault’s protection."
+      ]
+    ]
+  ],
+  [
+    "hidden-folder-vs-encrypted-vault",
+    "A hidden folder and an encrypted vault do different jobs.",
+    "Visibility, access controls and encryption: what to check before trusting a private folder.",
+    [
+      [
+        "Hiding is a visibility choice",
+        "An album can disappear from the usual gallery view while its files remain available elsewhere. Do not infer encryption from a hidden icon or a folder name. Check the app’s own documentation for what is encrypted, how it unlocks and what happens to backups."
+      ],
+      [
+        "Built-in tools deserve a fair look",
+        "Files by Google offers Safe Folder, while supported Samsung devices offer Secure Folder. Their capabilities and recovery behaviour differ. Start by checking the option already available on your own phone, then identify what you still need: a separate passphrase, encrypted export or an account-free workflow."
+      ],
+      [
+        "Ask four questions",
+        "What protects the stored files? Who holds the keys? What happens if I forget the secret? How will I move to another phone? Answers are more useful than labels such as “military-grade”. A vault should explain its limits as plainly as its features."
+      ],
+      [
+        "Where NullKey fits",
+        "NullKey’s current test build uses a passphrase, an independent recovery key and encrypted backup files. It has no account and declares no internet permission. It is not independently audited. Choose it based on those specific properties, not an assumption that every built-in alternative is insecure."
+      ]
+    ]
+  ],
+  [
+    "backup-offline-vault",
+    "How do you back up a vault that stays offline?",
+    "An offline app still needs a recovery plan. Here is how to build one.",
+    [
+      [
+        "Offline does not mean backed up",
+        "A vault stored only on a phone can disappear with the phone. Encryption protects confidentiality; it does not protect against loss, uninstalling an app or failing storage. Plan for losing the entire device."
+      ],
+      [
+        "Export ciphertext, not a folder of originals",
+        "An encrypted vault backup preserves protected files in an export you can store elsewhere. A decrypted export creates another readable copy. Know which operation you are using. In NullKey, the whole-vault backup contains ciphertext and requires the passphrase or recovery key from that vault."
+      ],
+      [
+        "Check the backup, then practise restoring",
+        "NullKey rereads the exported archive, authenticates its index, every encrypted item segment and every thumbnail, and matches the current vault snapshot. A restore exercise with sample data also checks that you have the right secret and understand the process. Restore requires an empty vault; never erase a working vault just to try it."
+      ],
+      [
+        "Make the routine repeatable",
+        "Keep an encrypted backup away from the phone and the unlocking secret separately. Refresh the backup after important changes. Label which passphrase or recovery key belongs to older exports: changing the current vault’s credentials does not rewrite backup files you already made."
+      ]
+    ]
+  ],
+  [
+    "before-deleting-originals",
+    "Before deleting the original, check the copy.",
+    "A short checklist for moving private files into a vault without losing your only copy.",
+    [
+      [
+        "Importing usually makes another copy",
+        "Adding a document to a vault is different from moving it. Confirm whether your app retains the original, deletes it, or sends it to trash. Check each source app separately; a gallery and a document provider may handle deletion differently."
+      ],
+      [
+        "Verify more than the thumbnail",
+        "For photos, check orientation and detail. For documents that NullKey cannot display, a readable export can help you check the contents, but that export is outside the vault’s protection. A thumbnail alone does not show that the whole original was preserved."
+      ],
+      [
+        "Give yourself a way back",
+        "Make an encrypted backup and keep its unlocking secret available before removing your original. A recovery key alone cannot recreate deleted data. If a source is synced, understand whether a deletion will propagate to other devices or cloud storage."
+      ],
+      [
+        "Deletion is not secure erasure",
+        "Trash, backups and other apps can retain copies. Optional original removal is off by default in NullKey. It verifies eligible local copies first. Supported photos and videos need Android’s confirmation to move to trash; other supported documents can be deleted permanently. Cloud and other-app sources are kept. Deletion is not guaranteed secure erasure."
+      ]
+    ]
+  ],
+  [
+    "recovery-key-vs-backup",
+    "Recovery key or backup? You need both jobs covered.",
+    "One helps you unlock. The other preserves your data. They are not interchangeable.",
+    [
+      [
+        "A key opens; a backup preserves",
+        "A recovery key is another way to unlock the vault’s encrypted data. It is not a copy of those data. A backup contains the data but still needs a valid unlocking secret. Either one on its own may be useless after the phone is gone."
+      ],
+      [
+        "Match the secret to the backup",
+        "Backups preserve the vault’s state at export time. A subsequent passphrase change or recovery-key rotation does not update earlier exports. Retain the credentials needed for backups you intend to keep, using a secure storage method separate from those backups."
+      ],
+      [
+        "Practise with harmless files",
+        "Create a test vault and record its recovery key. Add sample documents, export a backup, and test your recovery workflow without removing valuable data. Check that you understand both forgotten-passphrase recovery and lost-device recovery."
+      ],
+      [
+        "Keep the language precise",
+        "“Recover my password” and “restore my files” describe different problems. NullKey provides a recovery-key unlock flow and a whole-vault backup/restore flow. There is no account reset or support-held copy of your vault."
+      ]
+    ]
+  ],
+  [
+    "vault-without-account",
+    "What does “no account” mean for a private vault?",
+    "Less setup, fewer server dependencies, and more responsibility for your own recovery.",
+    [
+      [
+        "Start with what the app can do",
+        "An account-free vault can create and unlock encrypted storage without an email address or a remote login. That says nothing by itself about analytics, backups or other network activity. Check those separately."
+      ],
+      [
+        "NullKey’s current boundary",
+        "The Android test build has no account, no server and no INTERNET permission. Its encrypted vault lives in the app’s local storage. Android’s document picker can still let you choose an external provider for a backup, and that provider may use the network."
+      ],
+      [
+        "You own the recovery plan",
+        "There is no “email me a reset link”. Keep a recovery key for forgotten-passphrase access and encrypted backups for device loss. Losing both unlocking secrets makes existing encrypted data inaccessible; losing the data itself cannot be fixed with a key."
+      ],
+      [
+        "Check the website separately",
+        "This product website has no signup form, upload or added analytics scripts. Its hosting infrastructure may process request and operational information. The app privacy policy is published at alvento.uk/nullkey/privacy/; the app’s lack of internet permission does not describe how a browser or website works."
+      ]
+    ]
+  ]
+]
