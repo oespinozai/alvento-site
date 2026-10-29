@@ -184,14 +184,14 @@
       "statusCode": 301
     },
     {
-      "source": "/:path*",
+      "source": "/:path(.*)",
       "has": [
         {
           "type": "host",
           "value": "nullkey.alvento.uk"
         }
       ],
-      "destination": "https://alvento.uk/nullkey/:path*",
+      "destination": "https://alvento.uk/nullkey/:path",
       "statusCode": 301
     },
     {
