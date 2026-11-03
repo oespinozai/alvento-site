@@ -8,7 +8,7 @@
     1024,
     1440
   ],
-  "keyboard": "skip link, FAQ, mobile navigation and Escape passed",
+  "keyboard": "skip link, FAQ and NullKey navigation passed",
   "playLink": "https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp",
   "reducedMotion": true,
   "reflow512": true,
