@@ -13,6 +13,10 @@
         "A hidden album changes visibility. A separate locked folder adds an access boundary. An encrypted vault protects stored contents with encryption and a secret. These protections depend on the implementation and the state of your device. None makes an unlocked, compromised phone trustworthy."
       ],
       [
+        "Medical records, notes and everyday paperwork",
+        "People often keep letters from a clinic, test results, prescriptions, insurance details, tenancy papers and ID scans on the same phone as everything else. A private note suits the short facts: an allergy, a medication list, a policy number. A document suits the original file. In NullKey, photos and notes open inside the vault. PDFs, videos and other files stay encrypted, and you view them by exporting a readable copy, which leaves the vault’s protection. NullKey is not a medical record system and makes no claim about healthcare rules, so keep another copy of anything you cannot replace."
+      ],
+      [
         "Keep recovery and backup separate",
         "A recovery key helps unlock an existing vault. A backup preserves a copy of the data. To recover after a lost phone, you need a usable backup and the passphrase or recovery key that opens that backup. Store these separately from the phone."
       ],
