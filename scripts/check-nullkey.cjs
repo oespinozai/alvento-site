@@ -27,13 +27,15 @@ const pages=[];function walk(p){for(const e of fs.readdirSync(p,{withFileTypes:t
  await page.setViewportSize({width:390,height:844});await page.locator('.mobile-nav>summary').focus();await page.keyboard.press('Enter');assert(await page.getByRole('navigation',{name:'Mobile navigation'}).isVisible());
  assert.equal(await page.getByRole('navigation',{name:'Mobile navigation'}).getByRole('link',{name:'Products',exact:true}).getAttribute('href'),'https://alvento.uk/#lab');
  await page.keyboard.press('Escape');
- await page.getByRole('navigation',{name:'NullKey navigation'}).getByRole('link',{name:'Testing & availability'}).click();assert(page.url().endsWith('/nullkey/availability/'));
- assert((await page.getByRole('link',{name:/Ask about testing/}).getAttribute('href')).startsWith('mailto:hello@alvento.uk'));
+ await page.getByRole('navigation',{name:'NullKey navigation'}).getByRole('link',{name:'Download',exact:true}).click();assert(page.url().endsWith('/nullkey/availability/'));
+ const play='https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp';
+ assert.equal(await page.getByRole('link',{name:'Get NullKey on Google Play'}).first().getAttribute('href'),play);
+ assert((await page.getByText('Android 12L or later.').count())>0);
  await page.locator('.mobile-nav>summary').click();await page.keyboard.press('Escape');assert(!(await page.locator('.mobile-nav').getAttribute('open')));
  await page.goto(base+'/nullkey/');await page.screenshot({path:path.join(root,'docs/nullkey-qa/mobile.png'),fullPage:true});
  await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).scrollBehavior),'auto');
  await page.setViewportSize({width:512,height:1000});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'512px reflow overflow');
  assert.equal(errors.length,0,errors.join('\n'));
- const result={pages:pages.length,responsiveChecks:checks,widths:[320,390,768,1024,1440],keyboard:'skip link, FAQ, mobile navigation and Escape passed',testingLink:'mailto enquiry; no automatic enrolment',reducedMotion:true,reflow512:true,consoleErrors:errors,axeViolations:violations};
+ const result={pages:pages.length,responsiveChecks:checks,widths:[320,390,768,1024,1440],keyboard:'skip link, FAQ, mobile navigation and Escape passed',playLink:play,reducedMotion:true,reflow512:true,consoleErrors:errors,axeViolations:violations};
  fs.writeFileSync(path.join(root,'docs/nullkey-qa/browser-results.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));await browser.close();if(violations.length)process.exit(1);
 })().catch(e=>{console.error(e);process.exit(1)});

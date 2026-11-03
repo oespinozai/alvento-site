@@ -2,13 +2,13 @@
 
 Canonical public location: https://alvento.uk/nullkey/
 
-This source generates the 11 product pages inside the main Alvento repository and Vercel project. The existing `nullkey/privacy/index.html` is preserved byte for byte. Source assets and content are under this directory and excluded from hosting by the repository's `scripts/` rule in `.vercelignore`.
+This source generates the NullKey product pages inside the main Alvento repository and Vercel project. The existing `nullkey/privacy/index.html` is preserved byte for byte. Source assets and content are under this directory and excluded from hosting by the repository's `scripts/` rule in `.vercelignore`.
 
 Build: `python3 scripts/nullkey/build.py`.
 Check: `python3 scripts/nullkey/check.py`.
 Browser QA: serve the repository on localhost:8777, then `node scripts/check-nullkey.cjs`. Uses the host's existing Playwright/Chromium/axe installation. Evidence is in `docs/nullkey-qa/` (excluded from deployment).
 
-Content was imported from the reviewed NullKey product site, Sites commit 74195eb, and describes app version 0.4.2 (12), in internal testing. Screenshots use sample data and the new mark from Android app commit d25ce4d. The release status is a dated editorial snapshot, not a live Play API connection. Update `content/release.json` and availability copy when public distribution is confirmed.
+Content and release facts were checked against the public Google Play listing on 3 November 2026: version 0.4.3, Android 12L or later, package `uk.alvento.nullkeyapp`. `content/release.json` is a dated editorial snapshot, not a live Play API connection. Recheck it when the public listing changes. Screenshots use sample data and the app’s real interface.
 
 Design follows Alvento's Instrument Serif / DM Sans / JetBrains Mono fonts, colours, width, global navigation and footer, with a secondary NullKey product navigation. The homepage and case-study product list link to the new section. No tracking script was added to these product pages.
 

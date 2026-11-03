@@ -41,7 +41,7 @@
       ],
       [
         "Where NullKey fits",
-        "NullKey’s current test build uses a passphrase, an independent recovery key and encrypted backup files. It has no account and declares no internet permission. It is not independently audited. Choose it based on those specific properties, not an assumption that every built-in alternative is insecure."
+        "NullKey’s public Android app uses a passphrase, an independent recovery key and encrypted backup files. It has no account and declares no internet permission. It is not independently audited. Choose it based on those specific properties, not an assumption that every built-in alternative is insecure."
       ]
     ]
   ],
@@ -53,6 +53,10 @@
       [
         "Offline does not mean backed up",
         "A vault stored only on a phone can disappear with the phone. Encryption protects confidentiality; it does not protect against loss, uninstalling an app or failing storage. Plan for losing the entire device."
+      ],
+      [
+        "Save and check a fresh export",
+        "On your unlocked phone, open Settings and choose “Create encrypted backup”. In Android’s document picker choose the destination. NullKey then rereads the saved archive and checks the index, encrypted items and thumbnails against the current vault. If the app reports that the check failed, make another backup and do not rely on that file."
       ],
       [
         "Export ciphertext, not a folder of originals",
@@ -105,6 +109,10 @@
         "Backups preserve the vault’s state at export time. A subsequent passphrase change or recovery-key rotation does not update earlier exports. Retain the credentials needed for backups you intend to keep, using a secure storage method separate from those backups."
       ],
       [
+        "Walk through a sample restore",
+        "On a phone with no NullKey vault, choose Restore on the welcome screen and select the backup in Android’s file picker. Enter the passphrase or recovery key that belongs to that export. NullKey authenticates the contents before restoring and refuses to overwrite a vault already on the phone. Test with harmless sample data first."
+      ],
+      [
         "Practise with harmless files",
         "Create a test vault and record its recovery key. Add sample documents, export a backup, and test your recovery workflow without removing valuable data. Check that you understand both forgotten-passphrase recovery and lost-device recovery."
       ],
@@ -125,7 +133,7 @@
       ],
       [
         "NullKey’s current boundary",
-        "The Android test build has no account, no server and no INTERNET permission. Its encrypted vault lives in the app’s local storage. Android’s document picker can still let you choose an external provider for a backup, and that provider may use the network."
+        "The public Android app has no account, no server and no INTERNET permission. Its encrypted vault lives in the app’s local storage. Android’s document picker can still let you choose an external provider for a backup, and that provider may use the network."
       ],
       [
         "You own the recovery plan",
@@ -134,6 +142,60 @@
       [
         "Check the website separately",
         "This product website has no signup form, upload or added analytics scripts. Its hosting infrastructure may process request and operational information. The app privacy policy is published at alvento.uk/nullkey/privacy/; the app’s lack of internet permission does not describe how a browser or website works."
+      ]
+    ]
+  ],
+  [
+    "private-photos-android",
+    "How to keep private photos on Android",
+    "A practical way to organise private photos, understand Android’s locked folders and keep a recoverable copy.",
+    [
+      [
+        "Decide what “private” needs to mean",
+        "A hidden album keeps photos out of a usual gallery view, but may not encrypt the files. A locked folder adds an access check; an encrypted vault protects stored contents using encryption and a secret. Check the exact behaviour on your Android version and phone."
+      ],
+      [
+        "Check the copies you already have",
+        "Before importing, look for copies in your camera roll, messaging apps, downloads and any photo sync service you use. Moving one copy does not remove the others. Keep the originals while you test."
+      ],
+      [
+        "Import and check with sample photos first",
+        "Install NullKey from Google Play, create a vault and use Android’s picker to import a few sample photos. Unlock the vault and inspect the photos at full size. Importing keeps originals by default; do not enable removal until you understand which local copies can be affected."
+      ],
+      [
+        "Make a backup you can restore",
+        "Create a whole-vault encrypted backup and wait for NullKey’s automatic read-back check to confirm it was saved and checked. Keep the backup away from the phone and its matching passphrase or recovery key separately. Practise restoring sample photos into an empty test vault before entrusting it with anything irreplaceable."
+      ],
+      [
+        "Keep expectations realistic",
+        "A vault cannot protect a photo while it is visible on an unlocked or compromised device, remove every copy made by another app, or guarantee secure erasure. Cloud providers and Android features have their own storage and recovery rules."
+      ]
+    ]
+  ],
+  [
+    "restore-nullkey-backup-new-phone",
+    "How to restore a NullKey backup on a new Android phone",
+    "Move a verified NullKey backup to a new phone without removing the old app or risking the only copy.",
+    [
+      [
+        "Before changing phones",
+        "On the old phone, unlock NullKey and open Settings, then choose “Create encrypted backup”. Save the file with Android’s document picker. Wait for NullKey’s read-back check to say the backup was saved and checked. Keep the matching passphrase or recovery key separately from the backup."
+      ],
+      [
+        "Install and choose Restore",
+        "Install the current NullKey app from Google Play on the new phone. Open it to the welcome screen and choose Restore. Android’s document picker opens; select the backup file you copied to a destination available on the new device."
+      ],
+      [
+        "Unlock the backup and inspect the vault",
+        "Enter the passphrase or recovery key used for that backup. Restore authenticates the archive before installing it and requires that no vault already exists on the new phone. Unlock the restored vault and check several photos, files and notes. Restoring turns off optional biometric, screen-lock and pattern unlock settings; set those up again only after confirming the vault works."
+      ],
+      [
+        "Keep the old phone until you are sure",
+        "Do not uninstall NullKey or clear its storage on the old phone. Keep the verified backup and its matching secret until you have checked the new vault and made a fresh backup. A restore using the recovery key may prompt you to write down a new recovery key; store it separately."
+      ],
+      [
+        "Older package IDs need extra care",
+        "This flow describes restoring a backup made by the current NullKey app. Earlier Cellar and NullKey package IDs install separately, and compatibility of their old backups with the current Play app has not been verified. Keep the old app and data; contact support with app versions to confirm a path before changing anything."
       ]
     ]
   ]

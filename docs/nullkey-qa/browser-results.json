@@ -1,6 +1,6 @@
 {
-  "pages": 11,
-  "responsiveChecks": 55,
+  "pages": 16,
+  "responsiveChecks": 80,
   "widths": [
     320,
     390,
@@ -9,7 +9,7 @@
     1440
   ],
   "keyboard": "skip link, FAQ, mobile navigation and Escape passed",
-  "testingLink": "mailto enquiry; no automatic enrolment",
+  "playLink": "https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp",
   "reducedMotion": true,
   "reflow512": true,
   "consoleErrors": [],
