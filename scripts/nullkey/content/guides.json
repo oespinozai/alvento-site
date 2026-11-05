@@ -45,7 +45,7 @@
       ],
       [
         "Where NullKey fits",
-        "NullKey’s public Android app uses a passphrase, an independent recovery key and encrypted backup files. It has no account and declares no internet permission. It is not independently audited. Choose it based on those specific properties, not an assumption that every built-in alternative is insecure."
+        "NullKey’s public Android app uses a passphrase, an independent recovery key and encrypted backup files. It has no account and declares no internet permission. Choose it based on those specific properties, not an assumption that every built-in alternative is insecure."
       ]
     ]
   ],
