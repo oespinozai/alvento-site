@@ -46,7 +46,7 @@ for p in (root/'nullkey').rglob('index.html'):
   if not q.exists() and u.path.rstrip('/') in ['/tools','/privacy']:q=root/(u.path.strip('/')+'.html')
   assert q.exists(),(p,href)
   if u.fragment:assert u.fragment in parse(q).ids,(p,href)
-assert hashlib.sha256((root/'nullkey/privacy/index.html').read_bytes()).hexdigest()=='14d41f7e3dfa87112c6f10808ec835cc3845c33012a1a068a421542210844ab1'
+assert hashlib.sha256((root/'nullkey/privacy/index.html').read_bytes()).hexdigest()=='68bd5b7de32538f93a381666eac7dcc3e59f6768006894cbc5d44daf505b19f9'
 play='https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp'
 for route in ['index.html','guides/private-photos-android/index.html','guides/restore-nullkey-backup-new-phone/index.html','availability/index.html']:
  d=parse(root/'nullkey'/route);assert play in d.links,(route,'missing Play CTA')
