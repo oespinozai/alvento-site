@@ -5,11 +5,11 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alvento: An AI operations studio</title>
+<title>Alvento: Business automation, built or run for you</title>
 <link rel="canonical" href="https://alvento.uk/">
-<meta name="description" content="Alvento builds systems that keep business moving: content production, customer loyalty, phone reception and invoice follow-up. Explore client work and demos.">
+<meta name="description" content="Alvento designs automations around how your business already works, from social content in every language to digital loyalty cards. We run them for you or build them for you to own.">
 <meta property="og:title" content="Alvento: An AI operations studio">
-<meta property="og:description" content="Alvento builds systems that keep business moving: content production, customer loyalty, phone reception and invoice follow-up. Explore client work and demos.">
+<meta property="og:description" content="Alvento designs automations around how your business already works, from social content in every language to digital loyalty cards. We run them for you or build them for you to own.">
 <meta property="og:image" content="https://alvento.uk/og/default.png">
 <meta property="og:url" content="https://alvento.uk">
 <meta property="og:type" content="website">
@@ -208,17 +208,6 @@ nav .container {
   padding: 120px 0 80px;
   position: relative;
   overflow: hidden;
-}
-
-#particles-js {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.62;
-  pointer-events: none;
-  will-change: transform;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.82) 62%, transparent 86%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.82) 62%, transparent 86%);
 }
 
 .hero::before {
@@ -856,12 +845,35 @@ h1, h2, h3, h4 { font-synthesis: none; }
 .hx-contact .lead-form__status{margin:0;min-height:1.5em;color:var(--accent);font-size:.95rem}
 .hx-contact .lead-form__alt{margin:20px 0 0;font-size:.95rem}
 
+/* image cards (doors, client work, routes) */
+.hx-doors-sec{padding-top:0!important}
+.hx-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.hx-imgcard{display:flex;flex-direction:column;overflow:hidden;color:inherit;transition:border-color .2s}
+a.hx-imgcard:hover{border-color:var(--accent-dim)}
+.hx-imgcard .art{aspect-ratio:16/9;overflow:hidden;background:#0a0a0a;border-bottom:1px solid var(--hx-line)}
+.hx-imgcard .art img{display:block;width:100%;height:100%;object-fit:cover}
+.hx-imgcard .art--light{background:#efe6d8}
+.hx-imgcard .body{display:flex;flex:1;flex-direction:column;align-items:flex-start;padding:24px clamp(24px,3vw,32px) 28px}
+.hx-imgcard h2,.hx-imgcard h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.45rem,2.2vw,1.75rem);line-height:1.15;margin:0 0 10px}
+.hx-imgcard p{color:var(--muted);font-size:.97rem;line-height:1.65;margin:0 0 16px}
+.hx-imgcard .body > .hx-link:last-child{margin-top:auto}
+.hx-imgcard .hx-row__cta{color:var(--text)}
+.hx-links{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:auto!important;margin-bottom:0!important}
+
+/* reference builds, one plain row */
+.hx-refs{border-top:1px solid #3a3a3a;padding-top:clamp(32px,4vw,48px)}
+.hx-refs h2{font-family:var(--font-display);font-weight:400;font-size:1.6rem;line-height:1.15;margin:0 0 8px}
+.hx-refs p{color:var(--muted);font-size:.97rem;margin:0 0 16px}
+.hx-refs ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 32px}
+.hx-refs a{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+
 @media(max-width:1000px){
   .hx-cols{grid-template-columns:repeat(2,minmax(0,1fr))}
   .hx-demos,.hx-plans{grid-template-columns:1fr 1fr}
   .hx-head{grid-template-columns:1fr}
 }
 @media(max-width:760px){
+  .hx-grid2{grid-template-columns:1fr}
   .hx-cols,.hx-steps,.hx-demos,.hx-plans,.hx-tools,.hx-contact{grid-template-columns:1fr}
   .hx-feature{grid-template-columns:1fr;gap:20px}
   .hx-facts{padding:8px 0 0}
@@ -899,14 +911,13 @@ h1, h2, h3, h4 { font-synthesis: none; }
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div id="particles-js" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-content">
-      <h1 class="fade-up">We build and run autonomous systems that do real business work</h1>
-      <p class="fade-up">Alvento builds and runs the automation behind your recurring work. You agree the outputs, we produce them on schedule, and a person checks each one before it reaches you.</p>
+      <h1 class="fade-up">Automate the work your team repeats every week</h1>
+      <p class="fade-up">Your team gets its hours back for the work that grows the business. We design automations around how you already work, from social content in every language your customers speak to loyalty cards that live in their phones.</p>
       <div class="hero-buttons fade-up">
-        <a href="#contact" class="btn-primary">Discuss your project</a>
-        <a href="#lab" class="btn-secondary">See our work</a>
+        <a href="#contact" class="btn-primary">Tell us what to automate</a>
+        <a href="#capabilities" class="btn-secondary">See client work</a>
       </div>
     </div>
   </div>
@@ -914,175 +925,102 @@ h1, h2, h3, h4 { font-synthesis: none; }
 
 <div class="hx">
 
-<!-- WHAT WE DO -->
+<!-- AUDIENCE DOORS -->
+<section class="hx-sec hx-doors-sec" aria-label="Search visibility services">
+  <div class="container">
+    <div class="hx-grid2">
+      <a class="hx-card hx-imgcard fade-up" href="/local-visibility/">
+        <div class="art" aria-hidden="true"><img src="/images/illustrations/found-locally-1200.webp" srcset="/images/illustrations/found-locally-1200.webp 1200w, /images/illustrations/found-locally-1800.webp 1800w" sizes="(max-width:760px) 100vw, 50vw" width="1800" height="1009" loading="lazy" decoding="async" alt=""></div>
+        <div class="body">
+          <h2>Small businesses</h2>
+          <p>Get found on Google Maps and in AI search when local customers look for what you sell. From &pound;39.</p>
+          <span class="hx-link">Get found locally</span>
+        </div>
+      </a>
+      <div class="hx-card hx-imgcard fade-up">
+        <div class="art" aria-hidden="true"><img src="/images/illustrations/clinical-registries-1200.webp" srcset="/images/illustrations/clinical-registries-1200.webp 1200w, /images/illustrations/clinical-registries-1800.webp 1800w" sizes="(max-width:760px) 100vw, 50vw" width="1800" height="1009" loading="lazy" decoding="async" alt=""></div>
+        <div class="body">
+          <h2>Regulated organisations</h2>
+          <p>AI search visibility for clinical registries, professional bodies and regulated medtech.</p>
+          <p class="hx-links"><a class="hx-link" href="/aeo/">See AI visibility</a><a class="hx-link" href="/website-audit/">Get a free website audit</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT WORK -->
 <section class="hx-sec" id="capabilities">
   <div class="container">
     <div class="hx-head fade-up">
       <div>
-        <h2 class="hx-h2">Where we build AI into operations</h2>
+        <h2 class="hx-h2">Already running for clients</h2>
       </div>
-      <p class="hx-intro">Most AI never makes it out of the pilot. We exist to close that gap.</p>
     </div>
-    <div class="hx-cols">
-      <div class="hx-col fade-up">
-        <h3>Process intelligence</h3>
-        <p>We map, automate and orchestrate operational workflows, from job reporting and compliance documentation to approval chains and data pipelines.</p>
-      </div>
-      <div class="hx-col fade-up">
-        <h3>Institutional memory</h3>
-        <p>AI systems that surface the right information at the right time, for your team and your customers.</p>
-      </div>
-      <div class="hx-col fade-up">
-        <h3>Customer-facing AI</h3>
-        <p>Intake, triage and response systems that handle high-volume, low-complexity interactions and leave your team the work that needs human judgment.</p>
-      </div>
-      <div class="hx-col fade-up">
-        <h3>Visibility and reach</h3>
-        <p>Infrastructure that makes your business the answer in search and AI answer engines. For small businesses, see <a href="/local-visibility/">Google Maps and AI search visibility</a>. For regulated organisations, see <a href="/aeo/">AI visibility</a> or get a <a href="/website-audit/">free website audit</a>.</p>
-      </div>
+    <div class="hx-grid2">
+      <article class="hx-card hx-imgcard fade-up">
+        <div class="art" aria-hidden="true"><img src="/images/illustrations/social-languages-1200.webp" srcset="/images/illustrations/social-languages-1200.webp 1200w, /images/illustrations/social-languages-1800.webp 1800w" sizes="(max-width:760px) 100vw, 50vw" width="1800" height="1009" loading="lazy" decoding="async" alt=""></div>
+        <div class="body">
+          <h3>Social content in every market&rsquo;s language</h3>
+          <p>An automated pipeline drafts social media posts in each market&rsquo;s language, so one brand can speak to every country it sells in without a writer for each. A European heating and water-treatment brand has used it for content across several countries.</p>
+          <a class="hx-link" href="#contact">Automate your social content</a>
+        </div>
+      </article>
+      <article class="hx-card hx-imgcard fade-up">
+        <div class="art art--light"><img src="/case-studies/previews/staamp.png" width="1200" height="720" loading="lazy" decoding="async" alt="Staamp loyalty card on a phone, showing 7 of 9 coffees towards a free one"></div>
+        <div class="body">
+          <h3>Staamp</h3>
+          <p>Lizette&rsquo;s is a local sandwich and coffee shop in the heart of Surrey. Staamp puts its loyalty card in customers&rsquo; phones. No app to download and no paper cards to lose, so customers keep coming back.</p>
+          <p class="hx-row__cta">Own a small business and want more repeat customers? <a class="hx-link" href="https://staamp.co.uk/">See how Staamp works</a></p>
+          <a class="hx-link" href="/case-studies/staamp/">See Staamp at Lizette&rsquo;s</a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="ill-band">
-  <img class="ill-band__img" src="/images/illustrations/home-operations-1200.webp" srcset="/images/illustrations/home-operations-1200.webp 1200w, /images/illustrations/home-operations-1800.webp 1800w" sizes="100vw" width="1800" height="1009" loading="lazy" decoding="async" alt="Illustration: a stack of paper forms in an inbox tray feeding a small machine on a circuit board, with one finished sheet coming out lit in lime green">
-  <div class="ill-band__caption"><p class="ill-band__line">Paperwork in, finished work out, and a person approves it first</p></div>
-</section>
-
-<!-- WORK -->
-<section class="hx-sec" id="lab" style="padding-top:var(--hx-pad)">
-  <div class="container">
-    <div class="hx-head fade-up">
-      <div>
-        <h2 class="hx-h2">Less chasing, more getting things done</h2>
-      </div>
-      <p class="hx-intro">Social content generated automatically. Loyalty cards customers carry in their phones. Calls answered and invoices followed up. Explore the systems Alvento builds to keep business moving.</p>
-    </div>
-
-    <article class="hx-card hx-feature fade-up">
-      <div>
-        <h3>Social media content, generated automatically</h3>
-        <p>Alvento runs an automated pipeline that drafts social media posts in each market's language, and a person checks every post before it goes out. A European heating and water-treatment brand has used it for content across several countries. The client buys finished posts, not a tool to operate.</p>
-        <p style="margin-top:20px"><a class="hx-link" href="#contact">Discuss content for your brand</a></p>
-      </div>
-      <dl class="hx-facts">
-        <div><dt>Languages</dt><dd>3</dd></div>
-        <div><dt>Posts checked by a person</dt><dd>100%</dd></div>
-        <div><dt>Tools for you to run</dt><dd>0</dd></div>
-      </dl>
-    </article>
-
-    <article class="hx-card hx-row fade-up">
-      <div>
-        <h3>Staamp</h3>
-        <p>Staamp puts Lizette’s loyalty card in the customer’s phone, with staff approving every stamp. No app download. No lost cards.</p>
-      </div>
-      <a class="hx-link" href="/case-studies/staamp/">See Staamp at Lizette’s</a>
-    </article>
-
-    <div class="hx-demos">
-      <a class="hx-card hx-demo fade-up" href="/case-studies/foyer/">
-        <div class="art foyer"><span>How can<br>I help?</span><img src="/case-studies/previews/foyer-orb.png" alt="" width="600" height="600" loading="lazy" decoding="async"></div>
-        <div class="body"><h3>Foyer, AI phone reception</h3><p>A reference build with a fictional practice, a simulated calendar and sample calls.</p><span class="hx-link">Read the case study</span></div>
-      </a>
-      <a class="hx-card hx-demo fade-up" href="/case-studies/arrears/">
-        <div class="art"><img src="/case-studies/previews/arrears.png" alt="Arrears mock-ledger excerpt showing paid, day 14 and day 42 invoices" width="1200" height="720" loading="lazy" decoding="async"></div>
-        <div class="body"><h3>Arrears, invoice follow-up</h3><p>A reference build that chases unpaid invoices on a six-stage schedule from day 7 to day 42, and holds any payment it cannot match for a person to review.</p><span class="hx-link">Read the case study</span></div>
-      </a>
-      <a class="hx-card hx-demo fade-up" href="/case-studies/immunaris/">
-        <div class="art"><img src="/case-studies/previews/immunaris.png" alt="Immunaris reference interface with a focused view of the vaccination record" width="1200" height="720" loading="lazy" decoding="async"></div>
-        <div class="body"><h3>Immunaris, vaccination tracking</h3><p>A vaccination-tracking reference build owned by Alvento. It is not a client deployment.</p><span class="hx-link">Read the case study</span></div>
-      </a>
-    </div>
-
-    <p class="hx-more fade-up"><a href="/nullkey/">NullKey</a>, our offline Android vault, is in Google Play internal testing.</p>
-    <p class="hx-more fade-up">More reference builds, built and operated by Alvento: Portraix, Wren, Kestrel, Licit and Score API. <a href="/case-studies/">See all case studies</a>.</p>
-  </div>
-</section>
-
-<!-- METHOD -->
+<!-- HOW WE WORK -->
 <section class="hx-sec" id="work-with-us">
   <div class="container">
     <div class="hx-head fade-up">
       <div>
-        <h2 class="hx-h2">How a project runs, start to finish</h2>
+        <h2 class="hx-h2">Built for you, or run for you</h2>
+      </div>
+      <p class="hx-intro">Every business runs differently, so every automation starts from how yours works today. Then you choose where it lives.</p>
+    </div>
+    <div class="hx-grid2">
+      <div class="hx-card hx-imgcard fade-up">
+        <div class="art" aria-hidden="true"><img src="/images/illustrations/run-for-you-1200.webp" srcset="/images/illustrations/run-for-you-1200.webp 1200w, /images/illustrations/run-for-you-1800.webp 1800w" sizes="(max-width:760px) 100vw, 50vw" width="1800" height="1009" loading="lazy" decoding="async" alt=""></div>
+        <div class="body">
+          <h3>We run it for you</h3>
+          <p>We build, host and maintain the automation on our systems. You get the results on schedule, with nothing to install and nothing for your team to manage.</p>
+        </div>
+      </div>
+      <div class="hx-card hx-imgcard fade-up">
+        <div class="art" aria-hidden="true"><img src="/images/illustrations/build-own-1200.webp" srcset="/images/illustrations/build-own-1200.webp 1200w, /images/illustrations/build-own-1800.webp 1800w" sizes="(max-width:760px) 100vw, 50vw" width="1800" height="1009" loading="lazy" decoding="async" alt=""></div>
+        <div class="body">
+          <h3>We build it, you own it</h3>
+          <p>A tailored automation designed around your workflow and installed on your own systems, so the automation and your data stay in your hands. We set it up and maintain it, so you get the ownership without the upkeep.</p>
+        </div>
       </div>
     </div>
-    <div class="hx-steps">
-      <div class="hx-step fade-up">
-        <div class="n">01</div>
-        <h3>Agree what you get</h3>
-        <p>We start from the finished output, not the technology. You tell us what you need and where it goes. We agree the format, the schedule and how each one is checked.</p>
-        <div class="hx-get">You get: an agreed list of outputs</div>
-      </div>
-      <div class="hx-step fade-up">
-        <div class="n">02</div>
-        <h3>We run the workflow</h3>
-        <p>Alvento owns and operates the automation, so there is nothing for your team to build, host or maintain.</p>
-        <div class="hx-get">You get: finished outputs, on schedule</div>
-      </div>
-      <div class="hx-step fade-up">
-        <div class="n">03</div>
-        <h3>Review and deliver</h3>
-        <p>A person checks each output before it reaches you. Your feedback shapes the next round.</p>
-        <div class="hx-get">You get: reviewed work you can use</div>
-      </div>
-    </div>
-    <div class="hx-card hx-own fade-up">
-      <strong>You buy the outputs, Alvento runs the automation</strong>
-      <span>The engagement is for the agreed outputs. The automation is not transferred as part of the service.</span>
-    </div>
+    <p class="hx-more fade-up">Not sure what to automate first? Start with a diagnostic of your workflows or a scoped trial in one area. <a href="#contact">Ask which one fits</a>.</p>
   </div>
 </section>
 
-<!-- WAYS TO START -->
-<section class="hx-sec" id="engagement">
+<!-- REFERENCE BUILDS -->
+<section class="hx-sec" id="reference-builds">
   <div class="container">
-    <div class="hx-head fade-up">
-      <div>
-        <h2 class="hx-h2">Three ways to work together</h2>
-      </div>
-      <p class="hx-intro">Pick the starting point that fits. Each one runs the way described above.</p>
+    <div class="hx-refs fade-up">
+      <h2>More we have built</h2>
+      <p>Working demonstrations built by Alvento. These are not client deployments.</p>
+      <ul>
+        <li><a href="/case-studies/foyer/">Foyer, AI phone reception</a></li>
+        <li><a href="/case-studies/arrears/">Arrears, invoice follow-up</a></li>
+        <li><a href="/case-studies/immunaris/">Immunaris, vaccination tracking</a></li>
+        <li><a href="/case-studies/">See everything we have built</a></li>
+      </ul>
     </div>
-    <div class="hx-plans">
-      <div class="hx-card hx-plan feat fade-up">
-        <h3>Diagnostic</h3>
-        <p>A structured assessment of your current workflows, data landscape and capability gaps, so you leave knowing where AI changes the outcome and what a build would involve.</p>
-        <ul><li>Workflow and process mapping</li><li>Capability gap analysis</li><li>Build brief and scoping</li></ul>
-        <a href="#contact" class="btn-primary">Ask about a diagnostic</a>
-      </div>
-      <div class="hx-card hx-plan fade-up">
-        <h3>Scoped output trial</h3>
-        <p>A time-boxed run of agreed outputs, scoped to one capability domain, so you see real work before deciding on more.</p>
-        <ul><li>One capability domain</li><li>Production-ready output</li><li>Review built in</li></ul>
-        <a href="#contact" class="btn-secondary">Ask about a trial</a>
-      </div>
-      <div class="hx-card hx-plan fade-up">
-        <h3>Capability partnership</h3>
-        <p>An ongoing relationship for businesses deploying AI across several functions. We act as your AI capability team, designing, building and iterating as the business evolves.</p>
-        <ul><li>Multi-domain deployment</li><li>Continuous iteration</li><li>Strategic AI roadmapping</li></ul>
-        <a href="#contact" class="btn-secondary">Ask about a partnership</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TOOLS -->
-<section class="hx-sec" id="tools">
-  <div class="container">
-    <div class="hx-head fade-up">
-      <div>
-        <h2 class="hx-h2">Built from production, free to use</h2>
-      </div>
-      <p class="hx-intro">Four tools you can open right now. Add your document, get a usable result in your browser. No sign-up.</p>
-    </div>
-    <div class="hx-tools">
-      <a class="hx-tool fade-up" href="/tools/pdf-to-markdown/"><h3>PDF to Markdown</h3><span class="hx-link">Convert a PDF</span><p>Convert PDFs to clean Markdown before uploading to Claude or ChatGPT. Cut token usage by up to 30x. No upload, runs in your browser.</p></a>
-      <a class="hx-tool fade-up" href="/tools/sop-to-checklist/"><h3>SOP to Checklist</h3><span class="hx-link">Make a checklist</span><p>Paste any process document or SOP. Get a structured, actionable checklist with steps, owners, and frequency.</p></a>
-      <a class="hx-tool fade-up" href="/tools/mdr-technical-file-index/"><h3>MDR Technical File Index</h3><span class="hx-link">Check your file</span><p>Tick the Annex II/III documents you have ready. Missing sections flagged in red before submission. Markdown + DOCX export.</p></a>
-      <a class="hx-tool fade-up" href="/tools/psbar-statement-generator/"><h3>PSBAR Accessibility Statement</h3><span class="hx-link">Draft a statement</span><p>Draft a WCAG 2.2 AA accessibility statement for UK public-sector sites. Outputs Markdown + paste-ready HTML.</p></a>
-    </div>
-    <p class="hx-more fade-up"><a class="hx-link" href="/tools">See all free tools</a></p>
   </div>
 </section>
 
@@ -1091,7 +1029,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
   <div class="container">
     <div class="hx-contact">
       <div class="fade-up">
-        <h2 class="hx-h2">Discuss your project</h2>
+        <h2 class="hx-h2">Tell us what to automate</h2>
       </div>
       <div class="fade-up">
         <p>Tell us what you are trying to solve. We will reply by email with next steps. There is no fixed format and no charge for that first conversation.</p>
@@ -1118,111 +1056,13 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <footer>
   <div class="container">
     <p>&copy; 2026 Alvento Ltd. Company No. 16394298. United Kingdom.</p>
+    <p><a href="/local-visibility/">Google Maps and AI search visibility</a>  /  <a href="/aeo/">AI visibility</a>  /  <a href="/website-audit/">Free website audit</a>  /  <a href="/tools">Free tools</a></p>
     <p>alvento.uk  /  <a href="/privacy">Privacy</a>  /  Also from Alvento: <a href="https://staamp.co.uk/">Staamp loyalty platform</a></p>
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  var hero = document.getElementById('hero');
-  var particleLayer = document.getElementById('particles-js');
-  var currentX = 0;
-  var currentY = 0;
-  var targetX = 0;
-  var targetY = 0;
-  var parallaxFrame = null;
-
-  function renderParallax() {
-    currentX += (targetX - currentX) * 0.08;
-    currentY += (targetY - currentY) * 0.08;
-    if (particleLayer) {
-      particleLayer.style.transform = 'translate3d(' + currentX.toFixed(2) + 'px,' + currentY.toFixed(2) + 'px,0) scale(1.03)';
-    }
-    parallaxFrame = window.requestAnimationFrame(renderParallax);
-  }
-
-  function updateParallax(clientX, clientY) {
-    if (!hero) return;
-    var rect = hero.getBoundingClientRect();
-    var x = ((clientX - rect.left) / rect.width) - 0.5;
-    var y = ((clientY - rect.top) / rect.height) - 0.5;
-    targetX = x * 22;
-    targetY = y * 16;
-  }
-
-  if (hero && particleLayer) {
-    hero.addEventListener('mousemove', function(event) {
-      updateParallax(event.clientX, event.clientY);
-    });
-
-    hero.addEventListener('touchmove', function(event) {
-      if (!event.touches || !event.touches[0]) return;
-      updateParallax(event.touches[0].clientX, event.touches[0].clientY);
-    }, { passive: true });
-
-    hero.addEventListener('mouseleave', function() {
-      targetX = 0;
-      targetY = 0;
-    });
-
-    renderParallax();
-  }
-
-  if (window.particlesJS) {
-    particlesJS('particles-js', {
-      particles: {
-        number: {
-          value: 62,
-          density: { enable: true, value_area: 900 }
-        },
-        color: { value: '#c4f042' },
-        shape: { type: 'circle' },
-        opacity: {
-          value: 0.38,
-          random: true,
-          anim: { enable: false }
-        },
-        size: {
-          value: 2.6,
-          random: true,
-          anim: { enable: false }
-        },
-        line_linked: {
-          enable: true,
-          distance: 170,
-          color: '#c4f042',
-          opacity: 0.24,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 0.95,
-          direction: 'none',
-          random: true,
-          straight: false,
-          out_mode: 'out',
-          bounce: false
-        }
-      },
-      interactivity: {
-        detect_on: 'canvas',
-        events: {
-          onhover: { enable: true, mode: 'grab' },
-          onclick: { enable: false },
-          resize: true
-        },
-        modes: {
-          grab: {
-            distance: 180,
-            line_linked: { opacity: 0.38 }
-          }
-        }
-      },
-      retina_detect: true
-    });
-  }
-
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
@@ -1255,7 +1095,7 @@ document.addEventListener('DOMContentLoaded', function() {
   "alternateName": "Alvento",
   "url": "https://alvento.uk",
   "email": "hello@alvento.uk",
-  "description": "Alvento builds systems that keep business moving: content production, customer loyalty, phone reception and invoice follow-up. Explore client work and demos.",
+  "description": "Alvento designs automations around how your business already works, from social content in every language to digital loyalty cards. We run them for you or build them for you to own.",
   "foundingDate": "2025-04-17",
   "founder": {
     "@type": "Person",
