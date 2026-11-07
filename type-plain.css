@@ -31,3 +31,10 @@ code, pre, kbd, samp, textarea,
 
 /* Tag rows lost their pill padding; keep a gap below them. */
 .stack-list { margin-bottom: 1rem; }
+
+/* First-screen content never waits for the scroll animation. */
+h1.fade-up, .hero .fade-up, .hero-content.fade-up, img.hero-image.fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}

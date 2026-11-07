@@ -74,7 +74,7 @@ section>p.subtitle{color:var(--text-muted);max-width:560px;line-height:1.7;margi
 @media(max-width:640px){.stat-bar{grid-template-columns:1fr}}
 
 /* --- PROBLEM --- */
-.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.problem-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden}
 .problem-card{background:var(--surface);padding:1.75rem}
 .problem-card h3{font-size:1rem;font-weight:600;margin-bottom:0.4rem}
 .problem-card p{font-size:0.85rem;color:var(--text-muted);line-height:1.6}
@@ -157,6 +157,7 @@ footer a:hover{color:var(--lime)}
   .comp-header>div,.comp-row>div{padding:0.65rem 0.75rem;font-size:0.78rem}
   .bottom-cta{padding:3rem 2rem}
 }
+@media(max-width:600px){.problem-grid{grid-template-columns:1fr}}
 </style>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">

@@ -76,7 +76,35 @@
     btnRow.appendChild(declineBtn);
     el.appendChild(text);
     el.appendChild(btnRow);
+
+    // Phones: a slim full-width bar, and the page gets matching bottom padding
+    // while the banner is open, so no button stays hidden underneath it.
+    if (window.matchMedia && window.matchMedia('(max-width: 640px)').matches) {
+      el.style.left = '0';
+      el.style.right = '0';
+      el.style.bottom = '0';
+      el.style.maxWidth = 'none';
+      el.style.borderRadius = '0';
+      el.style.border = '0';
+      el.style.borderTop = '1px solid #2a2a2a';
+      el.style.padding = '12px 16px';
+      el.style.fontSize = '0.8rem';
+      text.style.margin = '0 0 10px';
+      [acceptBtn, declineBtn].forEach(function (b) {
+        b.style.flex = '1';
+        b.style.padding = '9px 12px';
+      });
+    }
+
+    var previousPadding = document.body.style.paddingBottom;
+    function closeBanner() {
+      document.body.style.paddingBottom = previousPadding;
+    }
+    acceptBtn.addEventListener('click', closeBanner);
+    declineBtn.addEventListener('click', closeBanner);
+
     document.body.appendChild(el);
+    document.body.style.paddingBottom = (el.offsetHeight + 16) + 'px';
   }
 
   function init() {
