@@ -145,7 +145,7 @@
       ],
       [
         "Check the website separately",
-        "This product website includes Google Analytics, which stays off until you accept it in the consent banner. See Alvento’s website privacy notice for details. Its hosting infrastructure may process request and operational information. The app privacy policy is published at alvento.uk/nullkey/privacy/; the app’s lack of internet permission does not describe how a browser or website works."
+        "This product website includes Google Analytics, which stays off until you accept it in the consent banner. See Alvento’s website privacy notice for details. This applies to the website only: Google Analytics is not part of the NullKey app and does not see your vault or how you use the app, which has no internet permission. Its hosting infrastructure may process request and operational information. The app privacy policy is published at alvento.uk/nullkey/privacy/; the app’s lack of internet permission does not describe how a browser or website works."
       ]
     ]
   ],
