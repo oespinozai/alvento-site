@@ -1,0 +1,33 @@
+/* Plain type layer, added 7 November 2026. Load it last on every page.
+   Mono is for data and code only. No all-caps labels, no tracked or
+   tightened type, no italic accent words in headings, and status labels
+   read as plain text instead of bordered pills. */
+:root:root { --font-mono: var(--font-body, 'DM Sans', -apple-system, sans-serif); }
+
+body *:not(.logo):not(.logo *) {
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
+h1 em, h2 em, h3 em, h1 i, h2 i, h3 i {
+  font-style: normal !important;
+  color: inherit !important;
+}
+
+code, pre, kbd, samp, textarea,
+.contact-email, .invoice-id, td.amount, .day-count, .url, .ledger-date {
+  font-family: 'JetBrains Mono', ui-monospace, monospace !important;
+}
+
+.tag, .tool-badge, .status-tag, .project-hero__status, .stack-tag, .status-badge,
+.foyer-cover__stamp, .example-label, .post-card-domain, .tool-card-domain, .item-tag {
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  font-size: 0.875rem !important;
+}
+
+/* Tag rows lost their pill padding; keep a gap below them. */
+.stack-list { margin-bottom: 1rem; }

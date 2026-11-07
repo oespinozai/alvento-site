@@ -37,7 +37,7 @@ nav .container{display:flex;justify-content:space-between;align-items:center;max
 .logo{font-family:var(--font-display);font-size:1.5rem;color:var(--text);letter-spacing:-0.02em;text-decoration:none}
 .logo span{color:var(--lime)}
 .nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-family:var(--font-mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);transition:color 0.3s;text-decoration:none}
+.nav-links a{font-size:0.9rem;color:var(--text-muted);transition:color 0.3s;text-decoration:none}
 .nav-links a:hover{color:var(--text)}
 .nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
 @media(max-width:768px){
@@ -48,9 +48,8 @@ nav .container{display:flex;justify-content:space-between;align-items:center;max
 
 /* --- HERO --- */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2rem 4rem;max-width:900px;margin:0 auto;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:15%;left:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(196,240,66,0.06) 0%,transparent 70%);pointer-events:none}
 .tag{display:inline-block;font-family:var(--font-mono);font-size:0.75rem;color:var(--lime);border:1px solid var(--lime-dim);padding:0.35rem 0.8rem;border-radius:2px;margin-bottom:2rem;letter-spacing:0.06em;text-transform:uppercase}
-.hero h1{font-family:var(--font-display);font-size:clamp(3rem,7vw,5.5rem);line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.5rem;font-weight:400}
+.hero h1{font-family:var(--font-display);font-size:clamp(3rem,7vw,5.5rem);line-height:1.05;margin-bottom:1.5rem;font-weight:400}
 .hero h1 em{font-style:italic;color:var(--lime)}
 .hero p{font-size:1.15rem;color:var(--text-muted);max-width:560px;margin-bottom:2.5rem;line-height:1.7}
 .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
@@ -62,14 +61,14 @@ nav .container{display:flex;justify-content:space-between;align-items:center;max
 /* --- SECTION --- */
 section{padding:5rem 2rem;max-width:900px;margin:0 auto}
 .section-label{font-family:var(--font-mono);font-size:0.7rem;color:var(--lime-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
-section h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.02em;margin-bottom:1rem;font-weight:400}
+section h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem;font-weight:400}
 section h2 em{font-style:italic;color:var(--lime)}
 section>p.subtitle{color:var(--text-muted);max-width:560px;line-height:1.7;margin-bottom:2.5rem}
 
 /* --- STAT BAR --- */
 .stat-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin:3rem 0}
 .stat{background:var(--surface);padding:2rem;text-align:center}
-.stat .number{font-family:var(--font-display);font-size:2.5rem;color:var(--lime);letter-spacing:-0.03em;line-height:1}
+.stat .number{font-family:var(--font-display);font-size:2.5rem;color:var(--lime);line-height:1}
 .stat .label{font-size:0.8rem;color:var(--text-muted);margin-top:0.5rem;line-height:1.4}
 @media(max-width:640px){.stat-bar{grid-template-columns:1fr}}
 
@@ -82,15 +81,15 @@ section>p.subtitle{color:var(--text-muted);max-width:560px;line-height:1.7;margi
 /* --- AI ENGINES --- */
 .engines{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin-top:2.5rem}
 .engine{background:var(--surface);padding:1.25rem;text-align:center}
-.engine .name{font-family:var(--font-mono);font-size:0.8rem;color:var(--text);letter-spacing:0.04em}
+.engine .name{font-size:0.95rem;font-weight:600;color:var(--text)}
 .engine .desc{font-size:0.72rem;color:var(--text-dim);margin-top:0.15rem}
 
 /* --- WHAT WE DO --- */
-.services-list{margin-top:2.5rem;border-top:1px solid var(--border)}
-.service-item{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:start}
+.services-list{margin-top:2.5rem}
+.service-item{padding:1.25rem 0}
 .service-item .num{font-family:var(--font-mono);font-size:0.7rem;color:var(--lime-dim);letter-spacing:0.06em;padding-top:0.2rem}
 .service-item h3{font-size:1rem;font-weight:600;margin-bottom:0.3rem}
-.service-item p{font-size:0.85rem;color:var(--text-muted);line-height:1.6}
+.service-item p{font-size:0.9rem;color:var(--text-muted);line-height:1.6;max-width:42em}
 
 /* --- SEO vs AEO --- */
 .comparison{margin-top:2.5rem;border:1px solid var(--border);border-radius:3px;overflow:hidden}
@@ -131,8 +130,7 @@ section>p.subtitle{color:var(--text-muted);max-width:560px;line-height:1.7;margi
 
 /* --- BOTTOM CTA --- */
 .bottom-cta{border:1px solid var(--border);background:var(--surface);padding:4rem 3rem;border-radius:3px;text-align:center;max-width:900px;margin:0 auto;position:relative;overflow:hidden}
-.bottom-cta::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(196,240,66,0.04) 0%,transparent 70%);pointer-events:none}
-.bottom-cta h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.02em;margin-bottom:1rem;font-weight:400;position:relative;z-index:1}
+.bottom-cta h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem;font-weight:400;position:relative;z-index:1}
 .bottom-cta h2 em{font-style:italic;color:var(--lime)}
 .bottom-cta p{color:var(--text-muted);margin-bottom:2rem;line-height:1.7;max-width:500px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
 .bottom-cta .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
@@ -164,6 +162,7 @@ footer a:hover{color:var(--lime)}
 <link rel="stylesheet" href="/card-refresh.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N94LC333HG"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-N94LC333HG");</script>
+<link rel="stylesheet" href="/type-plain.css">
 </head>
 <body class="aeo-page">
 
@@ -186,9 +185,7 @@ footer a:hover{color:var(--lime)}
 <!-- HERO -->
 <div class="hero hero--split">
 <div class="hero__text">
-  <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.5rem;"><a href="/" style="color:var(--text-dim);text-decoration:none;">Alvento</a>  /  <a href="/#capabilities" style="color:var(--text-dim);text-decoration:none;">Capabilities</a>  /  Growth</div>
-  <span class="tag">Growth Capability / Regulated Organisations</span>
-  <h1>Help people find clear information about your organisation in AI search.</h1>
+  <h1>Help people find clear information about your organisation in AI search</h1>
   <p>Answer-engine visibility for organisations whose public content has to survive regulatory review. Structured entity presence, authoritative citations and ongoing monitoring across ChatGPT, Perplexity, Google AI and Copilot, scoped around the MHRA, GMC and ICO constraints that keyword-first SEO ignores.</p>
   <div class="hero-ctas">
     <a href="#audit" class="btn-primary">Scope an engagement</a>
@@ -223,8 +220,7 @@ footer a:hover{color:var(--lime)}
 
 <!-- THE SHIFT -->
 <section id="problem">
-  <span class="section-label">01. The Shift</span>
-  <h2>Clinicians, patients and members <em>ask AI first</em></h2>
+  <h2>Clinicians, patients and members ask AI first</h2>
   <p class="subtitle">People may use AI search to learn about your organisation. Clear information makes your purpose and services easier to understand.</p>
 
   <div class="problem-grid">
@@ -249,8 +245,7 @@ footer a:hover{color:var(--lime)}
 
 <!-- PLATFORMS -->
 <section>
-  <span class="section-label">02. Platforms</span>
-  <h2>Where we get you <em>cited</em></h2>
+  <h2>Where we get you cited</h2>
   <p class="subtitle">We structure your organisation as a trusted, regulator-safe source across every major AI answer engine clinicians and patients actually use.</p>
 
   <div class="engines">
@@ -265,8 +260,7 @@ footer a:hover{color:var(--lime)}
 
 <!-- SEO vs AEO -->
 <section>
-  <span class="section-label">03. SEO vs AEO</span>
-  <h2>Traditional SEO <em>isn't enough</em></h2>
+  <h2>Traditional SEO isn't enough</h2>
   <p class="subtitle">SEO gets you ranked in search results. AEO gets you cited in AI answers. You need both.</p>
 
   <div class="comparison">
@@ -315,41 +309,35 @@ footer a:hover{color:var(--lime)}
 
 <!-- WHAT WE DO -->
 <section>
-  <span class="section-label">04. The Service</span>
-  <h2>What we <em>actually</em> do</h2>
+  <h2>What we do</h2>
   <p class="subtitle">We don't just hand you a score. We restructure public-facing presence so answer engines trust and cite you, inside the constraints a regulated organisation actually has to work within.</p>
 
   <div class="services-list">
     <div class="service-item">
-      <div class="num">01</div>
       <div>
         <h3>Regulated AI Visibility Audit</h3>
         <p>We query every major AI engine with the questions your clinicians, members or patients actually ask, and document how (or whether) your organisation appears. Baseline before anything changes.</p>
       </div>
     </div>
     <div class="service-item">
-      <div class="num">02</div>
       <div>
         <h3>Entity &amp; Authority Mapping</h3>
         <p>Review how your organisation&#x27;s name, purpose, services and public information are presented across the web.</p>
       </div>
     </div>
     <div class="service-item">
-      <div class="num">03</div>
       <div>
         <h3>Compliance-aware Content Restructuring</h3>
         <p>We rewrite key pages with direct answers, FAQ schema and authority statements, then run the copy through GMC, MHRA and ICO lenses before it ships. Marketing claims and clinical claims are treated differently.</p>
       </div>
     </div>
     <div class="service-item">
-      <div class="num">04</div>
       <div>
         <h3>Trusted-source Citation Building</h3>
         <p>Mentions on the sources AI models weight for clinical and regulated topics: professional body directories, peer-reviewed outlets, structured data aggregators and official knowledge bases. Not link farms.</p>
       </div>
     </div>
     <div class="service-item">
-      <div class="num">05</div>
       <div>
         <h3>Ongoing Citation Monitoring</h3>
         <p>AI answers drift constantly. We track how your organisation is cited each week across every engine, flag misrepresentations early, and adjust as models update their source weightings.</p>
@@ -360,8 +348,7 @@ footer a:hover{color:var(--lime)}
 
 <!-- STANDARDS -->
 <section>
-  <span class="section-label">05 / Standards</span>
-  <h2>The frameworks we <em>build to</em></h2>
+  <h2>The frameworks we build to</h2>
   <p class="subtitle">Copy and systems are written with these authorities in mind, so public content survives review and AI models see your organisation cited alongside the sources clinicians actually trust.</p>
 
   <div class="engines">
@@ -377,22 +364,21 @@ footer a:hover{color:var(--lime)}
 
 <!-- ENGAGE -->
 <section id="audit">
-  <span class="section-label">06 / Engage</span>
-  <h2>Scoped against your <em>remit and regulatory posture</em></h2>
+  <h2>Scoped against your remit and regulatory posture</h2>
   <p class="subtitle">AEO for regulated organisations is quoted against scope, not sold off a price list. Engagements start at diagnostic level and move into a retainer once the baseline is written down. No lock-in.</p>
 
   <div style="max-width:760px;margin:2.5rem auto 0;padding:0 1rem;text-align:left">
     <ul style="list-style:none;padding:0;margin:0 0 2.5rem 0;display:grid;gap:1.25rem">
       <li style="padding:1.25rem 1.5rem;border:1px solid var(--border);border-radius:4px">
-        <div style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.5rem">Diagnostic</div>
+        <div style="font-weight:600;font-size:1rem;color:var(--text);margin-bottom:0.4rem">Diagnostic</div>
         <p style="margin:0;font-size:0.95rem;line-height:1.6;color:var(--text)">Baseline visibility across every major answer engine, entity and authority gap analysis, and a prioritised action plan that stands up to regulatory review. Fixed scope, delivered to timeline.</p>
       </li>
       <li style="padding:1.25rem 1.5rem;border:1px solid var(--border);border-radius:4px">
-        <div style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.5rem">Retainer</div>
+        <div style="font-weight:600;font-size:1rem;color:var(--text);margin-bottom:0.4rem">Retainer</div>
         <p style="margin:0;font-size:0.95rem;line-height:1.6;color:var(--text)">Ongoing structuring, compliance-aware content work, citation building and weekly monitoring. Scope agreed against the diagnostic output, not a generic package.</p>
       </li>
       <li style="padding:1.25rem 1.5rem;border:1px solid var(--border);border-radius:4px">
-        <div style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.5rem">Component of a wider engagement</div>
+        <div style="font-weight:600;font-size:1rem;color:var(--text);margin-bottom:0.4rem">Component of a wider engagement</div>
         <p style="margin:0;font-size:0.95rem;line-height:1.6;color:var(--text)">If your brief includes wider content work, describe it when you contact us so the scope can be agreed.</p>
       </li>
     </ul>
@@ -404,7 +390,6 @@ footer a:hover{color:var(--lime)}
 
 <!-- FAQ -->
 <section>
-  <span class="section-label">07 / Questions</span>
   <h2>FAQ</h2>
 
   <details class="faq-item">
@@ -444,7 +429,7 @@ footer a:hover{color:var(--lime)}
 <!-- BOTTOM CTA -->
 <div style="padding:5rem 2rem">
   <div class="bottom-cta">
-    <h2>AI visibility is part of <em>growth capability</em></h2>
+    <h2>AI visibility is part of growth capability</h2>
     <p>If AI visibility is part of a wider content brief, tell us what you need so we can discuss the scope.</p>
     <div class="cta-buttons">
       <a href="#audit" class="btn-primary">Scope an engagement</a>

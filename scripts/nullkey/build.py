@@ -16,6 +16,20 @@ for source in (ROOT / 'assets').iterdir():
     if source.is_dir(): shutil.copytree(source, OUT / source.name)
     else: shutil.copyfile(source, OUT / source.name)
 
+# Plain-type pass (7 November 2026): no eyebrow labels, and headings carry no italic
+# accent words or end full stops. Sentences inside one heading are joined with a comma.
+PROPER = {'I','AI','NullKey','Alvento','Android','Google','Play'}
+def _join(m):
+    word = m.group(2)
+    return m.group(1) + ', ' + (word if word in PROPER or (len(word) > 1 and word.isupper()) else word[0].lower() + word[1:])
+def _plain_heading(inner):
+    inner = re.sub(r'</?(em|i)>', '', inner)
+    inner = re.sub(r'\.(\s*<br\s*/?>)', r'\1', inner)
+    inner = re.sub(r"([a-z’'\)”])\. (?=[A-Z])([A-Za-z’']+)", _join, inner)
+    return re.sub(r'\.((?:\s|</?[a-z]+[^>]*>)*)$', r'\1', inner)
+def plain(document):
+    document = re.sub(r'<span class="eyebrow">(?:<span class="status-dot"></span>)?[^<]*</span>', '', document)
+    return re.sub(r'(<h([1-3])\b[^>]*>)(.*?)(</h\2>)', lambda m: m.group(1) + _plain_heading(m.group(3)) + m.group(4), document, flags=re.S)
 def esc(value): return html.escape(str(value), quote=True)
 def a(url, text, cls=''): return f'<a href="{esc(url)}" class="{cls}">{text}</a>'
 def play_badge(compact=False):
@@ -35,7 +49,7 @@ def page(route, title, description, body):
     document = re.sub(r'(href|src)="/(?!/)', r'\1="/nullkey/', document)
     # Site-wide GA4 + consent banner, added after the /nullkey/ path rewrite so the root script path survives.
     document = document.replace('</head>', GA4 + '</head>', 1).replace('</body>', '<script defer src="/consent-banner.js"></script></body>', 1)
-    target.write_text(document)
+    target.write_text(plain(document))
 def head(label,title,intro): return f'<div class="page-head"><span class="eyebrow">{label}</span><h1>{title}</h1><p class="lead">{intro}</p></div>'
 def article(title,intro,sections,label='NullKey / explained'):
     body=''.join(f'<section id="section-{i}"><h2>{h}</h2>{p}</section>' for i,(h,p) in enumerate(sections))

@@ -62,7 +62,6 @@
   font-synthesis: none;
   font-size: clamp(1.6rem, 4.2vw, 3.4rem);
   line-height: 1.08;
-  letter-spacing: -0.02em;
   color: #e8e8e8;
   max-width: 820px;
   margin: 0;
