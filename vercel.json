@@ -114,7 +114,7 @@
           "value": "nullkey.alvento.uk"
         }
       ],
-      "destination": "https://alvento.uk/nullkey/about/",
+      "destination": "https://alvento.uk/nullkey/terms/",
       "statusCode": 301
     },
     {
@@ -125,7 +125,7 @@
           "value": "nullkey.alvento.uk"
         }
       ],
-      "destination": "https://alvento.uk/nullkey/about/",
+      "destination": "https://alvento.uk/nullkey/terms/",
       "statusCode": 301
     },
     {
@@ -136,7 +136,7 @@
           "value": "nullkey.alvento.uk"
         }
       ],
-      "destination": "https://alvento.uk/nullkey/about/",
+      "destination": "https://alvento.uk/nullkey/terms/#section-8",
       "statusCode": 301
     },
     {
@@ -147,7 +147,7 @@
           "value": "nullkey.alvento.uk"
         }
       ],
-      "destination": "https://alvento.uk/nullkey/about/",
+      "destination": "https://alvento.uk/nullkey/terms/#section-8",
       "statusCode": 301
     },
     {
