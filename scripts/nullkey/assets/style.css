@@ -4,3 +4,4 @@
 
 /* Official Google Play artwork, including its supplied clear space. */
 .play-badge{display:inline-block;width:220px;max-width:100%;line-height:0;vertical-align:middle}.play-badge img{display:block;width:100%;height:auto;margin:0}.play-badge.compact{width:170px;flex-shrink:0}.product-bar nav .play-badge{display:block;min-height:0}
+.demo-video{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;text-align:center}.demo-player{display:block;width:100%;aspect-ratio:16/9;background:#000;border-radius:10px}.demo-video figcaption{font-size:13px;color:var(--muted);margin-top:16px}@media(max-width:780px){.demo-video{padding:12px}.demo-player{aspect-ratio:9/16;width:min(100%,calc(78vh*9/16));margin-inline:auto}}

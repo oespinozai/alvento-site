@@ -17,6 +17,9 @@ class Doc(HTMLParser):
   if t=='meta':self.meta[a.get('name') or a.get('property')]=a.get('content')
   if t=='h1':self.h1+=1
   if t in ['script','img'] and 'src' in a:self.assets.append(a['src'])
+  if t in ['video','source'] and 'src' in a:self.assets.append(a['src'])
+  if t=='video' and 'poster' in a:self.assets.append(a['poster'])
+  if t=='video' and 'data-poster-portrait' in a:self.assets.append(a['data-poster-portrait'])
   if t=='img':assert 'alt' in a
   if t=='link' and a.get('rel') in ['stylesheet','icon']:self.assets.append(a['href'])
   if t=='link' and a.get('rel')=='canonical':self.canonical=a['href']
