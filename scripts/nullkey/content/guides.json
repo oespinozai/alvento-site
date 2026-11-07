@@ -145,7 +145,7 @@
       ],
       [
         "Check the website separately",
-        "This product website has no signup form, upload or added analytics scripts. Its hosting infrastructure may process request and operational information. The app privacy policy is published at alvento.uk/nullkey/privacy/; the app’s lack of internet permission does not describe how a browser or website works."
+        "This product website includes Google Analytics, which stays off until you accept it in the consent banner. See Alvento’s website privacy notice for details. Its hosting infrastructure may process request and operational information. The app privacy policy is published at alvento.uk/nullkey/privacy/; the app’s lack of internet permission does not describe how a browser or website works."
       ]
     ]
   ],
@@ -195,7 +195,7 @@
       ],
       [
         "Keep the old phone until you are sure",
-        "Do not uninstall NullKey or clear its storage on the old phone. Keep the verified backup and its matching secret until you have checked the new vault and made a fresh backup. A restore using the recovery key may prompt you to write down a new recovery key; store it separately."
+        "Do not uninstall NullKey or clear its storage on the old phone. Keep the verified backup and its matching secret until you have checked the new vault and made a fresh backup. After restoring with the passphrase, unlock the vault and save the new recovery key when prompted. It replaces the restored vault’s recovery key once you confirm it. Restoring with the recovery key keeps that key. Older backup files are unchanged; keep their matching secrets separately."
       ],
       [
         "Older package IDs need extra care",

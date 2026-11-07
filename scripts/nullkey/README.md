@@ -10,7 +10,7 @@ Browser QA: serve the repository on localhost:8777, then `node scripts/check-nul
 
 Content and release facts were checked against the public Google Play listing on 3 November 2026: version 0.4.3, Android 12L or later, package `uk.alvento.nullkeyapp`. `content/release.json` is a dated editorial snapshot, not a live Play API connection. Recheck it when the public listing changes. Screenshots use sample data and the app’s real interface.
 
-Design follows Alvento's Instrument Serif / DM Sans / JetBrains Mono fonts, colours, width and footer. NullKey pages use their own product navigation without Alvento’s global navigation bar. The homepage and case-study product list link to the new section. No tracking script was added to these product pages.
+Design follows Alvento's Instrument Serif / DM Sans / JetBrains Mono fonts, colours, width and footer. NullKey pages use their own product navigation without Alvento’s global navigation bar. The homepage and case-study product list link to the new section. No NullKey-specific tracking script was added, but the site-wide Google Analytics tag and consent banner load on these pages; analytics stays off until a visitor accepts.
 
 Production baseline was verified on 29 October 2026: live homepage, case-study index, consent script and app privacy page matched GitHub master 02d75a4. This supersedes the older handoff that reported the privacy-prod branch as live.
 
