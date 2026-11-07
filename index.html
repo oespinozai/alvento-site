@@ -8,7 +8,7 @@
 <title>Alvento: Business automation, built or run for you</title>
 <link rel="canonical" href="https://alvento.uk/">
 <meta name="description" content="Alvento designs automations around how your business already works, from social content in every language to digital loyalty cards. We run them for you or build them for you to own.">
-<meta property="og:title" content="Alvento: An AI operations studio">
+<meta property="og:title" content="Alvento: Business automation, built or run for you">
 <meta property="og:description" content="Alvento designs automations around how your business already works, from social content in every language to digital loyalty cards. We run them for you or build them for you to own.">
 <meta property="og:image" content="https://alvento.uk/og/default.png">
 <meta property="og:url" content="https://alvento.uk">
@@ -208,6 +208,17 @@ nav .container {
   padding: 120px 0 80px;
   position: relative;
   overflow: hidden;
+}
+
+#particles-js {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.62;
+  pointer-events: none;
+  will-change: transform;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.82) 62%, transparent 86%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.82) 62%, transparent 86%);
 }
 
 .hero::before {
@@ -747,7 +758,6 @@ h1, h2, h3, h4 { font-synthesis: none; }
 </style>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<link rel="stylesheet" href="/illustration-band.css">
 <style>@media (prefers-reduced-motion: reduce) { .fade-up { opacity: 1; transform: none; transition: none; } }</style>
 <style>
 /* Homepage structure, October 2026. One spacing scale, one card system. */
@@ -773,9 +783,6 @@ h1, h2, h3, h4 { font-synthesis: none; }
 .hx-col p a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 
 /* illustration band: caption on its own scrim so it never fights the art */
-.ill-band__caption{bottom:0;max-width:1200px;padding:clamp(56px,8vw,96px) 24px clamp(28px,4vw,48px);background:none}
-.ill-band::after{pointer-events:none}
-.ill-band__caption::before{content:'';position:absolute;inset:0 -100vw;z-index:-1;background:linear-gradient(to top,rgba(10,10,10,.92),rgba(10,10,10,0))}
 
 /* work */
 .hx-feature{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,1fr);gap:32px;padding:clamp(24px,3.5vw,40px)}
@@ -911,6 +918,7 @@ a.hx-imgcard:hover{border-color:var(--accent-dim)}
 
 <!-- HERO -->
 <section class="hero" id="hero">
+  <div id="particles-js" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-content">
       <h1 class="fade-up">Automate the work your team repeats every week</h1>
@@ -962,7 +970,7 @@ a.hx-imgcard:hover{border-color:var(--accent-dim)}
         <div class="art" aria-hidden="true"><img src="/images/illustrations/social-languages-1200.webp" srcset="/images/illustrations/social-languages-1200.webp 1200w, /images/illustrations/social-languages-1800.webp 1800w" sizes="(max-width:760px) 100vw, 50vw" width="1800" height="1009" loading="lazy" decoding="async" alt=""></div>
         <div class="body">
           <h3>Social content in every market&rsquo;s language</h3>
-          <p>An automated pipeline drafts social media posts in each market&rsquo;s language, so one brand can speak to every country it sells in without a writer for each. A European heating and water-treatment brand has used it for content across several countries.</p>
+          <p>An automated pipeline drafts social media posts in each market&rsquo;s language, so one brand can speak to every country it sells in without a writer for each. Posts use regional language variations and the industry&rsquo;s own terminology, so they read as if a copywriter wrote them. A European heating and water-treatment brand has used it for content across several countries.</p>
           <a class="hx-link" href="#contact">Automate your social content</a>
         </div>
       </article>
@@ -1061,8 +1069,107 @@ a.hx-imgcard:hover{border-color:var(--accent-dim)}
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  var hero = document.getElementById('hero');
+  var particleLayer = document.getElementById('particles-js');
+  var currentX = 0;
+  var currentY = 0;
+  var targetX = 0;
+  var targetY = 0;
+  var parallaxFrame = null;
+
+  function renderParallax() {
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+    if (particleLayer) {
+      particleLayer.style.transform = 'translate3d(' + currentX.toFixed(2) + 'px,' + currentY.toFixed(2) + 'px,0) scale(1.03)';
+    }
+    parallaxFrame = window.requestAnimationFrame(renderParallax);
+  }
+
+  function updateParallax(clientX, clientY) {
+    if (!hero) return;
+    var rect = hero.getBoundingClientRect();
+    var x = ((clientX - rect.left) / rect.width) - 0.5;
+    var y = ((clientY - rect.top) / rect.height) - 0.5;
+    targetX = x * 22;
+    targetY = y * 16;
+  }
+
+  if (hero && particleLayer) {
+    hero.addEventListener('mousemove', function(event) {
+      updateParallax(event.clientX, event.clientY);
+    });
+
+    hero.addEventListener('touchmove', function(event) {
+      if (!event.touches || !event.touches[0]) return;
+      updateParallax(event.touches[0].clientX, event.touches[0].clientY);
+    }, { passive: true });
+
+    hero.addEventListener('mouseleave', function() {
+      targetX = 0;
+      targetY = 0;
+    });
+
+    renderParallax();
+  }
+
+  if (window.particlesJS) {
+    particlesJS('particles-js', {
+      particles: {
+        number: {
+          value: 62,
+          density: { enable: true, value_area: 900 }
+        },
+        color: { value: '#c4f042' },
+        shape: { type: 'circle' },
+        opacity: {
+          value: 0.38,
+          random: true,
+          anim: { enable: false }
+        },
+        size: {
+          value: 2.6,
+          random: true,
+          anim: { enable: false }
+        },
+        line_linked: {
+          enable: true,
+          distance: 170,
+          color: '#c4f042',
+          opacity: 0.24,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 0.95,
+          direction: 'none',
+          random: true,
+          straight: false,
+          out_mode: 'out',
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: true, mode: 'grab' },
+          onclick: { enable: false },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 180,
+            line_linked: { opacity: 0.38 }
+          }
+        }
+      },
+      retina_detect: true
+    });
+  }
+
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
@@ -1120,7 +1227,6 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </script>
 
-<script defer src="/illustration-band.js"></script>
 <script defer src="/consent-banner.js"></script>
 </body>
 </html>

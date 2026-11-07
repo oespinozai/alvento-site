@@ -1,8 +1,14 @@
 # Alvento
 
-> Alvento is an AI operations studio. We design, build and operate autonomous systems that do real business work, with a focus on regulated medtech, clinical registries and professional bodies where compliance, reliability and auditability are non-negotiable.
+> Alvento designs and builds business automation for UK organisations. We either run the automation for the client as a managed service, or build a tailored automation that the client owns and runs on its own systems. Clients range from small local businesses to regulated organisations such as clinical registries, professional bodies and regulated medtech, where compliance, reliability and auditability matter.
 
 Alvento Ltd is a UK company (Company No. 16394298), founded and run by Oscar Espinoza. Alvento does not outsource client work.
+
+## How we work
+
+- Run for you: Alvento builds, hosts and maintains the automation and delivers the results on schedule, with nothing for the client's team to install or manage.
+- Built for you to own: a tailored automation designed around the client's workflow and installed on its own systems, so the automation and the data stay with the client. Alvento sets it up and maintains it.
+- Projects usually start with a workflow diagnostic or a scoped trial in one area.
 
 ## Services
 
@@ -13,6 +19,7 @@ Alvento Ltd is a UK company (Company No. 16394298), founded and run by Oscar Esp
 
 ## Case studies
 
+- Multilingual social content: an automated pipeline that drafts social media posts in each market's language, using regional language variations and industry terminology. Used by a European heating and water-treatment brand for content across several countries.
 - [Lizette's](https://alvento.uk/case-studies/staamp/): a customer loyalty platform live at Lizette’s, a paying Alvento client, and adaptable for coffee shops, delis, salons, barbers and other local businesses.
 - [Staamp loyalty platform](https://staamp.co.uk/): the product site for Staamp, digital stamp loyalty cards for independent UK businesses (£29 a month), made by Alvento Ltd.
 - [Foyer](https://alvento.uk/case-studies/foyer/): an AI phone receptionist reference build, with a live interactive demo.
@@ -21,7 +28,7 @@ Alvento Ltd is a UK company (Company No. 16394298), founded and run by Oscar Esp
 
 ## NullKey
 
-[NullKey](https://alvento.uk/nullkey/): a free offline encrypted Android vault for private photos, files and notes. The public Google Play app is version 0.4.3, requires Android 12L or later, and has no billing or item cap. [Get NullKey on Google Play](https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp) · [Download and compatibility](https://alvento.uk/nullkey/availability/) · [Features](https://alvento.uk/nullkey/features/) · [Private photo vault](https://alvento.uk/nullkey/features/private-photo-vault/) · [Encrypted backup](https://alvento.uk/nullkey/features/encrypted-backup/) · [Guides](https://alvento.uk/nullkey/guides/) · [Security](https://alvento.uk/nullkey/security/) · [App privacy policy](https://alvento.uk/nullkey/privacy/).
+[NullKey](https://alvento.uk/nullkey/): an offline encrypted Android vault for private photos, files and notes. The public Google Play app is version 0.5.3 and requires Android 12L or later. It is free to use for up to 30 items, and an optional one-time purchase in Google Play, NullKey Unlimited, removes the limit. [Get NullKey on Google Play](https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp) · [Download and compatibility](https://alvento.uk/nullkey/availability/) · [Features](https://alvento.uk/nullkey/features/) · [Private photo vault](https://alvento.uk/nullkey/features/private-photo-vault/) · [Encrypted backup](https://alvento.uk/nullkey/features/encrypted-backup/) · [Guides](https://alvento.uk/nullkey/guides/) · [Security](https://alvento.uk/nullkey/security/) · [App privacy policy](https://alvento.uk/nullkey/privacy/).
 
 ## Free tools
 
