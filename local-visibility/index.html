@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Maps and AI search visibility for UK small businesses | Alvento</title>
+<link rel="canonical" href="https://alvento.uk/local-visibility/">
+<meta name="description" content="Get found when people nearby search Google Maps or ask an AI for a recommendation. A £39 audit shows where you stand and the five fixes that matter most.">
+<meta property="og:title" content="Google Maps and AI search visibility for UK small businesses | Alvento">
+<meta property="og:description" content="Get found when people nearby search Google Maps or ask an AI for a recommendation. A £39 audit shows where you stand and the five fixes that matter most.">
+<meta property="og:image" content="https://alvento.uk/og-image.png">
+<meta property="og:url" content="https://alvento.uk/local-visibility/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alvento.uk/og/aeo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--surface:#141414;--surface-2:#1c1c1c;--border:#2a2a2a;
+  --text:#e8e8e8;--text-muted:#888;--text-dim:#8a8a8a;
+  --lime:#c4f042;--lime-dim:#8aaa2e;
+  --font-display:'Instrument Serif',serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* --- NAV --- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(10,10,10,0.8);border-bottom:1px solid var(--border)}
+nav .container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 24px}
+.logo{font-family:var(--font-display);font-size:1.5rem;color:var(--text);letter-spacing:-0.02em;text-decoration:none}
+.logo span{color:var(--lime)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:0.9rem;color:var(--text-muted);transition:color 0.3s;text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);padding:24px;gap:20px;border-bottom:1px solid var(--border)}
+  .nav-toggle{display:block}
+}
+
+/* --- HERO --- */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2rem 4rem;max-width:900px;margin:0 auto;position:relative;overflow:hidden}
+.tag{display:inline-block;font-family:var(--font-mono);font-size:0.75rem;color:var(--lime);border:1px solid var(--lime-dim);padding:0.35rem 0.8rem;border-radius:2px;margin-bottom:2rem;letter-spacing:0.06em;text-transform:uppercase}
+.hero h1{font-family:var(--font-display);font-size:clamp(3rem,7vw,5.5rem);line-height:1.05;margin-bottom:1.5rem;font-weight:400}
+.hero h1 em{font-style:italic;color:var(--lime)}
+.hero p{font-size:1.15rem;color:var(--text-muted);max-width:560px;margin-bottom:2.5rem;line-height:1.7}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:0.5rem;background:var(--lime);color:#0a0a0a;font-family:var(--font-body);font-weight:600;font-size:0.95rem;padding:0.9rem 2rem;border:none;border-radius:3px;cursor:pointer;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;letter-spacing:0.01em}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(196,240,66,0.25)}
+.btn-secondary{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:var(--text);font-family:var(--font-body);font-weight:500;font-size:0.95rem;padding:0.9rem 2rem;border:1px solid var(--border);border-radius:3px;cursor:pointer;text-decoration:none;transition:border-color 0.2s}
+.btn-secondary:hover{border-color:var(--text-muted)}
+
+/* --- SECTION --- */
+section{padding:5rem 2rem;max-width:900px;margin:0 auto}
+.section-label{font-family:var(--font-mono);font-size:0.7rem;color:var(--lime-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+section h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem;font-weight:400}
+section h2 em{font-style:italic;color:var(--lime)}
+section>p.subtitle{color:var(--text-muted);max-width:560px;line-height:1.7;margin-bottom:2.5rem}
+
+/* --- STAT BAR --- */
+.stat-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin:3rem 0}
+.stat{background:var(--surface);padding:2rem;text-align:center}
+.stat .number{font-family:var(--font-display);font-size:2.5rem;color:var(--lime);line-height:1}
+.stat .label{font-size:0.8rem;color:var(--text-muted);margin-top:0.5rem;line-height:1.4}
+@media(max-width:640px){.stat-bar{grid-template-columns:1fr}}
+
+/* --- PROBLEM --- */
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.problem-card{background:var(--surface);padding:1.75rem}
+.problem-card h3{font-size:1rem;font-weight:600;margin-bottom:0.4rem}
+.problem-card p{font-size:0.85rem;color:var(--text-muted);line-height:1.6}
+
+/* --- AI ENGINES --- */
+.engines{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin-top:2.5rem}
+.engine{background:var(--surface);padding:1.25rem;text-align:center}
+.engine .name{font-size:0.95rem;font-weight:600;color:var(--text)}
+.engine .desc{font-size:0.72rem;color:var(--text-dim);margin-top:0.15rem}
+
+/* --- WHAT WE DO --- */
+.services-list{margin-top:2.5rem}
+.service-item{padding:1.25rem 0}
+.service-item .num{font-family:var(--font-mono);font-size:0.7rem;color:var(--lime-dim);letter-spacing:0.06em;padding-top:0.2rem}
+.service-item h3{font-size:1rem;font-weight:600;margin-bottom:0.3rem}
+.service-item p{font-size:0.9rem;color:var(--text-muted);line-height:1.6;max-width:42em}
+
+/* --- SEO vs AEO --- */
+.comparison{margin-top:2.5rem;border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.comp-header{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--surface-2);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-dim)}
+.comp-header>div{padding:1rem 1.25rem}
+.comp-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--border)}
+.comp-row>div{padding:0.85rem 1.25rem;font-size:0.85rem;color:var(--text-muted)}
+.comp-row>div:first-child{color:var(--text)}
+.check{color:var(--lime)}
+.cross{color:var(--text-dim)}
+
+/* --- PRICING --- */
+.pricing-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;margin-top:2.5rem;overflow:hidden}
+@media(max-width:640px){.pricing-cards{grid-template-columns:1fr}}
+.price-card{background:var(--surface);padding:2.5rem;display:flex;flex-direction:column}
+.price-card.featured{background:var(--surface-2);position:relative}
+.price-card.featured::before{content:'RECOMMENDED';position:absolute;top:1rem;right:1rem;font-family:var(--font-mono);font-size:0.6rem;color:var(--lime);letter-spacing:0.1em;border:1px solid var(--lime-dim);padding:0.2rem 0.5rem;border-radius:2px}
+.price-label{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase}
+.price-amount{font-family:var(--font-display);font-size:2.5rem;letter-spacing:-0.03em;margin:0.5rem 0}
+.price-amount span{font-size:0.9rem;color:var(--text-muted);font-family:var(--font-body)}
+.price-card>p{color:var(--text-muted);font-size:0.85rem;margin-bottom:1.5rem;line-height:1.6}
+.price-card ul{list-style:none;margin-bottom:2rem;flex:1}
+.price-card li{font-size:0.85rem;color:var(--text-muted);padding:0.35rem 0;padding-left:1.25rem;position:relative}
+.price-card li::before{content:'';position:absolute;left:0;top:0.7rem;width:6px;height:6px;border-radius:50%;background:var(--lime-dim)}
+
+/* --- SOCIAL PROOF --- */
+.proof-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin-top:2.5rem}
+.proof-card{background:var(--surface);padding:1.75rem}
+.proof-card .quote{font-style:italic;font-size:0.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:0.75rem}
+.proof-card .attribution{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);letter-spacing:0.04em}
+
+/* --- FAQ --- */
+.faq-item{border-bottom:1px solid var(--border);padding:1.5rem 0}
+.faq-item summary{font-weight:600;font-size:0.95rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-item summary::after{content:'+';font-family:var(--font-mono);color:var(--text-dim);font-size:1.2rem;transition:transform 0.2s}
+.faq-item[open] summary::after{transform:rotate(45deg);color:var(--lime)}
+.faq-item p{color:var(--text-muted);font-size:0.9rem;margin-top:1rem;line-height:1.7;max-width:640px}
+
+/* --- BOTTOM CTA --- */
+.bottom-cta{border:1px solid var(--border);background:var(--surface);padding:4rem 3rem;border-radius:3px;text-align:center;max-width:900px;margin:0 auto;position:relative;overflow:hidden}
+.bottom-cta h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem;font-weight:400;position:relative;z-index:1}
+.bottom-cta h2 em{font-style:italic;color:var(--lime)}
+.bottom-cta p{color:var(--text-muted);margin-bottom:2rem;line-height:1.7;max-width:500px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+.bottom-cta .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+
+/* --- FOOTER --- */
+footer{padding:4rem 2rem;text-align:center;border-top:1px solid var(--border);margin-top:5rem}
+footer p{font-size:0.8rem;color:var(--text-dim)}
+footer a{color:var(--text-dim);text-decoration:none;transition:color 0.2s}
+footer a:hover{color:var(--lime)}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero h1,.hero p,.hero .tag,.hero-ctas{animation:fadeUp 0.6s ease-out both}
+.hero .tag{animation-delay:0.1s}
+.hero h1{animation-delay:0.2s}
+.hero p{animation-delay:0.35s}
+.hero-ctas{animation-delay:0.5s}
+
+/* --- RESPONSIVE --- */
+@media(max-width:768px){
+  .comp-header,.comp-row{grid-template-columns:2fr 1fr 1fr}
+  .comp-header>div,.comp-row>div{padding:0.65rem 0.75rem;font-size:0.78rem}
+  .bottom-cta{padding:3rem 2rem}
+}
+</style>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="stylesheet" href="/hero-art.css">
+<link rel="stylesheet" href="/card-refresh.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N94LC333HG"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-N94LC333HG");</script>
+<link rel="stylesheet" href="/type-plain.css">
+<script defer src="/lead-form.js"></script>
+<style>
+.lead-form{display:grid;gap:14px;max-width:34em;margin-top:2rem}
+.lead-form label{display:grid;gap:6px;font-size:.92rem;color:var(--text)}
+.lead-form input,.lead-form textarea{font:inherit;font-size:1rem;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px 14px;width:100%}
+.lead-form input:focus,.lead-form textarea:focus{outline:2px solid var(--lime);outline-offset:1px;border-color:transparent}
+.lead-form button{justify-self:start;border:0;cursor:pointer}
+.lead-form button:disabled{opacity:.6;cursor:wait}
+.lead-form__trap{position:absolute!important;left:-9999px!important}
+.lead-form__status{margin:0;min-height:1.5em;color:var(--lime);font-size:.95rem}
+main section p a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+.hero h1.lv-h1{font-size:clamp(2.6rem,5.5vw,4.4rem);max-width:15em}
+</style>
+</head>
+<body class="aeo-page">
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">alvento<span>.</span></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))">&#9776;</button>
+    <ul class="nav-links" id="primary-nav">
+      <li><a href="/#capabilities">Capabilities</a></li>
+      <li><a href="/tools">Tools</a></li>
+      <li><a href="/case-studies/">Case studies</a></li>
+      <li><a href="/blog/">Insights</a></li>
+      <li><a href="/#contact" style="background:var(--lime);color:#0a0a0a;padding:8px 18px;border-radius:3px;font-weight:600;">Discuss your project</a></li>
+    </ul>
+  </div>
+</nav>
+<main>
+
+<div class="hero" style="min-height:auto;padding-top:9rem;padding-bottom:4rem">
+  <h1 class="lv-h1">Get found when people nearby search for what you do</h1>
+  <p>Most customers now choose a local business from the Google Maps results or from an AI answer, often before they open a single website. We check where you appear, fix what holds you back, and keep it that way.</p>
+  <div class="hero-ctas">
+    <a href="#audit" class="btn-primary">Get the &pound;39 audit</a>
+    <a href="#included" class="btn-secondary">See what is included</a>
+  </div>
+</div>
+
+<section id="problem">
+  <h2>Where local customers decide now</h2>
+  <p class="subtitle">Being good at the work is not enough if the people searching for you never see your name.</p>
+  <div class="problem-grid">
+    <div class="problem-card"><h3>The Google Maps results</h3><p>Searches like &ldquo;plumber near me&rdquo; or &ldquo;dentist in Guildford&rdquo; show a map with a handful of businesses. Most calls go to the ones listed there.</p></div>
+    <div class="problem-card"><h3>AI answers</h3><p>People now ask ChatGPT, Perplexity or Google&rsquo;s AI for a recommendation. Those answers name a few businesses and skip the rest.</p></div>
+    <div class="problem-card"><h3>Your Google Business Profile</h3><p>Categories, opening hours, photos, reviews and replies all count. An incomplete profile quietly loses to a complete one.</p></div>
+    <div class="problem-card"><h3>Your website&rsquo;s local details</h3><p>Search engines and AI tools read your address, service area and services from your site. If they are missing or inconsistent, you are harder to recommend.</p></div>
+  </div>
+</section>
+
+<section id="included">
+  <h2>The &pound;39 audit</h2>
+  <p class="subtitle">A clear picture of where you stand and what to fix first, written for a business owner, not a marketer.</p>
+  <div class="services-list">
+    <div class="service-item"><h3>Google Maps positions</h3><p>Where you appear for three searches your customers actually use, in your area.</p></div>
+    <div class="service-item"><h3>AI answer check</h3><p>Whether ChatGPT, Perplexity and Google&rsquo;s AI mention you when someone asks for a recommendation in your field and town.</p></div>
+    <div class="service-item"><h3>Google Business Profile review</h3><p>Categories, hours, photos, reviews and how they are answered, against what a complete profile looks like.</p></div>
+    <div class="service-item"><h3>Website local check</h3><p>Address and service details, structured data, mobile view and speed.</p></div>
+    <div class="service-item"><h3>A short plan</h3><p>The five changes that will make the most difference, in order, so you can do them yourself or ask us to.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>If you want us to do the work: &pound;550 a month</h2>
+  <p class="subtitle">We look after your local visibility every month so you can get on with running the business.</p>
+  <div class="services-list">
+    <div class="service-item"><h3>Profile kept complete and current</h3><p>Regular updates and posts on your Google Business Profile.</p></div>
+    <div class="service-item"><h3>Reviews</h3><p>A simple way to ask happy customers for reviews, and reply drafts for you to approve.</p></div>
+    <div class="service-item"><h3>Local listings</h3><p>Your name, address and phone number made consistent across the directories that matter.</p></div>
+    <div class="service-item"><h3>Website local pages</h3><p>Clear service and area details, with the structured data search engines and AI tools read.</p></div>
+    <div class="service-item"><h3>Monthly report</h3><p>Your Google Maps positions and AI mentions, month by month, in plain English.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Who this is for</h2>
+  <p class="subtitle">UK businesses whose customers find them locally.</p>
+  <div class="engines">
+    <div class="engine"><div class="name">Trades</div><div class="desc">Plumbers, electricians, builders, cleaners</div></div>
+    <div class="engine"><div class="name">Cafes and salons</div><div class="desc">Cafes, delis, hair and beauty</div></div>
+    <div class="engine"><div class="name">Property</div><div class="desc">Estate and letting agents</div></div>
+    <div class="engine"><div class="name">Clinics</div><div class="desc">Dentists, physios, vets</div></div>
+  </div>
+  <p style="font-size:0.9rem;color:var(--text-dim);margin-top:1.5rem">Regulated organisation such as a registry or professional body? See <a href="/aeo/">AI visibility for regulated organisations</a>.</p>
+</section>
+
+<section id="audit">
+  <h2>Request your audit</h2>
+  <p class="subtitle">Tell us your business name and town. We will confirm by email, take payment, and send the audit.</p>
+  <form class="lead-form" data-product="local visibility audit (39)" novalidate>
+    <label>Your name<input type="text" name="name" autocomplete="name"></label>
+    <label>Email<input type="email" name="email" autocomplete="email" required></label>
+    <label>Website or Google Maps link (optional)<input type="text" name="website" autocomplete="url" inputmode="url"></label>
+    <label>Business name, town and what you do<textarea name="message" rows="4"></textarea></label>
+    <label class="lead-form__trap" aria-hidden="true">Fax<input type="text" name="fax" tabindex="-1" autocomplete="off"></label>
+    <button type="submit" class="btn-primary">Request the audit</button>
+    <p class="lead-form__status" role="status" aria-live="polite"></p>
+  </form>
+  <p style="font-size:0.9rem;color:var(--text-dim);margin-top:1rem">Prefer email? <a href="mailto:hello@alvento.uk?subject=Local%20visibility%20audit">hello@alvento.uk</a></p>
+</section>
+
+<section>
+  <h2>Questions</h2>
+  <details class="faq-item"><summary>Can you guarantee a top three position on Google Maps?</summary><p>No one honestly can. Google decides the order. We work on the things that are known to count: a complete profile, steady reviews, consistent listings and clear local details on your site.</p></details>
+  <details class="faq-item"><summary>Do I need a new website?</summary><p>Usually not. Most fixes are to your Google Business Profile and a few details on the site you already have.</p></details>
+  <details class="faq-item"><summary>How long until things change?</summary><p>Profile fixes can show within weeks. Positions in the Maps results usually move over two to three months, depending on how busy your area is.</p></details>
+  <details class="faq-item"><summary>Is there a contract?</summary><p>The audit is a one-off. The monthly service runs month to month.</p></details>
+</section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Alvento Ltd  /  Company No. 16394298  /  <a href="https://alvento.uk">alvento.uk</a>  /  <a href="/privacy">Privacy</a></p>
+</footer>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Service",
+ "name": "Google Maps and AI search visibility",
+ "serviceType": "Local search visibility",
+ "provider": {
+  "@type": "Organization",
+  "name": "Alvento Ltd",
+  "url": "https://alvento.uk"
+ },
+ "areaServed": "GB",
+ "url": "https://alvento.uk/local-visibility/",
+ "offers": [
+  {
+   "@type": "Offer",
+   "name": "Local visibility audit",
+   "price": "39",
+   "priceCurrency": "GBP"
+  },
+  {
+   "@type": "Offer",
+   "name": "Local visibility monthly service",
+   "price": "550",
+   "priceCurrency": "GBP",
+   "priceSpecification": {
+    "@type": "UnitPriceSpecification",
+    "price": "550",
+    "priceCurrency": "GBP",
+    "unitCode": "MON"
+   }
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Can you guarantee a top three position on Google Maps?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No one honestly can. Google decides the order. We work on the things that are known to count: a complete profile, steady reviews, consistent listings and clear local details on your site."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do I need a new website?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Usually not. Most fixes are to your Google Business Profile and a few details on the site you already have."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How long until things change?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Profile fixes can show within weeks. Positions in the Maps results usually move over two to three months, depending on how busy your area is."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is there a contract?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The audit is a one-off. The monthly service runs month to month."
+   }
+  }
+ ]
+}
+</script>
+<script defer src="/consent-banner.js"></script>
+</body>
+</html>
