@@ -846,6 +846,15 @@ h1, h2, h3, h4 { font-synthesis: none; }
 /* contact */
 .hx-contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px 64px;align-items:start;border-top:1px solid #3a3a3a;padding-top:clamp(40px,5vw,64px)}
 .hx-contact p{color:var(--muted);font-size:1.05rem;line-height:1.75;margin:0 0 24px;max-width:34em}
+.lead-form{display:grid;gap:14px;max-width:34em}
+.lead-form label{display:grid;gap:6px;font-size:.92rem;color:var(--text)}
+.lead-form input,.lead-form textarea{font:inherit;font-size:1rem;color:var(--text);background:#111a1e;border:1px solid #2f3d44;border-radius:6px;padding:12px 14px;width:100%}
+.lead-form input:focus,.lead-form textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.lead-form button{justify-self:start;border:0;cursor:pointer}
+.lead-form button:disabled{opacity:.6;cursor:wait}
+.lead-form__trap{position:absolute!important;left:-9999px!important}
+.hx-contact .lead-form__status{margin:0;min-height:1.5em;color:var(--accent);font-size:.95rem}
+.hx-contact .lead-form__alt{margin:20px 0 0;font-size:.95rem}
 
 @media(max-width:1000px){
   .hx-cols{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -864,6 +873,7 @@ h1, h2, h3, h4 { font-synthesis: none; }
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N94LC333HG"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-N94LC333HG");</script>
 <link rel="stylesheet" href="/type-plain.css">
+<script defer src="/lead-form.js"></script>
 <noscript><style>.fade-up{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
@@ -1085,7 +1095,16 @@ h1, h2, h3, h4 { font-synthesis: none; }
       </div>
       <div class="fade-up">
         <p>Tell us what you are trying to solve. We will reply by email with next steps. There is no fixed format and no charge for that first conversation.</p>
-        <a href="mailto:hello@alvento.uk" class="contact-email">hello@alvento.uk</a>
+        <form class="lead-form" data-product="homepage enquiry" novalidate>
+          <label>Your name<input type="text" name="name" autocomplete="name"></label>
+          <label>Email<input type="email" name="email" autocomplete="email" required></label>
+          <label>Website (optional)<input type="text" name="website" autocomplete="url" inputmode="url"></label>
+          <label>What do you need?<textarea name="message" rows="4"></textarea></label>
+          <label class="lead-form__trap" aria-hidden="true">Fax<input type="text" name="fax" tabindex="-1" autocomplete="off"></label>
+          <button type="submit" class="btn-primary">Send</button>
+          <p class="lead-form__status" role="status" aria-live="polite"></p>
+        </form>
+        <p class="lead-form__alt">Prefer email? <a href="mailto:hello@alvento.uk" class="contact-email">hello@alvento.uk</a></p>
       </div>
     </div>
   </div>

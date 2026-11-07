@@ -15,7 +15,10 @@ export default async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
-  const { email, product, context } = req.body || {};
+  const { email, product, context, fax } = req.body || {};
+
+  // Honeypot: the enquiry form has a hidden "fax" field people never see.
+  if (fax) return res.status(200).json({ ok: true });
 
   if (!email) return res.status(400).json({ error: "Email required" });
 
@@ -50,7 +53,7 @@ export default async function handler(req, res) {
       from: FROM,
       to: NOTIFY_TO,
       replyTo: email,
-      subject: `New tool capture: ${lead.product}`,
+      subject: `New lead: ${lead.product}`,
       text: [
         `Email:   ${lead.email}`,
         `Product: ${lead.product}`,
