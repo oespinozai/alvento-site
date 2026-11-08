@@ -13,3 +13,13 @@ h1 em,h2 em,h3 em{font-style:normal!important;color:inherit!important}
 code,pre,kbd,samp{font-family:'JetBrains Mono',ui-monospace,monospace!important}
 .product-bar nav a,.alvento-header .desktop-nav>a{font-size:14px}
 .product-identity span{font-size:12px}
+
+.nk-art{margin:0 0 2.5rem;padding:0}.nk-art img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#050505}
+
+.closing-art{position:relative;padding:0;text-align:left;overflow:hidden;border:1px solid var(--line);border-radius:6px;background:#050505}
+.closing-art .closing-bg{display:block;width:100%;height:auto;margin:0}
+.closing-art .closing-copy{position:absolute;left:6%;top:50%;transform:translateY(-50%);max-width:44%}
+.closing-art .closing-copy h2{font-size:clamp(28px,3.6vw,48px);margin:0 0 14px}
+.closing-art .closing-copy p{margin:0 0 24px}
+@media(max-width:760px){.closing-art .closing-copy{position:static;transform:none;max-width:none;padding:28px 22px 8px}.closing-art .closing-copy h2{font-size:clamp(28px,8vw,40px)}}
+.closing-art .closing-copy h2{text-wrap:balance}

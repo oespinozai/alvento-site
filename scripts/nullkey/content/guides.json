@@ -36,16 +36,12 @@
         "An album can disappear from the usual gallery view while its files remain available elsewhere. Do not infer encryption from a hidden icon or a folder name. Check the app’s own documentation for what is encrypted, how it unlocks and what happens to backups."
       ],
       [
-        "Built-in tools deserve a fair look",
-        "Files by Google offers Safe Folder, while supported Samsung devices offer Secure Folder. Their capabilities and recovery behaviour differ. Start by checking the option already available on your own phone, then identify what you still need: a separate passphrase, encrypted export or an account-free workflow."
-      ],
-      [
         "Ask four questions",
         "What protects the stored files? Who holds the keys? What happens if I forget the secret? How will I move to another phone? Answers are more useful than labels such as “military-grade”. A vault should explain its limits as plainly as its features."
       ],
       [
         "Where NullKey fits",
-        "NullKey’s public Android app uses a passphrase, an independent recovery key and encrypted backup files. It has no account and declares no internet permission. Choose it based on those specific properties, not an assumption that every built-in alternative is insecure."
+        "NullKey’s public Android app uses a passphrase, an independent recovery key and encrypted backup files. It has no account and declares no internet permission. Choose it based on those specific properties."
       ]
     ]
   ],
