@@ -8,7 +8,8 @@ import json, re, sys, hashlib, xml.etree.ElementTree as ET
 from play_links import PACKAGE, campaign_for_route
 
 root=Path(__file__).resolve().parents[2]; product=root/'nullkey'; errors=[]
-NAMES=['samsung','secure folder','safe folder','google photos','google drive','google one','files by google','icloud','onedrive','dropbox','keepsafe','vaultaire','calculator vault','bitwarden','1password','lastpass','signal','whatsapp','telegram','cryptomator','veracrypt','norton','proton','mega','apple','iphone','ios','pixel','xiaomi','huawei','oneplus','chrome','gmail','microsoft','windows','facebook','instagram','tiktok','amazon','openai','chatgpt','kaspersky','mcafee','nordvpn','tutanota']
+NAMES=['samsung','secure folder','safe folder','google photos','google drive','google one','files by google','icloud','onedrive','dropbox','keepsafe','vaultaire','calculator vault','bitwarden','1password','lastpass','signal','whatsapp','telegram','cryptomator','veracrypt','norton','proton','mega','apple','pixel','xiaomi','huawei','oneplus','chrome','gmail','microsoft','windows','facebook','instagram','tiktok','amazon','openai','chatgpt','kaspersky','mcafee','nordvpn','tutanota']
+# iPhone and iOS are platform names for NullKey's own roadmap (Oscar, 2026-11-08), not competing products, so they are not on this list.
 BANNED=re.compile(r'\b(?:audited|zero[ -]knowledge|military[ -]grade|end[ -]to[ -]end)\b',re.I)
 GLYPH=re.compile('[—←-⇿⟀-⟿\U0001F000-\U0001FAFF]')
 MONEY=re.compile(r'(?:[£$€]\s*\d|\b\d+(?:\.\d+)?\s*(?:pounds|dollars|euros|gbp|usd|eur)\b)',re.I)
