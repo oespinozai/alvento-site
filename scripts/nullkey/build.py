@@ -2,6 +2,7 @@ from pathlib import Path
 import html, json, shutil, re, subprocess, sys
 from datetime import date
 import qrcode
+from play_links import PLAIN as PLAY, campaign_for_route, play_url, qr_url
 from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).parent
@@ -9,13 +10,12 @@ OUT = ROOT / 'dist'
 ORIGIN = 'https://alvento.uk/nullkey'
 PRIVACY = 'https://alvento.uk/nullkey/privacy/'
 GA4 = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-N94LC333HG"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-N94LC333HG");</script>'
-PLAY = 'https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp'
 release = json.loads((ROOT / 'content/release.json').read_text())
 META = json.loads((ROOT / 'content/guide-metadata.json').read_text())
 GUIDE_LINKS = json.loads((ROOT / 'content/guide-links.json').read_text())
 GUIDE_DATES = json.loads((ROOT / 'content/guide-dates.json').read_text())
-# Generate the static QR from the same destination as every Play link.
-qrcode.make(PLAY, box_size=10, border=4).save(ROOT / 'assets/play-qr.png')
+# Generate the static QR for the Play listing with its QR-specific campaign.
+qrcode.make(qr_url(), box_size=10, border=4).save(ROOT / 'assets/play-qr.png')
 # Only generated output is replaced. Legal and brand review drafts remain in source.
 if OUT.exists(): shutil.rmtree(OUT)
 OUT.mkdir()
@@ -71,7 +71,8 @@ def page(route, title, description, body, structured=None, compact_title=False):
     title_suffix = (' | NullKey' if len(title) + len(' | NullKey') <= 65 else '') if compact_title else ' | NullKey by Alvento'
     document = f'''<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title+title_suffix)}</title><meta name="description" content="{esc(description)}"><meta name="robots" content="index,follow"><link rel="canonical" href="{url}"><meta name="theme-color" content="#090a06"><meta property="og:title" content="{esc(title)} | NullKey"><meta property="og:description" content="{esc(description)}"><meta property="og:type" content="website"><meta property="og:url" content="{url}"><meta property="og:image" content="{ORIGIN}/nk-og-1200x630.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="/mark.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/style.css"><script src="/site.js" defer></script></head><body>{nav(route)}<main id="main" tabindex="-1" class="wrap">{body}</main>{footer}</body></html>'''
     document = re.sub(r'(href|src)="/(?!/)', r'\1="/nullkey/', document)
-    document = document.replace('href="'+PLAY+'"', 'href="'+PLAY+'" rel="noopener"')
+    destination = esc(play_url(campaign_for_route(route)))
+    document = document.replace('href="'+PLAY+'"', 'href="'+destination+'" rel="noopener"')
     # Site-wide GA4 + consent banner, added after the /nullkey/ path rewrite so the root script path survives.
     document = document.replace('</head>', GA4 + '</head>', 1).replace('</body>', '<script defer src="/consent-banner.js"></script></body>', 1)
     if structured:

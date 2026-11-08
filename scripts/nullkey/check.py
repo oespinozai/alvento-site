@@ -5,6 +5,7 @@ from urllib.parse import urljoin, urlsplit, unquote, parse_qs
 from collections import defaultdict, deque
 from html.parser import HTMLParser
 import json, re, sys, hashlib, xml.etree.ElementTree as ET
+from play_links import PACKAGE, campaign_for_route
 
 root=Path(__file__).resolve().parents[2]; product=root/'nullkey'; errors=[]
 NAMES=['samsung','secure folder','safe folder','google photos','google drive','google one','files by google','icloud','onedrive','dropbox','keepsafe','vaultaire','calculator vault','bitwarden','1password','lastpass','signal','whatsapp','telegram','cryptomator','veracrypt','norton','proton','mega','apple','iphone','ios','pixel','xiaomi','huawei','oneplus','chrome','gmail','microsoft','windows','facebook','instagram','tiktok','amazon','openai','chatgpt','kaspersky','mcafee','nordvpn','tutanota']
@@ -12,6 +13,15 @@ BANNED=re.compile(r'\b(?:audited|zero[ -]knowledge|military[ -]grade|end[ -]to[ 
 GLYPH=re.compile('[—←-⇿⟀-⟿\U0001F000-\U0001FAFF]')
 MONEY=re.compile(r'(?:[£$€]\s*\d|\b\d+(?:\.\d+)?\s*(?:pounds|dollars|euros|gbp|usd|eur)\b)',re.I)
 def fail(path,message):errors.append(f'{path}: {message}')
+def check_play_url(href, path):
+ u=urlsplit(href); outer=parse_qs(u.query,keep_blank_values=True)
+ if u.scheme!='https' or u.netloc.lower()!='play.google.com' or u.path!='/store/apps/details' or outer.get('id')!=[PACKAGE]:
+  fail(path.relative_to(root),'incorrect Google Play package: '+href); return
+ route='/'+str(path.relative_to(product)).replace('index.html','')
+ expected={'utm_source':['alvento-site'],'utm_medium':['web'],'utm_campaign':[campaign_for_route(route)]}
+ if set(outer)!={'id','referrer'} or len(outer.get('referrer',[]))!=1 or parse_qs(outer['referrer'][0],keep_blank_values=True)!=expected:
+  fail(path.relative_to(root),'incorrect Google Play campaign referrer: '+href)
+
 def is_disclaimed(text, match):
  prefix=text[max(0,match.start()-85):match.start()]
  # Only a direct negation or this existing caution about marketing labels.
@@ -83,7 +93,7 @@ def check_guide_cta(path):
  for a in d.anchors:
   u=urlsplit(a['href'])
   if u.netloc.lower()=='play.google.com':
-   if u.scheme!='https' or u.path!='/store/apps/details' or parse_qs(u.query).get('id')!=['uk.alvento.nullkeyapp']:fail(rel,'incorrect Google Play package: '+a['href'])
+   check_play_url(a['href'],path)
    if 'noopener' not in a['rel']:fail(rel,'Play link missing noopener')
    if not a['image']:play.append(a)
  labels={a['text'].strip() for a in play}
@@ -109,7 +119,9 @@ for path,doc in docs.items():
  if doc.h1!=1:fail(rel,f'expected 1 h1, got {doc.h1}')
  if path != product/'privacy/index.html' and doc.meta.get('robots') != ['index,follow']:fail(rel,'missing index,follow robots')
  if path != product/'privacy/index.html' and 'https://alvento.uk/nullkey/privacy/' not in doc.links:fail(rel,'missing privacy link')
- if path != product/'privacy/index.html' and 'https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp' not in doc.links:fail(rel,'missing Play CTA')
+ play_links=[link for link in doc.links if urlsplit(link).netloc.lower()=='play.google.com']
+ if path != product/'privacy/index.html' and not play_links:fail(rel,'missing Play CTA')
+ for link in play_links:check_play_url(link,path)
  if doc.canon!=[url]:fail(rel,f'missing or wrong canonical {doc.canon}')
  if path != product/'privacy/index.html' and (not doc.title or len(doc.title)>65):fail(rel,f'title length {len(doc.title)} (max 65)')
  if doc.title.casefold() in titles:fail(rel,f'duplicate title with {titles[doc.title.casefold()]}')
