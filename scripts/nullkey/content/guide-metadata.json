@@ -1,35 +1,35 @@
 {
   "guides/store-private-documents-android": {
     "title": "Private documents on Android",
-    "description": "Explore how to organise private documents on Android, check existing copies and make a separate backup that you can restore."
+    "description": "Locate every copy of a document first, then keep it in an encrypted vault with a checked backup, storing the backup and its secret apart from the phone."
   },
   "guides/hidden-folder-vs-encrypted-vault": {
     "title": "Hidden folder or encrypted vault?",
-    "description": "Compare visibility, access controls and encryption, and learn what to check before relying on a folder for private files."
+    "description": "A hidden folder only changes what is visible, while an encrypted vault protects stored files with a secret. Check what is encrypted and how backups work."
   },
   "guides/backup-offline-vault": {
     "title": "How to back up an offline vault",
-    "description": "Learn how to create and check an encrypted offline vault backup, keep its matching secret and practise restoring a copy."
+    "description": "Offline does not mean backed up. Create an encrypted backup in Settings, wait for the read-back check, and keep it away from the phone with its secret."
   },
   "guides/before-deleting-originals": {
     "title": "Check the copy before deleting the original",
-    "description": "Follow a checklist for checking imported files, finding other copies and keeping a backup before you remove an original."
+    "description": "Before you delete an original, check the imported copy and make a checked encrypted backup, because deletion is not guaranteed secure erasure."
   },
   "guides/recovery-key-vs-backup": {
     "title": "Recovery key or backup?",
-    "description": "Learn why a recovery key helps unlock a vault, while a separate backup preserves the data you need after losing a phone."
+    "description": "A recovery key unlocks the vault but is not a copy of your data. A backup holds the data and still needs a valid secret to open it."
   },
   "guides/vault-without-account": {
     "title": "What does a vault without an account mean?",
-    "description": "Understand what an account-free vault changes, where backups may go and why you need a recovery key and a separate backup."
+    "description": "With no account there is no reset link, so you keep your own recovery key and encrypted backups. The public app has no server and no internet permission."
   },
   "guides/private-photos-android": {
     "title": "How to keep private photos on Android",
-    "description": "Learn how to organise private photos on Android, check imported copies, understand locked folders and keep a separate backup."
+    "description": "A hidden album may not encrypt photos, while an encrypted vault protects them with a secret. Check every copy first, then practise restoring sample photos."
   },
   "guides/restore-nullkey-backup-new-phone": {
     "title": "Restore a NullKey backup on a new phone",
-    "description": "Follow the steps to copy and restore a checked NullKey backup on a new phone, and verify the result before removing the old app."
+    "description": "Make a checked backup on the old phone, restore it into the new phone's empty vault and keep the old app until the restored vault is checked."
   },
   "guides": {
     "title": "Android privacy & backup guides",
