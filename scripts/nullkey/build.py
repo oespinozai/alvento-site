@@ -1,5 +1,6 @@
 from pathlib import Path
 import html, json, shutil, re
+from datetime import date
 from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).parent
@@ -40,7 +41,7 @@ def nav(route):
     return '<a class="skip" href="#main">Skip to content</a><div class="wrap product-bar">'+a('/','<img src="/mark.svg" width="28" height="28" alt="">NullKey <span>An Alvento product</span>','product-identity')+'<nav aria-label="NullKey navigation">'+product_links+'</nav></div>'
 footer = '<footer class="alvento-footer"><div class="wrap"><div class="footer-top"><div>'+a('https://alvento.uk/','alvento<span>.</span>','alvento-logo')+'<p>NullKey. An Alvento product.</p></div><nav aria-label="Footer navigation">'+''.join(a(url,label) for url,label in [('/availability/','Download & compatibility'),('/features/','Features'),('/security/','Security'),(PRIVACY,'App privacy policy'),('/terms/','Terms of use'),('/about/','Product support'),('https://alvento.uk/case-studies/','More from Alvento'),('https://alvento.uk/privacy/','Website privacy')])+'</nav></div><div class="footer-bottom"><span>© 2026 Alvento Ltd. Company No. 16394298. United Kingdom.</span>'+a('https://alvento.uk/','alvento.uk')+' '+a(PLAY,'Get NullKey on Google Play')+'</div></div></footer>'
 routes = []
-def page(route, title, description, body):
+def page(route, title, description, body, structured=None):
     routes.append(route)
     target = OUT / route.strip('/') / 'index.html'
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -49,6 +50,9 @@ def page(route, title, description, body):
     document = re.sub(r'(href|src)="/(?!/)', r'\1="/nullkey/', document)
     # Site-wide GA4 + consent banner, added after the /nullkey/ path rewrite so the root script path survives.
     document = document.replace('</head>', GA4 + '</head>', 1).replace('</body>', '<script defer src="/consent-banner.js"></script></body>', 1)
+    if structured:
+        data=json.dumps(structured, ensure_ascii=False).replace('<', '\\u003c')
+        document=document.replace('</head>', '<script type="application/ld+json">'+data+'</script></head>', 1)
     target.write_text(plain(document))
 def head(label,title,intro): return f'<div class="page-head"><span class="eyebrow">{label}</span><h1>{title}</h1><p class="lead">{intro}</p></div>'
 def art(name):
@@ -62,6 +66,36 @@ def faq(q,answer): return f'<details><summary>{q}</summary><p>{answer}</p></deta
 def guides_cards(items): return ''.join(f'<a class="guide" href="/guides/{slug}/"><span class="eyebrow">Practical guide</span><h3>{esc(title)}</h3><p>{esc(desc)}</p><span class="read">Read guide</span></a>' for slug,title,desc,_ in items)
 
 guides=json.loads((ROOT/'content/guides.json').read_text())
+CLUSTERS={
+ 'protect-photos':('Private photos','Explore ways to organise and protect private photos.'),
+ 'documents':('Private documents','Consider where private documents and readable copies are kept.'),
+ 'encryption':('Encryption and access','Understand access, encryption and the limits of each approach.'),
+ 'backup':('Backups and recovery','Plan how to keep copies and recover access.'),
+ 'devices':('Phones and devices','Consider privacy when using or changing a phone.')}
+LEGACY_CLUSTERS={'store-private-documents-android':'documents','hidden-folder-vs-encrypted-vault':'encryption','backup-offline-vault':'backup','before-deleting-originals':'documents','recovery-key-vs-backup':'backup','vault-without-account':'encryption','private-photos-android':'protect-photos','restore-nullkey-backup-new-phone':'devices'}
+CLUSTER_ART={'protect-photos':'nk-private-photos','documents':'nk-documents','encryption':'nk-home','backup':'nk-backup-offline','devices':'nk-no-account'}
+new_guides=[]
+for path in sorted((ROOT/'content/guides').glob('*.json')):
+    g=json.loads(path.read_text(encoding='utf-8'))
+    if path.stem != g['slug'] or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',g['slug']): raise ValueError(f'Invalid guide slug: {path}')
+    if g['cluster'] not in CLUSTERS: raise ValueError(f'Invalid cluster: {path}')
+    date.fromisoformat(g['reviewed'])
+    new_guides.append(g)
+guide_titles={g[0]:g[1] for g in guides}
+for g in new_guides:
+    if g['slug'] in guide_titles: raise ValueError('Duplicate guide: '+g['slug'])
+    guide_titles[g['slug']]=g['title']
+for g in new_guides:
+    for related in g['related']:
+        if related not in guide_titles or related == g['slug']: raise ValueError(f"Invalid related guide {related} in {g['slug']}")
+def breadcrumb(title):
+    return '<nav aria-label="Breadcrumb"><a href="/guides/">Guides</a> / <span aria-current="page">'+esc(title)+'</span></nav>'
+def guide_schema(slug,title,reviewed):
+    url=ORIGIN+'/guides/'+slug+'/'
+    return {'@context':'https://schema.org','@graph':[
+      {'@type':'Article','headline':title,'author':{'@type':'Organization','name':'Alvento Ltd','url':'https://alvento.uk/'},'publisher':{'@type':'Organization','name':'Alvento Ltd','url':'https://alvento.uk/'},'dateModified':reviewed,'mainEntityOfPage':url},
+      {'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Guides','item':ORIGIN+'/guides/'},{'@type':'ListItem','position':2,'name':title,'item':url}]}]}
+
 # Actual product screens are copied from the app's approved synthetic-data captures.
 shots=json.loads((ROOT/'content/screenshots.json').read_text())
 hero_image = f'<img class="app-screen" src="/screenshots/{shots[0][0]}" width="{shots[0][3]}" height="{shots[0][4]}" alt="{esc(shots[0][2])}" fetchpriority="high">'
@@ -120,10 +154,28 @@ for i,(slug,title,description,sections) in enumerate(guides):
     for h,p in sections:
         suffix=guide_context.get(slug,{}).get(h,'')
         linked_sections.append((esc(h),'<p>'+esc(p)+suffix+'</p>'))
-    body=article(esc(title),esc(description),linked_sections, 'Practical privacy guide', GUIDE_ART.get(slug))
+    body=breadcrumb(title)+article(esc(title),esc(description),linked_sections, 'Practical privacy guide', GUIDE_ART.get(slug))
     body+='<div class="notice">Keep a separate, checked backup of important files. Restore only into an empty vault and check the result before removing an original.</div>'+play_badge()+'<p class="note">Reviewed 3 November 2026 · '+a('/guides/','All guides')+'</p>'
-    page('/guides/'+slug+'/',title,description,body)
-page('/guides/','Android privacy & backup guides','Practical guides to encrypted vaults, private photos, private documents, recovery keys and offline backups.',head('Practical privacy','A little understanding.<br>A better routine.','Start with the question you have. Keep track of your copies and know how you would recover them.')+'<div class="guide-grid section">'+guides_cards(guides)+'</div>'+play_badge())
+    page('/guides/'+slug+'/',title,description,body,guide_schema(slug,title,'2026-11-03'))
+
+for g in new_guides:
+    sections=[]
+    for sec in g['sections']:
+        content=''.join('<p>'+esc(p)+'</p>' for p in sec['p'])
+        if sec.get('list'): content+='<ul>'+''.join('<li>'+esc(item)+'</li>' for item in sec['list'])+'</ul>'
+        sections.append((esc(sec['h']),content))
+    body=breadcrumb(g['title'])+article(esc(g['title']),esc(g['description']),sections,'Practical privacy guide',CLUSTER_ART[g['cluster']])
+    if g.get('faq'): body+='<section class="section faq"><h2>Frequently asked questions</h2>'+''.join(faq(esc(f['q']),esc(f['a'])) for f in g['faq'])+'</section>'
+    body+='<section class="section"><h2>Related guides</h2><ul>'+''.join('<li>'+a('/guides/'+slug+'/',esc(guide_titles[slug]))+'</li>' for slug in g['related'])+'</ul></section>'
+    reviewed=date.fromisoformat(g['reviewed'])
+    body+='<div class="notice">Keep a separate, checked backup of important files. Restore only into an empty vault and check the result before removing an original.</div>'+play_badge()+'<p class="note">Reviewed '+f'{reviewed.day} {reviewed:%B %Y}'+' · '+a('/guides/','All guides')+'</p>'
+    page('/guides/'+g['slug']+'/',g['title'],g['description'],body,guide_schema(g['slug'],g['title'],g['reviewed']))
+
+cluster_sections=''
+for key,(label,intro) in CLUSTERS.items():
+    items=[g for g in guides if LEGACY_CLUSTERS[g[0]]==key]+[(g['slug'],g['title'],g['description'],[]) for g in new_guides if g['cluster']==key]
+    if items: cluster_sections+='<section class="section"><h2>'+esc(label)+'</h2><p>'+esc(intro)+'</p><div class="guide-grid">'+guides_cards(items)+'</div></section>'
+page('/guides/','Android privacy & backup guides','Practical guides to encrypted vaults, private photos, private documents, recovery keys and offline backups.',head('Practical privacy','A little understanding.<br>A better routine.','Start with the question you have. Keep track of your copies and know how you would recover them.')+cluster_sections+play_badge())
 about=[('Made by Alvento','<p>NullKey is an Android product by <a href="https://alvento.uk">Alvento Ltd</a>, a UK company, number 16394298. We build the app around on-device encryption and secrets you hold.</p>'),('Contact and support','<p>Email <a href="mailto:hello@alvento.uk?subject=NullKey%20support">hello@alvento.uk</a> with “NullKey” in the subject. For a problem with the app, tell us the app version, Android version and the steps that led to it.</p><p>Do not send passphrases, recovery keys, backups or private vault contents. Use sample data if you need to describe a problem. For a security issue, use the subject “NullKey security”.</p>'),('App and website privacy','<p>The offline app and this website are separate systems. <a href="'+PRIVACY+'">Read NullKey’s published app privacy policy</a> for the vault, unlock methods, imports, backups and support correspondence.</p><p>This product website includes Google Analytics, which stays off until you accept it in the consent banner. See Alvento’s <a href="https://alvento.uk/privacy/">website privacy notice</a> for details. This applies to the website only: Google Analytics is not part of the NullKey app and does not see your vault or how you use the app, which has no internet permission. This product section is hosted with Alvento’s main website. Hosting services may process request and operational information to serve pages. Visiting a website still makes network requests, even though the app itself works offline.</p><p><a href="https://alvento.uk/privacy/">Alvento’s website privacy notice</a> describes the company website and contact services.</p>')]
 page('/about/','About NullKey & support','NullKey is made by Alvento Ltd. Find product support, security contact details and the published app privacy policy.',article('A named company.<br>A direct way to reach us.','NullKey by Alvento. Built around private files that stay with you.',about,'About / contact'))
 TERMS_DATE='7 November 2026'
