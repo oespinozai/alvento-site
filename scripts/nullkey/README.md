@@ -19,3 +19,5 @@ The previous nullkey.alvento.uk Site is retained as a permanent redirect to this
 Google Play badge: official unmodified English artwork from https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png, retrieved 3 November 2026. Display preserves aspect ratio and supplied clear space.
 
 Guide sitemap maintenance: after approved guide files are present, run `python3 scripts/nullkey/sitemap.py` and review the diff. It sorts only the contiguous NullKey block, uses the visible review date for guides and preserves existing non-guide metadata and all non-NullKey bytes. A review date must reflect a real content update before it is used as `lastmod` or `dateModified`. Builds do not update the sitemap automatically.
+
+The build generates a static Google Play QR code with the pinned dependency in `scripts/nullkey/requirements.txt`. Install it in a Python environment with `python3 -m pip install -r scripts/nullkey/requirements.txt`, then run the build with that environment's Python. The QR encodes the same plain Play listing URL as the text and badge links.

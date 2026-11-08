@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fail closed on NullKey quality, integrity, graph and sitemap checks."""
 from pathlib import Path
-from urllib.parse import urljoin, urlsplit, unquote
+from urllib.parse import urljoin, urlsplit, unquote, parse_qs
 from collections import defaultdict, deque
 from html.parser import HTMLParser
 import json, re, sys, hashlib, xml.etree.ElementTree as ET
@@ -51,6 +51,44 @@ class Doc(HTMLParser):
   if self.current is not None:self.current+=data
   if not self.in_script and not self.in_style:self.text.append(data)
 
+class GuideCTA(HTMLParser):
+ def __init__(self):
+  super().__init__(convert_charrefs=True);self.in_article=False;self.sections=0;self.mid_positions=[];self.mid_text=[];self.in_mid=False;self.anchors=[];self.current=None;self.end_depth=0;self.end_text=[];self.end_count=0
+ def handle_starttag(self,tag,attrs):
+  a=dict(attrs)
+  if tag=='div' and 'guide-download' in a.get('class','').split():self.end_count+=1;self.end_depth=1
+  elif self.end_depth and tag not in ('img','br','hr','input','meta','link','source'):self.end_depth+=1
+  if tag=='article':self.in_article=True
+  if tag=='section' and self.in_article:self.sections+=1
+  if tag=='aside' and a.get('data-cta')=='mid':self.mid_positions.append(self.sections if self.in_article else -1);self.in_mid=True
+  if tag=='a':self.current={'href':a.get('href',''),'rel':a.get('rel','').split(),'text':'','image':False,'mid':self.in_mid}
+  if tag=='img' and self.current is not None:self.current['image']=True
+ def handle_data(self,data):
+  if self.in_mid:self.mid_text.append(data)
+  if self.end_depth:self.end_text.append(data)
+  if self.current is not None:self.current['text']+=data
+ def handle_endtag(self,tag):
+  if tag=='a' and self.current is not None:self.anchors.append(self.current);self.current=None
+  if tag=='aside' and self.in_mid:self.in_mid=False
+  if tag=='article':self.in_article=False
+  if self.end_depth:self.end_depth-=1
+
+def check_guide_cta(path):
+ d=GuideCTA();d.feed(path.read_text(encoding='utf-8'));rel=path.relative_to(root)
+ if d.mid_positions!=[2]:fail(rel,f'expected one mid-article CTA after section 2, got {d.mid_positions}')
+ if d.end_count!=1:fail(rel,f'expected one end download block, got {d.end_count}')
+ cta=' '.join(d.mid_text+d.end_text)
+ if MONEY.search(cta) or re.search(r'\bprice\b',cta,re.I) or BANNED.search(cta):fail(rel,'price, currency or banned claim in CTA')
+ play=[]
+ for a in d.anchors:
+  u=urlsplit(a['href'])
+  if u.netloc.lower()=='play.google.com':
+   if u.scheme!='https' or u.path!='/store/apps/details' or parse_qs(u.query).get('id')!=['uk.alvento.nullkeyapp']:fail(rel,'incorrect Google Play package: '+a['href'])
+   if 'noopener' not in a['rel']:fail(rel,'Play link missing noopener')
+   if not a['image']:play.append(a)
+ labels={a['text'].strip() for a in play}
+ if not {'Get NullKey on Google Play','Download NullKey from Google Play'} <= labels:fail(rel,'missing two distinct non-badge Play link labels')
+ if not any(a['mid'] and a['text'].strip()=='Get NullKey on Google Play' for a in play):fail(rel,'missing Play text button in mid CTA')
 def read_doc(path):
  d=Doc();d.feed(path.read_text(encoding='utf-8'));return d
 pages=sorted(product.rglob('index.html'));docs={p:read_doc(p) for p in pages};titles={};descriptions={};graph=defaultdict(set);base='https://alvento.uk'
@@ -119,6 +157,7 @@ while queue:
 guides=[p for p in pages if p.parent.parent==product/'guides']
 legacy_slugs={g[0] for g in json.loads((root/'scripts/nullkey/content/guides.json').read_text())}
 for path in guides:
+ check_guide_cta(path)
  if path.parent.name not in legacy_slugs | new_slugs:fail(path.relative_to(root),'stale guide output has no source')
 for path in guides:
  if path not in seen:fail(path.relative_to(root),'orphan: unreachable from guide hub')
