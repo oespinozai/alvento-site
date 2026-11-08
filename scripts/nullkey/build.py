@@ -121,6 +121,28 @@ def reviewed_links(key):
 def date_label(value):
     d=date.fromisoformat(value)
     return f'{d.day} {d:%B %Y}'
+def _optional_json(name):
+    path=ROOT/'content'/name
+    return json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
+SOURCE_WHITELIST={x['url']:x['title'] for x in _optional_json('source-whitelist.json') or []} if isinstance(_optional_json('source-whitelist.json'),list) else {}
+GUIDE_SOURCES=_optional_json('guide-sources.json')
+LEGACY_FAQ=_optional_json('guide-faq-legacy.json')
+for _slug,_items in GUIDE_SOURCES.items():
+    if _slug not in guide_titles: raise ValueError('Sources for unknown guide: '+_slug)
+    if len(_items)>3: raise ValueError('More than 3 sources: '+_slug)
+    for _x in _items:
+        if SOURCE_WHITELIST.get(_x['url'])!=_x['title']: raise ValueError('Source not in whitelist or title mismatch: '+_slug+' '+_x['url'])
+for _slug,_items in LEGACY_FAQ.items():
+    if _slug not in {g[0] for g in guides}: raise ValueError('FAQ for unknown legacy guide: '+_slug)
+    if len(_items)!=3 or any(not f.get('q','').endswith('?') or not f.get('a') for f in _items): raise ValueError('Legacy FAQ must be 3 questions with answers: '+_slug)
+def sources_block(slug):
+    items=GUIDE_SOURCES.get(slug,[])
+    if not items: return ''
+    return '<section class="section sources"><h2>Sources and further reading</h2><p>Independent references for general points in this guide.</p><ul>'+''.join('<li><a href="'+esc(x['url'])+'" rel="noopener">'+esc(x['title'])+'</a></li>' for x in items)+'</ul></section>'
+def legacy_extras(slug):
+    out=''
+    if LEGACY_FAQ.get(slug): out+='<section class="section faq"><h2>Frequently asked questions</h2>'+''.join(faq(esc(f['q']),esc(f['a'])) for f in LEGACY_FAQ[slug])+'</section>'
+    return out+sources_block(slug)
 def breadcrumb(title):
     return '<nav aria-label="Breadcrumb"><a href="/guides/">Guides</a> / <span aria-current="page">'+esc(title)+'</span></nav>'
 def guide_schema(slug,title,reviewed,published=None):
@@ -134,7 +156,7 @@ def guide_schema(slug,title,reviewed,published=None):
 # Actual product screens are copied from the app's approved synthetic-data captures.
 shots=json.loads((ROOT/'content/screenshots.json').read_text())
 hero_image = f'<img class="app-screen" src="/screenshots/{shots[0][0]}" width="{shots[0][3]}" height="{shots[0][4]}" alt="{esc(shots[0][2])}" fetchpriority="high">'
-hero=f'''<section class="hero"><div class="hero-copy"><span class="eyebrow"><span class="status-dot"></span> Offline vault / Android</span><h1>Your files.<br>Your keys.<br><em>Not ours.</em></h1><p class="lead">Keep private notes, documents and photos in an encrypted vault on your phone. No account. No ads. No developer server.</p><div class="actions">{play_badge()}{a('#how-it-works','See how it works','text-link')}</div><p class="status">Available now · Android 12L or later · Free for up to 30 items · One-time unlock for more</p></div><figure class="hero-product"><div class="product-label"><span>NULLKEY / ON YOUR DEVICE</span><img src="/mark.svg" width="29" height="29" alt=""></div>{hero_image}<figcaption>Real app interface · Sample data</figcaption></figure></section>'''
+hero=f'''<section class="hero"><div class="hero-copy"><span class="eyebrow"><span class="status-dot"></span> Offline vault / Android</span><h1>Your files.<br>Your keys.<br><em>Not ours.</em></h1><p class="lead">NullKey is an offline encrypted vault for Android. Keep private notes, documents and photos on your phone. No account. No ads. No developer server.</p><div class="actions">{play_badge()}{a('#how-it-works','See how it works','text-link')}</div><p class="status">Available now · Android 12L or later · Free for up to 30 items · One-time unlock for more</p></div><figure class="hero-product"><div class="product-label"><span>NULLKEY / ON YOUR DEVICE</span><img src="/mark.svg" width="29" height="29" alt=""></div>{hero_image}<figcaption>Real app interface · Sample data</figcaption></figure></section>'''
 features='''<div class="trust-strip"><span>Encrypted on your phone</span><span>No account to create</span><span>You hold the recovery key</span></div>
 <section class="section" id="how-it-works"><div class="section-heading"><span class="eyebrow">A place for your private things</span><h2>A small routine.<br>A little more privacy.</h2></div><div class="steps"><div><span class="number">01</span><h3>Make it yours.</h3><p>Create a vault with a passphrase. Save your recovery key somewhere separate from your phone.</p></div><div><span class="number">02</span><h3>Bring your files in.</h3><p>Write a private note, or import documents, photos and other files with Android’s picker. Search names inside your unlocked vault.</p></div><div><span class="number">03</span><h3>Keep a way back.</h3><p>Create and verify an encrypted backup. Keep a separate copy and the secret that unlocks it.</p></div></div><p class="note">Importing keeps originals by default. <a href="/guides/before-deleting-originals/">Understand your copies before deleting anything.</a></p></section>'''
 demo='''<section class="section demo" id="demo"><div class="section-heading"><span class="eyebrow">See it working</span><h2>Under a minute.<br>The whole routine.</h2><p class="lead">Create a vault, keep a note, add a document and a photo, lock and unlock it, then make an encrypted backup.</p></div><figure class="demo-video"><video class="demo-player" controls muted loop playsinline preload="metadata" poster="/nullkey/demo/nullkey-demo-mockup-landscape-poster.jpg" data-poster-portrait="/nullkey/demo/nullkey-demo-mockup-portrait-poster.jpg" aria-label="NullKey demo: creating a vault, adding a note, a document and a photo, locking and unlocking, and making an encrypted backup"><source src="/demo/nullkey-demo-mockup-portrait.mp4" type="video/mp4" media="(max-width: 780px)"><source src="/demo/nullkey-demo-mockup-landscape.mp4" type="video/mp4"></video><figcaption>The real app, recorded with sample content. No sound; captions are in the video.</figcaption></figure></section>'''
@@ -191,7 +213,7 @@ for i,(slug,title,description,sections) in enumerate(guides):
         linked_sections.append((esc(h),'<p>'+esc(p)+suffix+'</p>'))
     body=breadcrumb(title)+article(esc(title),esc(description),linked_sections, 'Practical privacy guide', GUIDE_ART.get(slug),guide_cta=True)
     modified=GUIDE_DATES[slug]['modified']
-    body+=reviewed_links('guides/'+slug)+'<div class="notice">Keep a separate, checked backup of important files. Restore only into an empty vault and check the result before removing an original.</div>'+guide_end_cta()+'<p class="note">'+('Updated '+date_label(modified) if modified!='2026-11-03' else 'Reviewed 3 November 2026')+' · '+a('/guides/','All guides')+'</p>'
+    body+=legacy_extras(slug)+reviewed_links('guides/'+slug)+'<div class="notice">Keep a separate, checked backup of important files. Restore only into an empty vault and check the result before removing an original.</div>'+guide_end_cta()+'<p class="note">'+('Updated '+date_label(modified) if modified!='2026-11-03' else 'Reviewed 3 November 2026')+' · '+a('/guides/','All guides')+'</p>'
     page('/guides/'+slug+'/',title,description,body,guide_schema(slug,title,modified,'2026-11-03'))
 
 for g in new_guides:
@@ -202,6 +224,7 @@ for g in new_guides:
         sections.append((esc(sec['h']),content))
     body=breadcrumb(g['title'])+article(esc(g['title']),esc(g['description']),sections,'Practical privacy guide',CLUSTER_ART[g['cluster']],guide_cta=True)
     if g.get('faq'): body+='<section class="section faq"><h2>Frequently asked questions</h2>'+''.join(faq(esc(f['q']),esc(f['a'])) for f in g['faq'])+'</section>'
+    body+=sources_block(g['slug'])
     body+='<section class="section"><h2>Related guides</h2><ul>'+''.join('<li>'+a('/guides/'+slug+'/',esc(guide_titles[slug]))+'</li>' for slug in g['related'])+'</ul></section>'
     reviewed=date.fromisoformat(g['reviewed'])
     body+='<div class="notice">Keep a separate, checked backup of important files. Restore only into an empty vault and check the result before removing an original.</div>'+guide_end_cta()+'<p class="note">Reviewed '+f'{reviewed.day} {reviewed:%B %Y}'+' · '+a('/guides/','All guides')+'</p>'
@@ -213,7 +236,7 @@ for key,(label,intro) in CLUSTERS.items():
     if items: cluster_sections+='<section class="section"><h2>'+esc(label)+'</h2><p>'+esc(intro)+'</p><div class="guide-grid">'+guides_cards(items)+'</div></section>'
 page('/guides/','Android privacy & backup guides','Practical guides to encrypted vaults, private photos, private documents, recovery keys and offline backups.',head('Practical privacy','A little understanding.<br>A better routine.','Start with the question you have. Keep track of your copies and know how you would recover them.')+hub_cta()+cluster_sections+hub_cta())
 about=[('Made by Alvento','<p>NullKey is an Android product by <a href="https://alvento.uk">Alvento Ltd</a>, a UK company, number 16394298. We build the app around on-device encryption and secrets you hold.</p>'),('Contact and support','<p>Email <a href="mailto:hello@alvento.uk?subject=NullKey%20support">hello@alvento.uk</a> with “NullKey” in the subject. For a problem with the app, tell us the app version, Android version and the steps that led to it.</p><p>Do not send passphrases, recovery keys, backups or private vault contents. Use sample data if you need to describe a problem. For a security issue, use the subject “NullKey security”.</p>'),('App and website privacy','<p>The offline app and this website are separate systems. <a href="'+PRIVACY+'">Read NullKey’s published app privacy policy</a> for the vault, unlock methods, imports, backups and support correspondence.</p><p>This product website includes Google Analytics, which stays off until you accept it in the consent banner. See Alvento’s <a href="https://alvento.uk/privacy/">website privacy notice</a> for details. This applies to the website only: Google Analytics is not part of the NullKey app and does not see your vault or how you use the app, which has no internet permission. This product section is hosted with Alvento’s main website. Hosting services may process request and operational information to serve pages. Visiting a website still makes network requests, even though the app itself works offline.</p><p><a href="https://alvento.uk/privacy/">Alvento’s website privacy notice</a> describes the company website and contact services.</p>')]
-page('/about/','About NullKey & support','NullKey is made by Alvento Ltd. Find product support, security contact details and the published app privacy policy.',article('A named company.<br>A direct way to reach us.','NullKey by Alvento. Built around private files that stay with you.',about,'About / contact')+simple_play_cta())
+page('/about/','About NullKey & support','NullKey is made by Alvento Ltd. Find product support, security contact details and the published app privacy policy.',article('A named company.<br>A direct way to reach us.','NullKey is an offline encrypted vault for Android, made by Alvento Ltd in the UK. Your files stay with you.',about,'About / contact')+simple_play_cta())
 TERMS_DATE='7 November 2026'
 terms=[
 ('Who we are','<p>NullKey is an Android app made by Alvento Ltd, a company registered in England and Wales, number 16394298, registered office 124 City Road, London, EC1V 2NX, United Kingdom (“Alvento”, “we”, “us”). Contact us at <a href="mailto:hello@alvento.uk?subject=NullKey">hello@alvento.uk</a>.</p><p>These terms apply to the NullKey app on Google Play (package <code>uk.alvento.nullkeyapp</code>) and to the optional NullKey Unlimited purchase. By installing or using NullKey you agree to them. If you do not agree, do not use the app. Google Play’s own terms also apply to downloading the app and to any purchase.</p>'),

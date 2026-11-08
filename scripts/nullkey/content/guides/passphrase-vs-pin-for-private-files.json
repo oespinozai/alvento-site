@@ -1,7 +1,7 @@
 {
  "slug": "passphrase-vs-pin-for-private-files",
  "title": "Passphrase or PIN for protecting private files?",
- "description": "A long passphrase resists guessing far better than a short PIN when encrypted files can be copied away, and this guide explains why.",
+ "description": "A passphrase of several words is much harder to guess than a short PIN, which matters when someone copies your encrypted files beyond the phone's lockout.",
  "cluster": "encryption",
  "related": [
   "biometric-unlock-vs-passphrase",

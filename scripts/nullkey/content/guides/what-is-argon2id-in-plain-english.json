@@ -1,7 +1,7 @@
 {
  "slug": "what-is-argon2id-in-plain-english",
  "title": "What is Argon2id, in plain English?",
- "description": "Argon2id is a key derivation method. It turns your passphrase into an encryption key slowly and with a lot of memory, which makes guessing expensive.",
+ "description": "Argon2id is a key derivation method that turns your passphrase into a key slowly, using a lot of memory. A weak passphrase stays weak.",
  "cluster": "encryption",
  "related": [
   "passphrase-vs-pin-for-private-files",

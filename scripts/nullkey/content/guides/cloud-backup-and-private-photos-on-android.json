@@ -1,7 +1,7 @@
 {
  "slug": "cloud-backup-and-private-photos-on-android",
  "title": "Does cloud backup copy your private photos?",
- "description": "Automatic photo backup can upload photos you meant to keep private, so check your own settings and see how an offline vault differs.",
+ "description": "Automatic photo backup can upload private photos, and a hidden album may still be uploaded, depending on the service. Check its settings before importing.",
  "cluster": "protect-photos",
  "related": [
   "are-hidden-photos-on-android-actually-safe",

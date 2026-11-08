@@ -1,7 +1,7 @@
 {
  "slug": "are-hidden-photos-on-android-actually-safe",
  "title": "Are hidden photos on Android actually safe?",
- "description": "Hiding a photo on Android usually only changes what your gallery shows, so check what hiding does not protect before you rely on it.",
+ "description": "Hiding a photo usually only changes what your gallery shows. The file can still exist on the phone and in a backup, so check every copy first.",
  "cluster": "protect-photos",
  "related": [
   "hidden-folder-vs-encrypted-vault",

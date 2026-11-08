@@ -1,7 +1,7 @@
 {
  "slug": "what-to-check-before-sharing-a-private-photo",
  "title": "What should you check before sharing a private photo?",
- "description": "Sharing a private photo creates a copy you cannot fully control, so check the picture, its embedded data and the channel before you send it.",
+ "description": "Before sharing a photo, check the picture for names and screens and any embedded location data. Send a cropped copy if the full photo is not needed.",
  "cluster": "protect-photos",
  "related": [
   "private-photos-android",

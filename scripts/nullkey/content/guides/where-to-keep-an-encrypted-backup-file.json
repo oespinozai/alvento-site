@@ -1,7 +1,7 @@
 {
  "slug": "where-to-keep-an-encrypted-backup-file",
  "title": "Where should you keep an encrypted backup file?",
- "description": "Keep an encrypted backup away from your phone, with its passphrase or recovery key stored separately. Here are the storage options and their trade-offs.",
+ "description": "Keep the encrypted backup physically apart from the phone, with its passphrase or recovery key stored separately, where a new device can reach it.",
  "cluster": "backup",
  "related": [
   "backup-offline-vault",

@@ -1,7 +1,7 @@
 {
  "slug": "what-to-do-if-you-lose-your-android-phone",
  "title": "What should you do if you lose your Android phone?",
- "description": "If you lose your Android phone, secure your accounts first, then check what your vault and backup still protect. Here is a practical order of steps.",
+ "description": "Secure your email and block the SIM first. A locked vault needs an unlock method someone can satisfy, and only a backup kept elsewhere can rebuild it.",
  "cluster": "devices",
  "related": [
   "backup-offline-vault",

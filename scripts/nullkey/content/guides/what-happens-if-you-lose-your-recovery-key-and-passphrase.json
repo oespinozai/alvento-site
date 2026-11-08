@@ -1,7 +1,7 @@
 {
  "slug": "what-happens-if-you-lose-your-recovery-key-and-passphrase",
  "title": "What happens if you lose your recovery key and passphrase?",
- "description": "If you lose both the passphrase and the recovery key, the existing vault stays locked and cannot be reset. A backup with its own secret is the way back.",
+ "description": "If you lose both secrets, nobody can reset them. An enabled unlock method may still open the vault; otherwise only a backup with its own secret helps.",
  "cluster": "backup",
  "related": [
   "recovery-key-vs-backup",

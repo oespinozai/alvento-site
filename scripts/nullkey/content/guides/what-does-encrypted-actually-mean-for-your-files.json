@@ -1,7 +1,7 @@
 {
  "slug": "what-does-encrypted-actually-mean-for-your-files",
  "title": "What does 'encrypted' actually mean for your files?",
- "description": "Encrypted means stored data is scrambled until someone holds the right key, so this guide explains what that protects and what it leaves open.",
+ "description": "Encrypted data is unreadable until the right key is used. That protects stored files, but not an unlocked phone, a readable export or other apps' copies.",
  "cluster": "encryption",
  "related": [
   "what-is-argon2id-in-plain-english",

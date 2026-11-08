@@ -1,0 +1,105 @@
+{
+ "are-hidden-photos-on-android-actually-safe": [],
+ "biometric-unlock-vs-passphrase": [
+  {
+   "url": "https://developer.android.com/privacy-and-security/keystore",
+   "title": "Android Keystore system (Android Developers)",
+   "supports": "a successful check releases a key held in the phone's secure key store"
+  },
+  {
+   "url": "https://developer.android.com/identity/sign-in/biometric-auth",
+   "title": "Show a biometric authentication dialog (Android Developers)",
+   "supports": "Apps can also ask for that key to stop working when a new fingerprint or face is enrolled"
+  }
+ ],
+ "clipboard-and-keyboard-risks-for-private-notes": [
+  {
+   "url": "https://developer.android.com/develop/ui/views/touch-and-input/copy-paste",
+   "title": "Copy and paste (Android Developers)",
+   "supports": "an app can mark a clip as sensitive so that the preview hides it"
+  }
+ ],
+ "cloud-backup-and-private-photos-on-android": [],
+ "how-often-should-you-back-up-an-encrypted-vault": [
+  {
+   "url": "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/always-back-up-your-most-important-data",
+   "title": "NCSC: Backing up your data",
+   "supports": "make a fresh encrypted backup after changes you would miss"
+  }
+ ],
+ "how-to-keep-private-notes-secure-on-android": [],
+ "how-to-test-a-backup-restore-before-you-need-it": [],
+ "keeping-financial-documents-private-on-your-phone": [],
+ "keeping-medical-letters-private-on-android": [
+  {
+   "url": "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/always-back-up-your-most-important-data",
+   "title": "NCSC: Backing up your data",
+   "supports": "Make sure a second copy exists for anything you cannot replace."
+  }
+ ],
+ "passphrase-vs-pin-for-private-files": [
+  {
+   "url": "https://pages.nist.gov/800-63-3/sp800-63b.html",
+   "title": "NIST SP 800-63B: Digital Identity Guidelines, Authentication and Lifecycle Management",
+   "supports": "A passphrase is harder to guess than a short PIN"
+  },
+  {
+   "url": "https://www.rfc-editor.org/info/rfc9106/",
+   "title": "RFC 9106: Argon2 Memory-Hard Function for Password Hashing and Proof-of-Work Applications",
+   "supports": "a deliberately slow, memory-heavy function with a random salt"
+  }
+ ],
+ "shared-phone-private-files": [],
+ "travel-documents-on-your-phone-what-to-protect": [],
+ "what-a-readable-export-means": [],
+ "what-does-encrypted-actually-mean-for-your-files": [
+  {
+   "url": "https://csrc.nist.gov/pubs/sp/800/38/d/final",
+   "title": "NIST SP 800-38D: Recommendation for Block Cipher Modes of Operation, Galois/Counter Mode (GCM)",
+   "supports": "Authenticated encryption also checks integrity."
+  }
+ ],
+ "what-happens-if-you-lose-your-recovery-key-and-passphrase": [],
+ "what-is-argon2id-in-plain-english": [
+  {
+   "url": "https://www.rfc-editor.org/info/rfc9106/",
+   "title": "RFC 9106: Argon2 Memory-Hard Function for Password Hashing and Proof-of-Work Applications",
+   "supports": "Argon2id is a method for turning a passphrase into an encryption key."
+  },
+  {
+   "url": "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/three-random-words",
+   "title": "NCSC: Three random words",
+   "supports": "Choose a passphrase of several unrelated words rather than a name and a date."
+  }
+ ],
+ "what-to-check-before-sharing-a-private-photo": [],
+ "what-to-do-if-you-lose-your-android-phone": [],
+ "where-to-keep-an-encrypted-backup-file": [
+  {
+   "url": "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/always-back-up-your-most-important-data",
+   "title": "NCSC: Backing up your data",
+   "supports": "A backup stored on the same phone as the vault can disappear in the same loss"
+  }
+ ],
+ "where-to-store-passport-and-id-scans-on-android": [
+  {
+   "url": "https://developer.android.com/training/data-storage",
+   "title": "Data and file storage overview (Android Developers)",
+   "supports": "A scan in the downloads folder can be read by any app your permissions allow to see storage."
+  }
+ ],
+ "store-private-documents-android": [],
+ "hidden-folder-vs-encrypted-vault": [],
+ "backup-offline-vault": [
+  {
+   "url": "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/always-back-up-your-most-important-data",
+   "title": "NCSC: Backing up your data",
+   "supports": "A vault stored only on a phone can disappear with the phone."
+  }
+ ],
+ "before-deleting-originals": [],
+ "recovery-key-vs-backup": [],
+ "vault-without-account": [],
+ "private-photos-android": [],
+ "restore-nullkey-backup-new-phone": []
+}

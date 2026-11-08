@@ -1,7 +1,7 @@
 {
  "slug": "how-to-keep-private-notes-secure-on-android",
  "title": "How do you keep private notes secure on Android?",
- "description": "Private notes can leak through clipboards, keyboards, screenshots and backups, so this guide shows how to write and store them more carefully.",
+ "description": "Know every place your notes live, keep sensitive ones in an encrypted vault, and check the keyboard, clipboard and screenshots, which all sit outside it.",
  "cluster": "documents",
  "related": [
   "clipboard-and-keyboard-risks-for-private-notes",

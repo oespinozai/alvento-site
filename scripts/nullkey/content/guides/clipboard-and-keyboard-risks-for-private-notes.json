@@ -1,7 +1,7 @@
 {
  "slug": "clipboard-and-keyboard-risks-for-private-notes",
  "title": "Are your keyboard and clipboard a risk for private notes?",
- "description": "Your keyboard and clipboard sit outside the vault, and copied text can linger in other apps. Here is how to lower that risk when you write private notes.",
+ "description": "Yes, they can be. Text you type passes through your keyboard app first, and copied text can sometimes be read by other apps on the clipboard.",
  "cluster": "devices",
  "related": [
   "how-to-keep-private-notes-secure-on-android",

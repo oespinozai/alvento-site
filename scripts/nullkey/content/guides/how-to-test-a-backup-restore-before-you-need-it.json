@@ -1,7 +1,7 @@
 {
  "slug": "how-to-test-a-backup-restore-before-you-need-it",
  "title": "How do you test a backup restore before you need it?",
- "description": "Test a backup restore with sample files in an empty vault, then check the contents and the secret before you rely on a backup or delete originals.",
+ "description": "Restore a backup of sample files into an empty vault on a spare phone, then check the contents and the secret before you rely on the backup.",
  "cluster": "backup",
  "related": [
   "restore-nullkey-backup-new-phone",

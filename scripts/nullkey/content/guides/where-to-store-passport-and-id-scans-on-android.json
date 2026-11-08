@@ -1,7 +1,7 @@
 {
  "slug": "where-to-store-passport-and-id-scans-on-android",
  "title": "Where should you keep passport and ID scans on your phone?",
- "description": "Passport and ID scans tend to spread across galleries, downloads and chats, so this guide sets out one protected home and a checked backup.",
+ "description": "Keep one protected master copy of ID scans, such as in an encrypted vault. Delete stray copies only after a backup is checked and restored in a test.",
  "cluster": "documents",
  "related": [
   "store-private-documents-android",

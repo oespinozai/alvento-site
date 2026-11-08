@@ -1,7 +1,7 @@
 {
  "slug": "shared-phone-private-files",
  "title": "How do you keep private files private on a shared phone?",
- "description": "On a shared phone, the lock code and unlock methods matter most. Learn which unlock choices other people could satisfy, and what to change first.",
+ "description": "On a shared phone, turn off phone screen-lock unlock in the app if others know your lock code, and rely on a passphrase that only you know.",
  "cluster": "devices",
  "related": [
   "biometric-unlock-vs-passphrase",

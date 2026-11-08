@@ -1,7 +1,7 @@
 {
  "slug": "biometric-unlock-vs-passphrase",
  "title": "Biometric unlock or passphrase: what do you trade off?",
- "description": "Biometric unlock is quicker day to day, but your passphrase is the root secret that always works. Here is what each unlock method trades off.",
+ "description": "Biometric unlock is quicker each day, but the passphrase stays the root secret, and you need it when a fingerprint or face does not match.",
  "cluster": "encryption",
  "related": [
   "passphrase-vs-pin-for-private-files",

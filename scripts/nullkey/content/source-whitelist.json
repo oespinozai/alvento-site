@@ -1,0 +1,13 @@
+[
+ {"url":"https://www.rfc-editor.org/info/rfc9106/","title":"RFC 9106: Argon2 Memory-Hard Function for Password Hashing and Proof-of-Work Applications","covers":"the Argon2 password hashing and key derivation function"},
+ {"url":"https://csrc.nist.gov/pubs/sp/800/38/d/final","title":"NIST SP 800-38D: Recommendation for Block Cipher Modes of Operation, Galois/Counter Mode (GCM)","covers":"AES-GCM authenticated encryption"},
+ {"url":"https://pages.nist.gov/800-63-3/sp800-63b.html","title":"NIST SP 800-63B: Digital Identity Guidelines, Authentication and Lifecycle Management","covers":"guidance on memorised secrets such as passphrases and PINs"},
+ {"url":"https://developer.android.com/privacy-and-security/keystore","title":"Android Keystore system (Android Developers)","covers":"how Android stores and protects cryptographic keys in hardware or software"},
+ {"url":"https://developer.android.com/identity/sign-in/biometric-auth","title":"Show a biometric authentication dialog (Android Developers)","covers":"how apps use biometric authentication on Android"},
+ {"url":"https://developer.android.com/develop/ui/views/touch-and-input/copy-paste","title":"Copy and paste (Android Developers)","covers":"how the Android clipboard works, including clipboard previews and sensitive content"},
+ {"url":"https://developer.android.com/training/data-storage","title":"Data and file storage overview (Android Developers)","covers":"where Android apps keep files and how app storage is separated"},
+ {"url":"https://mas.owasp.org/MASVS/","title":"OWASP MASVS: Mobile Application Security Verification Standard","covers":"general standard for mobile app security including storage, crypto and privacy"},
+ {"url":"https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/three-random-words","title":"NCSC: Three random words","covers":"UK government advice on long passphrases made from random words"},
+ {"url":"https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/always-back-up-your-most-important-data","title":"NCSC: Backing up your data","covers":"UK government advice on keeping backups of important data"},
+ {"url":"https://www.ncsc.gov.uk/guidance/securing-your-devices","title":"NCSC: Securing your devices","covers":"UK government guidance on securing phones and other devices"}
+]

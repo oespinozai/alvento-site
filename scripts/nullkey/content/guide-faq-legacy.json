@@ -1,0 +1,114 @@
+{
+ "store-private-documents-android": [
+  {
+   "q": "Is a hidden album enough to keep a passport scan private?",
+   "a": "A hidden album only changes what the usual gallery view shows, and it may not encrypt the file. An encrypted vault protects stored contents with a secret, but no option makes an unlocked, compromised phone trustworthy."
+  },
+  {
+   "q": "Which should hold a medical letter: a private note or the original file?",
+   "a": "A private note suits short facts such as an allergy or a medication list, and the original letter is best kept as a document. Photos and notes open inside NullKey, but PDFs and videos need a readable export, which sits outside the vault's protection. Keep another copy of anything you cannot replace."
+  },
+  {
+   "q": "What do I need to get my documents back after losing my phone?",
+   "a": "A usable encrypted backup, together with the passphrase or recovery key tied to that exact backup, is what brings documents back. Store both away from the phone, then rehearse a restore into an empty vault before you get rid of the old app or the original file."
+  }
+ ],
+ "hidden-folder-vs-encrypted-vault": [
+  {
+   "q": "What should I ask before trusting a private folder?",
+   "a": "Ask what encrypts the stored items, who controls the keys, what you can do if you forget the secret, and how you would migrate to another phone. Vague labels are not an answer, so prefer a product that explains its limits as plainly as its features."
+  },
+  {
+   "q": "Does a hidden icon mean the files inside are encrypted?",
+   "a": "No. Hiding can make an album vanish from the regular gallery, yet its contents may still be reachable through other routes, so a hidden icon or folder name says nothing about encryption. Look for a written account of what is encrypted, how the folder unlocks, and what happens to its backups."
+  },
+  {
+   "q": "How does NullKey compare with a hidden folder for private files?",
+   "a": "NullKey's public Android app relies on a passphrase, an independent recovery key and encrypted backup files, and it has no account. It declares no internet permission, so judge it on those specific properties rather than on labels."
+  }
+ ],
+ "backup-offline-vault": [
+  {
+   "q": "Does a vault that never leaves my phone still need a backup?",
+   "a": "Yes. Encryption protects confidentiality, but it does not guard against losing the phone, uninstalling the app or failing storage. Assume the whole device could be gone, and keep an encrypted backup somewhere else."
+  },
+  {
+   "q": "What does the app check after I save a backup?",
+   "a": "It reads the file back and compares its index, encrypted items and thumbnails with the current vault. If that check fails, the file should not be trusted, so make a fresh backup and rely on that instead."
+  },
+  {
+   "q": "Should my backup be a folder of decrypted originals I can open anywhere?",
+   "a": "No. The whole-vault backup holds ciphertext and needs the passphrase or recovery key from that same vault. A decrypted export creates another readable copy, so know which of the two operations you are using."
+  }
+ ],
+ "before-deleting-originals": [
+  {
+   "q": "Does moving a file into the vault delete the original?",
+   "a": "Not by default. Importing keeps originals, and optional removal stays off until you switch it on. Source apps can treat deletion differently, so confirm what each one does before you remove anything."
+  },
+  {
+   "q": "Is a thumbnail enough to confirm a photo came through intact?",
+   "a": "No. A thumbnail is not evidence that the entire original survived, so check orientation and detail on a photo at full size first. For a document NullKey cannot display, a readable export helps you check its contents, but that export sits outside the vault's protection."
+  },
+  {
+   "q": "Does deleting the original erase it securely?",
+   "a": "No. Trash, backups and other apps can retain copies, and deletion is not guaranteed secure erasure. Before removing an original, make an encrypted backup and keep its unlocking secret, because a recovery key alone cannot recreate deleted data."
+  }
+ ],
+ "recovery-key-vs-backup": [
+  {
+   "q": "Can a backup alone restore my files if I have forgotten my passphrase?",
+   "a": "Not on its own. A backup holds the data but still needs an unlocking secret that belongs to that export, so you need the passphrase or recovery key matched to it. Restore only into an empty vault, and rehearse the process with sample data first."
+  },
+  {
+   "q": "Does changing my passphrase update the backups I already made?",
+   "a": "No. Backups reflect the vault at the moment of export, so a later passphrase change or recovery-key rotation leaves earlier files untouched. Record which secret matches each backup and store that secret separately from the file."
+  },
+  {
+   "q": "Can a recovery key ever replace a backup?",
+   "a": "No. A recovery key only offers an alternative route into existing encrypted data rather than a duplicate of it, so it cannot bring back files that are gone. Keep both: the backup covers device loss, and the key covers a forgotten passphrase."
+  }
+ ],
+ "vault-without-account": [
+  {
+   "q": "Does having no account mean nothing leaves my phone?",
+   "a": "Not by itself. An account-free vault needs no email address or remote login, but analytics, backups and other network activity are separate questions. The public Android app has no internet permission, though a backup sent to an external provider may use the network."
+  },
+  {
+   "q": "What happens if I forget my passphrase and cannot reset it online?",
+   "a": "Unlock with the recovery key you saved, which lets you set a new passphrase. If both secrets are lost and no enabled unlock method still works, there is no email reset link and the existing encrypted data cannot be opened."
+  },
+  {
+   "q": "Who is responsible for recovery when everything lives on my phone?",
+   "a": "You are, because nothing in the app resets access on your behalf. Keep a recovery key for a forgotten passphrase and encrypted backups for device loss, since a key cannot restore data that has been lost."
+  }
+ ],
+ "private-photos-android": [
+  {
+   "q": "Is a locked folder the same as an encrypted vault for photos?",
+   "a": "No. A locked folder adds a check before access, whereas an encrypted vault scrambles what it stores and relies on a secret. Behaviour differs by Android version and handset, so test on your own device before relying on either."
+  },
+  {
+   "q": "Should I test a few photos before importing my whole camera roll?",
+   "a": "Yes. Import a handful of sample photos first, unlock the vault and inspect them at full size, and keep the originals while you test. Importing keeps originals by default, so an import does not remove them unless you switch on removal."
+  },
+  {
+   "q": "Will the vault protect my photos if someone has my unlocked phone?",
+   "a": "No. A photo visible on an unlocked or compromised device sits outside the vault's protection. The vault locks when the screen turns off, and by default 30 seconds after you leave the app, so lock it yourself before handing the phone over."
+  }
+ ],
+ "restore-nullkey-backup-new-phone": [
+  {
+   "q": "Should I uninstall the old app before restoring on the new phone?",
+   "a": "No. Keep the old app and its data until you have unlocked the restored vault, checked several items and made a fresh backup. The restore needs a phone with no vault and the passphrase or recovery key that matches the backup."
+  },
+  {
+   "q": "Do my biometric and screen-lock unlock options come back after a restore?",
+   "a": "Not automatically. Restoring turns those optional unlock methods off, so unlock with your passphrase or recovery key first and confirm the vault works. Then switch on biometric, screen-lock or pattern unlock again."
+  },
+  {
+   "q": "Can I restore a backup made by an older version of the app?",
+   "a": "That has not been verified. This flow covers backups made by the current app, and compatibility of backups from earlier package IDs with the current Play app is unconfirmed. Keep the old app and its data, and contact support with both app versions before changing anything."
+  }
+ ]
+}

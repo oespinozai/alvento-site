@@ -1,7 +1,7 @@
 {
  "slug": "how-often-should-you-back-up-an-encrypted-vault",
  "title": "How often should you back up an encrypted vault?",
- "description": "There is no fixed schedule. Back up after changes you would miss, keep each backup's secret, and wait for the read-back check before you rely on a file.",
+ "description": "There is no fixed schedule. Back up after changes you would miss, and keep each backup's own passphrase or recovery key apart from the backup file.",
  "cluster": "backup",
  "related": [
   "backup-offline-vault",
