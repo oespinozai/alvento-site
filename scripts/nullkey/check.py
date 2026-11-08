@@ -48,7 +48,7 @@ class Doc(HTMLParser):
 
 def read_doc(path):
  d=Doc();d.feed(path.read_text(encoding='utf-8'));return d
-pages=sorted(product.rglob('index.html'));docs={p:read_doc(p) for p in pages};titles={};graph=defaultdict(set);base='https://alvento.uk'
+pages=sorted(product.rglob('index.html'));docs={p:read_doc(p) for p in pages};titles={};descriptions={};graph=defaultdict(set);base='https://alvento.uk'
 new_slugs={p.stem for p in (root/'scripts/nullkey/content/guides').glob('*.json')}
 def target_for(url,source):
  parsed=urlsplit(urljoin(base+'/'+str(source.relative_to(root)).replace('index.html',''),url))
@@ -70,6 +70,9 @@ for path,doc in docs.items():
  titles[doc.title.casefold()]=rel
  desc=doc.meta.get('description',[])
  if len(desc)!=1 or not 120<=len(desc[0])<=160:fail(rel,f'description length {[len(x) for x in desc]} (120-160)')
+ if len(desc)==1:
+  if desc[0].casefold() in descriptions:fail(rel,f'duplicate description with {descriptions[desc[0].casefold()]}')
+  descriptions[desc[0].casefold()]=rel
  for raw in doc.jsonld:
   try:json.loads(raw)
   except (ValueError,TypeError) as exc:fail(rel,f'invalid JSON-LD {exc}')
