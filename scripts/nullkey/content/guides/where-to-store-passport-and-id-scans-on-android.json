@@ -1,0 +1,69 @@
+{
+ "slug": "where-to-store-passport-and-id-scans-on-android",
+ "title": "Where should you keep passport and ID scans on your phone?",
+ "description": "Passport and ID scans tend to spread across galleries, downloads and chats, so this guide sets out one protected home and a checked backup.",
+ "cluster": "documents",
+ "related": [
+  "store-private-documents-android",
+  "before-deleting-originals",
+  "backup-offline-vault"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Keep one protected master copy",
+   "p": [
+    "Passport and ID scans usually end up in several places at once: the gallery, the downloads folder, a message thread and a cloud backup. Each extra copy is another place to check and another place a file can leak from. The first job is to find them all, then choose one protected home for the master copy.",
+    "An encrypted vault is one option for that master copy. It protects stored contents with encryption and a secret you hold, but a readable copy you make later sits outside that protection."
+   ]
+  },
+  {
+   "h": "Why loose copies are a problem",
+   "p": [
+    "A scan in the downloads folder can be read by any app your permissions allow to see storage. A gallery copy appears in photo views and may be uploaded by a backup service. A scan sent in a chat also sits on the recipient's phone and may sit in their backups. None of this means something has gone wrong, but it does mean you need to know where your copies are.",
+    "Screenshots are a common hidden copy. Each time you capture a passport page, check whether the image has landed in your gallery and where it is synced."
+   ]
+  },
+  {
+   "h": "A routine for scans",
+   "p": [
+    "Run through this list whenever you add a new document, rather than letting copies build up."
+   ],
+   "list": [
+    "Search for scans on the phone, including screenshots, downloads and attachments.",
+    "Choose one place for the master copy and write down where it is.",
+    "Import the master copies and check each one at full size.",
+    "Make an encrypted backup and keep its passphrase or recovery key apart from the phone.",
+    "Delete stray copies only after the backup has been checked and restored into a test vault."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey stores photos, files and notes encrypted in the app's private storage. You unlock the vault with your passphrase, or with a biometric option or another method you have enabled. Photos open inside the vault. The app has no in-app PDF viewer, so a scan saved as a PDF needs a readable export before another app can show it.",
+    "Limit: that export is no longer encrypted by the app, and the vault cannot protect a scan that sits visibly on an unlocked phone. If you delete a scan without a checked backup, Alvento cannot recreate it."
+   ]
+  },
+  {
+   "h": "Name and store with care",
+   "p": [
+    "A scan is most useful when you can find it quickly and still recognise it. Give files a plain label that describes the document without spelling out the number, because file names can show up in lists, notifications and sync activity. Keep the labelling consistent, so an older backup and a newer one are easy to tell apart.",
+    "Because you rarely need these scans, one checked copy in the vault is usually enough, kept alongside the physical document rather than instead of it."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Should I keep a passport scan in my gallery?",
+   "a": "Many people do, but a gallery puts the file among photos that backup services and photo views may show. A vault keeps the stored copy encrypted, while any readable copy you make later sits outside its protection."
+  },
+  {
+   "q": "Can I view a scan in NullKey without exporting it?",
+   "a": "Only if it is a photo. Photos open inside the unlocked vault, but NullKey has no in-app PDF viewer, so a scan saved as a PDF needs a readable export. Delete that export when you have finished with it."
+  },
+  {
+   "q": "What if I lose the phone with scans in the vault?",
+   "a": "Without a backup, the scans are gone with the phone, and Alvento has no copy it could send you. An encrypted backup and the secret that belongs to it let you restore onto a new phone, provided you keep both somewhere separate."
+  }
+ ]
+}

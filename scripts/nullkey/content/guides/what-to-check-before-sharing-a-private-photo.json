@@ -1,0 +1,69 @@
+{
+ "slug": "what-to-check-before-sharing-a-private-photo",
+ "title": "What should you check before sharing a private photo?",
+ "description": "Sharing a private photo creates a copy you cannot fully control, so check the picture, its embedded data and the channel before you send it.",
+ "cluster": "protect-photos",
+ "related": [
+  "private-photos-android",
+  "what-a-readable-export-means",
+  "shared-phone-private-files"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Sharing creates a new copy",
+   "p": [
+    "Sending a photo gives someone else a copy, and that copy sits outside any vault you use. Their phone, their cloud backup and any app that handled the transfer may keep it, sometimes long after the message itself is deleted. Before sending, check what the picture shows, what data the file carries and where the copy will end up, and plan as if it will last. Anything you send is also outside your control once it has left the device, even if you trust the person completely.",
+    "Before sending, decide whether the person needs the full picture, a cropped version or only a description. Choosing the smaller option often removes more risk than any setting you could change. A cropped version often keeps the detail the recipient needs and drops the background you did not mean to share."
+   ]
+  },
+  {
+   "h": "Look at what the file carries",
+   "p": [
+    "A photo can carry more than the image. Many phones and cameras record location in the file's embedded data, and copying or preserving the file keeps that data with it. Apps differ in what they strip when they send, so do not assume the app has removed it.",
+    "Look at the picture itself too. A letter, a name badge or a screen in the background can reveal more than the subject does, and no file setting will hide those."
+   ]
+  },
+  {
+   "h": "Steps before you send",
+   "p": [
+    "Do these checks on the copy you are sending, not on the original, so the original stays unchanged. Make the same checks each time you share, so a habit replaces a decision you might rush."
+   ],
+   "list": [
+    "Open the photo at full size and scan the edges and background for names, addresses or screens.",
+    "Decide whether the recipient needs the original or a cropped copy, and make only that version.",
+    "Check whether the app you are using keeps embedded location data when it sends the file.",
+    "Choose a channel that suits the content, knowing the app may keep its own copy.",
+    "Delete any temporary copy you made for sharing once the message has gone."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey lets you open photos and notes inside the unlocked vault, so you can check a picture at full size before you decide what to send. It keeps an imported photo exactly as it was, including any location data, and a readable export is a byte-for-byte copy, so that data travels with it. The app sends nothing to Alvento and has no developer server.",
+    "Limit: a readable export is the step that leaves the vault's protection. It is written only to the destination you choose, and an interrupted export may leave a partial copy there. NullKey cannot control what the recipient or their apps keep."
+   ]
+  },
+  {
+   "h": "Clean up after sharing",
+   "p": [
+    "A sent photo is out of your control, so the cleanup is about the copies you still hold. Check sent folders, downloads and any temporary folder the transfer used. Removing a file from view does not erase it from storage, so treat anything you no longer need as possibly recoverable.",
+    "Keep a short note of what you shared and with whom, which makes it easier to answer later if a copy surfaces. If you shared through a link rather than an attachment, check whether the link can be switched off, since that ends access for anyone who has not saved a copy."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Does a photo in NullKey keep its location data?",
+   "a": "It can, if the camera recorded it. NullKey does not strip location data on import or export, so check the exported copy with a tool that shows a photo's details before you send it."
+  },
+  {
+   "q": "Is a readable export still encrypted?",
+   "a": "No. Once written, the exported photo is an ordinary file outside the vault, location data included. Send that copy, then remove it rather than leaving it in your downloads."
+  },
+  {
+   "q": "Who can see a photo I send in a messaging app?",
+   "a": "The people in that conversation can see it. The messaging app may keep its own copy under its own policy, so read that policy before sending anything sensitive. Assume it may be kept, and share only what you would be comfortable seeing repeated."
+  }
+ ]
+}

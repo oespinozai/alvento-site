@@ -1,0 +1,46 @@
+{
+  "guides/store-private-documents-android": {
+    "title": "Private documents on Android",
+    "description": "Explore how to organise private documents on Android, check existing copies and make a separate backup that you can restore."
+  },
+  "guides/hidden-folder-vs-encrypted-vault": {
+    "title": "Hidden folder or encrypted vault?",
+    "description": "Compare visibility, access controls and encryption, and learn what to check before relying on a folder for private files."
+  },
+  "guides/backup-offline-vault": {
+    "title": "How to back up an offline vault",
+    "description": "Learn how to create and check an encrypted offline vault backup, keep its matching secret and practise restoring a copy."
+  },
+  "guides/before-deleting-originals": {
+    "title": "Check the copy before deleting the original",
+    "description": "Follow a checklist for checking imported files, finding other copies and keeping a backup before you remove an original."
+  },
+  "guides/recovery-key-vs-backup": {
+    "title": "Recovery key or backup?",
+    "description": "Learn why a recovery key helps unlock a vault, while a separate backup preserves the data you need after losing a phone."
+  },
+  "guides/vault-without-account": {
+    "title": "What does a vault without an account mean?",
+    "description": "Understand what an account-free vault changes, where backups may go and why you need a recovery key and a separate backup."
+  },
+  "guides/private-photos-android": {
+    "title": "How to keep private photos on Android",
+    "description": "Learn how to organise private photos on Android, check imported copies, understand locked folders and keep a separate backup."
+  },
+  "guides/restore-nullkey-backup-new-phone": {
+    "title": "Restore a NullKey backup on a new phone",
+    "description": "Follow the steps to copy and restore a checked NullKey backup on a new phone, and verify the result before removing the old app."
+  },
+  "guides": {
+    "title": "Android privacy & backup guides",
+    "description": "Explore practical guides to private photos and documents, encrypted vaults, recovery keys and backups you can check and restore."
+  },
+  "about": {
+    "title": "About NullKey & support",
+    "description": "Find NullKey product support and security contact details, learn about Alvento Ltd and read the published app privacy policy."
+  },
+  "features": {
+    "title": "NullKey features",
+    "description": "Explore how NullKey handles private photos and encrypted backups, including checking copies and restoring to an empty vault."
+  }
+}

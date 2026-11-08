@@ -1,0 +1,69 @@
+{
+ "slug": "how-to-keep-private-notes-secure-on-android",
+ "title": "How do you keep private notes secure on Android?",
+ "description": "Private notes can leak through clipboards, keyboards, screenshots and backups, so this guide shows how to write and store them more carefully.",
+ "cluster": "documents",
+ "related": [
+  "clipboard-and-keyboard-risks-for-private-notes",
+  "vault-without-account",
+  "passphrase-vs-pin-for-private-files"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Find where your notes actually live",
+   "p": [
+    "Keeping notes secure on Android means knowing every place they live, writing them somewhere encrypted, and watching the keyboard, clipboard and screen around them. Private notes often sit in a general notes app, a draft message, a chat to yourself or a plain text file, and each can be backed up, synced or read by other apps depending on settings. Start by listing where your sensitive notes really are, because protecting one app does not cover drafts elsewhere.",
+    "A note is only as safe as the input and output around it. The keyboard you type on, the clipboard you copy from and the screen you read all sit outside any vault."
+   ]
+  },
+  {
+   "h": "Typing, copying and screenshots",
+   "p": [
+    "Some keyboards process typed text in ways you may not expect, and that depends on the keyboard and its settings. Copied text can remain in clipboard history and in the copies other apps keep. A screenshot of a note can land in your gallery or a cloud backup without you noticing.",
+    "None of these habits is unusual. Each one is a copy that a vault cannot reach, so treat them as the places to check. The clipboard and the keyboard are often the least visible parts of the process, which is why they are easy to forget."
+   ]
+  },
+  {
+   "h": "A routine for private notes",
+   "p": [
+    "Do the keyboard check once, then repeat it after any keyboard update. Start with the habit that matters most to you, rather than trying to change everything at once."
+   ],
+   "list": [
+    "Write sensitive notes inside the vault rather than in a general notes app.",
+    "Copy and paste as little as possible, and clear the clipboard after you use it.",
+    "Delete any screenshot of a note once the text is saved inside the vault.",
+    "Check your keyboard's settings for text learning and prediction, and decide what you accept.",
+    "Make a fresh encrypted backup after you add important notes."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "Notes open inside NullKey, and note text is stored encrypted in the app's private storage. Item names sit in an encrypted index, so the vault covers both the label and the text. When you copy note text, NullKey hides it from the clipboard preview and removes its own copy from the clipboard after 30 seconds if Android lets it. Release builds block ordinary screenshots.",
+    "Limit: clipboard managers and other apps may keep copies, keyboards and accessibility services can see what you type, and a compromised phone can expose a note while it is open. Screenshot blocking cannot protect against every device or third-party app."
+   ]
+  },
+  {
+   "h": "Keep only the notes you need",
+   "p": [
+    "The more you put in a private note, the more you have to protect and check. Short facts, such as a reference number, a medication list or a policy number, are easier to keep safe than long diaries. Shorter notes also mean fewer things to verify after a restore. Keep one clear place for each type of note, so you always know where to look.",
+    "Review your notes from time to time and remove anything you no longer need, so the vault holds only what matters. If a note holds something you need only once, such as a temporary code, delete it as soon as it has done its job."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can I search my notes in NullKey?",
+   "a": "You can search item names inside your unlocked vault. Search does not look inside note text or file contents, and it works only while the vault is unlocked."
+  },
+  {
+   "q": "Are my notes safe if someone sees my screen?",
+   "a": "Not while they are open. A note on a visible, unlocked screen can be read by anyone looking at it. Screenshot blocking helps, but it cannot protect against every method."
+  },
+  {
+   "q": "What happens to my notes if I lose my phone?",
+   "a": "The vault stays on the phone, so the notes are lost with it unless you have an encrypted backup. Keep that backup and its secret apart from the phone, then restore into an empty vault on a new device."
+  }
+ ]
+}

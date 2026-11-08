@@ -1,0 +1,69 @@
+{
+ "slug": "cloud-backup-and-private-photos-on-android",
+ "title": "Does cloud backup copy your private photos?",
+ "description": "Automatic photo backup can upload photos you meant to keep private, so check your own settings and see how an offline vault differs.",
+ "cluster": "protect-photos",
+ "related": [
+  "are-hidden-photos-on-android-actually-safe",
+  "backup-offline-vault",
+  "vault-without-account"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Why automatic backup can catch hidden photos",
+   "p": [
+    "Automatic photo backup often uploads whatever sits in the camera folders it watches. A hidden album may still be a folder on the same storage, so a service could read it. Whether a given hidden or locked item is uploaded depends on the service and its settings, which is why you cannot assume either answer.",
+    "Until you have checked, treat any photo you took as possibly backed up. That is the safer starting point. Do not rely on what you switched on long ago, because services can change their defaults."
+   ]
+  },
+  {
+   "h": "Old uploads outlive the local file",
+   "p": [
+    "A backup copy is separate from the file on your phone. Deleting or hiding the local photo does not remove an upload that has already happened, and the service may keep older versions for a period its own terms describe. People often forget these copies when they tidy up the phone itself. A cloud copy can also be used to restore a photo onto a new phone, which is useful and is also the reason it needs checking.",
+    "Look at the service's own storage view, not only your gallery, to see what it holds. Some services also keep deleted items for a time, so check that view as well."
+   ]
+  },
+  {
+   "h": "Check your backup settings",
+   "p": [
+    "Make these changes before you move private photos into a vault, because importing keeps the originals in your gallery and they can still be uploaded. If a setting is unclear, leave that folder out until you have confirmed what it does."
+   ],
+   "list": [
+    "Open your photo backup service and find its backup or sync settings.",
+    "Look for a list of folders that are included, and note any that cover your camera.",
+    "Check whether hidden or locked items appear in that list or in the service's library.",
+    "Search the service for a photo you want private, and see whether a copy exists.",
+    "Turn off uploads for any folder you want kept off the service, then confirm the change took effect."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey's own data is excluded from Android cloud backup and from device-transfer backup, so the vault is not copied through those routes. The current app declares no internet permission and uses no developer server. Backups happen only when you start one, and you choose the destination in the system file picker.",
+    "Limit: a provider you choose there may upload that backup file under its own terms. This exclusion does not reach photos already in your gallery or in a sync service, so those copies still need checking."
+   ]
+  },
+  {
+   "h": "Keep the two routes apart",
+   "p": [
+    "Your photo backup and your vault backup work in different ways. The first copies files automatically, usually without asking each time. The second happens only when you start it, and it writes one file to a place you picked. Keeping them apart in your head makes each one easier to check. If you save a vault backup into a folder your photo backup watches, the two routes meet, and the encrypted file is uploaded along with your photos.",
+    "If you want a private photo to exist in a backup, make that choice on purpose, and keep the backup's secret where it cannot be lost with the phone."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Will a photo backup service upload photos inside NullKey?",
+   "a": "Not from the vault itself, because imported photos are kept encrypted in the app's private storage, which other apps cannot normally read. The original in your gallery is different, since importing keeps it by default. A readable export is different, and once you save one to a synced folder the service can upload it. Keep exports out of synced folders."
+  },
+  {
+   "q": "Does the vault use a cloud backup of its own?",
+   "a": "No. A vault backup exists only when you create one and choose where it goes. If you pick a cloud folder in the file picker, that provider handles the file under its own terms."
+  },
+  {
+   "q": "Do I need to switch off my photo backup to use a vault?",
+   "a": "Not necessarily. You can keep your usual backup and simply check which folders it covers. Use the vault for items you want kept apart, and check the originals in your gallery before you decide anything about them."
+  }
+ ]
+}

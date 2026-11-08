@@ -1,0 +1,69 @@
+{
+ "slug": "biometric-unlock-vs-passphrase",
+ "title": "Biometric unlock or passphrase: what do you trade off?",
+ "description": "Biometric unlock is quicker day to day, but your passphrase is the root secret that always works. Here is what each unlock method trades off.",
+ "cluster": "encryption",
+ "related": [
+  "passphrase-vs-pin-for-private-files",
+  "what-does-encrypted-actually-mean-for-your-files",
+  "shared-phone-private-files"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "The short trade-off",
+   "p": [
+    "Biometric unlock trades a little control for speed. You skip typing a long passphrase each time, but the passphrase stays the root secret that opens the vault, and it is the one you need when a fingerprint or face does not match or the optional method is switched off.",
+    "The useful question is which method you can use every day without writing anything down, and who else could satisfy it on your phone. Those answers depend on your device and on who uses it, so check your own settings."
+   ]
+  },
+  {
+   "h": "What Android handles and what stays local",
+   "p": [
+    "On Android, a fingerprint or face check is done by the system, not by the app that asks for it. In a well-built app, a successful check releases a key held in the phone's secure key store, and the app never sees the fingerprint or face itself. Apps can also ask for that key to stop working when a new fingerprint or face is enrolled, so someone adding their own cannot use it.",
+    "Biometric support also varies. Hardware-backed and biometric options depend on the device, so the method may be missing or behave differently on your phone. A passphrase works the same way on every supported phone and does not depend on a sensor."
+   ]
+  },
+  {
+   "h": "Steps to choose your unlock setup",
+   "p": [
+    "Make these choices once, then revisit them when your phone, your household or your habits change."
+   ],
+   "list": [
+    "Set a passphrase you can type from memory, and keep your recovery key apart from the phone.",
+    "Enable biometric unlock only if the fingerprints or faces enrolled on the phone belong to you alone.",
+    "Check who knows your phone's PIN, pattern or password before turning on phone screen-lock unlock.",
+    "Use the in-app pattern only as a convenience, since it is weaker than the passphrase.",
+    "After any restore, expect the optional methods to be off, and turn them on again only once the vault opens.",
+    "Test the passphrase after each change, so you know it still works."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "In NullKey, biometric unlock is optional and asks for Android's strong-biometric check every time you open the vault. A successful check releases a Keystore-wrapped copy of the vault key, so the vault opens without your passphrase. The passphrase keeps working alongside it, and together with the recovery key it remains the root secret.",
+    "Limit: biometric unlock is only as selective as the fingerprints and faces enrolled on the phone, because anyone who can satisfy an enabled unlock method can open the vault. It is also tied to that device: restoring a backup turns it off until you enable it again, and whether it is offered at all depends on your phone."
+   ]
+  },
+  {
+   "h": "Where the trade-off gets sharper",
+   "p": [
+    "A phone shared with others makes any unlock based on the phone's lock code the weakest option, because its strength depends on who knows that code. There is also a pressure question: in some situations someone can hold a phone up to your face or finger far more easily than they can make you recall a passphrase. No unlock method protects a vault that is already open, or a readable copy you have exported."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is biometric unlock less secure than a passphrase?",
+   "a": "It is a different trade-off rather than a simple ranking. Biometric unlock is convenient, but it depends on the enrolled biometrics and the phone's hardware, while a passphrase is the root secret you can always type. Choose based on who can satisfy each method."
+  },
+  {
+   "q": "Does the app store my fingerprint?",
+   "a": "No. The published privacy policy says the app does not receive your fingerprint, face data or phone PIN, because Android handles those checks. Android Keystore keys protect a device-local copy of the vault key."
+  },
+  {
+   "q": "Does my passphrase still work if biometric unlock is on?",
+   "a": "Yes. Your passphrase remains the root secret and works whether or not an optional unlock method is enabled, which is why it is the fallback you should always be able to type."
+  }
+ ]
+}

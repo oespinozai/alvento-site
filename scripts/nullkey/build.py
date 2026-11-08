@@ -10,6 +10,9 @@ PRIVACY = 'https://alvento.uk/nullkey/privacy/'
 GA4 = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-N94LC333HG"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-N94LC333HG");</script>'
 PLAY = 'https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp'
 release = json.loads((ROOT / 'content/release.json').read_text())
+META = json.loads((ROOT / 'content/guide-metadata.json').read_text())
+GUIDE_LINKS = json.loads((ROOT / 'content/guide-links.json').read_text())
+GUIDE_DATES = json.loads((ROOT / 'content/guide-dates.json').read_text())
 # Only generated output is replaced. Legal and brand review drafts remain in source.
 if OUT.exists(): shutil.rmtree(OUT)
 OUT.mkdir()
@@ -46,6 +49,9 @@ def page(route, title, description, body, structured=None, compact_title=False):
     target = OUT / route.strip('/') / 'index.html'
     target.parent.mkdir(parents=True, exist_ok=True)
     url = ORIGIN + route
+    metadata = META.get(route.strip('/'), {})
+    title = metadata.get('title', title)
+    description = metadata.get('description', description)
     title_suffix = (' | NullKey' if len(title) + len(' | NullKey') <= 65 else '') if compact_title else ' | NullKey by Alvento'
     document = f'''<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title+title_suffix)}</title><meta name="description" content="{esc(description)}"><meta name="robots" content="index,follow"><link rel="canonical" href="{url}"><meta name="theme-color" content="#090a06"><meta property="og:title" content="{esc(title)} | NullKey"><meta property="og:description" content="{esc(description)}"><meta property="og:type" content="website"><meta property="og:url" content="{url}"><meta property="og:image" content="{ORIGIN}/nk-og-1200x630.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="/mark.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/style.css"><script src="/site.js" defer></script></head><body>{nav(route)}<main id="main" tabindex="-1" class="wrap">{body}</main>{footer}</body></html>'''
     document = re.sub(r'(href|src)="/(?!/)', r'\1="/nullkey/', document)
@@ -89,12 +95,22 @@ for g in new_guides:
 for g in new_guides:
     for related in g['related']:
         if related not in guide_titles or related == g['slug']: raise ValueError(f"Invalid related guide {related} in {g['slug']}")
+def reviewed_links(key):
+    slugs=GUIDE_LINKS.get(key,[])
+    if not 2 <= len(slugs) <= 4 or len(slugs)!=len(set(slugs)):
+        raise ValueError('Related guide mapping must have 2 to 4 unique links: '+key)
+    return '<section class="section"><h2>Related guides</h2><ul>'+''.join('<li>'+a('/guides/'+slug+'/',esc(guide_titles[slug]))+'</li>' for slug in slugs)+'</ul></section>'
+def date_label(value):
+    d=date.fromisoformat(value)
+    return f'{d.day} {d:%B %Y}'
 def breadcrumb(title):
     return '<nav aria-label="Breadcrumb"><a href="/guides/">Guides</a> / <span aria-current="page">'+esc(title)+'</span></nav>'
-def guide_schema(slug,title,reviewed):
+def guide_schema(slug,title,reviewed,published=None):
     url=ORIGIN+'/guides/'+slug+'/'
+    article_data={'@type':'Article','headline':title,'author':{'@type':'Organization','name':'Alvento Ltd','url':'https://alvento.uk/'},'publisher':{'@type':'Organization','name':'Alvento Ltd','url':'https://alvento.uk/'},'dateModified':reviewed,'mainEntityOfPage':url}
+    if published: article_data['datePublished']=published
     return {'@context':'https://schema.org','@graph':[
-      {'@type':'Article','headline':title,'author':{'@type':'Organization','name':'Alvento Ltd','url':'https://alvento.uk/'},'publisher':{'@type':'Organization','name':'Alvento Ltd','url':'https://alvento.uk/'},'dateModified':reviewed,'mainEntityOfPage':url},
+      article_data,
       {'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Guides','item':ORIGIN+'/guides/'},{'@type':'ListItem','position':2,'name':title,'item':url}]}]}
 
 # Actual product screens are copied from the app's approved synthetic-data captures.
@@ -122,7 +138,7 @@ security=[
 ('Unlock methods','<p>Your passphrase and recovery key remain the root secrets. Optional biometric unlock uses Android’s strong-biometric authentication and a Keystore-wrapped key. Phone screen-lock and in-app pattern unlock are also available on supported devices; release builds require hardware protection for those methods.</p><p>Anyone who knows your phone’s PIN, pattern or password can open NullKey if phone screen-lock unlock is enabled. An in-app pattern is weaker than a passphrase or biometric authentication. Five wrong patterns disable that method; your passphrase still works.</p><p>Screen-lock and pattern unlock pause after an app update or seven days without typing the passphrase. Restoring a backup turns all optional unlock methods off until you enable them again.</p>'),
 ('Recovery and backups','<p>A recovery key opens existing encrypted data. A backup preserves a separate copy. After losing a phone, you need both the backup and a passphrase or recovery key valid for it.</p><p>Backup verification rereads the archive, authenticates the index, every encrypted item segment and every thumbnail, and matches the current vault snapshot. Restoring also authenticates the contents before installing them. A restore requires an empty vault and does not overwrite an existing one.</p><p>Practise with sample data and check restored contents. Keep the secret for each backup separately: changing today’s credentials does not update older backups. Alvento cannot recreate missing files or recover lost secrets.</p>'),
 ('Originals and device limits','<p>Imports keep originals by default. Optional original removal verifies eligible local copies first. Supported photos and videos require Android’s confirmation to move to trash; supported documents can be deleted permanently. Cloud and other-app copies can remain, and sync can propagate deletions.</p><p>A compromised phone, keyboard or accessibility service can expose information you type or display. File counts, approximate sizes, thumbnail presence and filesystem times are not hidden. Replacing files with an older copy of the same vault is not detected.</p><p>Release builds block ordinary screenshots; debug builds permit captures for interface review. Deleting files is not guaranteed secure erasure. Readable exports, clipboard history and other copies need separate attention.</p>'),
-('What has been checked','<p>The public listing is for NullKey 0.5.3. The release evidence for the earlier 0.4.2 build records 124 JVM tests and a Samsung S23 Ultra check for the updated icon and back-exit behaviour. These checks are not proof of compatibility with every phone.</p><p>This page describes documented app behaviour; it does not claim that every device was tested.</p><p><a href="'+PRIVACY+'">Read the app privacy policy</a>.</p>')]
+('What has been checked','<p>The public listing is for NullKey 0.5.3. The release evidence for the earlier 0.4.2 build records 124 JVM tests and a physical Android phone check for the updated icon and back-exit behaviour. These checks are not proof of compatibility with every phone.</p><p>This page describes documented app behaviour; it does not claim that every device was tested.</p><p><a href="'+PRIVACY+'">Read the app privacy policy</a>.</p>')]
 page('/security/','Security, recovery & device limits','How NullKey encrypts your files, protects keys and checks backups, with clear limits for optional unlock methods and compromised devices.',article('Your keys.<br>Clear boundaries.','Understand what the current app protects, what it leaves on your device and what recovery depends on.',security))
 
 feature_pages=[
@@ -138,8 +154,8 @@ feature_pages=[
 for slug,title,description,sections in feature_pages:
  body=article(title,description,[(h,'<p>'+p+'</p>') for h,p in sections],'NullKey / features')
  body+='<section class="section"><h2>Related features</h2><p>'+a('/features/','All NullKey features')+' · '+a('/features/private-photo-vault/','Private photo vault')+' · '+a('/features/encrypted-backup/','Encrypted backup')+'</p><h2>Related guidance</h2><p>'+a('/guides/private-photos-android/','How to keep private photos on Android')+' · '+a('/guides/backup-offline-vault/','How to back up an offline vault')+' · '+a('/guides/recovery-key-vs-backup/','Recovery key or backup?')+'</p>'+play_badge()+'</section>'
- page('/features/'+slug+'/',title,description,body)
-page('/features/','NullKey features','Explore NullKey’s Android photo vault and encrypted backup workflow.',head('NullKey / features','Private photos.<br>A backup you can check.','See how the current Android app handles private photos and whole-vault encrypted backups.')+art('nk-home')+'<div class="guide-grid section">'+''.join(f'<a class="guide" href="/features/{slug}/"><span class="eyebrow">NullKey feature</span><h3>{title}</h3><p>{description}</p><span class="read">Explore feature</span></a>' for slug,title,description,_ in feature_pages)+'</div>'+play_badge())
+ page('/features/'+slug+'/',title,description,body+reviewed_links('features/'+slug))
+page('/features/','NullKey features','Explore NullKey’s Android photo vault and encrypted backup workflow.',head('NullKey / features','Private photos.<br>A backup you can check.','See how the current Android app handles private photos and whole-vault encrypted backups.')+art('nk-home')+'<div class="guide-grid section">'+''.join(f'<a class="guide" href="/features/{slug}/"><span class="eyebrow">NullKey feature</span><h3>{title}</h3><p>{description}</p><span class="read">Explore feature</span></a>' for slug,title,description,_ in feature_pages)+'</div>'+reviewed_links('features')+play_badge())
 
 guide_context={
  'store-private-documents-android':{'A sensible routine':' For a photo-specific workflow, see '+a('/guides/private-photos-android/','our guide to private photos on Android')+'; before removing any source copy, follow '+a('/guides/before-deleting-originals/','the copy-check steps')+'. The '+a('/features/private-photo-vault/','NullKey photo vault')+' explains what the app keeps protected.'},
@@ -156,8 +172,9 @@ for i,(slug,title,description,sections) in enumerate(guides):
         suffix=guide_context.get(slug,{}).get(h,'')
         linked_sections.append((esc(h),'<p>'+esc(p)+suffix+'</p>'))
     body=breadcrumb(title)+article(esc(title),esc(description),linked_sections, 'Practical privacy guide', GUIDE_ART.get(slug))
-    body+='<div class="notice">Keep a separate, checked backup of important files. Restore only into an empty vault and check the result before removing an original.</div>'+play_badge()+'<p class="note">Reviewed 3 November 2026 · '+a('/guides/','All guides')+'</p>'
-    page('/guides/'+slug+'/',title,description,body,guide_schema(slug,title,'2026-11-03'))
+    modified=GUIDE_DATES[slug]['modified']
+    body+=reviewed_links('guides/'+slug)+'<div class="notice">Keep a separate, checked backup of important files. Restore only into an empty vault and check the result before removing an original.</div>'+play_badge()+'<p class="note">'+('Updated '+date_label(modified) if modified!='2026-11-03' else 'Reviewed 3 November 2026')+' · '+a('/guides/','All guides')+'</p>'
+    page('/guides/'+slug+'/',title,description,body,guide_schema(slug,title,modified,'2026-11-03'))
 
 for g in new_guides:
     sections=[]

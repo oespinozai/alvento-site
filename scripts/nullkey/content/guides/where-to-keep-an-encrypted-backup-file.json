@@ -1,0 +1,72 @@
+{
+ "slug": "where-to-keep-an-encrypted-backup-file",
+ "title": "Where should you keep an encrypted backup file?",
+ "description": "Keep an encrypted backup away from your phone, with its passphrase or recovery key stored separately. Here are the storage options and their trade-offs.",
+ "cluster": "backup",
+ "related": [
+  "backup-offline-vault",
+  "recovery-key-vs-backup",
+  "what-happens-if-you-lose-your-recovery-key-and-passphrase"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Keep the file away from the phone",
+   "p": [
+    "An encrypted backup protects your data only if a copy survives when the phone does not. A backup stored on the same phone as the vault can disappear in the same loss, so put it somewhere physically separate that you can reach from a new device.",
+    "The file is ciphertext, so it does not reveal photos or notes without its secret. That makes ordinary storage reasonable, but the file's name, size and timestamps are still visible to anyone who can see the storage.",
+    "A file name that says what the file holds, such as passport or medical, tells a viewer more than you may want. Give the backup a neutral name, and record its real contents in your private list instead."
+   ]
+  },
+  {
+   "h": "Options and what each one means",
+   "p": [
+    "Another device you control, such as a computer at home, is a common choice, provided you do not sync it to services you have not considered. External storage kept somewhere secure suits a file you rarely need.",
+    "A cloud storage provider you select through Android's document picker can hold the file. That provider may sync, keep or process it under its own terms, and sync can spread a later deletion to other devices, so read those terms before you rely on them."
+   ]
+  },
+  {
+   "h": "Steps to store the file safely",
+   "p": [
+    "Work through these once for every backup you intend to keep.",
+    "If the document picker offers both a cloud folder and a folder on the phone, the phone folder is the weaker choice, because it disappears with the phone."
+   ],
+   "list": [
+    "Save the backup to a destination you chose on purpose, using the document picker.",
+    "Wait for the saved and checked message before you move or copy the file.",
+    "Copy the file to a second location that is not the phone.",
+    "Confirm the copy has the same size, and plan a test restore from it on a spare phone.",
+    "Store the matching passphrase or recovery key somewhere apart from the file.",
+    "Record which secret opens which file, and the date it was made."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey saves each backup as a single encrypted file of the whole vault, only to the destination you pick in Android's document picker, then reads that file back and checks it against the vault. It has no account and no developer server, and Alvento does not receive your vault contents, so Alvento keeps no copy of the file for you.",
+    "Limit: the check covers only the file NullKey wrote, so a copy you move or duplicate later is untested until you restore from it. Any provider you choose controls its own copies, and Alvento cannot open a backup or recover its secret for you."
+   ]
+  },
+  {
+   "h": "Limits of any storage choice",
+   "p": [
+    "Deleting an old copy from flash storage does not always erase its data, and a provider's trash or version history may keep it. Keep the number of copies small and known, so you can find each one when you need to remove it.",
+    "Think about who else can reach each location, including family members, colleagues or anyone with access to a shared computer. A location only you can open is usually a better choice than one many people can search."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is it safe to keep the backup in a cloud drive?",
+   "a": "It can be, if you accept that the provider holds the encrypted file under its own terms and may sync it. The file still needs its matching passphrase or recovery key to open. If you use one, check whether it keeps version history, since older copies can persist."
+  },
+  {
+   "q": "Can I email the backup to myself?",
+   "a": "Email is another copy in a system you do not control, with its own retention and sync behaviour. Never send the passphrase or recovery key in the same message, and never send backups or secrets to Alvento support."
+  },
+  {
+   "q": "Should the passphrase go in the same place as the file?",
+   "a": "No. Keep the matching secret separately from the backup file, so that a single loss or theft does not take both."
+  }
+ ]
+}

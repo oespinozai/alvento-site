@@ -19,7 +19,9 @@ def update(text):
     if not matches or any(matches[i].end() != matches[i+1].start() for i in range(len(matches)-1)):
         raise ValueError('NullKey sitemap entries must be one contiguous block')
     entries = {re.search(r'<loc>([^<]+)</loc>', m.group()).group(1): m.group() for m in matches}
-    dates = {g[0]: '2026-11-03' for g in json.loads((CONTENT/'guides.json').read_text())}
+    dates = {slug: values['modified'] for slug, values in json.loads((CONTENT/'guide-dates.json').read_text()).items()}
+    if set(dates) != {g[0] for g in json.loads((CONTENT/'guides.json').read_text())}: raise ValueError('Legacy guide dates are incomplete')
+    for value in dates.values(): date.fromisoformat(value)
     for path in sorted((CONTENT/'guides').glob('*.json')):
         guide=json.loads(path.read_text()); date.fromisoformat(guide['reviewed'])
         if guide['slug'] != path.stem or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', path.stem):

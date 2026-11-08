@@ -1,0 +1,70 @@
+{
+ "slug": "clipboard-and-keyboard-risks-for-private-notes",
+ "title": "Are your keyboard and clipboard a risk for private notes?",
+ "description": "Your keyboard and clipboard sit outside the vault, and copied text can linger in other apps. Here is how to lower that risk when you write private notes.",
+ "cluster": "devices",
+ "related": [
+  "how-to-keep-private-notes-secure-on-android",
+  "what-a-readable-export-means",
+  "what-does-encrypted-actually-mean-for-your-files"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Where your text passes first",
+   "p": [
+    "Yes, they can be, because text you type passes through your keyboard app before it reaches the vault. Depending on that keyboard's settings, it may learn from what you type, so the text can be exposed before the vault ever protects it.",
+    "Copying text puts it on the clipboard, which other apps can sometimes read. A clipboard manager can store its own copy the moment you copy, and clearing the original clip does not remove it.",
+    "Autocorrect and text prediction can let a keyboard remember a sensitive word and suggest it again later, possibly in another app. Turning those features off for private notes is a reasonable choice when you are typing a reference number or a medical detail, although it makes everyday typing slower."
+   ]
+  },
+  {
+   "h": "Steps to lower the risk",
+   "p": [
+    "Small habits add up. A short note typed directly is less exposed than a long passage pasted from another app."
+   ],
+   "list": [
+    "Use a keyboard you trust, and review its learning and cloud settings.",
+    "Turn off clipboard history if your phone offers it and you do not need it.",
+    "Type your passphrase and recovery key instead of pasting them.",
+    "Keep the most sensitive facts short, such as an allergy or a reference number.",
+    "Lock the phone as soon as you put it down, especially in shared spaces.",
+    "After pasting, copy something harmless to replace the clip."
+   ]
+  },
+  {
+   "h": "How phones handle copied text",
+   "p": [
+    "On many phones, copied text stays on the clipboard until something replaces it, and some phones and keyboards keep a clipboard history that holds older clips too. Newer Android versions show a short preview when you copy, and an app can mark a clip as sensitive so that the preview hides it. Treat anything you copy as readable outside the app it came from until you have cleared it yourself."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey has no keyboard of its own, and its note fields ask your keyboard not to autocorrect. When you copy a note, NullKey marks the clipboard preview as sensitive and tries to clear its own clip after 30 seconds, where Android allows it. It does not touch clips made by other apps, and release builds block ordinary screenshots.",
+    "Limit: a keyboard can ignore the request, and a clipboard manager may save a copy before NullKey clears its clip. A keyboard, an accessibility service or a compromised system can still see text while it is typed or shown on screen."
+   ]
+  },
+  {
+   "h": "Plan around the exposure",
+   "p": [
+    "A vault cannot make typing safe on a compromised device, and keyboard or clipboard exposure happens before encryption begins or after it ends. Keep anything you cannot retype in a backed-up vault, and keep the notes that matter most short.",
+    "A practical check is to ask, before you type or paste, whether you would be comfortable seeing that line on a shared screen. If not, leave the detail out of the note, or keep it as a separate item you open only when needed. If your phone keeps a clipboard history, clearing it after you have finished also limits how long copied text remains available."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Does the app come with its own keyboard?",
+   "a": "No, so the keyboard you already use is the one that sees your notes. Check its privacy and learning settings before you type anything sensitive. If that keyboard offers cloud typing or personalised suggestions, consider switching them off for private notes."
+  },
+  {
+   "q": "Is it better to type a passphrase than paste it?",
+   "a": "Usually yes. Pasted text passes through the clipboard first, where other apps may keep a copy. Typing avoids that step, although it means you have to make sure nobody can see the screen."
+  },
+  {
+   "q": "Can I rely on the 30 second clipboard clear?",
+   "a": "Not as your only protection. The clear works only where Android allows it, and a clipboard manager may already have saved the text, so paste straight away rather than leaving it waiting on the clipboard."
+  }
+ ]
+}

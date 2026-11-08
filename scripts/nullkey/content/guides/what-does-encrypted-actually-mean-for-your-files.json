@@ -1,0 +1,69 @@
+{
+ "slug": "what-does-encrypted-actually-mean-for-your-files",
+ "title": "What does 'encrypted' actually mean for your files?",
+ "description": "Encrypted means stored data is scrambled until someone holds the right key, so this guide explains what that protects and what it leaves open.",
+ "cluster": "encryption",
+ "related": [
+  "what-is-argon2id-in-plain-english",
+  "passphrase-vs-pin-for-private-files",
+  "vault-without-account"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Scrambling plus a key",
+   "p": [
+    "Encryption turns readable data into scrambled data that is useless without the right key. On a phone, encryption at rest means the stored data is scrambled on the storage itself, so reading the raw storage gives nothing useful without the key. Encryption is one layer among several, and it is not a substitute for locking your phone.",
+    "The key is the part that decides the outcome. A strong method with a key nobody else has protects your data, while the same method with the key stored beside the file protects very little. Good encryption depends as much on key handling as on the scrambling. Think of the key as the thing you protect, and the file as the thing the key unlocks."
+   ]
+  },
+  {
+   "h": "Keys that protect other keys",
+   "p": [
+    "Well-designed systems rarely encrypt everything with one key. Each item can have its own key, and those keys are locked with a master key. Changing a passphrase can change how the master key is locked, without rewriting every file behind it.",
+    "Authenticated encryption also checks integrity. If a file has been altered or cut short, decryption is designed to report an error rather than quietly return damaged data. Those checks run when the file is read, so they add protection without an extra step for you."
+   ]
+  },
+  {
+   "h": "What encryption does not stop",
+   "p": [
+    "Read this list as the boundary of any encryption you use, not as a reason to avoid it. Each item on it is a route around encryption rather than through it."
+   ],
+   "list": [
+    "Someone using your unlocked phone, who can see what the screen shows.",
+    "A readable copy you export, which the app no longer encrypts.",
+    "Copies made by other apps, cloud services or clipboard managers.",
+    "Malware or a compromised operating system while your data is open.",
+    "Old copies left behind when you delete, since removal is not a secure erase."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey protects stored contents with AES-256-GCM. Each item has its own random key, wrapped by a random 256-bit vault master key, and that master key is protected by a key Argon2id derives from your passphrase. The index and key wrappers use authenticated encryption, so tampering is detected.",
+    "Limit: this protects data at rest inside the vault. While the vault is unlocked, readable data is processed in memory, and file counts, approximate sizes, thumbnail presence and filesystem times are not hidden. Replacing files with an older copy of the same vault is not detected."
+   ]
+  },
+  {
+   "h": "A plain test for any app",
+   "p": [
+    "When an app says a file is encrypted, ask what is encrypted, where the key is kept, what happens if the secret is lost, and whether readable copies appear along the way. Those four answers matter more than a label such as strong or secure. If an app cannot say where its key is made and kept, treat its other claims with caution.",
+    "Be wary when the answer to the second question is a company server, because that may mean someone other than you can unlock your files. Also ask whether a backup made by the app is encrypted too, since a protected vault with a readable backup is only as safe as the backup."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is an encrypted file safe if my phone is stolen?",
+   "a": "It depends on the phone's lock and on the secret protecting the file. Encrypted contents are hard to read without the passphrase, but an open vault, an unlock method someone else can satisfy, or a readable copy gives access. Keep a separate encrypted backup as well."
+  },
+  {
+   "q": "Can Alvento decrypt my files?",
+   "a": "No. The app sends no vault contents or decryption keys to Alvento, and your phone decrypts them when you unlock. A compromised or unlocked phone remains a risk."
+  },
+  {
+   "q": "Does encryption protect me from deleting files by mistake?",
+   "a": "No. Encryption protects what is stored, not whether it still exists. Deleting a file is not a secure erase, and a backup can only restore a file if you still hold the secret that belongs to that backup."
+  }
+ ]
+}

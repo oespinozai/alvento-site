@@ -1,0 +1,69 @@
+{
+ "slug": "travel-documents-on-your-phone-what-to-protect",
+ "title": "What travel documents should you protect on your phone?",
+ "description": "Travel documents hold booking references, ID scans and insurance details, so this guide sets out what to protect, keep offline and back up.",
+ "cluster": "documents",
+ "related": [
+  "where-to-store-passport-and-id-scans-on-android",
+  "backup-offline-vault",
+  "what-to-do-if-you-lose-your-android-phone"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Which travel papers are sensitive",
+   "p": [
+    "Travel papers differ. An itinerary with booking references, a scan of a passport or ID, insurance policy letters and entry paperwork all contain details someone else could use. Sort them by how sensitive they are before choosing how to store each one.",
+    "This page covers privacy and storage only. It does not give travel, legal or entry requirements, so check those with the official sources for the places you are visiting. Think about which documents would stop your trip if they were lost, and protect those first."
+   ]
+  },
+  {
+   "h": "Plan for working offline",
+   "p": [
+    "A phone is often the only copy you carry while travelling, and mobile data can be patchy or expensive abroad. An encrypted vault that works without a connection lets you open stored items when you cannot get online. A printed copy is useful only if you keep it apart from the phone as well. Import in a quiet moment rather than in a rush, and check the results before you leave home.",
+    "Check offline access before you leave rather than when you need it. Switch the phone to airplane mode for the test, so you see exactly what works with no mobile data or wifi."
+   ]
+  },
+  {
+   "h": "Before you travel",
+   "p": [
+    "Do the offline unlock test on the phone you will actually take, not on a spare. Do this a few days before you leave, so there is time to fix anything that does not open."
+   ],
+   "list": [
+    "Decide which documents you will carry and which can stay at home.",
+    "Import the documents you will carry and check that each one opens.",
+    "Make an encrypted backup before you go, somewhere you can reach from another device, with its secret stored separately.",
+    "Unlock the vault while offline once, so you know the routine works without a connection.",
+    "Keep insurer and card issuer contact details somewhere outside the vault too."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey's vault works without a connection, so a photo of a booking or a note of a reference number opens anywhere. A PDF ticket or policy stays encrypted, and viewing it means exporting a readable copy, so save the key details as a note if you will need them often while away. The app is free for up to 30 items.",
+    "Limit: buying or restoring the optional unlock needs an internet connection, so do that before you leave. A readable export sits outside the vault's protection, and Alvento cannot recreate missing files."
+   ]
+  },
+  {
+   "h": "Keep copies in step with your trip",
+   "p": [
+    "Travel plans change, so a document in the vault can go out of date. When a booking changes, replace the old item and back up again. An older backup keeps what it held at export, so label each backup with its date and the secret it needs. Make your final backup after your last change at home, not weeks before you leave.",
+    "Remove the trip papers from the vault once the trip is over, unless you still need them for records. A tidy vault is easier to restore and check. Removing an item from the vault does not touch older backups, so a backup made before the trip still holds those papers."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Does NullKey need an internet connection to open my travel documents?",
+   "a": "No. The vault works offline, and the current app has no internet permission. You need a connection only to buy or restore the optional unlock."
+  },
+  {
+   "q": "Can I show a travel document on screen from the vault?",
+   "a": "Photos and notes open inside the unlocked vault, while other files need a readable export to view in another app. Once exported, the copy sits outside the vault's protection, so remove it once you have shown it."
+  },
+  {
+   "q": "What if my phone is lost while I am abroad?",
+   "a": "The vault stays on the phone, so you need a backup stored elsewhere and the secret that belongs to it. Nobody at Alvento can send you a copy, so make the backup before you travel and check that you can reach it from another device."
+  }
+ ]
+}

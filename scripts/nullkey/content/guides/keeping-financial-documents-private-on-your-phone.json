@@ -1,0 +1,68 @@
+{
+ "slug": "keeping-financial-documents-private-on-your-phone",
+ "title": "How do you keep financial documents private on your phone?",
+ "description": "Statements, tax letters and contracts pile up in downloads and email, so this guide sets out a tidy-and-protect routine with a checked backup.",
+ "cluster": "documents",
+ "related": [
+  "store-private-documents-android",
+  "backup-offline-vault",
+  "clipboard-and-keyboard-risks-for-private-notes"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Where financial papers collect",
+   "p": [
+    "Statements, tax letters, contracts and payslips arrive by email, get saved to downloads and end up attached to messages. A single letter can exist in several places before you notice. The first job is finding those copies, not choosing a better folder for them. Start with the last few months, since those copies are the ones you are most likely to need.",
+    "This page covers storage and privacy only. It does not explain what a document means, what to do about it, or whether to keep a particular paper, since those depend on your own circumstances and a qualified adviser. Even a short routine helps, because looking for a document later usually takes longer than filing it now."
+   ]
+  },
+  {
+   "h": "Separate working copies from records",
+   "p": [
+    "Some documents you open every month, such as a recent statement. Others you keep for reference, such as an old contract or a letter about a closed account. The reference copies benefit most from an encrypted vault and a checked backup, while working copies can stay where you need them. Decide once which group each document belongs in, and label it by its purpose rather than its contents."
+   ]
+  },
+  {
+   "h": "A tidy-and-protect routine",
+   "p": [
+    "Repeat the routine whenever a new batch of papers arrives, rather than letting them build up. Statements saved from a banking app often land in downloads with a generic name, so rename them before you import them."
+   ],
+   "list": [
+    "Gather financial files from downloads, email attachments and screenshots into one place.",
+    "Import the ones you want to keep into the vault, and open each to check it is complete.",
+    "Keep the originals until you have an encrypted backup that you have checked.",
+    "Store the backup's passphrase or recovery key apart from the backup file and the phone.",
+    "Remove duplicates elsewhere, remembering that sync services can carry deletions to other devices."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey keeps statements, contracts and notes encrypted on the phone, with no account and no developer server. Notes are readable inside the app, but a PDF statement stays encrypted and you view it by exporting a readable copy. Search covers item names only, not the text inside a statement, so a clear file name is how you find it later.",
+    "The vault has no server copy, so the only route to another phone is an encrypted backup that you create and restore. Limit: an exported statement is an ordinary unencrypted file, and Alvento cannot reset access if you lose both the passphrase and the recovery key."
+   ]
+  },
+  {
+   "h": "Keep the vault dull and predictable",
+   "p": [
+    "A financial vault works best when it is routine rather than a live inbox. Add items on a set day, check them once, and move on. Keep a short list of what the vault holds, described in general terms rather than account numbers, so a restore can be checked against it. Keeping the number of items small makes each check quicker and each restore easier to confirm.",
+    "Keep that list outside the vault, so you can check a restore against it even before the vault opens. When a document stops being needed, remove it from the vault and the list together, so the two never drift apart."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can I send a statement to someone from the vault?",
+   "a": "You can export a readable copy and send that file yourself. Once it is exported, the file is outside the vault's protection and the recipient keeps their own copy. Send only what the person needs."
+  },
+  {
+   "q": "Does the vault sync between my phones?",
+   "a": "No. The vault has no account and no provider-held copy, so there is no sync to switch on. To use another phone, restore an encrypted backup into an empty vault there, with the secret that belongs to that backup."
+  },
+  {
+   "q": "Will NullKey tell me what a financial document means?",
+   "a": "No. NullKey is a place to store private files and notes. Questions about what a document means, or what to do with it, belong with a qualified adviser."
+  }
+ ]
+}

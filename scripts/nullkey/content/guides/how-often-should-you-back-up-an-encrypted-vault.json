@@ -1,0 +1,72 @@
+{
+ "slug": "how-often-should-you-back-up-an-encrypted-vault",
+ "title": "How often should you back up an encrypted vault?",
+ "description": "There is no fixed schedule. Back up after changes you would miss, keep each backup's secret, and wait for the read-back check before you rely on a file.",
+ "cluster": "backup",
+ "related": [
+  "backup-offline-vault",
+  "where-to-keep-an-encrypted-backup-file",
+  "how-to-test-a-backup-restore-before-you-need-it"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Base it on how fast your vault changes",
+   "p": [
+    "There is no single correct interval. A useful rule is to make a fresh encrypted backup after changes you would miss, such as new documents, a batch of photos or notes you depend on. A backup is a snapshot of the vault at the moment you export it, so its age is simply how long ago that moment was.",
+    "A vault you add to often needs backups more often than one you open once a year. Pick a trigger you will remember, such as finishing each import or receiving an important new letter.",
+    "Consider a trigger based on the work you do rather than the calendar, because a quiet month can still hold one important import."
+   ]
+  },
+  {
+   "h": "What a backup can and cannot cover",
+   "p": [
+    "A backup holds the vault as it was when you saved it. Anything added afterwards exists only on the phone until your next backup, so if the phone is lost in between, that work is gone.",
+    "Keeping more than one dated backup can help if a file turns out to be unusable. Each one still needs the passphrase or recovery key it was made with, because changing your credentials later does not update earlier backup files.",
+    "If you change credentials every so often, note the date of each change, so you can tell which backups still match the current passphrase and which need their older secrets."
+   ]
+  },
+  {
+   "h": "A routine you can repeat",
+   "p": [
+    "Repeat this on the trigger you picked, rather than trying to remember when you last did it."
+   ],
+   "list": [
+    "Finish the changes you want to keep, such as imports or edits.",
+    "On your unlocked phone, open Settings and choose Create encrypted backup.",
+    "Pick a destination in Android's document picker.",
+    "Wait for the message that says the backup was saved and checked.",
+    "Store the file and its matching passphrase or recovery key in separate places.",
+    "Note the date beside the secret, so you know which backup it opens."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey only backs up when you ask. There is no scheduled or automatic backup, and Android's cloud and device-transfer backup are switched off for its data, so the backups you create from Settings are the only ones that exist. Each is an encrypted file of the whole vault, read back and checked before NullKey reports it saved and checked.",
+    "Limit: each backup holds only what the vault held at that moment, and later changes to your passphrase or recovery key do not reach it. Alvento cannot recreate anything added after your last backup."
+   ]
+  },
+  {
+   "h": "A backup still needs a test",
+   "p": [
+    "A backup you have never opened is an assumption. From time to time, make a test restore with sample data into an empty vault on a device you do not depend on, so you know the steps and the secret work before you need them.",
+    "A rehearsal also shows roughly how long the process takes on your phone, which helps when you decide how often to schedule it. If your backups live with a cloud provider, include downloading the file in the rehearsal, because that is the step most likely to trip you up on a new phone."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "How many backups should I keep?",
+   "a": "Keep at least your most recent backup, and older ones only if you can also keep the secret that opens each. Several dated files can help if one is damaged, but every copy you keep needs protecting too. A simple label on each file, with its date, makes that much easier."
+  },
+  {
+   "q": "Do I need a backup after every small change?",
+   "a": "Not usually. Back up after changes you could not afford to lose, because anything added after the last backup exists only on the phone until the next one is made."
+  },
+  {
+   "q": "Does the app back up on a schedule by itself?",
+   "a": "No. There is no automatic backup, so tie each one to an event you will notice, such as finishing an import, and keep to that routine."
+  }
+ ]
+}

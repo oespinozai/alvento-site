@@ -1,0 +1,69 @@
+{
+ "slug": "keeping-medical-letters-private-on-android",
+ "title": "How do you keep medical letters private on your phone?",
+ "description": "Medical letters often spread across email, downloads and photo folders, so this guide shows how to gather them into one private place.",
+ "cluster": "documents",
+ "related": [
+  "store-private-documents-android",
+  "what-a-readable-export-means",
+  "recovery-key-vs-backup"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Treat letters as private papers",
+   "p": [
+    "Medical letters, test results and prescriptions often arrive as attachments or photos, then sit beside holiday pictures and receipts. Keeping them private starts with knowing where each copy is and who can reach it. This page covers storage and privacy only, not what a letter means for your health. Letters that mention a result can be as personal as a diary entry, so handle them with the same care.",
+    "List the places a letter lives now, such as email attachments, downloads, a camera roll and any sync service. Moving one copy does not remove the others."
+   ]
+  },
+  {
+   "h": "Sort short facts from original files",
+   "p": [
+    "A short fact, such as a medication name or an appointment time, suits a private note. An original letter or a scan suits a file. Keeping both in one place is easier than splitting them across notes, photos and downloads, because you only have one set of locations to check. A short note is easier to find in a hurry, while a letter is the record you may need to see in full.",
+    "If you share a letter with a clinician, send only what they ask for, through the channel they use. Keep your own labelled copy in the vault so you know which version you sent. If several people in one household use the same phone, agree in advance who keeps which papers."
+   ]
+  },
+  {
+   "h": "Steps for tidying medical papers",
+   "p": [
+    "Remove copies in small batches, because a letter you deleted too early may leave you with no other copy. Keep a note of which step you have finished, so a long tidy does not stall halfway."
+   ],
+   "list": [
+    "List every place a letter or result is stored, including email and message threads.",
+    "Decide which items you keep as original files and which as short private notes.",
+    "Import the original files into the vault and open each one to confirm it is complete.",
+    "Create an encrypted backup and keep its secret separate from the phone.",
+    "Only then remove other copies, one batch at a time, and remember that other copies can remain."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey can hold medical letters, test results and short private notes, encrypted on the phone. A photographed letter or a medication note opens inside the vault, while a PDF result stays encrypted until you export a readable copy to view it. The current app has no account and declares no internet permission.",
+    "Limit: NullKey is not a medical record system and makes no claim about healthcare rules, so it does not replace your clinic's own records. Make sure a second copy exists for anything you cannot replace."
+   ]
+  },
+  {
+   "h": "Keep the rest of the phone tidy",
+   "p": [
+    "Medical papers often sit among family photos, screenshots of messages and downloaded forms. Clearing them out of general folders lowers the chance that a letter shows up in a shared photo view or a quick search. Tidy in small steps and check each batch first.",
+    "Review the vault now and then, and remove items you no longer need. A shorter vault has fewer things to protect and fewer things to check during a restore. When an updated letter arrives, replace the older one in the vault, so the copy you find in a hurry is the current one."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can NullKey read or explain my letters?",
+   "a": "NullKey is not a medical record system and makes no claim about healthcare rules. It stores the files and notes you put in it, so use it as private storage for your own copies. Questions about what a result means belong with the clinic that issued it."
+  },
+  {
+   "q": "Is a readable export of a letter still private?",
+   "a": "Only as private as the place you save it to, because the exported letter is an ordinary unencrypted file. Save it somewhere only you can reach, and delete it once you have read it, remembering that deleting is not a secure erase."
+  },
+  {
+   "q": "What if I forget my passphrase?",
+   "a": "Use the recovery key you saved when you created the vault. If both are lost, the stored letters cannot be reached, because Alvento cannot reset access and holds no copy of your vault, so a letter you cannot replace needs a copy outside the vault too."
+  }
+ ]
+}

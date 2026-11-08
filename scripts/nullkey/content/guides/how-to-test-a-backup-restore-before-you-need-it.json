@@ -1,0 +1,72 @@
+{
+ "slug": "how-to-test-a-backup-restore-before-you-need-it",
+ "title": "How do you test a backup restore before you need it?",
+ "description": "Test a backup restore with sample files in an empty vault, then check the contents and the secret before you rely on a backup or delete originals.",
+ "cluster": "backup",
+ "related": [
+  "restore-nullkey-backup-new-phone",
+  "backup-offline-vault",
+  "before-deleting-originals"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Why a saved backup is not a tested one",
+   "p": [
+    "A saved-and-checked message shows the file was read back and matches the vault. It does not show that you remember the right secret, that you can find the file on another device, or that the steps make sense under pressure. To test, back up a vault of sample files, restore it into an empty vault on a spare phone and compare what comes back, using material you can afford to lose.",
+    "Rehearse on a spare phone, or before your real vault exists, and never delete a working vault just to try a restore.",
+    "Think of the rehearsal as a fire drill rather than a file check. You are testing people and steps as well as the file, so write the steps down while they are fresh."
+   ]
+  },
+  {
+   "h": "Set up a safe test",
+   "p": [
+    "Use only sample data. Real files add risk without adding anything to the rehearsal.",
+    "A sample photo should be a picture made for this purpose, not one from your camera roll, so the test exposes no real image."
+   ],
+   "list": [
+    "Create a test vault with a passphrase you use for nothing else.",
+    "Add a few sample notes, plus one sample document and one sample photo.",
+    "Lock and unlock the test vault once to confirm the samples open.",
+    "Create an encrypted backup and wait for the saved and checked message.",
+    "Write down the passphrase or recovery key for that backup, stored apart from the file.",
+    "On the spare phone, delete the test vault only after the backup is saved, checked and recorded."
+   ]
+  },
+  {
+   "h": "Run the restore and check it",
+   "p": [
+    "From the welcome screen of a phone with no vault, choose the restore option and open the backup in Android's file picker. Enter the passphrase or recovery key for that file, then unlock the restored vault.",
+    "Open several sample items and compare them with what you put in: the names, the notes and the photo at full size. If something is missing, stop and leave the test backup where it is."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "In NullKey, a restore needs a phone with no vault, because the app holds a single vault and refuses to restore over one that exists. It authenticates the backup's contents before installing them. If you restored with the passphrase, you are then asked to save a new recovery key, so note which key belongs to the restored test vault.",
+    "Biometric, screen-lock and pattern unlock are off after a restore until you enable them again. Limit: a rehearsal shows that the steps and the secret work for sample data on one device. It cannot prove that a larger vault, or a phone you have not tried, will behave the same way."
+   ]
+  },
+  {
+   "h": "What to record after the test",
+   "p": [
+    "Note the date, the device you tested on, the NullKey version number, and which secret opened the file. Keep those notes outside the phone, beside the secret they describe. Repeat the rehearsal after a new phone or a major app update.",
+    "If you keep more than one backup, record each one separately, because a rehearsal on the newest file says nothing about older files made with different secrets. Test the oldest backup you still intend to keep at least once, so you know its secret has not been lost."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "How often should I run a test restore?",
+   "a": "Run one after your first backup, and again after you change phones or install an app update you have not tried before. A rehearsal shows whether your secrets still match your backups."
+  },
+  {
+   "q": "Can I test with real photos?",
+   "a": "Use sample data for rehearsals. Real files add risk and tell you nothing extra about the steps, so keep the real originals where they are until the rehearsal is finished."
+  },
+  {
+   "q": "What if the test restore fails?",
+   "a": "Keep the backup file and its secret, and do not try to repair the working vault. Make a fresh backup from the working vault, run the rehearsal again with new sample data, and contact support with your app and Android versions, without sending any backup or secret."
+  }
+ ]
+}

@@ -1,0 +1,69 @@
+{
+ "slug": "are-hidden-photos-on-android-actually-safe",
+ "title": "Are hidden photos on Android actually safe?",
+ "description": "Hiding a photo on Android usually only changes what your gallery shows, so check what hiding does not protect before you rely on it.",
+ "cluster": "protect-photos",
+ "related": [
+  "hidden-folder-vs-encrypted-vault",
+  "private-photos-android",
+  "cloud-backup-and-private-photos-on-android"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Hiding changes the view, not always the file",
+   "p": [
+    "Hiding a photo on Android usually changes what your gallery shows, and little else. The file can still exist on the phone and in a backup, and it may stay readable to apps that are allowed to see your photos or storage. Whether it is encrypted depends entirely on the feature, so the hidden icon alone tells you very little.",
+    "A hidden album and a locked folder are not the same thing. A locked area adds an access check, while a hidden album may leave the file readable to other apps that are allowed to see your photos. Behaviour differs between phone makers and Android versions, so read your own device's documentation rather than trusting a general label. If the description says the folder needs its own lock or is encrypted, that is a stronger claim than one that only says the album is hidden from view."
+   ]
+  },
+  {
+   "h": "Where copies can still exist",
+   "p": [
+    "Most photos exist in more than one place before you hide anything. The camera roll, downloads, a messaging app's saved media and a photo sync service can each hold a copy. Hiding one copy does not touch the others, and an app that made its own copy controls that copy. A file manager may show a copy that your gallery does not, because the two views draw from different places.",
+    "This matters most when you want a photo kept out of sight for good. Check each place separately, because a single setting in one app rarely covers them all."
+   ]
+  },
+  {
+   "h": "Check your own phone first",
+   "p": [
+    "Work through these checks in order, and write down what you find so you can compare it later. Once you know the copies, you can decide each one on its merits rather than by memory."
+   ],
+   "list": [
+    "Find out whether your gallery has a hidden album, a locked folder, or neither.",
+    "Search downloads and messaging media for the same photo.",
+    "Check whether any photo sync service you use uploads hidden or locked items, which depends on that service.",
+    "Note every copy before you move or delete anything.",
+    "Keep the original until you have checked the new copy."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey keeps the photos you import in an encrypted vault on your phone, and the public app declares no internet permission. Photos open inside the unlocked vault. Importing keeps the original by default, and optional original removal stays off unless you turn it on, and checks eligible local copies first. Android asks for confirmation before supported photos go to trash.",
+    "Limit: the vault cannot protect a photo that is visible on an unlocked or compromised phone, and it cannot remove copies that other apps made. Treat it as one layer, and keep a backup you have tested."
+   ]
+  },
+  {
+   "h": "Decide what safe means for you",
+   "p": [
+    "Safety depends on the situation you are protecting against. Someone who briefly picks up your locked phone faces different limits from someone who has your unlocked phone or access to your cloud account. Write down the situation first, then choose a method that covers it and say plainly what it leaves out.",
+    "A practical standard is simple: a photo counts as private only when you know every place it lives and you can get it back if the phone is lost. If the answer is that nobody should ever see the photo, the honest choice is to keep it off the phone entirely."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Does hiding a photo encrypt it?",
+   "a": "Not necessarily. A hidden album mainly changes what appears in a normal gallery view. Check the documentation for whatever feature you use, or use a vault that explains what it encrypts."
+  },
+  {
+   "q": "Can someone see hidden photos if they have my unlocked phone?",
+   "a": "In most cases, yes. Anything that can be opened on an unlocked phone can be seen by whoever is holding it. A vault protects stored contents, not a screen that is already showing them."
+  },
+  {
+   "q": "Does hiding a photo remove it from my cloud backup?",
+   "a": "Not automatically. Hiding on the phone does not change copies a backup service has already uploaded. Check that service's settings and its existing copies directly. A backup you control and have checked is easier to reason about than a copy you have forgotten."
+  }
+ ]
+}

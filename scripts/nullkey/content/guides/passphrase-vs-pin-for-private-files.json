@@ -1,0 +1,68 @@
+{
+ "slug": "passphrase-vs-pin-for-private-files",
+ "title": "Passphrase or PIN for protecting private files?",
+ "description": "A long passphrase resists guessing far better than a short PIN when encrypted files can be copied away, and this guide explains why.",
+ "cluster": "encryption",
+ "related": [
+  "biometric-unlock-vs-passphrase",
+  "what-is-argon2id-in-plain-english",
+  "recovery-key-vs-backup"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Why the choice matters",
+   "p": [
+    "A passphrase is harder to guess than a short PIN, and that matters most when someone holds a copy of your encrypted files. They can try guesses without the lockout rules a phone applies to its own screen. A longer passphrase adds possible combinations, and a slow key derivation step adds cost to every guess. A backup file stored in the cloud or on a computer is exactly that kind of copy.",
+    "A PIN can be a reasonable choice for a phone's own lock, where the device's lockout rules help. It is a weaker fit for protecting a set of files that could be copied away from the device."
+   ]
+  },
+  {
+   "h": "How the strength is built",
+   "p": [
+    "A well-designed vault never uses the passphrase directly as the encryption key. It runs it through a deliberately slow, memory-heavy function with a random salt, so every guess has to pay that cost, and the result unlocks a random master key rather than your files directly.",
+    "This is why the passphrase deserves more care than the convenience unlocks around it. Those unlocks are routes into the same vault, not replacements for the secret that protects it. A PIN of a few digits has so few combinations that even a slow function only delays a determined guesser, while several unrelated words multiply the work many times over."
+   ]
+  },
+  {
+   "h": "Choose a passphrase you can keep",
+   "p": [
+    "A passphrase you cannot type reliably is a weak choice, because you will be tempted to write it down somewhere unsafe. Pick a phrase that makes sense to you but is not obvious to someone who knows you only casually."
+   ],
+   "list": [
+    "Use several ordinary words that you can type without looking at the keys.",
+    "Avoid anything printed on a card, stored in a wallet or reused on other accounts.",
+    "Lock and unlock the vault with it a few times so typing it becomes automatic.",
+    "Write the recovery key down and store it apart from the phone.",
+    "Test unlocking after any change, using the keyboard you will use later."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey asks you to choose a passphrase when you create the vault, and it stays the root secret alongside your recovery key. Argon2id, set to use 64 MiB of memory with a fresh random salt, turns it into a wrapping key for the vault key, so every guess against a copied backup pays that cost. The app's wait after repeated wrong passphrases is only a courtesy: someone working on a copied backup is not slowed by it.",
+    "Limit: if you turn on phone screen-lock unlock, your phone's PIN, pattern or password also opens the vault, so a short phone PIN becomes a second way in for anyone holding the phone."
+   ]
+  },
+  {
+   "h": "Pick the trade-off for each case",
+   "p": [
+    "Use a passphrase for the vault itself, and treat convenience unlocks as a second route you can switch on or off. You may use them for everyday access if you wish, but never choose a weaker secret just because the passphrase is slow to type. If you do enable a quicker unlock, still type the passphrase now and then, because a secret you never use is one you can forget. Review the choice when your habits change, such as when you start using a new phone."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is a PIN ever good enough for private files?",
+   "a": "For a phone's own lock, a PIN can be a reasonable choice, and the device's lockout rules help. For a vault whose files could be copied and tested elsewhere, a longer passphrase is the better fit because it is harder to guess."
+  },
+  {
+   "q": "What happens if I forget my passphrase?",
+   "a": "Use your recovery key instead: unlocking with it lets you set a new passphrase. Without either secret the vault cannot be reached, because Alvento has no way to reset access, so store that key somewhere other than the phone."
+  },
+  {
+   "q": "Does biometric unlock replace the passphrase?",
+   "a": "No. Your passphrase and recovery key remain the root secrets, and biometric unlock is only an option you can enable. Restoring a backup turns optional unlock methods off until you enable them again."
+  }
+ ]
+}

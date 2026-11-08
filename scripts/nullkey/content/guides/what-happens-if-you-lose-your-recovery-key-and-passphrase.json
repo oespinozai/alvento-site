@@ -1,0 +1,71 @@
+{
+ "slug": "what-happens-if-you-lose-your-recovery-key-and-passphrase",
+ "title": "What happens if you lose your recovery key and passphrase?",
+ "description": "If you lose both the passphrase and the recovery key, the existing vault stays locked and cannot be reset. A backup with its own secret is the way back.",
+ "cluster": "backup",
+ "related": [
+  "recovery-key-vs-backup",
+  "where-to-keep-an-encrypted-backup-file",
+  "vault-without-account"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "The short answer",
+   "p": [
+    "If you have lost both your passphrase and your recovery key, nobody can reset them, and the vault opens only if an optional unlock method you enabled, such as biometric unlock, still works. Alvento holds no copy of your vault, no reset link and no decryption keys, so no support request can restore access to the existing data.",
+    "If one does, use it at once to replace the recovery key in Settings, write the new key down and make a fresh backup. Otherwise, the only route left is a backup whose matching passphrase or recovery key you still have. A backup opens with the secret that belongs to that particular file, so check each one. If you have neither a backup nor a working secret, the encrypted data cannot be recovered."
+   ]
+  },
+  {
+   "h": "What the lost secrets actually break",
+   "p": [
+    "Losing the secrets does not delete anything from the phone, but without a working secret the stored contents cannot be decrypted. Changing the passphrase rewraps the same vault key and leaves earlier backups untouched, so an older backup can still hold the same items under the credentials it was made with.",
+    "Clearing app storage or uninstalling removes the local vault. A phone-only vault with no backup and no secret therefore has no other copy to fall back on.",
+    "If an optional unlock still works today, act on it straight away: an app update or a restore can switch some of those methods off, and then only the root secrets remain."
+   ]
+  },
+  {
+   "h": "Steps to check what you still hold",
+   "p": [
+    "Do not delete old backups while you work through this, even if they seem to be the wrong ones. Older files are sometimes the only route back to data that is missing from the current vault."
+   ],
+   "list": [
+    "Find every recovery key you saved, and write down which vault each one belongs to.",
+    "Try the passphrase you most likely used, carefully and without rushing.",
+    "List each backup file and the secret that was recorded with it.",
+    "Restore a backup on a phone with no vault, and do not delete the locked vault just to make room for a restore.",
+    "Check several restored items before you treat the vault as recovered.",
+    "Keep this list outside the phone, next to the secrets it describes."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey has no account reset, no password email and no provider-held copy of your vault. Either the passphrase or the recovery key can open the vault on its own, and so can an enabled biometric unlock. Restoring checks a backup before installing it, and a restore refuses to overwrite a vault already on the phone, so a failed attempt does not replace data you still have.",
+    "The honest limit is strict. Once the passphrase, the recovery key and every matching backup are gone, Alvento cannot recreate missing files or recover lost secrets, and no setting in the app brings them back."
+   ]
+  },
+  {
+   "h": "Preventing a repeat",
+   "p": [
+    "Decide now where each secret lives. Keep the recovery key apart from the phone and apart from the backup, so one loss cannot remove both. Record which secret matches which backup, because changing credentials later does not update older files.",
+    "Also keep a record, apart from the secrets themselves, of where each one is stored, so you can find them after a long gap. Update that record whenever you change a secret, so it never points to an old place."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can Alvento reset my passphrase?",
+   "a": "No. Alvento never receives your passphrase, recovery key or decryption keys, so it has nothing to reset. Never send any of them to support."
+  },
+  {
+   "q": "I still have the recovery key but not the passphrase. What now?",
+   "a": "Use it to unlock: NullKey then asks you to set a new passphrase. After that, make a fresh backup straight away and store its secret separately."
+  },
+  {
+   "q": "Is a backup enough on its own?",
+   "a": "Not without its secret. A backup contains the data, but it still needs the matching passphrase or recovery key to open, so keep both in separate places. A backup stored in the same place as its secret is still a single point of failure."
+  }
+ ]
+}

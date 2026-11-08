@@ -1,0 +1,71 @@
+{
+ "slug": "what-to-do-if-you-lose-your-android-phone",
+ "title": "What should you do if you lose your Android phone?",
+ "description": "If you lose your Android phone, secure your accounts first, then check what your vault and backup still protect. Here is a practical order of steps.",
+ "cluster": "devices",
+ "related": [
+  "backup-offline-vault",
+  "recovery-key-vs-backup",
+  "shared-phone-private-files"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Secure your accounts first",
+   "p": [
+    "Start with the things that connect to the phone. If you set up a remote lock or locate feature earlier, use it now, and sign out remotely from accounts that were logged in on the device, where your provider allows it.",
+    "Change the password for your email before anything else, because email can reset many other accounts. Then contact your mobile carrier to block the SIM. The app has no account of its own, so there is nothing to sign out of inside it.",
+    "Also check whether your phone keeps copies of photos or files in an online account, since that copy may be reachable from another device. If it does, secure that account straight after your email."
+   ]
+  },
+  {
+   "h": "What the vault still protects",
+   "p": [
+    "The vault is encrypted on the phone, but an open vault is a different case. If the vault was open on screen when the phone went missing, or someone can satisfy an enabled unlock method, the vault can be opened. With phone screen-lock unlock switched on, the phone's own lock code is enough to open the app.",
+    "Otherwise the vault stays locked and asks for your passphrase or another method you enabled. Even then, file counts, approximate sizes and filesystem times are not hidden from someone with access to the storage."
+   ]
+  },
+  {
+   "h": "Steps for the first day",
+   "p": [
+    "Work through these in order of risk, and note each one as you finish it."
+   ],
+   "list": [
+    "Use the remote lock or locate feature, if you set one up before the loss.",
+    "Change the email password first, then the passwords for accounts that email can reset.",
+    "Sign out of accounts remotely where the provider allows it.",
+    "Ask your carrier to block the SIM and report the handset as lost.",
+    "Secure any cloud or sync account where you saved a backup file.",
+    "List which backups exist and which passphrase or recovery key opens each one."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "The NullKey vault stays on the phone, and NullKey sends nothing from it to Alvento. The current app has no account, no server and no internet permission. Android cloud backup and device-transfer backup are disabled for its data, so Android's own backup and transfer routes do not copy the vault elsewhere.",
+    "Alvento cannot access or erase a local vault remotely, so a lost phone cannot be wiped from our side. The honest limit is that the vault cannot protect itself while it is open, or any readable export you made. Only a backup kept elsewhere, with its own secret, can rebuild the vault on a new phone."
+   ]
+  },
+  {
+   "h": "Plan for a phone that never comes back",
+   "p": [
+    "Assume the phone and everything on its storage may be gone for good. Keep an encrypted backup away from the phone, with its passphrase or recovery key stored separately. Uninstalling or losing the phone may otherwise lose the only copy of your vault.",
+    "Remember too that a remote erase of the phone also deletes the vault, so weigh that before you use one if no backup exists."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can someone open the app on my lost phone?",
+   "a": "Only if they can satisfy an unlock method you enabled. Without one, they need your passphrase. With phone screen-lock unlock on, someone who learned your lock code, for example by watching you type it, can get in."
+  },
+  {
+   "q": "Can I wipe the vault remotely?",
+   "a": "No. The app has no server to send commands, and Alvento cannot access or erase a local vault. Any remote erase would come from your phone's own settings, not from the app."
+  },
+  {
+   "q": "Is a cloud copy of my backup enough?",
+   "a": "It can help, but only if you can still reach that account, and the file opens only with its matching passphrase or recovery key. The provider holds the file under its own terms, so secure that account first. Check that you can still sign in to it from another device before you need it."
+  }
+ ]
+}

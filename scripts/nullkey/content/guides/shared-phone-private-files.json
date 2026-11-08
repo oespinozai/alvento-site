@@ -1,0 +1,69 @@
+{
+ "slug": "shared-phone-private-files",
+ "title": "How do you keep private files private on a shared phone?",
+ "description": "On a shared phone, the lock code and unlock methods matter most. Learn which unlock choices other people could satisfy, and what to change first.",
+ "cluster": "devices",
+ "related": [
+  "biometric-unlock-vs-passphrase",
+  "what-to-do-if-you-lose-your-android-phone",
+  "private-photos-android"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "Start with who can unlock the phone",
+   "p": [
+    "A shared phone changes the threat. Any vault or app that lets the phone's own lock code open it is only as private as that code, and on a shared phone other people often know it. So the first question is who can get past the phone's lock, not only what the app can do.",
+    "If you cannot keep the lock code to yourself, a vault that relies on screen-lock unlock is not private from the people who know it. The passphrase is the stronger choice, provided you do not share it."
+   ]
+  },
+  {
+   "h": "Where the vault's protection stops",
+   "p": [
+    "Encryption protects what is stored, but a phone handed to someone else while a vault is open shows whatever is on the screen. Whoever is looking can read it, and no encryption setting changes that.",
+    "Keyboards, accessibility services and a compromised system may also access what you type or display. On a shared phone, the keyboard's learned words and the clipboard history are shared too, so a word you typed in private may be suggested to the next person. Shared computers and sync services can also keep copies of readable files you export, so think before you save anything out of a vault."
+   ]
+  },
+  {
+   "h": "Steps for a phone others can touch",
+   "p": [
+    "These steps reduce the exposure, but none of them stops someone who has the phone unlocked."
+   ],
+   "list": [
+    "Set a phone lock code that only you know, and keep it out of shared notes.",
+    "Turn off phone screen-lock unlock in the app if others know your lock code.",
+    "Use a passphrase that only you know, and never write it on the phone.",
+    "Lock the vault or the phone when you step away, since an open vault shows its contents to whoever picks the phone up.",
+    "Keep private files inside the vault, not in shared albums, downloads or galleries.",
+    "Check whether your phone supports separate user profiles, and test the app inside one before relying on it."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "On a shared phone, the NullKey setting that matters most is phone screen-lock unlock: while it is on, anyone who knows your phone's lock code can open the vault. The in-app pattern is a separate secret, and five wrong patterns turn that method off while your passphrase keeps working. The vault locks when the screen turns off, and after you leave the app it locks after a delay you can set, 30 seconds by default.",
+    "Limit: NullKey cannot tell who is holding the phone, so anyone who satisfies an enabled method can open the vault. Release builds block ordinary screenshots, but nothing stops someone reading over your shoulder."
+   ]
+  },
+  {
+   "h": "When a phone is not really shared",
+   "p": [
+    "If others use your phone regularly, or you would not hand them the lock code, keep sensitive files on a device you control. Before moving private data across, check the unlock settings, then keep an encrypted backup with its secret stored separately. Store any backup somewhere the other users cannot reach, such as a device or account only you sign in to, because a backup file left in the shared phone's downloads is visible to them."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can a partner or family member open my vault?",
+   "a": "They can if phone screen-lock unlock is enabled and they know your PIN, pattern or password. If you want to prevent that, turn screen-lock unlock off and rely on the passphrase, which they would need separately."
+  },
+  {
+   "q": "Does the in-app pattern help when others know my lock code?",
+   "a": "It is a separate secret, so knowing the phone's lock code does not satisfy it. It is still weaker than a passphrase, and a pattern drawn on screen is easier to watch and repeat than a passphrase typed on a keyboard, so treat it as a convenience."
+  },
+  {
+   "q": "Will the app tell me if someone else opened the vault?",
+   "a": "Do not count on an alert from the app. Assume that anyone who can satisfy an unlock method, or who picks up the phone while the vault is open, can see what it shows, and set your unlock options with that in mind."
+  }
+ ]
+}

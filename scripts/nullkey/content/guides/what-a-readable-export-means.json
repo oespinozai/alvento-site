@@ -1,0 +1,72 @@
+{
+ "slug": "what-a-readable-export-means",
+ "title": "What does a 'readable export' mean for private files?",
+ "description": "A readable export is a decrypted copy of a file, written outside the vault and no longer encrypted by the app. Here is how to handle one safely.",
+ "cluster": "devices",
+ "related": [
+  "what-to-check-before-sharing-a-private-photo",
+  "how-to-keep-private-notes-secure-on-android",
+  "store-private-documents-android"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "What an export gives you",
+   "p": [
+    "A readable export is a copy of a vault item that another app can open, such as a PDF viewer or a video player. The app writes it only to the destination you choose, and from that point the app no longer encrypts it.",
+    "This is a trade-off, not a fault. The app has no in-app video or PDF viewer, so exporting is how you open those files elsewhere. The cost is that the copy sits wherever you put it, protected only by that location.",
+    "A copy in a folder on the phone is still outside the vault, and it can be seen by anyone who can browse the phone's storage while the screen is unlocked."
+   ]
+  },
+  {
+   "h": "Why the copy sits outside the vault",
+   "p": [
+    "Photos and notes open inside the app. PDFs, videos and other files are stored encrypted, so a readable copy has to exist somewhere before another app can show it. The app cannot control what that other app does with the file afterwards.",
+    "An interrupted export can leave a partial copy at the destination if its provider cannot remove it, so check the folder after a failed attempt rather than assuming nothing was written.",
+    "When you choose a destination, prefer one you control over a shared folder or a location that syncs to other devices, because that choice decides where the copy travels."
+   ]
+  },
+  {
+   "h": "Steps for handling an export",
+   "p": [
+    "Read the warning the app gives about the copy before you confirm the destination, since it says the copy sits outside the vault's protection."
+   ],
+   "list": [
+    "Export only the single file you need right now.",
+    "Choose a destination you control and can clear later.",
+    "Open the copy in the app you need, then close that app.",
+    "Delete the readable copy when you have finished, and check the folder afterwards.",
+    "Look for other copies in trash folders, sync services and other apps.",
+    "Keep the original inside the vault, and keep an encrypted backup of it."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey keeps the original encrypted inside the vault and writes a readable export only to the destination you pick. Temporary files used for imports and backup checks contain ciphertext, not readable content.",
+    "The current app declares no internet permission, so NullKey itself does not upload an export, although a provider you choose in the file picker may. The honest limit is that once an export exists, NullKey cannot protect it, cannot follow where it goes and cannot erase it with certainty. A readable copy of a medical letter or passport scan is only as private as the place it sits."
+   ]
+  },
+  {
+   "h": "Deleting a copy is not secure erasure",
+   "p": [
+    "Removing a readable copy takes it out of view, but it is not a secure erase on flash storage. Trash folders, sync providers and other apps may keep their own copies, so check each place the export could have reached.",
+    "If you cannot find a copy you remember making, search your files and downloads by its name, since many phones' files apps keep a list of recent files."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is an export the same as a backup?",
+   "a": "No. A backup is an encrypted archive of the whole vault, and it needs its matching secret to open. A readable export is decrypted, so it opens without the app and has no vault protection."
+  },
+  {
+   "q": "Can I export without losing protection?",
+   "a": "Not for that copy. Export only when you need to open a file in another app, and keep the original inside the vault. For something you want to keep protected, make an encrypted backup instead."
+  },
+  {
+   "q": "What should I do after I have viewed an export?",
+   "a": "Delete the copy, empty any trash it went to, and check whether a sync service picked it up. If you need the file again, export it fresh rather than keeping an old copy."
+  }
+ ]
+}

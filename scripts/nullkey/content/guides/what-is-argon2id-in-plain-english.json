@@ -1,0 +1,71 @@
+{
+ "slug": "what-is-argon2id-in-plain-english",
+ "title": "What is Argon2id, in plain English?",
+ "description": "Argon2id is a key derivation method. It turns your passphrase into an encryption key slowly and with a lot of memory, which makes guessing expensive.",
+ "cluster": "encryption",
+ "related": [
+  "passphrase-vs-pin-for-private-files",
+  "what-does-encrypted-actually-mean-for-your-files",
+  "recovery-key-vs-backup"
+ ],
+ "reviewed": "2026-11-08",
+ "sections": [
+  {
+   "h": "A slow, memory-heavy way to make a key",
+   "p": [
+    "Argon2id is a method for turning a passphrase into an encryption key. It is deliberately slow and uses a good deal of memory, so someone who copies your encrypted files has to spend real time and memory on every single guess.",
+    "A passphrase is words or characters you choose, not a random key. Argon2id is the step that converts one into the other, and it makes every guess cost real work before the answer is known."
+   ]
+  },
+  {
+   "h": "Why the slowness protects you",
+   "p": [
+    "Someone with a copy of your encrypted files can try guesses on their own computer, with no service watching and no limit set by anyone else. People choose passphrases with patterns, so an attacker starts with common words and predictable substitutions. Argon2id makes each attempt expensive, because every attempt has to fill a memory-hungry working area before it can be checked.",
+    "Argon2id also uses a random salt, a value stored alongside the data. Two vaults with the same passphrase therefore do not produce the same derived key, so a list of precomputed guesses cannot be applied to every vault at once.",
+    "Salts do not make a weak passphrase strong, however. They only stop an attacker from reusing one table of work across many vaults."
+   ]
+  },
+  {
+   "h": "Steps that make the derivation count",
+   "p": [
+    "The steps below are the parts you control. The rest of the work happens inside the app.",
+    "If you are unsure whether a passphrase is strong enough, ask whether someone who knows your habits could guess it in a few tries. If they could, change it now, while the vault is open and you can do so calmly. Words that have nothing to do with your life, your pets or your postcode are harder to predict than anything personal."
+   ],
+   "list": [
+    "Choose a passphrase of several unrelated words rather than a name and a date.",
+    "Do not reuse that passphrase on any other account or device.",
+    "Keep the recovery key somewhere apart from the phone, so one loss does not take both.",
+    "Make a backup and wait for its read-back check before you rely on it.",
+    "Record which passphrase or recovery key opens which backup, and keep that note apart from the files.",
+    "Treat the passphrase as the part that matters most, because a slow derivation cannot rescue a weak one."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey uses Argon2id to derive a wrapping key from your passphrase, with a random salt and 64 MiB of memory. That wrapping key does not encrypt your files directly: it unlocks a random vault master key, which in turn unwraps each item's own random key.",
+    "Changing your passphrase rewraps the same vault key, but it does not change backups you have already made, so an older backup still opens with the old passphrase. The honest limit is that a short or predictable passphrase stays weak, however the derivation is done."
+   ]
+  },
+  {
+   "h": "What the derivation cannot do",
+   "p": [
+    "Argon2id does nothing once a vault is open. While the vault is unlocked, readable content and keys are processed in memory, so a compromised phone can expose them whatever the key derivation. A readable export also falls outside the vault's encryption, so the slow derivation never applies to that copy."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Do I choose the Argon2id settings myself?",
+   "a": "No. NullKey sets them itself when the vault is created, using 64 MiB of memory and a random salt, and there is no setting for you to adjust. Your own part is the passphrase, which decides how hard guessing is in practice."
+  },
+  {
+   "q": "Is a long passphrase better than a complicated one?",
+   "a": "Length and unpredictability usually matter most. A long phrase of several unrelated words is harder to guess than a short string full of symbols, and the slow derivation applies to whichever you choose."
+  },
+  {
+   "q": "Can Alvento reset my passphrase if I forget it?",
+   "a": "No. Alvento does not hold your passphrase or recovery key, and it cannot recover a lost secret. Your own way back is the recovery key, which does not depend on remembering the passphrase."
+  }
+ ]
+}

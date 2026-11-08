@@ -1,0 +1,61 @@
+{
+  "guides/store-private-documents-android": [
+    "where-to-store-passport-and-id-scans-on-android",
+    "keeping-medical-letters-private-on-android",
+    "keeping-financial-documents-private-on-your-phone",
+    "how-to-keep-private-notes-secure-on-android"
+  ],
+  "guides/hidden-folder-vs-encrypted-vault": [
+    "are-hidden-photos-on-android-actually-safe",
+    "what-does-encrypted-actually-mean-for-your-files",
+    "cloud-backup-and-private-photos-on-android"
+  ],
+  "guides/backup-offline-vault": [
+    "how-often-should-you-back-up-an-encrypted-vault",
+    "how-to-test-a-backup-restore-before-you-need-it",
+    "where-to-keep-an-encrypted-backup-file",
+    "travel-documents-on-your-phone-what-to-protect"
+  ],
+  "guides/before-deleting-originals": [
+    "what-to-check-before-sharing-a-private-photo",
+    "what-a-readable-export-means",
+    "travel-documents-on-your-phone-what-to-protect",
+    "keeping-financial-documents-private-on-your-phone"
+  ],
+  "guides/recovery-key-vs-backup": [
+    "what-happens-if-you-lose-your-recovery-key-and-passphrase",
+    "passphrase-vs-pin-for-private-files",
+    "what-is-argon2id-in-plain-english"
+  ],
+  "guides/vault-without-account": [
+    "shared-phone-private-files",
+    "what-to-do-if-you-lose-your-android-phone",
+    "biometric-unlock-vs-passphrase",
+    "keeping-medical-letters-private-on-android"
+  ],
+  "guides/private-photos-android": [
+    "are-hidden-photos-on-android-actually-safe",
+    "cloud-backup-and-private-photos-on-android",
+    "what-to-check-before-sharing-a-private-photo"
+  ],
+  "guides/restore-nullkey-backup-new-phone": [
+    "how-to-test-a-backup-restore-before-you-need-it",
+    "where-to-keep-an-encrypted-backup-file",
+    "what-to-do-if-you-lose-your-android-phone"
+  ],
+  "features": [
+    "how-to-keep-private-notes-secure-on-android",
+    "what-a-readable-export-means",
+    "how-often-should-you-back-up-an-encrypted-vault"
+  ],
+  "features/private-photo-vault": [
+    "are-hidden-photos-on-android-actually-safe",
+    "cloud-backup-and-private-photos-on-android",
+    "what-to-check-before-sharing-a-private-photo"
+  ],
+  "features/encrypted-backup": [
+    "how-often-should-you-back-up-an-encrypted-vault",
+    "how-to-test-a-backup-restore-before-you-need-it",
+    "where-to-keep-an-encrypted-backup-file"
+  ]
+}
