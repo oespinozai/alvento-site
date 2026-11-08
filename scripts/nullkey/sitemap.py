@@ -37,6 +37,17 @@ def update(text):
             raise ValueError(f'Invalid guide slug: {path}')
         if path.stem in dates: raise ValueError(f'Duplicate slug: {path.stem}')
         dates[path.stem]=guide['reviewed']
+    compare_dir = CONTENT/'compare'
+    comparisons = [json.loads(p.read_text()) for p in sorted(compare_dir.glob('*.json'))]
+    if comparisons:
+        from compare_merge import validate
+        for item in comparisons: validate(item)
+        compare_dates = {'': max(x['skeleton']['facts_checked_utc'][:10] for x in comparisons)}
+        compare_dates.update({x['skeleton']['slug']+'/':x['skeleton']['facts_checked_utc'][:10] for x in comparisons})
+        for suffix, reviewed in compare_dates.items():
+            date.fromisoformat(reviewed)
+            url='https://alvento.uk/nullkey/compare/'+suffix
+            entries[url]=f'  <url><loc>{url}</loc><lastmod>{reviewed}</lastmod><changefreq>monthly</changefreq></url>\n'
     for slug, reviewed in dates.items():
         url=f'https://alvento.uk/nullkey/guides/{slug}/'
         if url in entries:

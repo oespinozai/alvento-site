@@ -6,6 +6,7 @@ from collections import defaultdict, deque
 from html.parser import HTMLParser
 import json, re, sys, hashlib, xml.etree.ElementTree as ET
 from play_links import PACKAGE, campaign_for_route
+from compare_merge import validate as validate_comparison, BAN as COMPARE_BAN, MONEY as COMPARE_MONEY, POPULAR as COMPARE_POPULAR
 
 root=Path(__file__).resolve().parents[2]; product=root/'nullkey'; errors=[]
 NAMES=['samsung','secure folder','safe folder','google photos','google drive','google one','files by google','icloud','onedrive','dropbox','keepsafe','vaultaire','calculator vault','bitwarden','1password','lastpass','signal','whatsapp','telegram','cryptomator','veracrypt','norton','proton','mega','apple','pixel','xiaomi','huawei','oneplus','chrome','gmail','microsoft','windows','facebook','instagram','tiktok','amazon','openai','chatgpt','kaspersky','mcafee','nordvpn','tutanota']
@@ -122,7 +123,13 @@ for path,doc in docs.items():
  if path != product/'privacy/index.html' and 'https://alvento.uk/nullkey/privacy/' not in doc.links:fail(rel,'missing privacy link')
  play_links=[link for link in doc.links if urlsplit(link).netloc.lower()=='play.google.com']
  if path != product/'privacy/index.html' and not play_links:fail(rel,'missing Play CTA')
- for link in play_links:check_play_url(link,path)
+ for link in play_links:
+  if path.parent.parent==product/'compare':
+   try:
+    source=json.loads((root/'scripts/nullkey/content/compare'/f"{path.parent.name.removeprefix('nullkey-vs-')}.json").read_text())
+    if link in [r['url'] for r in source['skeleton']['references']]:continue
+   except Exception:pass
+  check_play_url(link,path)
  if doc.canon!=[url]:fail(rel,f'missing or wrong canonical {doc.canon}')
  if path != product/'privacy/index.html' and (not doc.title or len(doc.title)>65):fail(rel,f'title length {len(doc.title)} (max 65)')
  if doc.title.casefold() in titles:fail(rel,f'duplicate title with {titles[doc.title.casefold()]}')
@@ -141,6 +148,16 @@ for path,doc in docs.items():
  if MONEY.search(visible):fail(rel,'currency amount '+repr(MONEY.search(visible).group()))
  for match in BANNED.finditer(visible):
   if not is_disclaimed(visible,match):fail(rel,'banned claim '+repr(match.group()))
+ compare_page = path.parent.parent==product/'compare'
+ compare_hub = path==product/'compare/index.html'
+ allowed_names=''
+ if compare_page:
+  try:
+   _cmp=json.loads((root/'scripts/nullkey/content/compare'/f"{path.parent.name.removeprefix('nullkey-vs-')}.json").read_text());validate_comparison(_cmp)
+   allowed_names=(_cmp['skeleton']['competitor_name']+' '+' '.join(r['competitor'] for r in _cmp['skeleton']['table'])+' '+' '.join(json.loads(p.read_text())['skeleton']['competitor_name'] for p in (root/'scripts/nullkey/content/compare').glob('*.json'))).lower()
+  except Exception as exc: fail(rel,f'invalid comparison content: {exc}')
+ elif compare_hub:
+  allowed_names=' '.join(json.loads(p.read_text())['skeleton']['competitor_name'] for p in (root/'scripts/nullkey/content/compare').glob('*.json')).lower()
  for name in NAMES:
   # The privacy policy must name the payment processor and backup system it describes (Apple, iCloud); allowed on that page only (2026-11-10).
   if path == product/'privacy/index.html' and name in ('apple','icloud'):continue
@@ -154,6 +171,46 @@ for path,doc in docs.items():
   text=' '.join([data['title'],data['description']]+[x for sec in data['sections'] for x in [sec['h']]+sec['p']+sec.get('list',[])]+[x for f in data.get('faq',[]) for x in [f['q'],f['a']]])
   n=len(re.findall(r"[A-Za-z0-9’']+",text))
   if n<600:fail(rel,f'new guide word count {n} (minimum 600)')
+# Compare pages: validate the rendered table and schema against their source.
+class ComparisonTable(HTMLParser):
+ def __init__(self): super().__init__(convert_charrefs=True);self.rows={};self.row=None;self.cell=None;self.ref=False;self.header_scopes=[];self.ref_links=[]
+ def handle_starttag(self,t,attrs):
+  a=dict(attrs)
+  if t=='tr' and a.get('data-row'):self.row=a['data-row'];self.rows[self.row]=[]
+  if t=='th':self.header_scopes.append(a.get('scope'))
+  if t=='a' and a.get('href','').startswith('https://'):self.ref_links.append((a.get('href'),a.get('rel','').split()))
+  if self.row and t in ('th','td'):self.cell={'tag':t,'text':'','scope':a.get('scope'),'refs':[]};self.rows[self.row].append(self.cell)
+  if self.cell is not None and t=='sup':self.ref=True
+  if self.cell is not None and self.ref and t=='a':self.cell['refs'].append(a.get('href'))
+ def handle_data(self,text):
+  if self.cell is not None and not self.ref:self.cell['text']+=text
+ def handle_endtag(self,t):
+  if t=='sup':self.ref=False
+  if t in ('th','td'):self.cell=None
+  if t=='tr':self.row=None
+for path in [p for p in pages if p.parent.parent==product/'compare']:
+ rel=path.relative_to(root); slug=path.parent.name.removeprefix('nullkey-vs-');source=root/'scripts/nullkey/content/compare'/f'{slug}.json'
+ try:
+  data=validate_comparison(json.loads(source.read_text()));sk=data['skeleton'];doc=docs[path];parser=ComparisonTable();parser.feed(path.read_text())
+  for ref in sk['references']:
+   if 'ref-'+ref['id'] not in doc.ids or not any(url==ref['url'] and {'noopener','noreferrer'}<=set(relations) for url,relations in parser.ref_links):fail(rel,'missing reference or rel: '+ref['id'])
+  if not any(x.startswith('mailto:hello@alvento.uk') for x in doc.links):fail(rel,'missing correction email link')
+  if parser.header_scopes[:3]!=['col']*3:fail(rel,'comparison columns lack scope')
+  if set(parser.rows)!={r['row_id'] for r in sk['table']}:fail(rel,'comparison table rows differ from skeleton')
+  for row in sk['table']:
+   cells=parser.rows.get(row['row_id'],[])
+   if len(cells)!=3 or cells[0]['scope']!='row' or [c['text'].strip() for c in cells]!=[row['point'],row['nullkey'],row['competitor']] or cells[2]['refs']!=['#ref-'+row['competitor_ref']]:fail(rel,'table row differs from skeleton or lacks reference: '+row['row_id'])
+  text=' '.join(doc.text); from datetime import date as _date
+  checked=_date.fromisoformat(sk['facts_checked_utc'][:10]); label=f'{checked.day} {checked:%B %Y}'
+  if 'hello@alvento.uk' not in text or label not in text:fail(rel,'missing date or correction email')
+  clean=text.replace('Download NullKey from Google Play','').replace('Download & compatibility','').replace('Download','')
+  if any(term in clean.lower() for term in COMPARE_BAN) or COMPARE_MONEY.search(clean) or COMPARE_POPULAR.search(clean):fail(rel,'banned comparison wording')
+  types=[]
+  for raw in doc.jsonld:
+   obj=json.loads(raw);types.extend(x.get('@type') for x in obj.get('@graph',[]))
+  if sorted(types)!=['Article','BreadcrumbList']:fail(rel,'unexpected JSON-LD types')
+  if not any(x.get('@type')=='Article' and x.get('dateModified')==sk['facts_checked_utc'][:10] for raw in doc.jsonld for x in json.loads(raw).get('@graph',[])):fail(rel,'wrong Article dateModified')
+ except Exception as exc:fail(rel,'comparison validation error: '+str(exc))
 sitemap={e.text for e in ET.parse(root/'sitemap.xml').getroot().iter() if e.tag.endswith('loc')}
 for path in pages:
  url=base+'/'+str(path.relative_to(root)).replace('index.html','')
@@ -165,6 +222,8 @@ if hashlib.sha256(privacy.read_bytes()).hexdigest()!='13b0c7cecbc09b5f4d48a842ee
 inbound=defaultdict(set)
 for src,targets in graph.items():
  for dst in targets:inbound[dst].add(src)
+for path in [p for p in pages if p.parent.parent==product/'compare']:
+ if len(inbound[path])<3:fail(path.relative_to(root),f'only {len(inbound[path])} comparison inbound links (minimum 3)')
 hub=product/'guides/index.html'; seen={hub};queue=deque([hub])
 while queue:
  for target in graph[queue.popleft()]:

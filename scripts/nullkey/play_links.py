@@ -12,6 +12,8 @@ def campaign_for_route(route):
         return 'home'
     if parts[0] == 'guides':
         return parts[1] if len(parts) > 1 else 'guides-hub'
+    if parts[0] == 'compare':
+        return 'compare-'+parts[1].removeprefix('nullkey-vs-') if len(parts)>1 else 'compare-hub'
     if parts[0] == 'features':
         return 'features'
     return parts[0]
