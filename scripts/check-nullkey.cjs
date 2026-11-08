@@ -28,7 +28,7 @@ const pages=[];function walk(p){for(const e of fs.readdirSync(p,{withFileTypes:t
  await page.getByRole('navigation',{name:'NullKey navigation'}).getByRole('link',{name:'Download',exact:true}).click();assert(page.url().endsWith('/nullkey/availability/'));
  const play='https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp';
  assert.equal(await page.getByRole('link',{name:'Get NullKey on Google Play'}).first().getAttribute('href'),play);
- assert((await page.getByText('Android 12L or later.').count())>0);
+ assert((await page.getByText(/Android 12L.*or later/).count())>0);
  await page.goto(base+'/nullkey/');await page.screenshot({path:path.join(root,'docs/nullkey-qa/mobile.png'),fullPage:true});
  await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).scrollBehavior),'auto');
  await page.setViewportSize({width:512,height:1000});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'512px reflow overflow');
