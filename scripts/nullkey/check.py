@@ -110,6 +110,9 @@ while queue:
  for target in graph[queue.popleft()]:
   if target not in seen:seen.add(target);queue.append(target)
 guides=[p for p in pages if p.parent.parent==product/'guides']
+legacy_slugs={g[0] for g in json.loads((root/'scripts/nullkey/content/guides.json').read_text())}
+for path in guides:
+ if path.parent.name not in legacy_slugs | new_slugs:fail(path.relative_to(root),'stale guide output has no source')
 for path in guides:
  if path not in seen:fail(path.relative_to(root),'orphan: unreachable from guide hub')
  if len(inbound[path])<3:fail(path.relative_to(root),f'only {len(inbound[path])} distinct inbound internal pages (minimum 3)')
