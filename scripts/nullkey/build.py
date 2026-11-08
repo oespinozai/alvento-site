@@ -1,5 +1,5 @@
 from pathlib import Path
-import html, json, shutil, re
+import html, json, shutil, re, subprocess, sys
 from datetime import date
 from xml.etree import ElementTree as ET
 
@@ -200,4 +200,6 @@ for source in OUT.rglob('*'):
         target = ROOT.parents[1] / 'nullkey' / source.relative_to(OUT)
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, target)
-print(f'Built {len(routes)} integrated NullKey pages; existing privacy policy preserved')
+print(f'Built {len(routes)} integrated NullKey pages; existing privacy policy preserved', flush=True)
+# Publication gate: report all existing and new violations, and fail the build.
+raise SystemExit(subprocess.call([sys.executable, str(ROOT/'check.py')]))
