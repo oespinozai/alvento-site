@@ -27,7 +27,7 @@ const pages=[];function walk(p){for(const e of fs.readdirSync(p,{withFileTypes:t
  await page.setViewportSize({width:390,height:844});
  await page.getByRole('navigation',{name:'NullKey navigation'}).getByRole('link',{name:'Download',exact:true}).click();assert(page.url().endsWith('/nullkey/availability/'));
  const play='https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp';
- assert.equal(await page.getByRole('link',{name:'Get NullKey on Google Play'}).first().getAttribute('href'),play);
+ {const href=await page.getByRole('link',{name:'Get NullKey on Google Play'}).first().getAttribute('href');assert(href.startsWith(play+'&referrer=utm_source%3Dalvento-site%26utm_medium%3Dweb%26utm_campaign%3D'),'Play link must be the package URL with the alvento-site referrer: '+href);}
  assert((await page.getByText(/Android 12L.*or later/).count())>0);
  await page.goto(base+'/nullkey/');await page.screenshot({path:path.join(root,'docs/nullkey-qa/mobile.png'),fullPage:true});
  await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).scrollBehavior),'auto');
