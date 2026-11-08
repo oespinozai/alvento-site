@@ -64,10 +64,14 @@ def target_for(url,source):
 for path,doc in docs.items():
  rel=path.relative_to(root);url=base+'/'+str(rel).replace('index.html','');visible=' '.join(doc.text)
  if doc.h1!=1:fail(rel,f'expected 1 h1, got {doc.h1}')
+ if path != product/'privacy/index.html' and doc.meta.get('robots') != ['index,follow']:fail(rel,'missing index,follow robots')
+ if path != product/'privacy/index.html' and 'https://alvento.uk/nullkey/privacy/' not in doc.links:fail(rel,'missing privacy link')
+ if path != product/'privacy/index.html' and 'https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp' not in doc.links:fail(rel,'missing Play CTA')
  if doc.canon!=[url]:fail(rel,f'missing or wrong canonical {doc.canon}')
  if not doc.title or len(doc.title)>65:fail(rel,f'title length {len(doc.title)} (max 65)')
  if doc.title.casefold() in titles:fail(rel,f'duplicate title with {titles[doc.title.casefold()]}')
  titles[doc.title.casefold()]=rel
+ visible += ' '+doc.title+' '+' '.join(x for vals in doc.meta.values() for x in vals)+' '+' '.join(doc.jsonld)
  desc=doc.meta.get('description',[])
  if len(desc)!=1 or not 120<=len(desc[0])<=160:fail(rel,f'description length {[len(x) for x in desc]} (120-160)')
  if len(desc)==1:
