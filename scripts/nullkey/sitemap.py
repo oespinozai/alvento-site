@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Update only the contiguous NullKey sitemap block, using guide review dates.
 
-Existing non-guide entries retain their metadata; existing guide entries retain
+Non-guide dates come from a reviewed commit-evidence manifest; guide entries retain
 all other fields. New guide entries use the supplied reviewed date. This command
 is explicit so draft builds cannot silently update the publication sitemap.
 """
@@ -19,6 +19,15 @@ def update(text):
     if not matches or any(matches[i].end() != matches[i+1].start() for i in range(len(matches)-1)):
         raise ValueError('NullKey sitemap entries must be one contiguous block')
     entries = {re.search(r'<loc>([^<]+)</loc>', m.group()).group(1): m.group() for m in matches}
+    page_dates = json.loads((CONTENT/'page-dates.json').read_text())
+    for url, evidence in page_dates.items():
+        date.fromisoformat(evidence['date'])
+        if url not in entries or not re.fullmatch(r'[0-9a-f]{7,40}', evidence['commit']):
+            raise ValueError(f'Invalid page date evidence: {url}')
+        entry = entries[url]
+        if '<lastmod>' in entry: entry = re.sub(r'<lastmod>[^<]*</lastmod>', f"<lastmod>{evidence['date']}</lastmod>", entry)
+        else: entry = entry.replace('</loc>', f"</loc><lastmod>{evidence['date']}</lastmod>")
+        entries[url] = entry
     dates = {slug: values['modified'] for slug, values in json.loads((CONTENT/'guide-dates.json').read_text()).items()}
     if set(dates) != {g[0] for g in json.loads((CONTENT/'guides.json').read_text())}: raise ValueError('Legacy guide dates are incomplete')
     for value in dates.values(): date.fromisoformat(value)
