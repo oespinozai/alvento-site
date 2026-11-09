@@ -1,0 +1,152 @@
+{
+  "skeleton": {
+    "slug": "nullkey-vs-calculator-hide-photo-video",
+    "competitor_slug": "calculator-hide-photo-video",
+    "competitor_name": "Calculator Hide Photo, Video",
+    "facts_checked_utc": "2026-11-08 22:53:47Z",
+    "table": [
+      {
+        "row_id": "cloud_backup_sync",
+        "point": "Offers cloud backup or sync",
+        "nullkey": "No. NullKey has no sync and the current app declares no internet permission. You can save an encrypted backup wherever you choose with Android's file picker.",
+        "competitor": "Listing says files are stored only on your device, and asks users to back up hidden files before moving to a new device or a factory reset",
+        "competitor_status": "STATED_ABSENT",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "export_backup",
+        "point": "Lets you export or back up the vault yourself",
+        "nullkey": "Yes. Whole-vault encrypted backup with a read-back check; readable export of single items.",
+        "competitor": "Listing says media can be unhidden using the export icon within the vault",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "disguise_decoy",
+        "point": "Can disguise the app or show a decoy",
+        "nullkey": "No.",
+        "competitor": "Disguised as a regular calculator; vault opens only after entering a numeric PIN on the calculator",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "notes_documents",
+        "point": "Stores notes and documents, not only photos and videos",
+        "nullkey": "Yes. Private notes, documents and photos.",
+        "competitor": "Stores files, notes and contacts as well as photos and videos; listing also says images, videos, audio and files can be imported",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "ads",
+        "point": "Shows ads",
+        "nullkey": "No ads.",
+        "competitor": "Google Play listing shows the label 'Contains ads'",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "free_to_start",
+        "point": "Free to start",
+        "nullkey": "Yes, free for up to 30 items in total.",
+        "competitor": "Its Google Play listing presents it as free",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "platform_availability",
+        "point": "Where it runs and how you get it",
+        "nullkey": "Android 12L or later, from Google Play.",
+        "competitor": "Android app, installed from its Google Play listing",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      }
+    ],
+    "references": [
+      {
+        "id": "r1",
+        "url": "https://play.google.com/store/apps/details?id=com.calculator.lock.hide.photo.video&hl=en_GB",
+        "evidence_file": "evidence/select-calculator-hide-photo-video.txt",
+        "fetched_utc": "2026-11-08 22:50:24Z"
+      }
+    ],
+    "competitor_notes": "Vendor publishes almost nothing beyond the Play listing, so most rows are NOT_STATED, which is correct. Sources: (1) Play listing (visible text saved 2026-11-08 22:50:24Z in evidence/select-calculator-hide-photo-video.txt; raw metadata excerpts in evidence/fs-calculator-hide-photo-video-1.txt); (2) developer website https://applus-studio.blogspot.com/ is an empty Blogger blog ('There's nothing here!'), saved as evidence/fs-calculator-hide-photo-video-2.txt, no help or support pages exist; (3) privacy policy linked from the listing, https://sites.google.com/view/photovideoprivacypolicy/home, saved as evidence/fs-calculator-hide-photo-video-3.txt. CAUTION on the privacy policy: it is generic boilerplate that never names this app (it refers to 'Slide Show' and a different contact email, teamphotovideomusic@gmail.com, than the listing's applus.studio.global@gmail.com), and it lists AdMob, Firebase Analytics, Facebook and Google Play Services as third-party services, while the listing's Data safety box says 'No data collected'. Do not use the policy for any row, and do not contrast the two. Installs and rating may be shown only as quoted from the listing with the date: '50m+' downloads, '4.3' rating, '669k reviews' as shown 2026-11-08. The listing says the developer is 'currently in its development phase' in its description; do not use as a weakness. Data safety box wording (quote exactly if used): 'No data shared with third parties', 'No data collected', 'Data is encrypted in transit', 'Data can’t be deleted'; these are developer-declared and not about the vault file encryption. Listing also says Snap Intruder photographs people who enter a wrong password (feature fact), and lists a 'Restore Photo and Video' export. No prices anywhere.",
+    "prose": null
+  },
+  "prose": {
+    "title": "NullKey vs Calculator Hide Photo, Video | Features compared",
+    "description": "NullKey and Calculator Hide Photo, Video compared on backup, calculator disguise, stored content, ads and Android availability, from published sources.",
+    "thesis": "NullKey is an Android app from Google Play, needing Android 12L or later, that keeps private photos, files and notes in an encrypted vault on the phone, with no ads. Calculator Hide Photo, Video is an Android app from Google Play that stores files, notes and contacts as well as photos and videos behind a calculator front. The main differences are the calculator disguise, the backup route and the kinds of content each one holds.",
+    "honest_case": {
+      "h": "The honest case for Calculator Hide Photo, Video",
+      "p": [
+        "Calculator Hide Photo, Video is a better fit for readers who want the app disguised as a regular calculator. Its Google Play listing says the vault opens only after a numeric PIN is entered on the calculator. NullKey does not disguise itself and does not show a decoy.",
+        "It also fits readers who want contacts kept alongside their photos and videos. Its listing says images, videos, audio and files can be imported, and it describes an export icon in the vault that restores hidden media. NullKey's export options are a whole-vault encrypted backup and a readable export of single items."
+      ],
+      "rows_used": [
+        "disguise_decoy",
+        "notes_documents",
+        "export_backup"
+      ]
+    },
+    "differences": [
+      {
+        "h": "Backup, sync and changing phones",
+        "p": [
+          "NullKey has no sync, and the current app declares no internet permission. You can save an encrypted backup wherever you choose with Android's file picker, and NullKey runs a read-back check on it.",
+          "Calculator Hide Photo, Video's listing says its files are stored only on the device, and asks users to back up hidden files before moving to a new device or doing a factory reset. Its listing also describes an export icon in the vault that restores hidden media."
+        ],
+        "rows_used": [
+          "cloud_backup_sync",
+          "export_backup"
+        ]
+      },
+      {
+        "h": "Disguise and how the vault opens",
+        "p": [
+          "Calculator Hide Photo, Video is disguised as a regular calculator. Its listing says the vault is opened by entering a numeric PIN on the calculator.",
+          "NullKey does not disguise itself or show a decoy. It opens with your passphrase, plus optional biometric, screen-lock or in-app pattern unlock where the phone supports them."
+        ],
+        "rows_used": [
+          "disguise_decoy"
+        ]
+      },
+      {
+        "h": "What each vault holds and shows",
+        "p": [
+          "NullKey lists private notes, documents and photos. Photos and notes open inside the app. Other files are stored encrypted, and you open them by exporting a readable copy, which sits outside the vault's protection.",
+          "Calculator Hide Photo, Video's listing says it stores files, notes and contacts as well as photos and videos. The listing also shows the label 'Contains ads', and NullKey has no ads."
+        ],
+        "rows_used": [
+          "notes_documents",
+          "ads"
+        ]
+      }
+    ],
+    "bottom_line": "Choose Calculator Hide Photo, Video if a calculator disguise and a numeric PIN entered on the calculator matter most to you, or if you want files, notes and contacts in one app. Choose NullKey if you want a whole-vault encrypted backup that the app checks after saving, and an app with no ads and no disguise.",
+    "faq": [
+      {
+        "q": "Does NullKey disguise itself as a calculator?",
+        "a": "No. NullKey does not disguise itself and does not show a decoy. Calculator Hide Photo, Video is disguised as a regular calculator, and its Google Play listing says the vault opens only after a numeric PIN is entered on the calculator.",
+        "rows_used": [
+          "disguise_decoy"
+        ]
+      },
+      {
+        "q": "Does either app sync or back up to the cloud?",
+        "a": "NullKey has no sync, and the current app declares no internet permission. You can save an encrypted backup wherever you choose with Android's file picker. Calculator Hide Photo, Video's listing says its files are stored only on the device.",
+        "rows_used": [
+          "cloud_backup_sync"
+        ]
+      },
+      {
+        "q": "Is either app free to start, and does it show ads?",
+        "a": "NullKey is free for up to 30 items in total and has no ads. Calculator Hide Photo, Video's Google Play listing shows the label 'Contains ads', and shows the app as free.",
+        "rows_used": [
+          "free_to_start",
+          "ads"
+        ]
+      }
+    ]
+  }
+}

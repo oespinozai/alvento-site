@@ -1,0 +1,169 @@
+{
+  "skeleton": {
+    "slug": "nullkey-vs-samsung-secure-folder",
+    "competitor_slug": "samsung-secure-folder",
+    "competitor_name": "Secure Folder (Samsung Galaxy)",
+    "facts_checked_utc": "2026-11-08 22:53:26Z",
+    "table": [
+      {
+        "row_id": "encrypts_files",
+        "point": "Encrypts the stored files on the device",
+        "nullkey": "Yes. Contents use AES-256-GCM with a separate random key for each item. Argon2id turns your passphrase into a key that protects the vault master key.",
+        "competitor": "Samsung says its Knox security platform encrypts all data stored in the Secure Folder",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "account_required",
+        "point": "Needs an account or sign-in to use",
+        "nullkey": "No. There is no account.",
+        "competitor": "Setup needs a Samsung Account: sign in or create one",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "cloud_backup_sync",
+        "point": "Offers cloud backup or sync",
+        "nullkey": "No. NullKey has no sync and the current app declares no internet permission. You can save an encrypted backup wherever you choose with Android's file picker.",
+        "competitor": "US help page describes an 'Auto sync Secure Folder data' switch under Manage accounts; it says backing up is no longer supported, but data from previous backups can be restored and the Secure Folder can be transferred to a new device using Smart Switch",
+        "competitor_status": "STATED",
+        "competitor_ref": "r2"
+      },
+      {
+        "row_id": "recovery_option",
+        "point": "Has a way back in if you forget the unlock secret",
+        "nullkey": "A recovery key that you save yourself. There is no account reset.",
+        "competitor": "UK help page says a forgotten PIN, pattern or password can be reset using your Samsung account; the US page says this needs Reset with Samsung account to have been turned on",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "biometric_unlock",
+        "point": "Supports fingerprint or face unlock",
+        "nullkey": "Optional strong-biometric unlock; phone screen-lock unlock and an in-app pattern are also available on supported devices.",
+        "competitor": "UK page says a passcode or biometric lock can be added; US page lists PIN, password or pattern lock, and fingerprint unlock on supported devices",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "disguise_decoy",
+        "point": "Can disguise the app or show a decoy",
+        "nullkey": "No.",
+        "competitor": "The name and icon of the Secure Folder can be changed (US page); its icon can also be hidden from Home and Apps screens (UK page)",
+        "competitor_status": "STATED",
+        "competitor_ref": "r2"
+      },
+      {
+        "row_id": "notes_documents",
+        "point": "Stores notes and documents, not only photos and videos",
+        "nullkey": "Yes. Private notes, documents and photos.",
+        "competitor": "Stores photos, videos, files, apps and data",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "platform_availability",
+        "point": "Where it runs and how you get it",
+        "nullkey": "Android 12L or later, from Google Play.",
+        "competitor": "Set up from Settings on Samsung Galaxy devices; some older phone models may no longer support it",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      }
+    ],
+    "references": [
+      {
+        "id": "r1",
+        "url": "https://www.samsung.com/uk/support/mobile-devices/what-is-the-secure-folder-and-how-do-i-use-it/",
+        "evidence_file": "evidence/fs-samsung-secure-folder-1.txt",
+        "fetched_utc": "2026-11-08 22:53:10Z"
+      },
+      {
+        "id": "r2",
+        "url": "https://www.samsung.com/us/support/answer/ANS10001401/",
+        "evidence_file": "evidence/fs-samsung-secure-folder-2.txt",
+        "fetched_utc": "2026-11-08 22:53:26Z"
+      }
+    ],
+    "competitor_notes": "Built-in Samsung Galaxy feature; no Google Play listing (no Play-derived rows: ads, in-app purchases, free_to_start are NOT_STATED). Sources: Samsung UK support article (fs-1, also saved earlier as select-samsung-secure-folder.txt) and Samsung US support article (fs-2, used only for sync/backup, icon rename, fingerprint 'on supported devices', device-support note; US and UK pages can differ by region and software version). The US page states 'Available screens and settings may vary by wireless service provider and software version.' Backup: Samsung says new backups are no longer supported, so avoid saying it offers cloud backup. Do not state any Android version minimum or 'free' or 'pre-installed': none of these are in the fetched official text. Samsung Knox solutions page (samsungknox.com) was fetched but returned a generic enterprise page with no Secure Folder text, so it was not saved or used.",
+    "prose": null
+  },
+  "prose": {
+    "title": "NullKey vs Secure Folder (Samsung Galaxy) | Backup and recovery",
+    "description": "Compares NullKey, a private notes and documents vault for Android, with Samsung's Secure Folder on Galaxy phones. Covers unlock, recovery and backup.",
+    "thesis": "NullKey is an Android app that keeps private notes, documents and photos in an encrypted vault on the phone, with no account. Secure Folder is Samsung's feature for Galaxy devices, set up from Settings, which holds photos, videos, files, apps and data.",
+    "honest_case": {
+      "h": "The honest case for Secure Folder",
+      "p": [
+        "Secure Folder is the better fit for readers who already use a Samsung Galaxy phone and want the feature set up from Settings on that device. Its UK support page says some older phone models may no longer support it, so check that first. It also lists apps among the things it holds, while NullKey stores notes, documents, photos and other files.",
+        "Readers who want an auto sync switch, a name or icon they can change, or a reset that runs through an account may find those features useful. Its US support page describes an 'Auto sync Secure Folder data' switch under Manage accounts and says the name and icon can be changed. Its help pages describe a reset using a Samsung account."
+      ],
+      "rows_used": [
+        "platform_availability",
+        "notes_documents",
+        "cloud_backup_sync",
+        "disguise_decoy",
+        "recovery_option"
+      ]
+    },
+    "differences": [
+      {
+        "h": "Encryption and unlock options",
+        "p": [
+          "Samsung says its Knox security platform encrypts all data stored in the Secure Folder. NullKey's published wording names AES-256-GCM for stored contents, gives each item its own random key, and protects the vault's keys with a key that Argon2id derives from your passphrase.",
+          "Samsung's UK page says a passcode or biometric lock can be added, and its US page lists PIN, password or pattern locks, with fingerprint unlock on supported devices. NullKey offers an optional strong-biometric unlock, and phone screen-lock and in-app pattern unlock on supported devices. Its pattern is a convenience with weaker protection than the passphrase."
+        ],
+        "rows_used": [
+          "encrypts_files",
+          "biometric_unlock"
+        ]
+      },
+      {
+        "h": "Recovery and accounts",
+        "p": [
+          "Setup for Secure Folder needs a Samsung Account, which you sign in to or create. Its UK support page describes a reset using that account, and its US page says the reset needs Reset with Samsung account to have been turned on. NullKey has no account and no account reset.",
+          "NullKey's recovery key is one you save yourself, and it opens existing encrypted data. It is not a backup, so keep a separate copy of anything you cannot replace."
+        ],
+        "rows_used": [
+          "account_required",
+          "recovery_option"
+        ]
+      },
+      {
+        "h": "Backup, contents and appearance",
+        "p": [
+          "Samsung's US support page describes an 'Auto sync Secure Folder data' switch under Manage accounts. The same page says backing up Secure Folder data is no longer supported, but data from previous backups can still be restored and the Secure Folder can be transferred to a new device using Smart Switch. NullKey has no sync, and its current app declares no internet permission. You can save an encrypted backup wherever you choose with Android's file picker.",
+          "Its UK support page says Secure Folder stores photos, videos, files, apps and data. NullKey stores private notes, documents and photos. Secure Folder's name and icon can be changed, and its icon can be hidden from the Home and Apps screens. NullKey does not disguise its app or show a decoy."
+        ],
+        "rows_used": [
+          "cloud_backup_sync",
+          "notes_documents",
+          "disguise_decoy"
+        ]
+      }
+    ],
+    "bottom_line": "Choose Secure Folder if you use a Samsung Galaxy phone and want it set up from Settings, with a reset through your Samsung Account if you turn that option on, and the auto sync switch. Choose NullKey if you want an app that needs no account, a recovery key you save yourself, and an encrypted backup saved wherever you choose, on Android 12L or later.",
+    "faq": [
+      {
+        "q": "Does Secure Folder need a Samsung Account?",
+        "a": "Its UK support page says setup needs a Samsung Account, which you sign in to or create. NullKey has no account, so there is nothing to sign in to.",
+        "rows_used": [
+          "account_required"
+        ]
+      },
+      {
+        "q": "Is Secure Folder encrypted?",
+        "a": "Samsung says its Knox security platform encrypts all data stored in the Secure Folder. NullKey encrypts its contents with AES-256-GCM, gives each item its own random key, and protects the vault's keys with a key that Argon2id derives from your passphrase.",
+        "rows_used": [
+          "encrypts_files"
+        ]
+      },
+      {
+        "q": "Can Secure Folder be hidden or renamed?",
+        "a": "Its US support page says the name and icon can be changed, and its UK page says the icon can be hidden from the Home and Apps screens. NullKey does not disguise its app or show a decoy.",
+        "rows_used": [
+          "disguise_decoy"
+        ]
+      }
+    ]
+  }
+}

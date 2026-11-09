@@ -1,0 +1,158 @@
+{
+  "skeleton": {
+    "slug": "nullkey-vs-hide-it-pro",
+    "competitor_slug": "hide-it-pro",
+    "competitor_name": "Hide Photos, Video-Hide it Pro",
+    "facts_checked_utc": "2026-11-08 22:53:16Z",
+    "table": [
+      {
+        "row_id": "cloud_backup_sync",
+        "point": "Offers cloud backup or sync",
+        "nullkey": "No. NullKey has no sync and the current app declares no internet permission. You can save an encrypted backup wherever you choose with Android's file picker.",
+        "competitor": "Play listing lists 'Free Cloud backup of your files' as a feature",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "biometric_unlock",
+        "point": "Supports fingerprint or face unlock",
+        "nullkey": "Optional strong-biometric unlock; phone screen-lock unlock and an in-app pattern are also available on supported devices.",
+        "competitor": "Listing lists fingerprint unlock and lock screen options of PIN, password and pattern",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "disguise_decoy",
+        "point": "Can disguise the app or show a decoy",
+        "nullkey": "No.",
+        "competitor": "App disguised as 'Audio Manager' in the app drawer; other disguises such as Calculator available; option to hide the app icon; escape PIN/password",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "notes_documents",
+        "point": "Stores notes and documents, not only photos and videos",
+        "nullkey": "Yes. Private notes, documents and photos.",
+        "competitor": "Listing says it hides photos, videos, music, apps, notes, calls and messages, and 'any other files'",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "ads",
+        "point": "Shows ads",
+        "nullkey": "No ads.",
+        "competitor": "Google Play listing label 'Contains ads'",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "in_app_purchases",
+        "point": "Has in-app purchases or a paid tier",
+        "nullkey": "One optional one-time unlock. No subscription.",
+        "competitor": "Google Play listing label 'In-app purchases'",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "free_to_start",
+        "point": "Free to start",
+        "nullkey": "Yes, free for up to 30 items in total.",
+        "competitor": "Listing says 'COMPLETELY FREE and UNLIMITED'",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      },
+      {
+        "row_id": "platform_availability",
+        "point": "Where it runs and how you get it",
+        "nullkey": "Android 12L or later, from Google Play.",
+        "competitor": "Android app installed from Google Play; the listing also links a Chrome extension (PC/Mac) and an iPhone/iPad app",
+        "competitor_status": "STATED",
+        "competitor_ref": "r1"
+      }
+    ],
+    "references": [
+      {
+        "id": "r1",
+        "url": "https://play.google.com/store/apps/details?id=com.hideitpro&hl=en_GB",
+        "evidence_file": "evidence/select-hide-it-pro.txt",
+        "fetched_utc": "2026-11-08 22:50:25Z"
+      }
+    ],
+    "competitor_notes": "Sources: Play listing (select-hide-it-pro.txt, 22:50:25Z), vendor homepage (fs-hide-it-pro-1.txt), privacy policy (fs-hide-it-pro-2.txt, effective date 2018-08-02), website terms (fs-hide-it-pro-3.txt; website terms only, no app facts used). No help/support pages exist on hideitpro.com (/help, /support, /faq, /contact, .html variants all return 404); Play lists support@hideitpro.com only. Internal conflicts in official sources: Play lists 'Free Cloud backup' while homepage/privacy policy say data never leaves/stays only on the device; Play says 'COMPLETELY FREE' and also 'In-app purchases'; Play Data safety shows 'Data isn't encrypted' while homepage says 'Your data is encrypted'. Report each as published, attributed to its source, never reconcile. Developer line 'Goaffpro' vs 'About the developer: ARV TECH': quote exactly, assert no ownership. Do not use homepage marketing claims (user counts, '#1 app', testimonials) or any numbers.",
+    "prose": null
+  },
+  "prose": {
+    "title": "NullKey vs Hide Photos, Video-Hide it Pro | Feature comparison",
+    "description": "Compares NullKey and Hide Photos, Video-Hide it Pro on cloud backup, unlock options, disguise, ads, purchase labels and platforms, using published sources.",
+    "thesis": "NullKey is an Android app that keeps private notes, documents and photos in an encrypted vault on your phone, with no sync. Hide Photos, Video-Hide it Pro is an Android app whose Google Play listing lists a cloud backup feature and says it hides photos, videos, music, apps, notes, calls, messages and any other files.",
+    "honest_case": {
+      "h": "The honest case for Hide Photos, Video-Hide it Pro",
+      "p": [
+        "Some readers may find Hide Photos, Video-Hide it Pro the closer fit. Its Google Play listing lists 'Free Cloud backup of your files' as a feature, and NullKey has no sync, so readers who want a cloud backup feature will find one listed there and not in NullKey. The listing also says the app hides music, apps, calls, messages and 'any other files', while NullKey's vault holds notes, documents, photos and other files you import.",
+        "Readers who want a disguised app will find that in the listing too. It says the app is disguised as 'Audio Manager' in the app drawer, that other disguises are available, that the app icon can be hidden, and that an escape PIN or password is available. NullKey has no disguise or decoy option."
+      ],
+      "rows_used": [
+        "cloud_backup_sync",
+        "notes_documents",
+        "disguise_decoy"
+      ]
+    },
+    "differences": [
+      {
+        "h": "Unlock options on each app",
+        "p": [
+          "NullKey offers an optional strong-biometric unlock, and phone screen-lock unlock and an in-app pattern are also available on supported devices. Hide Photos, Video-Hide it Pro's listing mentions fingerprint unlock and PIN, password and pattern lock options."
+        ],
+        "rows_used": [
+          "biometric_unlock"
+        ]
+      },
+      {
+        "h": "Ads and purchase labels",
+        "p": [
+          "Hide Photos, Video-Hide it Pro's Google Play listing carries the label 'Contains ads' and the label 'In-app purchases'. NullKey has no ads. The listing also says 'COMPLETELY FREE and UNLIMITED'.",
+          "NullKey is free for up to 30 items in total. Its one optional one-time unlock removes that limit, and there is no subscription."
+        ],
+        "rows_used": [
+          "ads",
+          "in_app_purchases",
+          "free_to_start"
+        ]
+      },
+      {
+        "h": "Where each app is available",
+        "p": [
+          "NullKey requires Android 12L or later and comes from Google Play. Hide Photos, Video-Hide it Pro is installed from Google Play, and its listing also links to a browser extension for PC and Mac and to a separate app for other devices."
+        ],
+        "rows_used": [
+          "platform_availability"
+        ]
+      }
+    ],
+    "bottom_line": "Choose Hide Photos, Video-Hide it Pro if a cloud backup feature, a disguised app icon or the listed kinds of hidden items, including music, apps and messages, are what you need, as its Google Play listing describes them. Choose NullKey if you want a vault for private notes, documents and photos with no sync, no disguise and no ads.",
+    "faq": [
+      {
+        "q": "Does Hide Photos, Video-Hide it Pro offer cloud backup?",
+        "a": "Its Google Play listing lists 'Free Cloud backup of your files' as a feature. NullKey has no sync, and you can save an encrypted backup wherever you choose with Android's file picker.",
+        "rows_used": [
+          "cloud_backup_sync"
+        ]
+      },
+      {
+        "q": "Can NullKey disguise itself or show a decoy?",
+        "a": "No. NullKey has no disguise or decoy option. Hide Photos, Video-Hide it Pro's listing says the app is disguised as 'Audio Manager' in the app drawer, lists other disguises, and offers an option to hide the app icon and an escape PIN or password.",
+        "rows_used": [
+          "disguise_decoy"
+        ]
+      },
+      {
+        "q": "Does each app offer in-app purchases?",
+        "a": "Hide Photos, Video-Hide it Pro's Google Play listing carries the label 'In-app purchases' and also says 'COMPLETELY FREE and UNLIMITED'. NullKey has one optional one-time unlock bought through Google Play, with no subscription, and it is free for up to 30 items in total.",
+        "rows_used": [
+          "in_app_purchases",
+          "free_to_start"
+        ]
+      }
+    ]
+  }
+}
