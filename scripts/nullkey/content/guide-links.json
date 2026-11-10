@@ -8,7 +8,8 @@
   "guides/hidden-folder-vs-encrypted-vault": [
     "are-hidden-photos-on-android-actually-safe",
     "what-does-encrypted-actually-mean-for-your-files",
-    "cloud-backup-and-private-photos-on-android"
+    "cloud-backup-and-private-photos-on-android",
+    "are-photo-vault-apps-actually-encrypted"
   ],
   "guides/backup-offline-vault": [
     "how-often-should-you-back-up-an-encrypted-vault",
@@ -25,7 +26,8 @@
   "guides/recovery-key-vs-backup": [
     "what-happens-if-you-lose-your-recovery-key-and-passphrase",
     "passphrase-vs-pin-for-private-files",
-    "what-is-argon2id-in-plain-english"
+    "what-is-argon2id-in-plain-english",
+    "what-can-you-do-if-you-forget-a-photo-vault-password"
   ],
   "guides/vault-without-account": [
     "shared-phone-private-files",

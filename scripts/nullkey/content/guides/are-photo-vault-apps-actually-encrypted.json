@@ -1,0 +1,77 @@
+{
+ "slug": "are-photo-vault-apps-actually-encrypted",
+ "title": "Are photo vault apps actually encrypted, and how can you check?",
+ "description": "Some photo vault apps only hide files behind a PIN, while others encrypt them. Here is how to check which kind you are using without relying on marketing.",
+ "cluster": "encryption",
+ "related": [
+  "what-does-encrypted-actually-mean-for-your-files",
+  "are-hidden-photos-on-android-actually-safe",
+  "hidden-folder-vs-encrypted-vault"
+ ],
+ "reviewed": "2026-11-10",
+ "sections": [
+  {
+   "h": "Hiding and encrypting are different jobs",
+   "p": [
+    "Some photo vault apps encrypt the files they hold, and some only hide them. A hidden view can keep photos out of your gallery while the stored file stays readable to anyone who can reach that file. A properly designed vault scrambles the stored contents and derives its key from a secret you enter, so the file cannot be read from the storage alone.",
+    "The word encrypted on its own does not settle the question. You need to look at how the app describes its storage, its unlock method and its recovery path. The checks below take a few minutes and need no technical background."
+   ]
+  },
+  {
+   "h": "Questions to put to any vault app",
+   "p": [
+    "Start by asking whether the app names its encryption method. A phrase such as uses encryption tells you very little, while a named cipher and a named key derivation method, described in the app's own documentation, give you something to check. Next, look at where the files physically sit, because files kept in the app's private storage behave differently from files that were only moved into a hidden folder on shared storage.",
+    "Then check whether the unlock secret is separate from your phone's lock. If the vault opens with the same PIN that unlocks the phone, anyone who knows that PIN can usually open the vault too. Finally, look at what your phone's file browser can still show, since file names, sizes and folder structure are often visible even when the contents are not."
+   ]
+  },
+  {
+   "h": "Where copies can still exist",
+   "p": [
+    "Encryption protects the copy inside the vault, not the copies made around it. A photo can still sit in your gallery, in a cloud backup, in a messaging app that received it, or in a readable export you made to view it elsewhere. Deleting an original does not ensure that every backup or trash folder lets go of it.",
+    "Ask also how backups work. Some vault apps create an encrypted archive you can store elsewhere, while others rely on your phone's general backup features. Find out which one you have, and whether a backup needs its own passphrase or recovery key to open. A backup you cannot open does not help you recover anything."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey encrypts the photos, files and notes it stores. AES-256-GCM protects the stored contents, and Argon2id derives a wrapping key from your passphrase using a random salt and 64 MiB of memory. Each item has its own random key, and the vault's master key is random too, so a copied stored file is unreadable without your passphrase or recovery key.",
+    "The limits matter as much as the design. Biometric and screen-lock unlock are optional, and anyone who knows your phone's PIN can open NullKey if screen-lock unlock is enabled. While the vault is unlocked, readable content is processed on the phone, and file counts, approximate sizes and filesystem times are not hidden. A readable export leaves the vault's protection."
+   ]
+  },
+  {
+   "h": "A routine for checking any vault",
+   "p": [
+    "Run these checks on the app you already use, not only on the one you are considering. Use sample photos for the tests so that nothing irreplaceable is at risk."
+   ],
+   "list": [
+    "Find the app's own description of its encryption method and read it fully.",
+    "Confirm whether the unlock secret is separate from your phone's lock.",
+    "Look at the stored files in your phone's file browser and note what is visible.",
+    "Create a backup, then restore it into an empty test vault before relying on it.",
+    "Export one sample item and treat that export as an unprotected copy from then on.",
+    "Delete the test copies and any exports you no longer need."
+   ]
+  },
+  {
+   "h": "Labels do not prove anything",
+   "p": [
+    "Words such as strong, secure, advanced or bank-level appear in many app listings, and on their own they tell you little. A useful description names what is stored, how it unlocks, what a backup needs and what the app cannot stop. An app that explains its limits in plain language is usually easier to judge than one that only lists features.",
+    "Even a well-encrypted vault cannot protect a photo that is open on a compromised phone, or a copy that another app has already made. Treat the vault as one layer of your privacy, and keep the other habits in place."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is a photo vault with only a PIN always unsafe?",
+   "a": "Not always, but a PIN is usually a shorter secret than a passphrase. If someone copies the encrypted files, they can try guesses on a computer of their own, with no phone lock in the way. Check whether the app offers a longer secret and whether a PIN is the only thing standing between the files and anyone holding your phone."
+  },
+  {
+   "q": "Can I trust an app because it says it uses encryption?",
+   "a": "Only partly. The word is easy to write and hard to verify from a store page alone. Look for a named method, a clear account of where files sit, and an honest description of backups and exports."
+  },
+  {
+   "q": "Does encryption protect my photos when my phone is unlocked?",
+   "a": "Not against anyone using the unlocked phone. While a vault is open, readable content is processed in memory, and a compromised phone, keyboard or accessibility service may see what you type or display. Lock the vault when you step away from the phone."
+  }
+ ]
+}
