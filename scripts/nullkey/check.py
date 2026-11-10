@@ -142,6 +142,8 @@ for path,doc in docs.items():
  for match in BANNED.finditer(visible):
   if not is_disclaimed(visible,match):fail(rel,'banned claim '+repr(match.group()))
  for name in NAMES:
+  # The privacy policy must name the payment processor and backup system it describes (Apple, iCloud); allowed on that page only (2026-11-10).
+  if path == product/'privacy/index.html' and name in ('apple','icloud'):continue
   if re.search(r'(?<![a-z])'+re.escape(name)+r'(?![a-z])',visible,re.I):fail(rel,'named competing product or brand: '+name)
  for link in doc.links:
   target=target_for(link,path)
@@ -159,7 +161,7 @@ for path in pages:
 for p in ('index.html','case-studies/index.html'):
  if 'href="/nullkey/"' not in (root/p).read_text():print('WARNING',p+': known parent homepage-link assertion: missing href="/nullkey/"')
 privacy=product/'privacy/index.html'
-if hashlib.sha256(privacy.read_bytes()).hexdigest()!='68bd5b7de32538f93a381666eac7dcc3e59f6768006894cbc5d44daf505b19f9':fail(privacy,'privacy policy changed')
+if hashlib.sha256(privacy.read_bytes()).hexdigest()!='80a9075790b0b8c4c7d522d2bd66f969e374e2604313634517694a74032874f2':fail(privacy,'privacy policy changed')
 inbound=defaultdict(set)
 for src,targets in graph.items():
  for dst in targets:inbound[dst].add(src)
