@@ -93,7 +93,7 @@
    "h": "The honest case for cloud-backed photo vaults",
    "p": [
     "A cloud-backed vault is the better fit for a reader who wants the vault to survive a lost or broken phone without managing backup files. Because a copy lives in an online account, signing in on a new phone can bring the files back. NullKey has no sync, and a recovery key alone cannot restore files from a lost phone. It needs an encrypted backup that you saved yourself.",
-    "It also suits a reader who wants the same vault on more than one device. NullKey runs on Android 12L or later and keeps the vault on one phone. Its backup file can be restored on another supported Android phone, but it does not stay in step between devices."
+    "It also suits a reader who wants the same vault on more than one device. NullKey runs on Android 12L or later and keeps the vault on one phone. It does not stay in step between devices, and a backup can only be restored into an empty vault, so check the supported path before relying on a move to another phone."
    ],
    "rows_used": [
     "cloud_backup_sync",

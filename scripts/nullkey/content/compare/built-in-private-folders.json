@@ -92,7 +92,7 @@
   "honest_case": {
    "h": "The honest case for built-in private folders",
    "p": [
-    "A built-in folder is the simpler route for a reader who wants to keep a few files out of the gallery and does not want another app. It is already part of the phone or file manager, so there is nothing extra to find, set up or keep updated, and it usually works with the same screen lock you already use.",
+    "A built-in folder is the simpler route for a reader who wants to keep a few files out of the gallery and does not want another app. It is already part of the phone or file manager, so there is nothing extra to find, set up or keep updated, and it may use the phone's own screen lock.",
     "It can also be the better fit for a reader who wants the phone maker to handle the details, including how the folder is unlocked and how it connects to the account on the phone. NullKey is a separate app that you set up and manage yourself."
    ],
    "rows_used": [
@@ -106,7 +106,7 @@
     "h": "One app everywhere or a feature tied to the phone",
     "p": [
      "A built-in folder belongs to a particular phone or file-manager app. What it offers, and how it behaves, depends on the phone model and the maker's software.",
-     "NullKey is one app from Google Play that works the same way on supported phones running Android 12L or later, so the vault behaves the same if you change phone."
+     "NullKey is one app from Google Play for supported phones running Android 12L or later. Optional biometric and hardware-backed unlock depend on the device."
     ],
     "rows_used": [
      "platform_availability"

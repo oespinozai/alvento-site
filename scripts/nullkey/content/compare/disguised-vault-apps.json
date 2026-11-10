@@ -93,7 +93,7 @@
    "h": "The honest case for disguised vault apps",
    "p": [
     "A disguised vault app is the better fit for a reader whose main worry is someone glancing at the phone and noticing a vault app. The disguise is the point of the category: the icon and the first screen look like something unremarkable, and the vault opens only after a particular code. NullKey does not do this. Its icon and name say NullKey, and anyone who sees the home screen can see that the app is installed.",
-    "Some apps in this category also show harmless decoy content when a second code is entered. That suits a reader who wants a second code that opens something ordinary. NullKey has no decoy code and no second vault, so it cannot offer that."
+    "Some apps in this category also show harmless decoy content when a second code is entered. That suits a reader who wants a second code that opens something ordinary. NullKey has no decoy code, so it cannot offer that."
    ],
    "rows_used": [
     "disguise_decoy"
