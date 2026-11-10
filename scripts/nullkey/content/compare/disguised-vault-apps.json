@@ -24,7 +24,7 @@
    {
     "row_id": "cloud_backup_sync",
     "point": "Offers cloud backup or sync",
-    "nullkey": "No. NullKey has no sync and the current app declares no internet permission. You choose an available destination for an encrypted backup with Android's document picker.",
+    "nullkey": "No app-run sync or cloud backup. The current app declares no internet permission. You choose an available destination for an encrypted backup with Android's document picker.",
     "competitor": "Varies by app. Some keep files only on the phone and some offer an online backup.",
     "competitor_status": "CATEGORY_TYPICAL",
     "competitor_ref": "category"
@@ -33,7 +33,7 @@
     "row_id": "recovery_option",
     "point": "Has a way back in if you forget the unlock secret",
     "nullkey": "A recovery key that you save yourself. There is no account reset.",
-    "competitor": "Varies by app. Some reset a forgotten code through an email address the developer holds.",
+    "competitor": "Varies by app. Check how an app handles a forgotten code.",
     "competitor_status": "CATEGORY_TYPICAL",
     "competitor_ref": "category"
    },
@@ -87,12 +87,12 @@
  },
  "prose": {
   "title": "NullKey vs disguised vault apps | Disguise and recovery",
-  "description": "Compares NullKey with disguised vault apps, which sit behind another app's icon, on disguise, encryption, backups, recovery, accounts and ads.",
+  "description": "Compares NullKey with disguised vault apps, which disguise their appearance, on disguise, encryption, backups, recovery, accounts and ads.",
   "thesis": "NullKey is an Android app that keeps private notes, documents and photos in an encrypted vault on the phone, with no sync and no disguise. Disguised vault apps put the vault behind another app's icon or opening screen. This page compares what you get from each approach, and it describes the type of app in general, not any one product.",
   "honest_case": {
    "h": "The honest case for disguised vault apps",
    "p": [
-    "A disguised vault app may suit a reader whose main worry is someone glancing at the phone and noticing a vault app. The disguise is the point of the category: the icon or opening screen looks like something unremarkable, and the vault typically opens only after a particular code. NullKey does not do this. It appears on the home screen under the name NullKey.",
+    "A disguised vault app may suit a reader whose main worry is someone glancing at the phone and noticing a vault app. The disguise is the point of the category: the icon or opening screen looks like something unremarkable, and getting into the vault takes a particular step. NullKey does not do this. It appears under its own name and icon.",
     "Some apps in this category also show harmless decoy content when a second code is entered. That suits a reader who wants a second code that opens something ordinary. NullKey has no decoy code, so it cannot offer that."
    ],
    "rows_used": [
@@ -114,7 +114,7 @@
    {
     "h": "Recovery and accounts",
     "p": [
-     "Some disguised vault apps let you reset a forgotten code through an email address held by the developer. That is convenient, and it means giving the developer an address and trusting the reset process.",
+     "Recovery options differ between disguised vault apps. A reset that goes through an email address held by the developer is convenient, and it means giving the developer an address and trusting the reset process.",
      "NullKey has no account and no reset by email. Its way back in is a recovery key that you save yourself, so nobody at Alvento can open the vault for you."
     ],
     "rows_used": [

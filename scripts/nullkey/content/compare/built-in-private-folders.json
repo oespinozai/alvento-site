@@ -105,7 +105,7 @@
    {
     "h": "One app or a feature tied to the phone",
     "p": [
-     "A built-in folder belongs to a particular phone or file-manager app. What it offers, and how it behaves, depends on the phone model and the maker's software.",
+     "A built-in folder belongs to a particular phone or file-manager app. What it offers, and how it behaves, depends on the phone, the file-manager app and its settings.",
      "NullKey is one app from Google Play for supported phones running Android 12L or later. Optional biometric and hardware-backed unlock depend on the device."
     ],
     "rows_used": [
@@ -115,7 +115,7 @@
    {
     "h": "Unlocking and getting back in",
     "p": [
-     "Many built-in folders use the phone's screen lock or a code of their own, and some tie recovery to the phone maker's account. The exact options vary by phone and app.",
+     "Built-in folders differ: some use the phone's screen lock or a code of their own, and some tie recovery to the phone maker's account. The exact options vary by phone and app.",
      "NullKey uses a passphrase that you choose and a recovery key that you save yourself, with optional biometric unlock, phone screen-lock unlock and an in-app pattern on supported devices. There is no account reset."
     ],
     "rows_used": [
