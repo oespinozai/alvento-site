@@ -26,6 +26,9 @@ def validate(data):
   try: datetime.fromisoformat(r['fetched_utc'].replace('Z','+00:00'))
   except (KeyError,ValueError): errors.append('invalid reference date')
  rows={r['row_id'] for r in s['table']}
+ HEDGE=re.compile(r'(Varies|Typically|Some|Yes, by definition|Part of)')
+ for r in s['table']:
+  if r.get('competitor_ref')=='category' and not HEDGE.match(r.get('competitor','')):errors.append('category row must start with a hedge: '+r.get('row_id',''))
  if not rows or len(rows)!=len(s['table']):errors.append('missing or duplicate rows')
  for r in s['table']:
   if not all(r.get(k) for k in ('point','nullkey','competitor','competitor_ref')) or (r.get('competitor_ref') not in refs and r.get('competitor_ref')!='category'):errors.append('missing row or reference')

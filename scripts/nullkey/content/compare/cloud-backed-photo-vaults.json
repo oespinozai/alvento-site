@@ -8,8 +8,8 @@
    {
     "row_id": "cloud_backup_sync",
     "point": "Offers cloud backup or sync",
-    "nullkey": "No. NullKey has no sync and the current app declares no internet permission. You can save an encrypted backup wherever you choose with Android's file picker.",
-    "competitor": "Yes, by definition. Files or a backup are kept in an online account run by the developer.",
+    "nullkey": "No. NullKey has no sync and the current app declares no internet permission. You choose an available destination for an encrypted backup with Android's document picker.",
+    "competitor": "Yes, by definition. Files or a backup are kept online in an account; the storage provider varies by app.",
     "competitor_status": "CATEGORY_TYPICAL",
     "competitor_ref": "category"
    },
@@ -49,7 +49,7 @@
     "row_id": "notes_documents",
     "point": "Stores notes and documents, not only photos and videos",
     "nullkey": "Yes. Private notes, documents and photos.",
-    "competitor": "Varies by app. Many focus on photos and videos.",
+    "competitor": "Varies by app. Some focus mainly on photos and videos.",
     "competitor_status": "CATEGORY_TYPICAL",
     "competitor_ref": "category"
    },
@@ -57,7 +57,7 @@
     "row_id": "ads",
     "point": "Shows ads",
     "nullkey": "No ads.",
-    "competitor": "Varies by app. Many have a free tier and show ads there.",
+    "competitor": "Varies by app. Some have a free tier and show ads there.",
     "competitor_status": "CATEGORY_TYPICAL",
     "competitor_ref": "category"
    },
@@ -65,7 +65,7 @@
     "row_id": "in_app_purchases",
     "point": "Has in-app purchases or a paid tier",
     "nullkey": "One optional one-time unlock. No subscription.",
-    "competitor": "Varies by app. Many have a free tier and a paid tier.",
+    "competitor": "Varies by app. Some have a free tier and a paid tier.",
     "competitor_status": "CATEGORY_TYPICAL",
     "competitor_ref": "category"
    }
@@ -92,8 +92,8 @@
   "honest_case": {
    "h": "The honest case for cloud-backed photo vaults",
    "p": [
-    "A cloud-backed vault is the better fit for a reader who wants the vault to survive a lost or broken phone without managing backup files. Because a copy lives in an online account, signing in on a new phone can bring the files back. NullKey has no sync, and a recovery key alone cannot restore files from a lost phone. It needs an encrypted backup that you saved yourself.",
-    "It also suits a reader who wants the same vault on more than one device. NullKey runs on Android 12L or later and keeps the vault on one phone. It does not stay in step between devices, and a backup can only be restored into an empty vault, so check the supported path before relying on a move to another phone."
+    "A cloud-backed vault may suit a reader who wants the vault to survive a lost or broken phone without managing backup files. Because a copy lives in an online account, signing in on a new phone can bring the files back. NullKey has no sync, and a recovery key alone cannot restore files from a lost phone. It needs a saved encrypted backup and the passphrase or recovery key that belongs to it.",
+    "Some apps also sync across devices, which may suit a reader who wants the same vault on more than one phone. NullKey runs on Android 12L or later and has no sync between phones. A backup can be restored into an empty vault on a new phone with the passphrase or recovery key that belongs to it."
    ],
    "rows_used": [
     "cloud_backup_sync",
@@ -105,8 +105,8 @@
    {
     "h": "Where the files live",
     "p": [
-     "In a cloud-backed vault, the files or a backup are held in an online account run by the developer. That is what makes recovery from a lost phone easier, and it also means a copy exists outside your phone.",
-     "NullKey keeps everything on the phone. It has no sync, and the current app declares no internet permission, so it cannot send files anywhere. You choose where an encrypted backup goes."
+     "In a cloud-backed vault, the files or a backup are held online in an account. That can provide a copy after a phone is lost, and it also means a copy exists outside your phone.",
+     "The vault is stored on your phone. NullKey has no sync and the current app declares no internet permission, so it does not send files to a server itself. You choose where an encrypted backup goes, and that destination's own rules apply."
     ],
     "rows_used": [
      "cloud_backup_sync",
@@ -127,7 +127,7 @@
    {
     "h": "Encryption, backups and what else is stored",
     "p": [
-     "Whether files are encrypted before they leave the phone varies by app, so check the description of any app you consider. Many in this category focus on photos and videos.",
+     "Whether files are encrypted before they leave the phone varies by app, so check the description of any app you consider. Some in this category focus mainly on photos and videos.",
      "NullKey encrypts each item with AES-256-GCM using a separate random key, stores notes and documents as well as photos, and makes a whole-vault encrypted backup with a read-back check."
     ],
     "rows_used": [
@@ -137,11 +137,11 @@
     ]
    }
   ],
-  "bottom_line": "Choose a cloud-backed photo vault if you want an online copy and the same vault on more than one device, and read how it encrypts files before they leave your phone. Choose NullKey if you are on Android 12L or later and want an encrypted vault that stays on one phone, with no account and a backup file you control, accepting that a lost phone needs a backup you saved yourself.",
+  "bottom_line": "Choose a cloud-backed photo vault if you want an online copy, and read how it handles several devices and how it encrypts files before they leave your phone. Choose NullKey if you are on Android 12L or later and want an encrypted vault kept locally without sync, with no account and a backup file you control, accepting that restoring after a lost phone needs a backup you saved and its matching passphrase or recovery key.",
   "faq": [
    {
     "q": "Does NullKey back up to the cloud?",
-    "a": "No. NullKey has no sync and the current app declares no internet permission. You can save an encrypted backup wherever you choose with Android's file picker.",
+    "a": "No. NullKey has no sync and the current app declares no internet permission. You choose an available destination for an encrypted backup with Android's document picker.",
     "rows_used": [
      "cloud_backup_sync",
      "export_backup"

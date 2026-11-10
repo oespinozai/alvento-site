@@ -9,7 +9,7 @@
     "row_id": "disguise_decoy",
     "point": "Can disguise the app or show a decoy",
     "nullkey": "No.",
-    "competitor": "Yes, by definition. The app's icon and first screen look like another kind of app, and some show harmless decoy content when a second code is entered.",
+    "competitor": "Yes, by definition. The app is disguised, for example by its icon or opening screen, and some show harmless decoy content when a second code is entered.",
     "competitor_status": "CATEGORY_TYPICAL",
     "competitor_ref": "category"
    },
@@ -24,7 +24,7 @@
    {
     "row_id": "cloud_backup_sync",
     "point": "Offers cloud backup or sync",
-    "nullkey": "No. NullKey has no sync and the current app declares no internet permission. You can save an encrypted backup wherever you choose with Android's file picker.",
+    "nullkey": "No. NullKey has no sync and the current app declares no internet permission. You choose an available destination for an encrypted backup with Android's document picker.",
     "competitor": "Varies by app. Some keep files only on the phone and some offer an online backup.",
     "competitor_status": "CATEGORY_TYPICAL",
     "competitor_ref": "category"
@@ -49,7 +49,7 @@
     "row_id": "notes_documents",
     "point": "Stores notes and documents, not only photos and videos",
     "nullkey": "Yes. Private notes, documents and photos.",
-    "competitor": "Varies by app. Many focus on photos and videos.",
+    "competitor": "Varies by app. Some focus mainly on photos and videos.",
     "competitor_status": "CATEGORY_TYPICAL",
     "competitor_ref": "category"
    },
@@ -57,7 +57,7 @@
     "row_id": "ads",
     "point": "Shows ads",
     "nullkey": "No ads.",
-    "competitor": "Varies by app. Many are free to get and show ads.",
+    "competitor": "Varies by app. Some are free to get and show ads.",
     "competitor_status": "CATEGORY_TYPICAL",
     "competitor_ref": "category"
    },
@@ -65,7 +65,7 @@
     "row_id": "in_app_purchases",
     "point": "Has in-app purchases or a paid tier",
     "nullkey": "One optional one-time unlock. No subscription.",
-    "competitor": "Varies by app. Many have a free tier and a paid tier.",
+    "competitor": "Varies by app. Some have a free tier and a paid tier.",
     "competitor_status": "CATEGORY_TYPICAL",
     "competitor_ref": "category"
    }
@@ -88,11 +88,11 @@
  "prose": {
   "title": "NullKey vs disguised vault apps | Disguise and recovery",
   "description": "Compares NullKey with disguised vault apps, which sit behind another app's icon, on disguise, encryption, backups, recovery, accounts and ads.",
-  "thesis": "NullKey is an Android app that keeps private notes, documents and photos in an encrypted vault on the phone, with no sync and no disguise. Disguised vault apps put the vault behind another app's icon and first screen. This page compares what you get from each approach, and it describes the type of app in general, not any one product.",
+  "thesis": "NullKey is an Android app that keeps private notes, documents and photos in an encrypted vault on the phone, with no sync and no disguise. Disguised vault apps put the vault behind another app's icon or opening screen. This page compares what you get from each approach, and it describes the type of app in general, not any one product.",
   "honest_case": {
    "h": "The honest case for disguised vault apps",
    "p": [
-    "A disguised vault app is the better fit for a reader whose main worry is someone glancing at the phone and noticing a vault app. The disguise is the point of the category: the icon and the first screen look like something unremarkable, and the vault opens only after a particular code. NullKey does not do this. Its icon and name say NullKey, and anyone who sees the home screen can see that the app is installed.",
+    "A disguised vault app may suit a reader whose main worry is someone glancing at the phone and noticing a vault app. The disguise is the point of the category: the icon or opening screen looks like something unremarkable, and the vault typically opens only after a particular code. NullKey does not do this. It appears on the home screen under the name NullKey.",
     "Some apps in this category also show harmless decoy content when a second code is entered. That suits a reader who wants a second code that opens something ordinary. NullKey has no decoy code, so it cannot offer that."
    ],
    "rows_used": [
@@ -103,8 +103,8 @@
    {
     "h": "Hiding the app or protecting what is inside",
     "p": [
-     "A disguise hides the fact that a vault app exists. Encryption protects the contents if someone finds the app anyway. The two are separate features, and an app can have one without the other, so the app's own description is where to look for how files are protected.",
-     "NullKey does not hide itself. It encrypts each item with AES-256-GCM using a separate random key, and Argon2id turns your passphrase into a key that protects the vault master key."
+     "A disguise may make a vault app less obvious. Encryption protects the contents if someone finds the app anyway. The two are separate features, and an app can have one without the other, so the app's own description is where to look for how files are protected.",
+     "NullKey does not disguise itself. It encrypts each item with AES-256-GCM using a separate random key, and Argon2id turns your passphrase into a key that protects the vault master key."
     ],
     "rows_used": [
      "disguise_decoy",
@@ -125,8 +125,8 @@
    {
     "h": "Backups, ads and purchases",
     "p": [
-     "Backup arrangements and money models vary widely in this category. Many apps are free to get and show ads, and many offer a paid tier. Some keep files only on the phone and some offer an online backup.",
-     "NullKey shows no ads and has no sync. It is free for up to 30 items, with one optional one-time unlock and no subscription. You can save an encrypted backup wherever you choose with Android's file picker."
+     "Backup arrangements and money models vary widely in this category. Some apps are free to get and show ads, and some offer a paid tier. Some keep files only on the phone and some offer an online backup.",
+     "NullKey shows no ads and has no sync. It is free for up to 30 items, with one optional one-time unlock and no subscription. You choose an available destination for an encrypted backup with Android's document picker."
     ],
     "rows_used": [
      "ads",
@@ -139,7 +139,7 @@
   "faq": [
    {
     "q": "Does NullKey hide its icon or show a decoy?",
-    "a": "No. NullKey has no disguise or decoy mode. Its icon and name are NullKey.",
+    "a": "No. NullKey has no disguise or decoy mode. It appears under its own name and icon.",
     "rows_used": [
      "disguise_decoy"
     ]

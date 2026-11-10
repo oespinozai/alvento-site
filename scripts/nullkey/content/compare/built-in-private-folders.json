@@ -92,8 +92,8 @@
   "honest_case": {
    "h": "The honest case for built-in private folders",
    "p": [
-    "A built-in folder is the simpler route for a reader who wants to keep a few files out of the gallery and does not want another app. It is already part of the phone or file manager, so there is nothing extra to find, set up or keep updated, and it may use the phone's own screen lock.",
-    "It can also be the better fit for a reader who wants the phone maker to handle the details, including how the folder is unlocked and how it connects to the account on the phone. NullKey is a separate app that you set up and manage yourself."
+    "A built-in folder may suit a reader who wants to keep a few files out of the gallery and does not want another app. If your phone or file manager includes one, there is no separate app to find, and it may use the phone's own screen lock. Check how it is set up and updated.",
+    "It may also suit a reader who wants the phone maker to handle the details, including how the folder is unlocked and whether it connects to an account on the phone. NullKey is a separate app that you set up and manage yourself."
    ],
    "rows_used": [
     "platform_availability",
@@ -103,7 +103,7 @@
   },
   "differences": [
    {
-    "h": "One app everywhere or a feature tied to the phone",
+    "h": "One app or a feature tied to the phone",
     "p": [
      "A built-in folder belongs to a particular phone or file-manager app. What it offers, and how it behaves, depends on the phone model and the maker's software.",
      "NullKey is one app from Google Play for supported phones running Android 12L or later. Optional biometric and hardware-backed unlock depend on the device."
@@ -128,7 +128,7 @@
     "h": "Backups, encryption and what you can store",
     "p": [
      "Whether a built-in folder can be backed up or moved, and how its contents are protected, varies by phone and app, so read the maker's own description.",
-     "NullKey encrypts each item with AES-256-GCM, keeps notes and documents as well as photos, and makes a whole-vault encrypted backup with a read-back check that you can save wherever you choose."
+     "NullKey encrypts each item with AES-256-GCM, keeps notes and documents as well as photos, and makes a whole-vault encrypted backup with a read-back check, saved to a destination you choose in Android's document picker."
     ],
     "rows_used": [
      "export_backup",
@@ -137,7 +137,7 @@
     ]
    }
   ],
-  "bottom_line": "Choose a built-in private folder if you want a quick separation of a few files with nothing extra to add, and read the maker's description of how it protects them. Choose NullKey if you are on Android 12L or later and want a vault with its own passphrase, a recovery key you keep yourself, no account and an encrypted backup you control.",
+  "bottom_line": "Choose a built-in private folder if you want a quick separation of a few files if your phone already has one, and read the maker's description of how it protects them. Choose NullKey if you are on Android 12L or later and want a vault with its own passphrase, a recovery key you keep yourself, no account and an encrypted backup you control.",
   "faq": [
    {
     "q": "Is NullKey the same as the private folder on my phone?",

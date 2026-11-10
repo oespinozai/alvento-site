@@ -149,15 +149,10 @@ for path,doc in docs.items():
  for match in BANNED.finditer(visible):
   if not is_disclaimed(visible,match):fail(rel,'banned claim '+repr(match.group()))
  compare_page = path.parent.parent==product/'compare'
- compare_hub = path==product/'compare/index.html'
- allowed_names=''
  if compare_page:
   try:
    _cmp=json.loads((root/'scripts/nullkey/content/compare'/f"{path.parent.name.removeprefix('nullkey-vs-')}.json").read_text());validate_comparison(_cmp)
-   allowed_names=(_cmp['skeleton']['competitor_name']+' '+' '.join(r['competitor'] for r in _cmp['skeleton']['table'])+' '+' '.join(json.loads(p.read_text())['skeleton']['competitor_name'] for p in (root/'scripts/nullkey/content/compare').glob('*.json'))).lower()
   except Exception as exc: fail(rel,f'invalid comparison content: {exc}')
- elif compare_hub:
-  allowed_names=' '.join(json.loads(p.read_text())['skeleton']['competitor_name'] for p in (root/'scripts/nullkey/content/compare').glob('*.json')).lower()
  for name in NAMES:
   # The privacy policy must name the payment processor and backup system it describes (Apple, iCloud); allowed on that page only (2026-11-10).
   if path == product/'privacy/index.html' and name in ('apple','icloud'):continue
