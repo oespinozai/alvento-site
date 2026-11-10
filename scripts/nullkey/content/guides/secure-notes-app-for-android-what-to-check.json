@@ -14,20 +14,20 @@
    "h": "Lock screens and storage are different",
    "p": [
     "Before you trust a secure notes app on Android, check where the notes are actually stored, whether an account or sync is involved, how recovery works, and what your keyboard, clipboard and exports can expose. A lock screen on the app is not the same as encrypted storage. The lock decides who can open the app, while the storage format decides what a copied file looks like to anyone else.",
-    "Many apps show a sign-in or PIN screen and then keep notes in plain files that can be copied through a device backup, a rooted phone or a sync service. Ask the developer what is stored, in what form, and whether the stored form depends on a key that stays on your phone."
+    "An app can show a sign-in or PIN screen and still keep notes in plain files that could be copied through a device backup or a sync service. Ask the developer what is stored, in what form, and whether the stored form depends on a key that stays on your phone."
    ]
   },
   {
    "h": "Accounts and sync change the picture",
    "p": [
     "An account means a server may hold something about you, even when the notes themselves are scrambled. Check whether sign-up asks for an email address, whether notes are sent to a server, and what the provider can read or reset. An app that keeps everything on the phone and needs no login narrows the number of places a copy can end up.",
-    "Sync is useful when you change phones, but it also copies mistakes. Many sync services apply a deletion everywhere at once, so a note you remove on one device can vanish from the others. Check whether sync is on by default."
+    "Sync is useful when you change phones, but it also copies mistakes. Many sync services apply a deletion everywhere at once, so a note you remove on one device can vanish from the others."
    ]
   },
   {
    "h": "Recovery decides what you can lose",
    "p": [
-    "Ask what happens if you forget your passphrase or PIN. Some apps send a reset link, which means the account provider holds a way back in. Others offer no reset at all, so the only route back is a recovery secret you saved earlier. Neither design is automatically better, but you should know which one you have before you put real notes in it.",
+    "Ask what happens if you forget your passphrase or PIN. Some apps offer an account reset, so check whether that also restores access to encrypted notes. Others may offer no reset at all, so the route back may be a recovery secret you saved earlier, another unlock method that is still enabled, or a backup. Neither design is automatically better, but you should know which one you have before you put real notes in it.",
     "Recovery is not the same as backup. A recovery secret can unlock a vault that still exists, but it cannot rebuild notes lost with the phone. Check whether the app can make a backup you can store away from the device, and whether you can practise restoring it before you need it."
    ]
   },
@@ -42,7 +42,7 @@
   {
    "h": "A short checklist before you commit",
    "p": [
-    "Run these steps with dummy notes before you move anything real. A short test now costs far less than a lost note later."
+    "Run these steps with dummy notes before you move anything real."
    ],
    "list": [
     "Write a test note with harmless text, lock the app and confirm the lock works.",
@@ -57,7 +57,7 @@
    "h": "How NullKey handles this",
    "p": [
     "NullKey keeps notes, photos and documents in an encrypted vault on your phone, with no account and no ads. NullKey asks Android for no internet permission and has no developer server behind it. Alvento never receives your vault contents, passphrase, recovery key or decryption keys, so nobody can reset a lost secret for you.",
-    "The limits are real. While a vault is unlocked, readable content is processed in memory, and a compromised phone or keyboard can still see what you type. NullKey has no keyboard of its own. It clears only its own clipboard entry, not other apps' copies. Readable exports leave the vault's protection, file sizes are not hidden, and there is no automatic backup."
+    "The limits are real. While a vault is unlocked, readable content is processed in memory, and a compromised phone or keyboard can still see what you type. NullKey has no keyboard of its own. It attempts to clear its own clipboard entry when Android permits, and other apps may keep copies. Readable exports leave the vault's protection, file sizes are not hidden, and there is no automatic backup."
    ]
   }
  ],
