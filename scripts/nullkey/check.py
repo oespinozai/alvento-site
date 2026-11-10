@@ -199,7 +199,7 @@ for path in [p for p in pages if p.parent.parent==product/'compare']:
   if set(parser.rows)!={r['row_id'] for r in sk['table']}:fail(rel,'comparison table rows differ from skeleton')
   for row in sk['table']:
    cells=parser.rows.get(row['row_id'],[])
-   if len(cells)!=3 or cells[0]['scope']!='row' or [c['text'].strip() for c in cells]!=[row['point'],row['nullkey'],row['competitor']] or cells[2]['refs']!=['#ref-'+row['competitor_ref']]:fail(rel,'table row differs from skeleton or lacks reference: '+row['row_id'])
+   if len(cells)!=3 or cells[0]['scope']!='row' or [c['text'].strip() for c in cells]!=[row['point'],row['nullkey'],row['competitor']] or cells[2]['refs']!=([] if row['competitor_ref']=='category' else ['#ref-'+row['competitor_ref']]):fail(rel,'table row differs from skeleton or lacks reference: '+row['row_id'])
   text=' '.join(doc.text); from datetime import date as _date
   checked=_date.fromisoformat(sk['facts_checked_utc'][:10]); label=f'{checked.day} {checked:%B %Y}'
   if 'hello@alvento.uk' not in text or label not in text:fail(rel,'missing date or correction email')

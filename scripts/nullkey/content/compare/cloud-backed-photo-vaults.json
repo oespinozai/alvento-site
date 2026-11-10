@@ -1,0 +1,167 @@
+{
+ "skeleton": {
+  "slug": "nullkey-vs-cloud-backed-photo-vaults",
+  "competitor_slug": "cloud-backed-photo-vaults",
+  "competitor_name": "cloud-backed photo vaults",
+  "facts_checked_utc": "2026-11-10T14:00:00Z",
+  "table": [
+   {
+    "row_id": "cloud_backup_sync",
+    "point": "Offers cloud backup or sync",
+    "nullkey": "No. NullKey has no sync and the current app declares no internet permission. You can save an encrypted backup wherever you choose with Android's file picker.",
+    "competitor": "Yes, by definition. Files or a backup are kept in an online account run by the developer.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "account_required",
+    "point": "Needs an account or sign-in to use",
+    "nullkey": "No. There is no account.",
+    "competitor": "Typically yes. An account or sign-in is how the online copy is tied to you.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "recovery_option",
+    "point": "Has a way back in if you forget the unlock secret",
+    "nullkey": "A recovery key that you save yourself. There is no account reset.",
+    "competitor": "Typically through the account, for example a reset by email.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "encrypts_files",
+    "point": "Encrypts the stored files on the device",
+    "nullkey": "Yes. Contents use AES-256-GCM with a separate random key for each item. Argon2id turns your passphrase into a key that protects the vault master key.",
+    "competitor": "Varies by app. Check whether files are encrypted before they leave the phone.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "export_backup",
+    "point": "Lets you export or back up the vault yourself",
+    "nullkey": "Yes. Whole-vault encrypted backup with a read-back check; readable export of single items.",
+    "competitor": "Varies by app. Some let you export a copy yourself and some rely on the online copy.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "notes_documents",
+    "point": "Stores notes and documents, not only photos and videos",
+    "nullkey": "Yes. Private notes, documents and photos.",
+    "competitor": "Varies by app. Many focus on photos and videos.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "ads",
+    "point": "Shows ads",
+    "nullkey": "No ads.",
+    "competitor": "Varies by app. Many have a free tier and show ads there.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "in_app_purchases",
+    "point": "Has in-app purchases or a paid tier",
+    "nullkey": "One optional one-time unlock. No subscription.",
+    "competitor": "Varies by app. Many have a free tier and a paid tier.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   }
+  ],
+  "references": [
+   {
+    "id": "r1",
+    "url": "https://alvento.uk/nullkey/security/",
+    "fetched_utc": "2026-11-10T14:00:00Z"
+   },
+   {
+    "id": "r2",
+    "url": "https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp&hl=en_GB",
+    "fetched_utc": "2026-11-10T14:00:00Z"
+   }
+  ],
+  "competitor_notes": "Category page. The category column describes the type of app in general terms and is not a claim about any named product; NullKey cells reuse the fact-checked cells from the earlier comparison pages and the 0.5.3 manifest check (no INTERNET permission) of 2026-11-10.",
+  "prose": null
+ },
+ "prose": {
+  "title": "NullKey vs cloud-backed photo vaults | Backup and accounts",
+  "description": "Compares NullKey with cloud-backed photo vaults, which keep an online copy, on sync, accounts, recovery, encryption, backups, ads and purchases.",
+  "thesis": "NullKey is an Android app that keeps private notes, documents and photos in an encrypted vault on the phone, with no sync and no account. Cloud-backed photo vaults keep a copy in an online account. This page compares the two approaches, and it describes the type of app in general, not any one product.",
+  "honest_case": {
+   "h": "The honest case for cloud-backed photo vaults",
+   "p": [
+    "A cloud-backed vault is the better fit for a reader who wants the vault to survive a lost or broken phone without managing backup files. Because a copy lives in an online account, signing in on a new phone can bring the files back. NullKey has no sync, and a recovery key alone cannot restore files from a lost phone. It needs an encrypted backup that you saved yourself.",
+    "It also suits a reader who wants the same vault on more than one device. NullKey runs on Android 12L or later and keeps the vault on one phone. Its backup file can be restored on another supported Android phone, but it does not stay in step between devices."
+   ],
+   "rows_used": [
+    "cloud_backup_sync",
+    "account_required",
+    "export_backup"
+   ]
+  },
+  "differences": [
+   {
+    "h": "Where the files live",
+    "p": [
+     "In a cloud-backed vault, the files or a backup are held in an online account run by the developer. That is what makes recovery from a lost phone easier, and it also means a copy exists outside your phone.",
+     "NullKey keeps everything on the phone. It has no sync, and the current app declares no internet permission, so it cannot send files anywhere. You choose where an encrypted backup goes."
+    ],
+    "rows_used": [
+     "cloud_backup_sync",
+     "export_backup"
+    ]
+   },
+   {
+    "h": "Accounts and getting back in",
+    "p": [
+     "Because the online copy is tied to you, apps in this category typically ask for an account or sign-in, and a forgotten code is typically reset through that account, for example by email.",
+     "NullKey has no account. If you forget your passphrase, a recovery key that you save yourself opens the vault. Nobody at Alvento can reset it for you."
+    ],
+    "rows_used": [
+     "account_required",
+     "recovery_option"
+    ]
+   },
+   {
+    "h": "Encryption, backups and what else is stored",
+    "p": [
+     "Whether files are encrypted before they leave the phone varies by app, so check the description of any app you consider. Many in this category focus on photos and videos.",
+     "NullKey encrypts each item with AES-256-GCM using a separate random key, stores notes and documents as well as photos, and makes a whole-vault encrypted backup with a read-back check."
+    ],
+    "rows_used": [
+     "encrypts_files",
+     "notes_documents",
+     "export_backup"
+    ]
+   }
+  ],
+  "bottom_line": "Choose a cloud-backed photo vault if you want an online copy and the same vault on more than one device, and read how it encrypts files before they leave your phone. Choose NullKey if you are on Android 12L or later and want an encrypted vault that stays on one phone, with no account and a backup file you control, accepting that a lost phone needs a backup you saved yourself.",
+  "faq": [
+   {
+    "q": "Does NullKey back up to the cloud?",
+    "a": "No. NullKey has no sync and the current app declares no internet permission. You can save an encrypted backup wherever you choose with Android's file picker.",
+    "rows_used": [
+     "cloud_backup_sync",
+     "export_backup"
+    ]
+   },
+   {
+    "q": "Do I need an account to use NullKey?",
+    "a": "No. There is no account. If you forget your passphrase, the recovery key that you saved opens the vault.",
+    "rows_used": [
+     "account_required",
+     "recovery_option"
+    ]
+   },
+   {
+    "q": "Does NullKey store more than photos?",
+    "a": "Yes. NullKey keeps private notes, documents and photos in the same vault. Photos and notes open inside the app, and other files open through a readable export outside the vault's protection.",
+    "rows_used": [
+     "notes_documents"
+    ]
+   }
+  ]
+ }
+}

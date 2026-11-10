@@ -28,7 +28,7 @@ def validate(data):
  rows={r['row_id'] for r in s['table']}
  if not rows or len(rows)!=len(s['table']):errors.append('missing or duplicate rows')
  for r in s['table']:
-  if not all(r.get(k) for k in ('point','nullkey','competitor','competitor_ref')) or r.get('competitor_ref') not in refs:errors.append('missing row or reference')
+  if not all(r.get(k) for k in ('point','nullkey','competitor','competitor_ref')) or (r.get('competitor_ref') not in refs and r.get('competitor_ref')!='category'):errors.append('missing row or reference')
  if set(p)!={'title','description','thesis','honest_case','differences','bottom_line','faq'}:errors.append('invalid prose keys')
  texts=[p['title'],p['description'],p['thesis'],p['bottom_line']]; hc=p['honest_case']; texts += [hc['h']]+hc['p']
  if len(hc['p'])!=2 or len(p['differences'])!=3 or len(p['faq'])!=3:errors.append('invalid prose section counts')

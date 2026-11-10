@@ -1,0 +1,166 @@
+{
+ "skeleton": {
+  "slug": "nullkey-vs-built-in-private-folders",
+  "competitor_slug": "built-in-private-folders",
+  "competitor_name": "built-in private folders",
+  "facts_checked_utc": "2026-11-10T14:00:00Z",
+  "table": [
+   {
+    "row_id": "platform_availability",
+    "point": "Where it runs and how you get it",
+    "nullkey": "Android 12L or later, from Google Play.",
+    "competitor": "Part of a particular phone or file-manager app, so what is available depends on the phone.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "encrypts_files",
+    "point": "Encrypts the stored files on the device",
+    "nullkey": "Yes. Contents use AES-256-GCM with a separate random key for each item. Argon2id turns your passphrase into a key that protects the vault master key.",
+    "competitor": "Varies by phone and app. Check the phone maker's or app's own description.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "biometric_unlock",
+    "point": "Supports fingerprint or face unlock",
+    "nullkey": "Optional strong-biometric unlock; phone screen-lock unlock and an in-app pattern are also available on supported devices.",
+    "competitor": "Varies by phone and app. Many use the phone's screen lock or their own code.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "recovery_option",
+    "point": "Has a way back in if you forget the unlock secret",
+    "nullkey": "A recovery key that you save yourself. There is no account reset.",
+    "competitor": "Varies by phone and app. Some tie recovery to the phone maker's account.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "account_required",
+    "point": "Needs an account or sign-in to use",
+    "nullkey": "No. There is no account.",
+    "competitor": "Varies by phone and app. Some tie the folder to an account.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "export_backup",
+    "point": "Lets you export or back up the vault yourself",
+    "nullkey": "Yes. Whole-vault encrypted backup with a read-back check; readable export of single items.",
+    "competitor": "Varies by phone and app. Some let you back up or move the folder and some do not.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "notes_documents",
+    "point": "Stores notes and documents, not only photos and videos",
+    "nullkey": "Yes. Private notes, documents and photos.",
+    "competitor": "Varies by phone and app.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "ads",
+    "point": "Shows ads",
+    "nullkey": "No ads.",
+    "competitor": "Varies by phone and app.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   }
+  ],
+  "references": [
+   {
+    "id": "r1",
+    "url": "https://alvento.uk/nullkey/security/",
+    "fetched_utc": "2026-11-10T14:00:00Z"
+   },
+   {
+    "id": "r2",
+    "url": "https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp&hl=en_GB",
+    "fetched_utc": "2026-11-10T14:00:00Z"
+   }
+  ],
+  "competitor_notes": "Category page. The category column describes the type of app in general terms and is not a claim about any named product; NullKey cells reuse the fact-checked cells from the earlier comparison pages and the 0.5.3 manifest check (no INTERNET permission) of 2026-11-10.",
+  "prose": null
+ },
+ "prose": {
+  "title": "NullKey vs built-in private folders | Control and portability",
+  "description": "Compares NullKey with the private folders built into some phones and file managers on unlock, recovery, accounts, backups and where they work.",
+  "thesis": "NullKey is an Android app that keeps private notes, documents and photos in an encrypted vault on the phone, with its own passphrase and recovery key. Some phones and file managers include a private folder of their own. This page compares the two, and it describes the type of feature in general, not any one phone or app.",
+  "honest_case": {
+   "h": "The honest case for built-in private folders",
+   "p": [
+    "A built-in folder is the simpler route for a reader who wants to keep a few files out of the gallery and does not want another app. It is already part of the phone or file manager, so there is nothing extra to find, set up or keep updated, and it usually works with the same screen lock you already use.",
+    "It can also be the better fit for a reader who wants the phone maker to handle the details, including how the folder is unlocked and how it connects to the account on the phone. NullKey is a separate app that you set up and manage yourself."
+   ],
+   "rows_used": [
+    "platform_availability",
+    "biometric_unlock",
+    "account_required"
+   ]
+  },
+  "differences": [
+   {
+    "h": "One app everywhere or a feature tied to the phone",
+    "p": [
+     "A built-in folder belongs to a particular phone or file-manager app. What it offers, and how it behaves, depends on the phone model and the maker's software.",
+     "NullKey is one app from Google Play that works the same way on supported phones running Android 12L or later, so the vault behaves the same if you change phone."
+    ],
+    "rows_used": [
+     "platform_availability"
+    ]
+   },
+   {
+    "h": "Unlocking and getting back in",
+    "p": [
+     "Many built-in folders use the phone's screen lock or a code of their own, and some tie recovery to the phone maker's account. The exact options vary by phone and app.",
+     "NullKey uses a passphrase that you choose and a recovery key that you save yourself, with optional biometric unlock, phone screen-lock unlock and an in-app pattern on supported devices. There is no account reset."
+    ],
+    "rows_used": [
+     "biometric_unlock",
+     "recovery_option",
+     "account_required"
+    ]
+   },
+   {
+    "h": "Backups, encryption and what you can store",
+    "p": [
+     "Whether a built-in folder can be backed up or moved, and how its contents are protected, varies by phone and app, so read the maker's own description.",
+     "NullKey encrypts each item with AES-256-GCM, keeps notes and documents as well as photos, and makes a whole-vault encrypted backup with a read-back check that you can save wherever you choose."
+    ],
+    "rows_used": [
+     "export_backup",
+     "encrypts_files",
+     "notes_documents"
+    ]
+   }
+  ],
+  "bottom_line": "Choose a built-in private folder if you want a quick separation of a few files with nothing extra to add, and read the maker's description of how it protects them. Choose NullKey if you are on Android 12L or later and want a vault with its own passphrase, a recovery key you keep yourself, no account and an encrypted backup you control.",
+  "faq": [
+   {
+    "q": "Is NullKey the same as the private folder on my phone?",
+    "a": "No. A built-in private folder belongs to your phone or file manager. NullKey is a separate app from Google Play with its own passphrase, recovery key and encrypted backup.",
+    "rows_used": [
+     "platform_availability"
+    ]
+   },
+   {
+    "q": "How do I get back into NullKey if I forget my passphrase?",
+    "a": "Use the recovery key that you saved. There is no account reset, and nobody at Alvento can open the vault for you.",
+    "rows_used": [
+     "recovery_option"
+    ]
+   },
+   {
+    "q": "Does NullKey need an account or show ads?",
+    "a": "No account and no ads.",
+    "rows_used": [
+     "account_required",
+     "ads"
+    ]
+   }
+  ]
+ }
+}

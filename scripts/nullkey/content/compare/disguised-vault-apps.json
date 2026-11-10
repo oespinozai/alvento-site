@@ -1,0 +1,165 @@
+{
+ "skeleton": {
+  "slug": "nullkey-vs-disguised-vault-apps",
+  "competitor_slug": "disguised-vault-apps",
+  "competitor_name": "disguised vault apps",
+  "facts_checked_utc": "2026-11-10T14:00:00Z",
+  "table": [
+   {
+    "row_id": "disguise_decoy",
+    "point": "Can disguise the app or show a decoy",
+    "nullkey": "No.",
+    "competitor": "Yes, by definition. The app's icon and first screen look like another kind of app, and some show harmless decoy content when a second code is entered.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "encrypts_files",
+    "point": "Encrypts the stored files on the device",
+    "nullkey": "Yes. Contents use AES-256-GCM with a separate random key for each item. Argon2id turns your passphrase into a key that protects the vault master key.",
+    "competitor": "Varies by app. A disguise is a separate feature from encryption, so check the app's own description for how files are protected.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "cloud_backup_sync",
+    "point": "Offers cloud backup or sync",
+    "nullkey": "No. NullKey has no sync and the current app declares no internet permission. You can save an encrypted backup wherever you choose with Android's file picker.",
+    "competitor": "Varies by app. Some keep files only on the phone and some offer an online backup.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "recovery_option",
+    "point": "Has a way back in if you forget the unlock secret",
+    "nullkey": "A recovery key that you save yourself. There is no account reset.",
+    "competitor": "Varies by app. Some reset a forgotten code through an email address the developer holds.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "account_required",
+    "point": "Needs an account or sign-in to use",
+    "nullkey": "No. There is no account.",
+    "competitor": "Varies by app. Some ask for an email address or an account.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "notes_documents",
+    "point": "Stores notes and documents, not only photos and videos",
+    "nullkey": "Yes. Private notes, documents and photos.",
+    "competitor": "Varies by app. Many focus on photos and videos.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "ads",
+    "point": "Shows ads",
+    "nullkey": "No ads.",
+    "competitor": "Varies by app. Many are free to get and show ads.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   },
+   {
+    "row_id": "in_app_purchases",
+    "point": "Has in-app purchases or a paid tier",
+    "nullkey": "One optional one-time unlock. No subscription.",
+    "competitor": "Varies by app. Many have a free tier and a paid tier.",
+    "competitor_status": "CATEGORY_TYPICAL",
+    "competitor_ref": "category"
+   }
+  ],
+  "references": [
+   {
+    "id": "r1",
+    "url": "https://alvento.uk/nullkey/security/",
+    "fetched_utc": "2026-11-10T14:00:00Z"
+   },
+   {
+    "id": "r2",
+    "url": "https://play.google.com/store/apps/details?id=uk.alvento.nullkeyapp&hl=en_GB",
+    "fetched_utc": "2026-11-10T14:00:00Z"
+   }
+  ],
+  "competitor_notes": "Category page. The category column describes the type of app in general terms and is not a claim about any named product; NullKey cells reuse the fact-checked cells from the earlier comparison pages and the 0.5.3 manifest check (no INTERNET permission) of 2026-11-10.",
+  "prose": null
+ },
+ "prose": {
+  "title": "NullKey vs disguised vault apps | Disguise and recovery",
+  "description": "Compares NullKey with disguised vault apps, which sit behind another app's icon, on disguise, encryption, backups, recovery, accounts and ads.",
+  "thesis": "NullKey is an Android app that keeps private notes, documents and photos in an encrypted vault on the phone, with no sync and no disguise. Disguised vault apps put the vault behind another app's icon and first screen. This page compares what you get from each approach, and it describes the type of app in general, not any one product.",
+  "honest_case": {
+   "h": "The honest case for disguised vault apps",
+   "p": [
+    "A disguised vault app is the better fit for a reader whose main worry is someone glancing at the phone and noticing a vault app. The disguise is the point of the category: the icon and the first screen look like something unremarkable, and the vault opens only after a particular code. NullKey does not do this. Its icon and name say NullKey, and anyone who sees the home screen can see that the app is installed.",
+    "Some apps in this category also show harmless decoy content when a second code is entered. That suits a reader who wants a second code that opens something ordinary. NullKey has no decoy code and no second vault, so it cannot offer that."
+   ],
+   "rows_used": [
+    "disguise_decoy"
+   ]
+  },
+  "differences": [
+   {
+    "h": "Hiding the app or protecting what is inside",
+    "p": [
+     "A disguise hides the fact that a vault app exists. Encryption protects the contents if someone finds the app anyway. The two are separate features, and an app can have one without the other, so the app's own description is where to look for how files are protected.",
+     "NullKey does not hide itself. It encrypts each item with AES-256-GCM using a separate random key, and Argon2id turns your passphrase into a key that protects the vault master key."
+    ],
+    "rows_used": [
+     "disguise_decoy",
+     "encrypts_files"
+    ]
+   },
+   {
+    "h": "Recovery and accounts",
+    "p": [
+     "Some disguised vault apps let you reset a forgotten code through an email address held by the developer. That is convenient, and it means giving the developer an address and trusting the reset process.",
+     "NullKey has no account and no reset by email. Its way back in is a recovery key that you save yourself, so nobody at Alvento can open the vault for you."
+    ],
+    "rows_used": [
+     "recovery_option",
+     "account_required"
+    ]
+   },
+   {
+    "h": "Backups, ads and purchases",
+    "p": [
+     "Backup arrangements and money models vary widely in this category. Many apps are free to get and show ads, and many offer a paid tier. Some keep files only on the phone and some offer an online backup.",
+     "NullKey shows no ads and has no sync. It is free for up to 30 items, with one optional one-time unlock and no subscription. You can save an encrypted backup wherever you choose with Android's file picker."
+    ],
+    "rows_used": [
+     "ads",
+     "in_app_purchases",
+     "cloud_backup_sync"
+    ]
+   }
+  ],
+  "bottom_line": "Choose a disguised vault app if hiding the app itself matters most to you, and read its own description for how it protects files and handles recovery. Choose NullKey if you are on Android 12L or later and want encrypted notes, documents and photos with no account, no ads and a recovery key you keep yourself, accepting that the app is not disguised.",
+  "faq": [
+   {
+    "q": "Does NullKey hide its icon or show a decoy?",
+    "a": "No. NullKey has no disguise or decoy mode. Its icon and name are NullKey.",
+    "rows_used": [
+     "disguise_decoy"
+    ]
+   },
+   {
+    "q": "Do disguised vault apps encrypt the files they hold?",
+    "a": "It varies by app. A disguised icon is a different feature from encryption, so check the description of any app you consider. NullKey encrypts each item with AES-256-GCM and protects the vault key with a key derived from your passphrase using Argon2id.",
+    "rows_used": [
+     "encrypts_files"
+    ]
+   },
+   {
+    "q": "Does NullKey need an account or show ads?",
+    "a": "No account and no ads. There is one optional one-time unlock, with no subscription.",
+    "rows_used": [
+     "account_required",
+     "ads",
+     "in_app_purchases"
+    ]
+   }
+  ]
+ }
+}
