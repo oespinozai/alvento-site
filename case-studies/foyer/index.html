@@ -1257,6 +1257,9 @@ for (const id of ['callAudio','callAudio2','callAudio-trade','callAudio2-trade',
           status.className = 'lead-status ok';
           status.textContent = "Thanks, we'll be in touch.";
           form.reset();
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'generate_lead', { method: 'form', lead_subject: 'foyer' });
+          }
         } else {
           status.className = 'lead-status err';
           status.textContent = (result.data && result.data.error) || 'Something went wrong. Please email hello@alvento.uk instead.';
