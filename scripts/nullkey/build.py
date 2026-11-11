@@ -9,7 +9,7 @@ ROOT = Path(__file__).parent
 OUT = ROOT / 'dist'
 ORIGIN = 'https://alvento.uk/nullkey'
 PRIVACY = 'https://alvento.uk/nullkey/privacy/'
-GA4 = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-N94LC333HG"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-N94LC333HG");</script>'
+GA4 = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBMBRD8E00"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("consent","default",{analytics_storage:(function(){try{return localStorage.getItem("alvento_consent")==="granted"?"granted":"denied";}catch(e){return "denied";}})()});gtag("config","G-XBMBRD8E00");</script>'
 release = json.loads((ROOT / 'content/release.json').read_text())
 META = json.loads((ROOT / 'content/guide-metadata.json').read_text())
 GUIDE_LINKS = json.loads((ROOT / 'content/guide-links.json').read_text())
