@@ -8,9 +8,9 @@ Source copies of the systemd config that ollama, the model server behind the Foy
 | ollama-gpu-wait.conf | /etc/systemd/system/ollama.service.d/gpu-wait.conf |
 | ollama-wait-ready.sh | /usr/local/sbin/ollama-wait-ready.sh (chmod 755) |
 | ollama-after-gpu-bind.conf | /etc/systemd/system/ollama.service.d/after-gpu-bind.conf |
+| ollama-override.conf | /etc/systemd/system/ollama.service.d/override.conf |
 
 After installing: `systemctl daemon-reload && systemctl restart ollama`. Then confirm `journalctl -u ollama | grep "inference compute"` does not show `library=cpu`.
 
 Not in this repo:
 - `ollama-after-gpu-bind.conf` depends on gaia's `nvidia-dev-nodes.service`, which runs `/usr/local/sbin/nvidia-bind-gpu.sh`. That is host-wide GPU setup shared with other containers, not Foyer config.
-- gaia also has `ollama.service.d/override.conf`, which sets OLLAMA_HOST, OLLAMA_KEEP_ALIVE and OLLAMA_CONTEXT_LENGTH.
