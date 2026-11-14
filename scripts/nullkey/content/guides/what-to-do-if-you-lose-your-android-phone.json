@@ -4,6 +4,7 @@
  "description": "Secure your email and block the SIM first. A locked vault needs an unlock method someone can satisfy, and only a backup kept elsewhere can rebuild it.",
  "cluster": "devices",
  "related": [
+  "do-photo-vault-apps-transfer-to-a-new-phone",
   "backup-offline-vault",
   "recovery-key-vs-backup",
   "shared-phone-private-files"

@@ -1,7 +1,7 @@
 {
  "slug": "are-photo-vault-apps-actually-encrypted",
- "title": "Are photo vault apps actually encrypted, and how can you check?",
- "description": "Some photo vault apps only hide files behind a PIN, while others encrypt them. Here is how to check which kind you are using without relying on marketing.",
+ "title": "Is a photo vault app safe? How to check it is encrypted",
+ "description": "Some photo vault apps only hide files behind a PIN. Here is how to check whether yours really encrypts your photos, and what can still leak around it.",
  "cluster": "encryption",
  "related": [
   "what-does-encrypted-actually-mean-for-your-files",

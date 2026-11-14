@@ -1,7 +1,7 @@
 {
  "slug": "secure-notes-app-for-android-what-to-check",
- "title": "What should you check in a secure notes app on Android?",
- "description": "Check where notes are stored, whether an account or sync is involved, how recovery works, and what your keyboard, clipboard and exports can expose.",
+ "title": "Private notes app for Android: offline, no account, what to check",
+ "description": "What to check in a private notes app on Android: where notes are stored, whether an account or sync is involved, how recovery works and what can leak.",
  "cluster": "documents",
  "related": [
   "how-to-keep-private-notes-secure-on-android",

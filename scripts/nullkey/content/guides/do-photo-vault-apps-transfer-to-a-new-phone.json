@@ -1,0 +1,70 @@
+{
+ "slug": "do-photo-vault-apps-transfer-to-a-new-phone",
+ "title": "Do photo vault apps transfer to a new phone?",
+ "description": "Hidden and vault photos often stay behind when you switch phones or delete the app. Here is what a transfer copies, and how to move a vault safely.",
+ "cluster": "devices",
+ "related": [
+  "restore-nullkey-backup-new-phone",
+  "how-to-test-a-backup-restore-before-you-need-it",
+  "where-to-keep-an-encrypted-backup-file"
+ ],
+ "reviewed": "2026-11-14",
+ "sections": [
+  {
+   "h": "The switch is when vault photos go missing",
+   "p": [
+    "Photos kept in a vault are usually there because they matter, and the moment they are most likely to disappear is a phone change. People set up the new phone, run the transfer tool, reinstall their apps and only then open the vault to find it empty. By that point the old phone may already be reset or traded in.",
+    "The reason is rarely a fault. A private vault is designed to keep its contents away from the places a transfer normally copies from, so whether your photos move depends on how the vault stores them and whether you made a backup that it can restore."
+   ]
+  },
+  {
+   "h": "What a phone transfer does and does not copy",
+   "p": [
+    "Android keeps each app's own files in app-specific storage that other apps cannot read. Apps can choose whether that storage is included in the phone's cloud backup and in device-to-device transfer. A vault that cares about privacy often opts out, so the transfer installs the app on the new phone but leaves the vault contents behind.",
+    "A hidden album in the phone's own gallery behaves differently again. It may travel with the rest of your photos, or it may be excluded or synced to a cloud account depending on the phone and your settings. Check rather than assume, because a hidden album that syncs is a copy outside the phone that you may not have meant to keep.",
+    "Vault apps that use an account usually restore by signing in, which means a server holds your files or a copy of them. Vault apps without an account cannot do that, so the only way across is a backup file you export yourself and keep somewhere you can reach from the new phone."
+   ]
+  },
+  {
+   "h": "If you already deleted the vault app",
+   "p": [
+    "On Android, uninstalling an app or clearing its storage removes the files it kept in app-specific storage. If the vault lived only there, a fresh install starts empty, and reinstalling does not bring the old contents back.",
+    "Look for copies before you assume the photos are gone. Check for an exported backup file in your downloads, a cloud drive or a computer, check whether the app used an account you can sign in to, and check whether the photos still exist in your gallery, a messaging app or a cloud photo backup from before you moved them. Be wary of recovery tools that promise to restore vault contents. A well-designed vault encrypts what it stores, and recovered bytes without the key stay unreadable."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey keeps the vault on the phone with no account and no server. Android cloud backup and device-transfer backup are disabled for its data, so a phone-to-phone transfer installs nothing from the vault on the new phone. The route across is NullKey's own encrypted backup: a single file of the whole vault, saved only to a destination you pick in Android's document picker, which NullKey reads back and checks after writing.",
+    "To restore, install NullKey on a phone with no vault, choose the backup file and unlock it with its passphrase or recovery key. NullKey authenticates the backup's contents before installing them. Biometric, screen-lock and pattern unlock are off after a restore until you enable them again. Limit: uninstalling NullKey or clearing its storage removes the local vault, and Alvento cannot recover a vault or a backup secret for you."
+   ]
+  },
+  {
+   "h": "Before you switch phones",
+   "p": [
+    "Do these steps while the old phone still works, and keep it untouched until the new one shows everything you expect."
+   ],
+   "list": [
+    "Open the vault on the old phone and note roughly how many photos, files and notes it holds.",
+    "Make a fresh backup and save it somewhere other than the old phone.",
+    "Confirm you have the backup's passphrase or recovery key written down away from both phones.",
+    "Restore on the new phone and compare the contents with your note from the old phone.",
+    "Only then reset, sell or trade in the old phone."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Will my hidden photos move with a phone-to-phone transfer?",
+   "a": "It depends on where they are hidden. A vault app that excludes its data from transfer stays behind, while a hidden album in the phone's gallery may or may not travel. Check on the new phone before resetting the old one."
+  },
+  {
+   "q": "I deleted my vault app. Can I get the photos back?",
+   "a": "Only from a copy that exists somewhere else: an exported backup file, an account the app synced to, or the original photos in another app or backup. Reinstalling the app does not restore contents that were removed with it."
+  },
+  {
+   "q": "Can I restore a backup onto a phone that already has a vault?",
+   "a": "In NullKey, no. The app holds a single vault and refuses to restore over one that exists, so restore onto a phone with no vault, or move anything new out first."
+  }
+ ]
+}
