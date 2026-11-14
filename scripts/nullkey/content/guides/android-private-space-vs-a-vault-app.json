@@ -1,0 +1,71 @@
+{
+ "slug": "android-private-space-vs-a-vault-app",
+ "title": "Android private space vs a vault app: what each one hides",
+ "description": "What Google says Android private space hides, how it locks, why device backups skip it, and how an encrypted vault app handles private files instead.",
+ "cluster": "devices",
+ "related": [
+  "samsung-secure-folder-vs-a-vault-app",
+  "google-photos-locked-folder-backup-and-new-phone",
+  "shared-phone-private-files"
+ ],
+ "reviewed": "2026-11-14",
+ "sections": [
+  {
+   "h": "Hiding apps and keeping files are different jobs",
+   "p": [
+    "Hiding something from view and keeping a safe copy of it are two separate problems. A feature can do the first well and leave the second to you. Before you move anything important into a private area on your phone, it is worth knowing which of the two it covers.",
+    "This guide sets out what Android Help says about private space, then how NullKey handles private files."
+   ]
+  },
+  {
+   "h": "What private space does",
+   "p": [
+    "Google describes private space as a separate space on your Android device to hide and organise apps. It requires Android 15 or later, and Google notes that some launcher apps may not support it. You can set up a separate lock for an extra layer of authentication; if you do not set one, your device screen lock is used by default.",
+    "When the space is locked, Google says it collapses and its apps are hidden in All Apps and various system surfaces: the launcher, recent views, sharing apps such as the photo picker and documents interface, and Settings. Its apps are not searchable in the quick search bar."
+   ]
+  },
+  {
+   "h": "Backups, forgotten locks and limits",
+   "p": [
+    "Google lists backing up and restoring app data as part of a device backup among the things you cannot do in private space. Google says that when you restore the device from a device backup, private space won't be restored, and that any on-device data for private space isn't backed up. When an app in private space is deleted, Google says the app and its data are deleted with no backup.",
+    "If you forget your private space unlock factor, Google says you won't be able to access the space. Google describes an option to delete private space if you forget the lock and want to reset the space.",
+    "Google also lists limits. A private space can be uncovered through computer access, including Android Debug Bridge commands, device logs, or by apps, and private space apps bypass a virtual private network on the device."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey stores private photos, files and notes in an encrypted vault on the phone, with no account, no ads and no developer server. Android cloud backup and device-transfer backup are disabled for its data. Instead, NullKey creates an encrypted backup file of the whole vault, saved to a destination you pick in Android's document picker, then reads it back and checks it. You restore that file with its passphrase or recovery key on a phone with no vault.",
+    "Limits matter as much as features. NullKey cannot hide other apps. Uninstalling it or clearing its storage removes the local vault, so keep a tested backup. If you turn on phone screen-lock unlock, anyone who knows your phone PIN can open NullKey, and Alvento cannot recover your passphrase without your recovery key."
+   ]
+  },
+  {
+   "h": "Questions to answer before you choose",
+   "p": [
+    "Work through these on your own phone. They apply to private space, a vault app or anything else you use."
+   ],
+   "list": [
+    "Do you need to hide apps, keep private files, or both?",
+    "For hiding apps, check that your phone runs Android 15 or later and that your launcher supports private space.",
+    "For private files, where is the second copy, and have you tried restoring it?",
+    "If you set a separate lock, how will you remember it, given that a forgotten private space lock means no access?",
+    "This guide quotes Android Help as fetched on 14 November 2026. Features and menus may change after that date; the linked Google page is the current source.",
+    "Android is a trademark of Google LLC. NullKey and Alvento are not affiliated with or endorsed by Google. Spotted something out of date? Email hello@alvento.uk."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is Android private space backed up?",
+   "a": "Google says that when you restore a device from a device backup, private space won't be restored, and that its on-device data isn't backed up."
+  },
+  {
+   "q": "Can someone tell I have a private space?",
+   "a": "Google says a private space can be uncovered through computer access, including Android Debug Bridge commands, device logs, or by apps."
+  },
+  {
+   "q": "What happens if I forget the private space lock?",
+   "a": "Google says you won't be able to access the space. It describes an option to delete private space and reset it if you forget the lock."
+  }
+ ]
+}

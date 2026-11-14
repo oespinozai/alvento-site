@@ -10,6 +10,8 @@ from compare_merge import validate as validate_comparison, BAN as COMPARE_BAN, M
 
 root=Path(__file__).resolve().parents[2]; product=root/'nullkey'; errors=[]
 NAMES=['samsung','secure folder','safe folder','google photos','google drive','google one','files by google','icloud','onedrive','dropbox','keepsafe','vaultaire','calculator vault','bitwarden','1password','lastpass','signal','whatsapp','telegram','cryptomator','veracrypt','norton','proton','mega','apple','pixel','xiaomi','huawei','oneplus','chrome','gmail','microsoft','windows','facebook','instagram','tiktok','amazon','openai','chatgpt','kaspersky','mcafee','nordvpn','tutanota']
+_PF=('samsung','secure folder','google photos')
+PLATFORM_FEATURE_PAGES={k:_PF for k in ('samsung-secure-folder-vs-a-vault-app','google-photos-locked-folder-backup-and-new-phone','android-private-space-vs-a-vault-app','guides')}  # 'guides' = hub page, which lists these titles
 # iPhone and iOS are platform names for NullKey's own roadmap (Oscar, 2026-11-08), not competing products, so they are not on this list.
 BANNED=re.compile(r'\b(?:audited|zero[ -]knowledge|military[ -]grade|end[ -]to[ -]end)\b',re.I)
 GLYPH=re.compile('[—←-⇿⟀-⟿\U0001F000-\U0001FAFF]')
@@ -156,6 +158,8 @@ for path,doc in docs.items():
  for name in NAMES:
   # The privacy policy must name the payment processor and backup system it describes (Apple, iCloud); allowed on that page only (2026-11-10).
   if path == product/'privacy/index.html' and name in ('apple','icloud'):continue
+  # Oscar 2026-11-14: guides about a phone's built-in private area may name that feature; every claim is sourced to the vendor's help page.
+  if name in PLATFORM_FEATURE_PAGES.get(path.parent.name,()):continue
   if re.search(r'(?<![a-z])'+re.escape(name)+r'(?![a-z])',visible,re.I):fail(rel,'named competing product or brand: '+name)
  for link in doc.links:
   target=target_for(link,path)

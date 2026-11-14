@@ -9,5 +9,8 @@
  {"url":"https://mas.owasp.org/MASVS/","title":"OWASP MASVS: Mobile Application Security Verification Standard","covers":"general standard for mobile app security including storage, crypto and privacy"},
  {"url":"https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/three-random-words","title":"NCSC: Three random words","covers":"UK government advice on long passphrases made from random words"},
  {"url":"https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/always-back-up-your-most-important-data","title":"NCSC: Backing up your data","covers":"UK government advice on keeping backups of important data"},
- {"url":"https://www.ncsc.gov.uk/guidance/securing-your-devices","title":"NCSC: Securing your devices","covers":"UK government guidance on securing phones and other devices"}
+ {"url":"https://www.ncsc.gov.uk/guidance/securing-your-devices","title":"NCSC: Securing your devices","covers":"UK government guidance on securing phones and other devices"},
+ {"url":"https://www.samsung.com/us/support/answer/ANS10001401/","title":"Use the Secure Folder on your Galaxy phone or tablet (Samsung support)","covers":"Samsung's own description of Secure Folder, its passcode, backup, transfer and uninstall"},
+ {"url":"https://support.google.com/photos/answer/10694388?hl=en-GB&co=GENIE.Platform%3DAndroid","title":"Hide sensitive photos and videos in Locked Folders (Google Photos Help)","covers":"Google's own description of Locked Folder, its screen lock, backup and deletion rules"},
+ {"url":"https://support.google.com/android/answer/15341885?hl=en","title":"Hide sensitive apps with private space (Android Help)","covers":"Google's own description of Android private space, its lock, backup and limits"}
 ]

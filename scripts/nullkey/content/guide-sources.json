@@ -101,5 +101,31 @@
  "recovery-key-vs-backup": [],
  "vault-without-account": [],
  "private-photos-android": [],
- "restore-nullkey-backup-new-phone": []
+ "restore-nullkey-backup-new-phone": [],
+ "samsung-secure-folder-vs-a-vault-app": [
+  {
+   "url": "https://www.samsung.com/us/support/answer/ANS10001401/",
+   "title": "Use the Secure Folder on your Galaxy phone or tablet (Samsung support)",
+   "supports": "Secure Folder's passcode, backup support ending, Smart Switch transfer, uninstall and passcode reset"
+  }
+ ],
+ "google-photos-locked-folder-backup-and-new-phone": [
+  {
+   "url": "https://support.google.com/photos/answer/10694388?hl=en-GB&co=GENIE.Platform%3DAndroid",
+   "title": "Hide sensitive photos and videos in Locked Folders (Google Photos Help)",
+   "supports": "Locked Folder's screen lock, optional backup, and deletion when backup is off"
+  }
+ ],
+ "android-private-space-vs-a-vault-app": [
+  {
+   "url": "https://support.google.com/android/answer/15341885?hl=en",
+   "title": "Hide sensitive apps with private space (Android Help)",
+   "supports": "private space's separate lock, what hides when locked, backup and deletion rules, and stated limits"
+  },
+  {
+   "url": "https://developer.android.com/training/data-storage",
+   "title": "Data and file storage overview (Android Developers)",
+   "supports": "apps keep their own files in app-specific storage"
+  }
+ ]
 }

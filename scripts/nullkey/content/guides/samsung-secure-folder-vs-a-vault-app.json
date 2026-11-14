@@ -1,0 +1,75 @@
+{
+ "slug": "samsung-secure-folder-vs-a-vault-app",
+ "title": "Samsung Secure Folder vs a vault app: what to know",
+ "description": "What Samsung says about Secure Folder's passcode, backups, Smart Switch transfer and uninstalling, and how that compares with an encrypted vault app.",
+ "cluster": "devices",
+ "related": [
+  "google-photos-locked-folder-backup-and-new-phone",
+  "android-private-space-vs-a-vault-app",
+  "hidden-folder-vs-encrypted-vault"
+ ],
+ "reviewed": "2026-11-14",
+ "sections": [
+  {
+   "h": "Check the lock, the backup and the way back",
+   "p": [
+    "When you keep private photos or documents somewhere on your phone, three questions decide whether that place works for you: who can open it, whether a copy exists somewhere else, and what happens if you forget the code or change phones. It is worth answering them before you rely on any private area, built in or installed.",
+    "This guide sets out what Samsung's own support page says about Secure Folder on Galaxy phones and tablets, then how NullKey handles the same questions, so you can decide which fits your situation."
+   ]
+  },
+  {
+   "h": "What Samsung says Secure Folder does",
+   "p": [
+    "Samsung describes Secure Folder as a way to hide your personal data using a special passcode. When you set it up, you are prompted to choose a security method such as a PIN, password or pattern. Samsung says the device can lock Secure Folder automatically based on the configuration you set, and that the lock and exit option exits and locks it straight away.",
+    "Samsung also describes an optional enhanced encryption setting to help protect data from advanced threats, and says that with it, all apps and their notifications will stop working. Read that section of Samsung's page before you turn it on, so you know what you are trading."
+   ]
+  },
+  {
+   "h": "Backups, new phones and uninstalling",
+   "p": [
+    "Samsung says backing up data is no longer supported for Secure Folder, but you can still restore data from previous backups. To move to a new device, Samsung describes transferring Secure Folder with Smart Switch, selecting Secure Folder on the new device during the transfer. After any transfer, open Secure Folder on the new device and check your files before you reset the old one.",
+    "Samsung says Secure Folder can be completely uninstalled if you wish to remove all of its contents, and that you can choose to move media files out of Secure Folder before uninstalling. Other items you want to keep need their own plan before you uninstall.",
+    "Passcode recovery depends on whether the reset with Samsung account option is turned on. Samsung says that if you do not turn on this option, you will not be able to access your Secure Folder if you forget your passcode. Check that setting now rather than after you are locked out."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey stores private photos, files and notes in an encrypted vault on the phone, with no account, no ads and no developer server. Android cloud backup and device-transfer backup are disabled for its data. Instead, NullKey creates an encrypted backup file of the whole vault, saved to a destination you pick in Android's document picker, then reads it back and checks it. You restore that file with its passphrase or recovery key on a phone with no vault.",
+    "Limits matter as much as features. If you turn on phone screen-lock unlock, anyone who knows your phone PIN can open NullKey. Alvento cannot recover your passphrase without your recovery key. NullKey does not hide other apps; it only holds photos, files and notes."
+   ]
+  },
+  {
+   "h": "Questions to answer before you choose",
+   "p": [
+    "Work through these on your own phone. The answers, not the feature list, should decide where your private files live."
+   ],
+   "list": [
+    "Who knows the code that opens it, and is that different from your phone's screen lock?",
+    "Is there a recent copy of everything inside, stored somewhere other than this phone?",
+    "If you forgot the code tomorrow, what is your route back in?",
+    "Before switching phones, have you checked the private files on the new device before resetting the old one?",
+    "This guide quotes Samsung's support page as fetched on 14 November 2026. Features and menus may change after that date; the linked Samsung page is the current source.",
+    "Samsung and Secure Folder are trademarks of Samsung Electronics. NullKey and Alvento are not affiliated with or endorsed by Samsung. Spotted something out of date? Email hello@alvento.uk."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can you still back up Samsung Secure Folder?",
+   "a": "Samsung says backing up data is no longer supported for Secure Folder, but you can still restore data from previous backups."
+  },
+  {
+   "q": "Does Secure Folder move to a new phone?",
+   "a": "Samsung describes transferring Secure Folder to a new device with Smart Switch by selecting Secure Folder during the transfer. Check your files on the new device before resetting the old one."
+  },
+  {
+   "q": "What happens if I uninstall Secure Folder?",
+   "a": "Samsung says uninstalling removes all of its contents. You can choose to move media files out first; plan separately for anything else you want to keep."
+  },
+  {
+   "q": "What if I forget my Secure Folder passcode?",
+   "a": "Samsung says that if the reset with Samsung account option is not turned on, you will not be able to access Secure Folder if you forget the passcode."
+  }
+ ]
+}

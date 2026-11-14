@@ -1,0 +1,71 @@
+{
+ "slug": "google-photos-locked-folder-backup-and-new-phone",
+ "title": "Google Photos Locked Folder: backup, new phone and limits",
+ "description": "How Google Photos Locked Folder is protected, how its backup works, and what Google says is deleted on a reset, clearing app data or removing the app.",
+ "cluster": "protect-photos",
+ "related": [
+  "samsung-secure-folder-vs-a-vault-app",
+  "android-private-space-vs-a-vault-app",
+  "cloud-backup-and-private-photos-on-android"
+ ],
+ "reviewed": "2026-11-14",
+ "sections": [
+  {
+   "h": "Check which Locked Folder items are backed up",
+   "p": [
+    "A private photo is only safe from loss if a copy exists somewhere other than the phone it was taken on. Before you rely on any private folder, find out who can open it and which of its items are backed up. It takes a few checks, and it is easier to do before a reset or a phone change than after.",
+    "This guide sets out what Google Photos Help says about Locked Folder on Android, then how NullKey handles the same questions."
+   ]
+  },
+  {
+   "h": "What protects Locked Folder",
+   "p": [
+    "Google says you can save sensitive photos and videos to a folder protected by your device screen lock in the Google Photos app, and that your Locked Folder password is the same as your device screen lock. Google also says Locked Folder is protected by Google Photos' standard encryption practices, and that its items are not available to other apps on your device that have access to your photos and videos.",
+    "Two consequences follow. Anyone who knows your phone's screen lock can open Locked Folder. And Google says that to share a photo or video stored in Locked Folder, you must first move it out of the folder."
+   ]
+  },
+  {
+   "h": "How Locked Folder backup works",
+   "p": [
+    "Google says you can turn on automatic backup for your Locked Folder from Photos settings, then Backup, then Back up Locked Folder, and that you must first turn on backup for the rest of your photos and videos. Google also says you can keep Locked Folder backup off and still back up individual items in Locked Folder by hand.",
+    "Google says that items in Locked Folder that you don't back up will only be stored on that device. If backup is off, Google says Locked Folder items are deleted if you factory reset your device, clear app data or delete the Photos app.",
+    "So the question to answer is item by item: for each photo you care about, is it backed up, either automatically or by hand? If not, it exists only on that phone."
+   ]
+  },
+  {
+   "h": "How NullKey handles this",
+   "p": [
+    "NullKey stores private photos, files and notes in an encrypted vault on the phone, with no account, no ads and no developer server. Android cloud backup and device-transfer backup are disabled for its data. Instead, NullKey creates an encrypted backup file of the whole vault, saved to a destination you pick in Android's document picker, then reads it back and checks it. You restore that file with its passphrase or recovery key on a phone with no vault.",
+    "Limits matter as much as features. Uninstalling NullKey or clearing its storage removes the local vault, so keep a tested backup. If you turn on phone screen-lock unlock, anyone who knows your phone PIN can open NullKey. NullKey does not remove existing gallery or cloud copies unless you choose a supported original-removal action."
+   ]
+  },
+  {
+   "h": "Check your Locked Folder",
+   "p": [
+    "Run through these on your own phone before any reset, app clean-up or phone change."
+   ],
+   "list": [
+    "Open Photos settings, then Backup, then Back up Locked Folder, and check whether it is on.",
+    "If it is off, check whether the individual items you care about were backed up by hand.",
+    "Keep another copy of anything irreplaceable that is not backed up.",
+    "Remember that anyone with your screen lock can open Locked Folder.",
+    "This guide quotes Google Photos Help as fetched on 14 November 2026. Features and menus may change after that date; the linked Google page is the current source.",
+    "Google Photos and Android are trademarks of Google LLC. NullKey and Alvento are not affiliated with or endorsed by Google. Spotted something out of date? Email hello@alvento.uk."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is Google Photos Locked Folder backed up?",
+   "a": "Only if you back it up. Google says you can turn on automatic Locked Folder backup once main backup is on, or back up individual items by hand. Items you don't back up are stored only on that device."
+  },
+  {
+   "q": "Why did my Locked Folder photos disappear?",
+   "a": "Google says that if backup is off, Locked Folder items are deleted if you factory reset your device, clear app data or delete the Photos app."
+  },
+  {
+   "q": "Can someone else open my Locked Folder?",
+   "a": "Google says the Locked Folder password is the same as your device screen lock, so anyone who knows your screen lock can open it."
+  }
+ ]
+}
