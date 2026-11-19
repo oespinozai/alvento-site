@@ -42,5 +42,8 @@
   "features": {
     "title": "NullKey features",
     "description": "Explore how NullKey handles private photos and encrypted backups, including checking copies and restoring to an empty vault."
+  },
+  "guides/secure-notes-app-for-android-what-to-check": {
+    "title": "Private notes app for Android: what to check"
   }
 }

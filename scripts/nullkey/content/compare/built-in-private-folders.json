@@ -86,7 +86,7 @@
   "prose": null
  },
  "prose": {
-  "title": "NullKey vs built-in private folders | Control and portability",
+  "title": "NullKey vs built-in private folders | Control, portability",
   "description": "Compares NullKey with the private folders built into some phones and file managers on unlock, recovery, accounts, backups and where they work.",
   "thesis": "NullKey is an Android app that keeps private notes, documents and photos in an encrypted vault on the phone, with its own passphrase and recovery key. Some phones and file managers include a private folder of their own. This page compares the two, and it describes the type of feature in general, not any one phone or app.",
   "honest_case": {

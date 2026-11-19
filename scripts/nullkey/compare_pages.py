@@ -16,9 +16,9 @@ def load():
 def render(ns, comparisons):
  if not comparisons:return
  page,esc,a,faq=ns['page'],ns['esc'],ns['a'],ns['faq']; origin=ns['ORIGIN']
- links=lambda skip='': ''.join('<a class="guide" href="/compare/'+esc(x['skeleton']['slug'])+'/"><h3>NullKey vs '+esc(x['skeleton']['competitor_name'])+'</h3><span class="read">Read comparison</span></a>' for x in comparisons if x['skeleton']['slug']!=skip)
+ links=lambda skip='',tag='h3': ''.join('<a class="guide" href="/compare/'+esc(x['skeleton']['slug'])+'/"><'+tag+'>NullKey vs '+esc(x['skeleton']['competitor_name'])+'</'+tag+'><span class="read">Read comparison</span></a>' for x in comparisons if x['skeleton']['slug']!=skip)
  intro='Compare NullKey with the main types of Android vault and private folder, using plain descriptions of each type and practical differences.'
- page('/compare/','NullKey comparisons',intro,ns['head']('Comparisons','Compare your options',intro)+'<div class="guide-grid section">'+links()+'</div><section class="section"><h2>Our method</h2><p>These pages compare NullKey with types of app, not with individual products. Features vary between apps of the same type, so read the description of an app before you rely on it. Spot something out of date? Email <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>.</p></section>'+ns['hub_cta']())
+ page('/compare/','NullKey comparisons',intro,ns['head']('Comparisons','Compare your options',intro)+'<div class="guide-grid section">'+links('','h2')+'</div><section class="section"><h2>Our method</h2><p>These pages compare NullKey with types of app, not with individual products. Features vary between apps of the same type, so read the description of an app before you rely on it. Spot something out of date? Email <a href="mailto:hello@alvento.uk">hello@alvento.uk</a>.</p></section>'+ns['hub_cta']())
  for d in comparisons:
   s,p=d['skeleton'],d['prose']; slug=s['slug']; name=s['competitor_name']; day=s['facts_checked_utc'][:10]; label=ns['date_label'](day); route='/compare/'+slug+'/'; url=origin+route
   table='<p>Scroll the table horizontally to see both options.</p><div class="compare-scroll" role="region" aria-label="Feature comparison table" tabindex="0"><table><caption>Feature comparison</caption><thead><tr><th scope="col">Point</th><th scope="col">NullKey</th><th scope="col">'+esc(name)+'</th></tr></thead><tbody>'
