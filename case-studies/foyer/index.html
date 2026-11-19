@@ -1049,6 +1049,9 @@ h1, h2, h3, h4 { font-synthesis: none; }
   background: var(--bg, #0a0a0a);
   mask-image: radial-gradient(circle closest-side, #000 78%, transparent 100%);
 }
+.call-stage .alvento-orb-canvas:not(.orb-live) {
+  background: var(--bg, #0a0a0a) url(/case-studies/previews/foyer-orb.webp) center / contain no-repeat;
+}
 .call-stage .alvento-orb-canvas::after {
   content: '';
   position: absolute;
@@ -1078,36 +1081,33 @@ h1, h2, h3, h4 { font-synthesis: none; }
 {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"}}
 </script>
 <script type="module">
-// One <canvas class="alvento-orb-canvas" aria-hidden="true"></canvas> sits in
-// each .call-stage. Each orb (and the three.js library it needs) is created
-// only when its panel is about to scroll into view, after the page has loaded
-// and the browser is idle, so the page does not open eight WebGL contexts
-// up front. Audio controls and layout are left to the page.
+// Each .call-stage shows a still orb image until the visitor interacts with it
+// (hover, focus, touch or play). Only then is the live WebGL orb, and the
+// three.js library it needs, loaded and created. This keeps the page from
+// running eight animated WebGL contexts for visitors who never press play.
 const orbIds = ['callAudio','callAudio2','callAudio-trade','callAudio2-trade','callAudio-retail','callAudio2-retail','demoAudio'];
-const whenIdle = () => new Promise((resolve) => {
-  const idle = () => ('requestIdleCallback' in window
-    ? requestIdleCallback(() => resolve(), { timeout: 2500 })
-    : setTimeout(resolve, 1200));
-  if (document.readyState === 'complete') idle();
-  else addEventListener('load', idle, { once: true });
-});
 let orbModule;
-const loadOrbs = () => (orbModule ||= whenIdle().then(() => import('/alvento-orb.js')));
-const pending = new Map();
-const watcher = new IntersectionObserver((entries) => {
-  for (const entry of entries) {
-    if (!entry.isIntersecting) continue;
-    watcher.unobserve(entry.target);
-    const { canvas, audio } = pending.get(entry.target);
-    loadOrbs().then(({ createAlventoOrb }) => createAlventoOrb(canvas, audio))
-      .catch((error) => console.warn('Voice orb unavailable:', error));
-  }
-}, { rootMargin: '300px' });
+const loadOrbs = () => (orbModule ||= import('/alvento-orb.js'));
 for (const id of orbIds) {
   const audio = document.getElementById(id);
   const stage = audio?.closest('.call-stage');
   const canvas = stage?.querySelector('.alvento-orb-canvas');
-  if (canvas && audio) { pending.set(canvas, { canvas, audio }); watcher.observe(canvas); }
+  if (!canvas || !audio) continue;
+  let started = false;
+  const start = () => {
+    if (started) return;
+    started = true;
+    loadOrbs().then(({ createAlventoOrb }) => {
+      createAlventoOrb(canvas, audio);
+      canvas.classList.add('orb-live');
+      // If playback began while the orb was loading, let its audio hook catch up.
+      if (!audio.paused) document.dispatchEvent(new Event('pointerdown'));
+    }).catch((error) => console.warn('Voice orb unavailable:', error));
+  };
+  audio.addEventListener('play', start, { once: true });
+  for (const type of ['pointerenter', 'focusin', 'touchstart']) {
+    stage.addEventListener(type, start, { once: true, passive: true });
+  }
 }
 </script>
 
