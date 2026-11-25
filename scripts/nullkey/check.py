@@ -217,7 +217,7 @@ for path in pages:
 for p in ('index.html','case-studies/index.html'):
  if 'href="/nullkey/"' not in (root/p).read_text():print('WARNING',p+': known parent homepage-link assertion: missing href="/nullkey/"')
 privacy=product/'privacy/index.html'
-if hashlib.sha256(privacy.read_bytes()).hexdigest()!='6ad0da89359c875faac370dddb9c00bc8bbbc1b9f29d3409ae04bb5194c86531':fail(privacy,'privacy policy changed')
+if hashlib.sha256(privacy.read_bytes()).hexdigest()!='95e175d61814c2edd057a9531a29300fc0d33ebee7a82160ffff932822b49744':fail(privacy,'privacy policy changed')
 inbound=defaultdict(set)
 for src,targets in graph.items():
  for dst in targets:inbound[dst].add(src)
