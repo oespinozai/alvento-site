@@ -29,3 +29,4 @@ code,pre,kbd,samp{font-family:'JetBrains Mono',ui-monospace,monospace!important}
 
 .ph-badge{margin:18px 0 0}.ph-badge a{display:inline-block;line-height:0}.ph-badge img{display:block;width:250px;height:auto;max-width:100%}
 .ab-badge{margin:18px 0 0}.ab-badge a{display:inline-block;line-height:0}.ab-badge img{display:block;width:178px;height:auto;max-width:100%}
+.badge-list{display:flex;flex-wrap:wrap;gap:24px;align-items:center;margin:8px 0 48px}.badge-list a{display:inline-block;line-height:0}.badge-list img{display:block;height:54px;width:auto;max-width:100%}
